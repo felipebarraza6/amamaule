@@ -1,0 +1,7 @@
+django
+psycopg2-binary
+djangorestframework
+gunicorn
+Pillow
+django-cors-headers
+django-filter
