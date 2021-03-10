@@ -12,7 +12,7 @@ const HeaderLogo = () => {
     return (
         <Row>
             <Col style={styles.col}>
-                <img src={Logo} style={styles.logo} />
+                <img alt='logo' src={Logo} style={styles.logo} />
             </Col>
         </Row>                
     )

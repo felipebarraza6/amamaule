@@ -1,8 +1,5 @@
 import React from 'react'
 
-// Assets
-
-
 // Antd
 import { Layout, Menu } from 'antd'
 const { Header } = Layout
@@ -15,7 +12,7 @@ const NavBar = () => {
     return(
         <Header style={styles.header}>
            <Menu mode="horizontal" theme='dark' style={styles.menu} > 
-                <Item style={styles.item}>Visionados 2020</Item>
+                <Item style={styles.item}>Visionados 2021</Item>
            </Menu>
         </Header>
     )

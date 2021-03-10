@@ -1,33 +1,25 @@
 import React from 'react'
 
 import { Carousel } from 'antd'
-
+import Img1 from '../assets/slider/img1.jpg'
 
 const CarouselBanner = () => {
 
     return(
         <Carousel>
-            <div >
-                <h1 style={styles.banner}>Banner 1</h1>
-            </div>            
-            <div >
-                <h1 style={styles.banner}>Banner 2</h1>
-            </div>            
-            <div >
-                <h1 style={styles.banner}>Banner 3</h1>
-            </div>            
+            <div>
+                <img src={Img1} alt='AMA' style={styles.img1}  />
+            </div>                                    
         </Carousel>
     )
 }
 
 
-const styles = {
-    banner: {        
-        height: '460px',
-        color: '#fff',        
-        lineHeight: '160px',
-        textAlign: 'center',
-        background: '#f58b88',
+const styles = {    
+    img1: {
+        display: 'block',
+        marginLeft: 'auto',
+        marginRight: 'auto'
     }
 }
 
