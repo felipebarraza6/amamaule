@@ -19,10 +19,23 @@ class User(APIModel, AbstractUser):
         ('ADM', 'Administrador de sistema')
     ]
 
-    type_user = models.CharField(
-        max_length=4,
+    type_user1 = models.CharField(
+        max_length=3,
+        choices=TYPES_USERS,    
+    )
+
+    type_user2 = models.CharField(
+        max_length=3,
         choices=TYPES_USERS,
-        default='GE',
+        blank=True,
+        null=True
+    )
+
+    type_user3 = models.CharField(
+        max_length=3,
+        choices=TYPES_USERS,        
+        blank=True,
+        null=True
     )
 
     email = models.EmailField(

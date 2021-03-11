@@ -1,6 +1,8 @@
 import React from 'react'
-import { Row, Card, Typography, Button, Tag } from 'antd'
-const { Text, Title, Paragraph } = Typography
+import { Row, Card, Typography, Tag } from 'antd'
+import SignUp from './signup/SignUp'
+const { Title, Paragraph } = Typography
+
 
 const InfoSection = () => {
 
@@ -22,9 +24,7 @@ const InfoSection = () => {
                         mesas de conversación, talleres y rondas de vinculación con programadores nacionales. Además, 
                         tendrás acceso exclusivo a nuestros showcases y visionados durante esta edición.
                         </Paragraph>
-                        <Button size='large' style={styles.button}>
-                            Inscribete Aquí
-                        </Button>
+                        <SignUp />
                 </Card>
         </Row>
     )
@@ -42,11 +42,6 @@ const styles = {
         boxShadow:'20px 25px 5px rgba(0, 0, 0, 0.1)',
         marginLeft:'8px',
         marginRight:'50px'
-    },
-    button: {
-        backgroundColor: '#CE3D4B', 
-        color:'white', 
-        borderColor:'#CE3D4B'
     }
     
 }

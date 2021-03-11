@@ -18,7 +18,9 @@ class UserModelSerializer(serializers.ModelSerializer):
             'username',
             'phone_number',
             'email',
-            'type_user',
+            'type_user1',
+            'type_user2',
+            'type_user3',
             'principal_image',
             'country',
             'region',
@@ -77,7 +79,9 @@ class UserSignUpSerializer(serializers.Serializer):
         ('ADM', 'Administrador de sistema')
     ]
 
-    type_user = serializers.ChoiceField(choices=TYPES_USERS)
+    type_user1 = serializers.ChoiceField(choices=TYPES_USERS)
+    type_user2 = serializers.ChoiceField(choices=TYPES_USERS)
+    type_user3 = serializers.ChoiceField(choices=TYPES_USERS)
 
     password = serializers.CharField(min_length =8, max_length =64)
     password_confirmation = serializers.CharField(min_length =8, max_length =64)

@@ -11,19 +11,19 @@ const Services = () => {
     return(
         <Row style={styles.container} justify='center'>
                 <Col style={{textAlign:'center'}}>
-                    <img src={service1} style={{width:'20%', marginBottom:'15px'}} />
+                    <img src={service1} style={{width:'20%', marginBottom:'15px'}} alt='service1' />
                     <Title style={styles.title} level={4}>Talleres</Title>
                 </Col>
                 <Col style={{textAlign:'center'}}>
-                    <img src={service2} style={{width:'20%', marginBottom:'15px'}} />
+                    <img src={service2} style={{width:'20%', marginBottom:'15px'}} alt='service2' />
                     <Title style={styles.title} level={4} >Conferencias</Title>
                 </Col>
                 <Col style={{textAlign:'center'}}>
-                    <img src={service3} style={{width:'20%', marginBottom:'15px', marginTop:'15px'}} />
+                    <img src={service3} style={{width:'20%', marginBottom:'15px', marginTop:'15px'}} alt='service3' />
                     <Title style={styles.title} level={4}>Rondas de Vinculación</Title>
                 </Col>
                 <Col style={{textAlign:'center'}}>
-                    <img src={service4} style={{width:'20%', marginBottom:'15px', marginTop:'15px'}} />
+                    <img src={service4} style={{width:'20%', marginBottom:'15px', marginTop:'15px'}} alt='service4' />
                     <Title style={styles.title} level={4}>Visionados y Showcases</Title>
                 </Col>
         </Row>
