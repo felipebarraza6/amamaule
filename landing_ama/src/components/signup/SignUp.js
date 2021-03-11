@@ -1,24 +1,42 @@
 import React, { useState } from 'react'
 import { Modal, Button, Form, 
         Input, notification, Col, 
-        Row, Upload, Select, Alert, Tooltip } from 'antd'
-import { UploadOutlined } from '@ant-design/icons';
+        Row, Select, Alert, Tooltip, message } from 'antd'
+import { geo } from '../../resources/geo'
+import { countries } from '../../resources/countries'
 const { Option } = Select
 
 const UserCreateForm = ({ visible, onCreate, onCancel}) => {
-    const [form] = Form.useForm()
+    // Hooks of in the state form and child selection void region, communes & provinces (only chilean)
+    const [isChilean, setIsChilean] = useState(false)
+    const [provinces, setProvinces] = useState([])        
+    const [indexElements, setIndexElements] = useState({
+        keyRegion: null,
+        keyProvince: null
+    })
+
+    const [form] = Form.useForm()    
+      
     return(
         <Modal
             visible={visible}
-            title='Formulario de Inscripción'
+            title='Formulario de Inscripción / Creación de Usuario'
             okText = 'Inscribirse'
+            style={{top:'1px'}}
             width='600px'
             cancelText = 'Cancelar'
             onCancel = {onCancel}
             onOk={()=> {
-                form.validateFields().then((values)=> {
-                    form.resetFields()
-                    onCreate(values)
+                form.validateFields().then((values)=> {                    
+                    let password = values['password']
+                    let password_conf = values['confirmation_password']
+                    if(password === password_conf){
+                        form.resetFields()
+                        onCreate(values)
+                        
+                    } else{
+                        message.error('Las contraseñas no coinciden!')
+                    }                    
                 }).catch((info) => {
                     console.log(info)
                 })
@@ -48,7 +66,7 @@ const UserCreateForm = ({ visible, onCreate, onCancel}) => {
                 
                 <Row>
                     <Col span={12} style={styles.colField} >
-                        <Form.Item name='email' label='Email' rules={[
+                        <Form.Item name='email' label='Correo Electrónico' rules={[
                             { required: true, message: 'Por favor ingrese su correo'},
                             { type: 'email', message: 'Debes ingresar un correo valido'}
                         ]}>
@@ -56,129 +74,221 @@ const UserCreateForm = ({ visible, onCreate, onCancel}) => {
                         </Form.Item>
                     </Col>
                     <Col span={12} style={styles.colField} >
-                        <Form.Item name='username' label='Usuario' rules={[
+                        <Form.Item name='username' label='Nombre de Usuario' rules={[
                         { required: true, message: 'Por favor ingrese su nombre de usuario'},                    
                         ]}>
                         <Input />
                     </Form.Item>
                     </Col>
                 </Row>
-                
-                <Row>
+                <Row>             
                     <Col span={12} style={styles.colField} >
-                        <Form.Item name='principal_image' label='Imagen'>
-                            <Upload>
-                                <Button icon={<UploadOutlined />}> Click para cargar imagen...</Button>
-                            </Upload>
+                        <Form.Item name='phone_number' label='Teléfono de contacto' rules={[
+                            { required: true, message: 'Por favor ingrese su telefono'},                                                                       
+                        ]}>
+                            <Input />
                         </Form.Item>
-                    </Col>
+                    </Col>     
                     <Col span={12} style={styles.colField} >
-                        <Form.Item name='country' label='País' rules={[
+                        <Form.Item name='country' label='País de residencia' rules={[
                             { required: true, message: 'Por favor ingrese su país'},                    
                         ]}>
-                            <Select>
-
+                            <Select showSearch onChange={ (value) => { 
+                                if(value !== 'Chile'){ 
+                                    setIsChilean(false) 
+                                }else{
+                                    setIsChilean(true) 
+                                } 
+                                }}>                                
+                                {countries.map((obj)=><Option value={obj}>{obj}</Option>)}
                             </Select>
                         </Form.Item>
-                    </Col>
+                    </Col>                     
                 </Row>
-                <Row>
-                    <Col span={8} style={styles.colField} >
-                        <Form.Item name='region' label='Región' rules={[
+                <Row>                    
+                    
+                    <Col span={12} style={styles.colField} >
+                        {isChilean ? 
+                            <Form.Item name='region' label='Región de residencia' rules={[
                                 { required: true, message: 'Por favor ingrese su región'},                    
                             ]}>
-                            <Select>
-                                
+                                <Select onSelect = { (value, index) => {
+                                    setProvinces(geo[index.key].provincias)
+                                    setIndexElements({...indexElements, keyRegion: index.key})
+                                    }}>
+                                    {geo.map((obj, index)=><Option value={obj.region} key={index}>{obj.region}</Option>)}
+                                </Select>
+                            </Form.Item>:
+                            <Form.Item name='region' label='Región de residencia' rules={[
+                                { required: true, message: 'Por favor ingrese su región'},                    
+                                ]}>
+                                <Input />
+                            </Form.Item>
+                        
+                        } 
+                    </Col>
+                    {isChilean && <Col span={12} style={styles.colField} >
+                        <Form.Item name='province' label='Provincía de residencia' rules={[
+                            { required: true, message: 'Por favor ingrese su provincía'},                    
+                        ]}>
+                            <Select onSelect = {(value, index) => {
+                                setProvinces(geo[indexElements.keyRegion].provincias[index.key].comunas)
+                            }}>                           
+                                {provinces.map((obj, index)=><Option value={obj.name} key={index}>{obj.name}</Option>)}
                             </Select>
                         </Form.Item>
-                    </Col>
-                    <Col span={8} style={styles.colField} >
-                        <Form.Item name='commune' label='Comuna' rules={[
+                    </Col>}                    
+                </Row>
+                <Row>             
+                    
+                    {isChilean && <Col span={12} style={styles.colField} >
+                        <Form.Item name='commune' label='Comuna de residencia' rules={[
                         { required: true, message: 'Por favor ingrese su comuna'},                    
                         ]}>
                             <Select>
-                                
-                                </Select>
+                                {provinces.map((obj, index)=><Option value={obj.name} key={index}>{obj.name}</Option>)}
+                            </Select>
                         </Form.Item>
-                    </Col>
-                    <Col span={8} style={styles.colField} >
-                        <Form.Item name='province' label='Provincía' rules={[
-                            { required: true, message: 'Por favor ingrese su provincía'},                    
-                        ]}>
-                            <Select>
-                                
-                                </Select>
-                        </Form.Item>
-                    </Col>
+                    </Col>}                    
                 </Row>
                 <Row style={styles.alert}>
-                    <Alert showIcon closable type='warning' message='Puedes seleccionar hasta 3 perfiles...' />
+                    <Col span={24}>
+                        <Alert showIcon closable type='warning' message='Puedes seleccionar hasta 3 aréas de trabajo(perfiles)' />
+                    </Col>
                 </Row>
                 <Row>
                     <Col span={8} style={styles.colField} >
-                    <Form.Item name='type_user1' label='Rol #1' rules={[
+                    <Form.Item name='type_user1' label='Perfil #1' rules={[
                         { required: true, message: 'Selecciona al menos un tipo de Rol'},                    
                     ]}>
                         <Select>
-                            <Option>Artista / Manager</Option> 
-                            <Option>
+                            <Option value='AM'>
+                                Artista / Manager
+                            </Option> 
+                            <Option value='GES'>
                                 <Tooltip title='Gestión Cultural / Producción / Programación'>
                                     Gestión Cultural / Producción / Programación
                                 </Tooltip>                           
                             </Option>
 
-                            <Option>
+                            <Option value='RE'>
                                 <Tooltip title='Representante de organización o empresa, pública o privada'>
                                     Representante de Organización
                                 </Tooltip>
                             </Option>
-                            <Option>Proveedor</Option>                            
+                            <Option value='PROV'>
+                                <Tooltip title='Proveedor/a (transporte, técnica, catering, otros)'>
+                                    Proveedor
+                                </Tooltip>                                
+                            </Option>
+                            <Option value='PRO'>
+                                <Tooltip title='Profesional Asociado/a a las Artes Escénicas (diseñador gráfico/a, escenógrafo/a, sonido, iluminación, comunicación, audiovisualista, fotógrafo/a, maquillador/a, vestuarista, otros)'>
+                                    Profesional asociado/a
+                                </Tooltip>                                
+                            </Option>                          
                         </Select>
                     </Form.Item> 
-
                     </Col>
                     <Col span={8} style={styles.colField} >
-                    <Form.Item name='type_user2' label='Rol #2'>
-                        <Select>        
-                            <Option>Artista / Manager</Option>                            
-                            <Option>Gestión Cultural / Producción / Programación</Option>
-                            <Option>Representante de Organización</Option>
-                            <Option>Proveedor</Option>                            
+                    <Form.Item name='type_user2' label='Perfil #2'>
+                    <Select>
+                            <Option value='AM'>
+                                Artista / Manager
+                            </Option> 
+                            <Option value='GES'>
+                                <Tooltip title='Gestión Cultural / Producción / Programación'>
+                                    Gestión Cultural / Producción / Programación
+                                </Tooltip>                           
+                            </Option>
+
+                            <Option value='RE'>
+                                <Tooltip title='Representante de organización o empresa, pública o privada'>
+                                    Representante de Organización
+                                </Tooltip>
+                            </Option>
+                            <Option value='PROV'>
+                                <Tooltip title='Proveedor/a (transporte, técnica, catering, otros)'>
+                                    Proveedor
+                                </Tooltip>                                
+                            </Option>
+                            <Option value='PRO'>
+                                <Tooltip title='Profesional Asociado/a a las Artes Escénicas (diseñador gráfico/a, escenógrafo/a, sonido, iluminación, comunicación, audiovisualista, fotógrafo/a, maquillador/a, vestuarista, otros)'>
+                                    Profesional asociado/a
+                                </Tooltip>                                
+                            </Option>                          
                         </Select>
                     </Form.Item>                         
                     </Col>
                     <Col span={8} style={styles.colField} >
-                    <Form.Item name='type_user3' label='Rol #3'>
-                        <Select>        
-                        <Option>Artista / Manager</Option>                            
-                            <Option>Gestión Cultural / Producción / Programación</Option>
-                            <Option>Representante de Organización</Option>
-                            <Option>Proveedor</Option>                            
+                    <Form.Item name='type_user3' label='Perfil #3'>
+                    <Select>
+                            <Option value='AM'>
+                                Artista / Manager
+                            </Option> 
+                            <Option value='GES'>
+                                <Tooltip title='Gestión Cultural / Producción / Programación'>
+                                    Gestión Cultural / Producción / Programación
+                                </Tooltip>                           
+                            </Option>
+
+                            <Option value='RE'>
+                                <Tooltip title='Representante de organización o empresa, pública o privada'>
+                                    Representante de Organización
+                                </Tooltip>
+                            </Option>
+                            <Option value='PROV'>
+                                <Tooltip title='Proveedor/a (transporte, técnica, catering, otros)'>
+                                    Proveedor
+                                </Tooltip>                                
+                            </Option>
+                            <Option value='PRO'>
+                                <Tooltip title='Profesional Asociado/a a las Artes Escénicas (diseñador gráfico/a, escenógrafo/a, sonido, iluminación, comunicación, audiovisualista, fotógrafo/a, maquillador/a, vestuarista, otros)'>
+                                    Profesional asociado/a
+                                </Tooltip>                                
+                            </Option>                          
                         </Select>
                     </Form.Item> 
+                    </Col>
+                </Row>
+                <Row>
+                    <Col span={12} style={styles.colField}>
+                        <Form.Item name='password' label='Contraseña' rules={[
+                            { required: true, message: 'Por favor ingresa tu contraseña'},                    
+                            ]}>
+                                <Input type='password' />
+                        </Form.Item>
+                    </Col>
+                    <Col span={12} style={styles.colField}>
+                        <Form.Item name='confirmation_password' label='Confirma tu Contraseña' rules={[
+                            { required: true, message: 'Por favor ingresa tu contraseña'},                    
+                            ]}>
+                                <Input type='password' />
+                        </Form.Item>
                     </Col>
                 </Row>                                                              
             </Form>
 
         </Modal>
     )
-
 }
+
 
 const SignUp = () => {
     
     const initialState = {
         visibleModal: false,        
         data: null,
-        isLoading: false
+        isLoading: false,
+        isChilean: true,
+
     }    
 
-    const [globalState, SetGlobalState] = useState(initialState)
+    const [globalState, SetGlobalState] = useState(initialState)    
 
     function onCreate(values){
-        console.log(values)
         notification.success({ message:`${values.email} fue creado!!!`, title:'Usuario creado'})
         SetGlobalState({...globalState, visibleModal: false})
+        
     }
 
     function changeVisible(){
@@ -192,9 +302,8 @@ const SignUp = () => {
         SetGlobalState({
             ...globalState,
             visibleModal: false
-        })
+        })        
     }
-
 
     return (
         <React.Fragment>
@@ -204,7 +313,6 @@ const SignUp = () => {
             <UserCreateForm visible={globalState.visibleModal} onCreate={onCreate} onCancel={closeModal} />
         </React.Fragment>
     )
-
 }
 
 
@@ -218,8 +326,9 @@ const styles = {
         paddingRight: '10px'
     },
     alert: {
-        marginTop:'40px',
-        marginBottom:'30px'
+        marginTop:'20px',
+        marginBottom:'30px',
+        width:'100%'
     }
 }
     

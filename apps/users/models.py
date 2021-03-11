@@ -13,26 +13,26 @@ class User(APIModel, AbstractUser):
         ('GE','General'),
         ('R','Relator'),
         ('GES','Gestión'), # Cultural/Producción/Programación
-        ('PRO','Proveedor'), # (transporte, técnica, catering, otros)
+        ('PROV','Proveedor'), # (transporte, técnica, catering, otros)
         ('RE','Representante'), #  de organización o empresa, pública o privada
         ('PRO','Profesional asociado'), #  a las artes escénicas (diseñador gráfico/a, escenógrafo/a, sonido, iluminación, comunicación, audiovisualista, fotógrafo/a, maquillador/a, vestuarista, otros)
         ('ADM', 'Administrador de sistema')
     ]
 
     type_user1 = models.CharField(
-        max_length=3,
+        max_length=4,
         choices=TYPES_USERS,    
     )
 
     type_user2 = models.CharField(
-        max_length=3,
+        max_length=4,
         choices=TYPES_USERS,
         blank=True,
         null=True
     )
 
     type_user3 = models.CharField(
-        max_length=3,
+        max_length=4,
         choices=TYPES_USERS,        
         blank=True,
         null=True

@@ -2,6 +2,7 @@ import React from 'react'
 
 // Antd
 import { Layout, Menu } from 'antd'
+import { UserOutlined } from '@ant-design/icons'
 const { Header } = Layout
 const { Item } = Menu
 
@@ -12,7 +13,7 @@ const NavBar = () => {
     return(
         <Header style={styles.header}>
            <Menu mode="horizontal" theme='dark' style={styles.menu} > 
-                <Item style={styles.item}>Visionados 2021</Item>
+                <Item style={styles.item}> <UserOutlined style={{fontSize:'20px'}} /> Ingresar</Item>
            </Menu>
         </Header>
     )
