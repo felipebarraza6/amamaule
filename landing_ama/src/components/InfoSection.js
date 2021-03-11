@@ -1,5 +1,5 @@
 import React from 'react'
-import { Row, Card, Typography, Button } from 'antd'
+import { Row, Card, Typography, Button, Tag } from 'antd'
 const { Text, Title, Paragraph } = Typography
 
 const InfoSection = () => {
@@ -14,7 +14,7 @@ const InfoSection = () => {
                             Vincular para Crear
                         </Title>
                     }
-                    extra={<Text style={{marginLeft:'20px'}}>Del 14 al 17 de abril del 2021</Text>}>
+                    extra={<Tag color='volcano' style={{marginLeft:'20px'}}>Del 14 al 17 de abril del 2021</Tag>}>
                         <Paragraph>
                         AMA es el primer encuentro de vinculación online de Artistas Escénicos del Maule, 
                         Impulsado por el Teatro Regional del Maule y la Seremi de las Culturas, las Artes y 
@@ -38,7 +38,10 @@ const styles = {
         marginBottom: '100px',
     },
     card: {
-        width: '700px'
+        width: '700px',
+        boxShadow:'20px 25px 5px rgba(0, 0, 0, 0.1)',
+        marginLeft:'8px',
+        marginRight:'50px'
     },
     button: {
         backgroundColor: '#CE3D4B', 

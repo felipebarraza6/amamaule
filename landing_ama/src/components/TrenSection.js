@@ -17,11 +17,11 @@ const TrenSection = () => {
 const styles = {
     container: {
         backgroundColor: '#61263D',
-        marginTop: '60px',
         paddingTop: '20px'
     },
     trenImg: {
-        width:'50%'
+        width:'50%',
+        height:'50%%'
     }
 }
 

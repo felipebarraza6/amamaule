@@ -38,7 +38,7 @@ const styles = {
         color: 'white',                
     },
     content: {        
-        marginBottom:'30px'
+        marginBottom:'0px'
     }
 }
 
