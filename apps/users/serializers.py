@@ -67,6 +67,10 @@ class UserSignUpSerializer(serializers.Serializer):
 
     first_name = serializers.CharField()
     last_name = serializers.CharField()
+    country = serializers.CharField()
+    region = serializers.CharField()
+    province = serializers.CharField(allow_null=True, required=False)
+    commune = serializers.CharField(allow_null=True, required=False)
 
     TYPES_USERS = [
         ('AM','Artista / Manager'),
@@ -80,8 +84,8 @@ class UserSignUpSerializer(serializers.Serializer):
     ]
 
     type_user1 = serializers.ChoiceField(choices=TYPES_USERS)
-    type_user2 = serializers.ChoiceField(choices=TYPES_USERS)
-    type_user3 = serializers.ChoiceField(choices=TYPES_USERS)
+    type_user2 = serializers.ChoiceField(choices=TYPES_USERS, allow_null=True, required=False)
+    type_user3 = serializers.ChoiceField(choices=TYPES_USERS, allow_null=True, required=False)
 
     password = serializers.CharField(min_length =8, max_length =64)
     password_confirmation = serializers.CharField(min_length =8, max_length =64)

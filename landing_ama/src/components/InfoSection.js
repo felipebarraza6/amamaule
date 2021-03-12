@@ -1,6 +1,6 @@
 import React from 'react'
 import { Row, Card, Typography, Tag } from 'antd'
-import SignUp from './signup/SignUp'
+import SignUp from './auth/SignUp'
 const { Title, Paragraph } = Typography
 
 

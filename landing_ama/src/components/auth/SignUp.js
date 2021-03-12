@@ -3,6 +3,7 @@ import { Modal, Button, Form,
         Input, notification, Col, 
         Row, Select, Alert, Tooltip, message } from 'antd'
 import { geo } from '../../resources/geo'
+import api from '../../api/endpoints'
 import { countries } from '../../resources/countries'
 const { Option } = Select
 
@@ -29,7 +30,7 @@ const UserCreateForm = ({ visible, onCreate, onCancel}) => {
             onOk={()=> {
                 form.validateFields().then((values)=> {                    
                     let password = values['password']
-                    let password_conf = values['confirmation_password']
+                    let password_conf = values['password_confirmation']
                     if(password === password_conf){
                         form.resetFields()
                         onCreate(values)
@@ -49,7 +50,7 @@ const UserCreateForm = ({ visible, onCreate, onCancel}) => {
             >
                 <Row>
                     <Col span={12} style={styles.colField} >
-                    <Form.Item name='name' label='Nombre' rules={[
+                    <Form.Item name='first_name' label='Nombre' rules={[
                         { required: true, message: 'Por favor ingrese su nombre'},                    
                     ]}>
                         <Input />
@@ -259,7 +260,7 @@ const UserCreateForm = ({ visible, onCreate, onCancel}) => {
                         </Form.Item>
                     </Col>
                     <Col span={12} style={styles.colField}>
-                        <Form.Item name='confirmation_password' label='Confirma tu Contraseña' rules={[
+                        <Form.Item name='password_confirmation' label='Confirma tu Contraseña' rules={[
                             { required: true, message: 'Por favor ingresa tu contraseña'},                    
                             ]}>
                                 <Input type='password' />
@@ -285,9 +286,15 @@ const SignUp = () => {
 
     const [globalState, SetGlobalState] = useState(initialState)    
 
-    function onCreate(values){
-        notification.success({ message:`${values.email} fue creado!!!`, title:'Usuario creado'})
-        SetGlobalState({...globalState, visibleModal: false})
+    async function onCreate(values){
+        const request = await api.user.signup(values).then((response)=> {
+            notification.success({ message:`${values.email} fue creado!!!`, title:'Usuario creado'})
+            SetGlobalState({...globalState, visibleModal: false})
+        }).catch((error)=> {
+            notification.error({message:'El usuario no sido creado, vuelva a intentarlo'})
+        })
+        return request
+        
         
     }
 
