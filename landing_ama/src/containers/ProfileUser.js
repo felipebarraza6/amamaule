@@ -240,8 +240,8 @@ const ProfileUser = () => {
                                     <Form.Item label='Perfil Profesional' name='perfil_profesional'>
                                         <TextArea />
                                     </Form.Item>
-                                    <Form.Item label='Dossier Archivo'>
-                                        <Input />
+                                    <Form.Item label='Dossier Archivo' name='dossier_archivo'>
+                                        <Upload > Subir Archivo</Upload>
                                     </Form.Item>
                                     <Form.Item label='URL' name='url_contenido'>
                                         <Input />

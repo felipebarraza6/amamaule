@@ -29,7 +29,8 @@ export const UPDATE = async(endpoints, data) => {
     
     const options = {
         headers: {
-            Authorization: `Token ${token}`
+            Authorization: `Token ${token}`,
+            'Content-Type': "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
         }
     }
     const request = await INSTANCE.patch(endpoints, data, options)
