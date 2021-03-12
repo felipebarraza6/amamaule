@@ -1,12 +1,16 @@
 from django.contrib.auth import password_validation, authenticate
 from django.core.validators import RegexValidator
 
-from .models import User
+from .models import User, Profile
 from rest_framework.authtoken.models import Token
 
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 
+class ProfileModelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = ('__all__')
 
 class UserModelSerializer(serializers.ModelSerializer):
     class Meta:
@@ -102,5 +106,6 @@ class UserSignUpSerializer(serializers.Serializer):
         data.pop('password_confirmation')
         user = User.objects.create_user(**data, is_active=True)
         # Crear perfil
+        Profile.objects.create(user=user)
         return user
 

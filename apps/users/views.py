@@ -9,9 +9,26 @@ from rest_framework.permissions import (
 
 from .serializers import (UserLoginSerializer, 
                         UserModelSerializer, 
-                        UserSignUpSerializer)
+                        UserSignUpSerializer, ProfileModelSerializer)
 
-from .models import User
+from .models import User, Profile
+
+class ProfileViewSet(mixins.RetrieveModelMixin,                
+                mixins.UpdateModelMixin,
+                viewsets.GenericViewSet):
+    
+    queryset = Profile.objects.all()
+    serializer_class = ProfileModelSerializer
+    lookup_field = 'user'
+
+    def get_permissions(self):
+
+        if self.action in ['retrieve', 'partial_update']:
+            permissions = [IsAuthenticated]
+        else:
+            permissions = [IsAuthenticated]
+        return [p() for p in permissions]
+
 
 
 class UserViewSet(mixins.RetrieveModelMixin,

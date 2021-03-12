@@ -24,4 +24,15 @@ export const GET = async(endpoints) => {
     return request
 }
 
+export const UPDATE = async(endpoints, data) => {
+    const token = JSON.parse(localStorage.getItem('access_token'))
+    
+    const options = {
+        headers: {
+            Authorization: `Token ${token}`
+        }
+    }
+    const request = await INSTANCE.patch(endpoints, data, options)
+    return request
 
+}
