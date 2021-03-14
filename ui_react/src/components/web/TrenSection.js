@@ -21,7 +21,9 @@ const styles = {
     },
     trenImg: {
         width:'50%',
-        height:'50%%'
+        height:'50%'
+
+
     }
 }
 

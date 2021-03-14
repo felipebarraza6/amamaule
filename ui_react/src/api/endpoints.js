@@ -1,4 +1,4 @@
-import { POST_LOGIN, GET, UPDATE} from './config'
+import { POST_LOGIN, GET, UPDATE, POST} from './config'
 
 
 const login = async(data) => {
@@ -27,8 +27,19 @@ const get_profile_center = async(user)=> {
 }
 
 const update_profile = async(user, data) => {
+    console.log(user)
     const request = await UPDATE(`users/profile/${user}/`, data)
+  
     return request
+}
+
+const create_profile = async(user, data) => {
+  data = {
+    ...data,
+    user: user,
+  }
+  const request = await POST(`users/create_profile/`, data)
+  return request
 }
 
 const api = {
@@ -37,7 +48,8 @@ const api = {
         signup,
         profile,
         get_profile_center,
-        update_profile
+        update_profile,
+        create_profile
     }
 }
 

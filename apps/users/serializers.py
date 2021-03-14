@@ -10,8 +10,21 @@ from rest_framework.validators import UniqueValidator
 class ProfileModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
-        fields = ('__all__')
+        fields = '__all__'
+    
+    def update(self, instance, validated_data):
+        if('dossier_archivo' in  validated_data):
+            User.objects.filter(id=instance.user.id).update(is_upload_dossier=True)
+            instance.dossier_archivo = validated_data['dossier_archivo']
 
+        return super(ProfileModelSerializer, self).update(instance,
+                validated_data)
+
+    def create(self, data):
+        User.objects.filter(id=data['user'].id).update(is_verified=True)
+        Profile.objects.create(**data)
+        return data
+    
 class UserModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
@@ -37,7 +50,7 @@ class UserModelSerializer(serializers.ModelSerializer):
 
 class UserLoginSerializer(serializers.Serializer):
     email = serializers.EmailField()
-    password = serializers.CharField(min_length=9, max_length=64)
+    password = serializers.CharField(min_length=6, max_length=64)
 
     def validate(self, data):
         user = authenticate(username = data['email'], password = data['password'])
@@ -91,8 +104,8 @@ class UserSignUpSerializer(serializers.Serializer):
     type_user2 = serializers.ChoiceField(choices=TYPES_USERS, allow_null=True, required=False)
     type_user3 = serializers.ChoiceField(choices=TYPES_USERS, allow_null=True, required=False)
 
-    password = serializers.CharField(min_length =8, max_length =64)
-    password_confirmation = serializers.CharField(min_length =8, max_length =64)
+    password = serializers.CharField(min_length =6, max_length =64)
+    password_confirmation = serializers.CharField(min_length =6, max_length =64)
 
     def validate(self, data):
         passwd = data['password']
@@ -106,6 +119,5 @@ class UserSignUpSerializer(serializers.Serializer):
         data.pop('password_confirmation')
         user = User.objects.create_user(**data, is_active=True)
         # Crear perfil
-        Profile.objects.create(user=user)
         return user
 

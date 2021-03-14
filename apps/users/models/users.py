@@ -56,6 +56,7 @@ class User(APIModel, AbstractUser):
     commune = models.CharField(max_length=120, null=True, blank=True)
 
     is_active = models.BooleanField(default=True)
+    is_upload_dossier = models.BooleanField(default=False)
     is_verified = models.BooleanField(default=False)
 
 

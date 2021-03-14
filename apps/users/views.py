@@ -13,27 +13,21 @@ from .serializers import (UserLoginSerializer,
 
 from .models import User, Profile
 
-class ProfileViewSet(mixins.RetrieveModelMixin,                
-                mixins.UpdateModelMixin,
-                viewsets.GenericViewSet):
+class ProfileViewSet(mixins.RetrieveModelMixin,
+                    mixins.UpdateModelMixin,
+                    viewsets.GenericViewSet):
     
     queryset = Profile.objects.all()
     serializer_class = ProfileModelSerializer
     lookup_field = 'user'
-
-    def get_permissions(self):
-
-        if self.action in ['retrieve', 'partial_update']:
-            permissions = [IsAuthenticated]
-        else:
-            permissions = [IsAuthenticated]
-        return [p() for p in permissions]
+    permission_classes = [IsAuthenticated]
 
 
 
-class UserViewSet(mixins.RetrieveModelMixin,
-                mixins.UpdateModelMixin,
-                viewsets.GenericViewSet):
+
+class UserViewSet(viewsets.GenericViewSet,
+                mixins.RetrieveModelMixin,
+                mixins.UpdateModelMixin):
     
     queryset = User.objects.all()
     serializer_class = UserModelSerializer
@@ -49,6 +43,16 @@ class UserViewSet(mixins.RetrieveModelMixin,
             permissions = [IsAuthenticated]
         return [p() for p in permissions]
 
+    @action(detail=False, methods=['post'])
+    def create_profile(self,request):
+        serializer = ProfileModelSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        profile = serializer.save()
+        data = {
+            'profile': ProfileModelSerializer(profile).data
+        }
+        return Response(data, status=status.HTTP_201_CREATED)
+        
 
     @action(detail=False, methods=['post'])
     def login(self, request):

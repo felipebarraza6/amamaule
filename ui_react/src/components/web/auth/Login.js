@@ -43,12 +43,14 @@ const UserLoginForm = ({ visible, onCreate, onCancel}) => {
                     </Col>
                     <Col span={12} style={styles.colField} >
                     <Form.Item name='password' label='Contraseña' rules={[
-                        { required: true, message: 'Por favor ingrese su contraseña'},                    
+                        { required: true, message: 'Por favor ingrese su contraseña'},
+                        {min:6, message: 'Debes ingresar al menos 6 caracteres'}
                     ]}>
                         <Input type='password' />
                     </Form.Item>
                     </Col>  
                 </Row>                                                                                       
+             <Col style={{textAlign:'right', marginRight:'20px'}}> Olvide mi contraseña?</Col>
             </Form>
 
         </Modal>
@@ -71,12 +73,13 @@ const Login = () => {
     async function onCreate(values){
         const request = await api.user.login(values).then((response)=> {            
             notification.success({ message:`${values.email} ha iniciado sesion`, title:'Credenciales correctas'})
+            
             SetGlobalState({...globalState, visibleModal: false})
             dispatch({
                 type:'LOGIN',
                 payload: response.data
             })
-            console.log(response)
+            window.location.replace('/profile')
         }).catch((error)=> {
             notification.error({message:'El usuario no ha podido acceder, vuelva a intentarlo'})
         })

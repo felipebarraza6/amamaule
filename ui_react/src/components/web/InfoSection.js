@@ -1,5 +1,5 @@
 import React from 'react'
-import { Row, Card, Typography, Tag } from 'antd'
+import { Row, Col, Card, Typography, Tag } from 'antd'
 import SignUp from './auth/SignUp'
 const { Title, Paragraph } = Typography
 

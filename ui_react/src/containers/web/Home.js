@@ -20,7 +20,7 @@ const Home = () => {
       <Layout>
         <Switch>  
           <Route exact path='/' render={()=><><HeaderLogo/><NavBar/></>}  />
-          <Route exact path='/profile' render={()=> <NavBar />}  /> 
+          <Route exact path='/profile' render={()=> <NavBarClient />}  /> 
         </Switch>
         <Content>
           <Switch>

@@ -130,7 +130,7 @@ const UserCreateForm = ({ visible, onCreate, onCancel}) => {
                         } 
                     </Col>
                     {isChilean && <Col span={12} style={styles.colField} >
-                        <Form.Item name='province' label='Provincía de residencia' rules={[
+                        <Form.Item name='province' label='Provincia de residencia' rules={[
                             { required: true, message: 'Por favor ingrese su provincía'},                    
                         ]}>
                             <Select onSelect = {(value, index) => {
@@ -255,7 +255,8 @@ const UserCreateForm = ({ visible, onCreate, onCancel}) => {
                 <Row>
                     <Col span={12} style={styles.colField}>
                         <Form.Item name='password' label='Contraseña' rules={[
-                            { required: true, message: 'Por favor ingresa tu contraseña'},                    
+                            { required: true, message: 'Por favor ingresa tu contraseña'},
+                            { min:6, message:'Debes ingresar al menos 6 caracteres'}
                             ]}>
                                 <Input type='password' />
                         </Form.Item>
@@ -263,11 +264,16 @@ const UserCreateForm = ({ visible, onCreate, onCancel}) => {
                     <Col span={12} style={styles.colField}>
                         <Form.Item name='password_confirmation' label='Confirma tu Contraseña' rules={[
                             { required: true, message: 'Por favor ingresa tu contraseña'},                    
+                            {min: 6, message: 'Debes ingresar al menos 6 caracteres'}
                             ]}>
                                 <Input type='password' />
                         </Form.Item>
                     </Col>
-                </Row>                                                              
+                    <Col span={24}>
+                    <p>¿Problemas para crear tu cuenta?</p> 
+                    </Col>
+                    <p>Envíanos un correo a <a href='mailto:info@amamaule.cl'  >info@amamaule.cl</a></p>
+                      </Row>                                                              
             </Form>
 
         </Modal>

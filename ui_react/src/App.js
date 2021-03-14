@@ -27,6 +27,7 @@ function App() {
     async function getUserData(user) {
       
       const request = await api.user.profile(user).then((response)=> {
+          console.log(response)
           const user = response.data
           dispatch({
             type: 'LOGIN',
@@ -54,7 +55,7 @@ function App() {
       }}
     >
       <React.Fragment>
-       {size < 600 ? 
+       {size < 800 ? 
           'Version Mobile': 
             <Home />  
        }
