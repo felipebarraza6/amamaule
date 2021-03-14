@@ -1,0 +1,12 @@
+@import '~antd/dist/antd.css';
+
+.ant-carousel .slick-dots li button {
+    background: #ce3d4b;
+    opacity: 0.4;
+}
+
+.ant-carousel .slick-dots li.slick-active button {
+    opacity: 1;
+    background: #ce3d4b;
+}
+
