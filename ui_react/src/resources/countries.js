@@ -42,7 +42,6 @@ export const countries = [
 	"Cayman Islands (the)",
 	"Central African Republic (the)",
 	"Chad",
-	"Chile",
 	"China",
 	"Christmas Island",
 	"Cocos (Keeling) Islands (the)",

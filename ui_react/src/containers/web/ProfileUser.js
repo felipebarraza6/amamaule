@@ -1,6 +1,6 @@
 import React, {useContext, useState } from 'react'
-import { Menu, Col, Row, Descriptions, Card, Tag } from 'antd'
-import { UserOutlined, CheckOutlined, EditOutlined, LikeTwoTone } from '@ant-design/icons'
+import { Menu, Modal, Col, Row, Descriptions, Card, Tag } from 'antd'
+import { RocketOutlined ,UserOutlined, CheckOutlined, EditOutlined, LikeTwoTone } from '@ant-design/icons'
 import { AuthContext } from '../../App'
 
 import ProfileData from '../../components/web/profile/ProfileData'
@@ -86,6 +86,12 @@ const ProfileUser = () => {
                     </Menu.Item>}
                     </>
                   }
+                  {state.user &&
+                  <Menu.Item disabled={!state.user.is_verified}  key={currentNavigation} onClick={()=>Modal.info({title:'Evento Satélite', icon:<RocketOutlined />,content:<>Descarga las bases</>})} icon={<RocketOutlined />}
+
+                    style={ currentNavigation === '3' ?  styles.hoverItem : styles.menuItem  } >
+                      Evento Satélite 
+                  </Menu.Item>}
               </Menu>
               <Row style={{padding:'0px'}}>
                 <Col lg={{span:14}}  xs={{span:24}}  style={{padding:'10px'}}  >

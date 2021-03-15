@@ -37,7 +37,7 @@ const Screen = () => {
 
                         </p>
                         </Card.Body>
-                        <Card.Footer content={<SignUp />} extra={<div>Del 14 al 17 de abril del 2021</div>} />
+                        <Card.Footer content={<SignUp />}  />
                       </Card>
                   </WingBlank>
                     <WhiteSpace size="lg" />

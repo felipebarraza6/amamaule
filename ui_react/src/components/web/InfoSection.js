@@ -14,8 +14,7 @@ const InfoSection = () => {
                         <Title level={3}>
                             Vincular para Crear
                         </Title>
-                    }
-                    extra={<Tag color='volcano' style={{marginLeft:'20px'}}>Del 14 al 17 de abril del 2021</Tag>}>
+                    }>
                         <Paragraph>
                           AMA es el primer encuentro de vinculación online de Artistas Escénicos del Maule, 
                           Impulsado por el Teatro Regional del Maule y la Seremi de las Culturas, las Artes y 

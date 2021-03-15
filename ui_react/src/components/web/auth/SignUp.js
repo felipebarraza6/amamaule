@@ -94,13 +94,14 @@ const UserCreateForm = ({ visible, onCreate, onCancel}) => {
                         <Form.Item name='country' label='País de residencia' rules={[
                             { required: true, message: 'Por favor ingrese su país'},                    
                         ]}>
-                            <Select showSearch onChange={ (value) => { 
-                                if(value !== 'Chile'){ 
+                            <Select onChange={ (value) => { 
+                                if(value !== 'chile'){ 
                                     setIsChilean(false) 
                                 }else{
                                     setIsChilean(true) 
                                 } 
                                 }}>                                
+                                <Option value='chile'><b>Chile</b></Option>
                                 {countries.map((obj)=><Option value={obj}>{obj}</Option>)}
                             </Select>
                         </Form.Item>
@@ -128,28 +129,15 @@ const UserCreateForm = ({ visible, onCreate, onCancel}) => {
                         
                         } 
                     </Col>
-                    {isChilean && <Col span={12} style={styles.colField} >
-                        <Form.Item name='province' label='Provincia de residencia' rules={[
-                            { required: true, message: 'Por favor ingrese su provincía'},                    
-                        ]}>
-                            <Select onSelect = {(value, index) => {
-                                setProvinces(geo[indexElements.keyRegion].provincias[index.key].comunas)
-                            }}>                           
-                                {provinces.map((obj, index)=><Option value={obj.name} key={index}>{obj.name}</Option>)}
-                            </Select>
-                        </Form.Item>
-                    </Col>}                    
-                </Row>
-                <Row>             
                     
                     {isChilean && <Col span={12} style={styles.colField} >
                         <Form.Item name='commune' label='Comuna de residencia' rules={[
                         { required: true, message: 'Por favor ingrese su comuna'},                    
+                        { max: 120, message: 'Tienes un maximo de 120 caracteres'}
                         ]}>
-                            <Select>
-                                {provinces.map((obj, index)=><Option value={obj.name} key={index}>{obj.name}</Option>)}
-                            </Select>
-                        </Form.Item>
+                          <Input />                            
+                      </Form.Item>
+
                     </Col>}                    
                 </Row>
                 <Row style={styles.alert}>
@@ -308,10 +296,13 @@ const SignUp = () => {
               let message = errors[key]
               
               if(field==='phone_number'){
-                  field = 'telefono'
+                  field = 'Telefono'
+              }
+              if(field==='email'){
+                  field = 'Email'
               }
               if(field === 'username'){
-                  field = 'nombre de usuario'
+                  field = 'Nombre de usuario'
               }
 
                 notification.error({message:`${field}: ${message}`})
@@ -342,7 +333,7 @@ const SignUp = () => {
     return (
         <React.Fragment>
             <Button size='large' style={styles.button} onClick={changeVisible}>
-                Inscríbete Aquí
+                Inscríbete aquí
             </Button>
             <UserCreateForm visible={globalState.visibleModal} onCreate={onCreate} onCancel={closeModal} />
         </React.Fragment>
