@@ -15,10 +15,14 @@ const Workshops = () => {
   const [page, setPage] = useState(1)
   const [formPit, setFormPit] = useState(false)
 
-  async function updateProfile(data){
-    console.log(data)
-    const request = await api.user.update_profile(state.user.id, data).then((response)=> {
-        message.success('Inscripcion completada!')  
+  async function updateProfile(data, status){
+    const request = await api.user.update_profile(state.user.id, data, status).then((response)=> {
+        if(status===false){
+          message.info('Has cancelar tu inscripción')
+        }else{
+          message.success('Inscripcion completada!')
+        }
+
     }).catch((error)=> {
         message.error('Ha ocurrido un error intentalo mas tarde')
     })
@@ -97,7 +101,11 @@ const Workshops = () => {
                 <TextArea />
               </Form.Item>
               <Button style={styles.buttonIns} htmlType='submit' >Enviar Inscripción</Button>
-            </Form>: <Button disabled  >Inscrito</Button>
+            </Form>: <>
+                    <Button style={styles.cancelButton}  onClick={ ()=> updateProfile({ taller_pitching: false  },false)  }  >
+                       CANCELAR PARTICIPACIÓN
+                    </Button>
+                  </>
           }</> }
 
         </p>
@@ -196,7 +204,7 @@ const Workshops = () => {
               <>
                 {profile.taller_financiamiento ? 
                   <Button disabled  >Inscrito</Button>:
-                  <Button style={styles.buttonIns} onClick={()=> updateProfile({taller_financiamiento:true})}  >Inscríbete</Button>
+                  <Button stye={styles.buttonIns} onClick={()=> updateProfile({taller_financiamiento:true})}  >Inscríbete</Button>
                 }
               </>
         }
@@ -216,6 +224,11 @@ const styles = {
     color:'white',
     marginRight:'10px',
     marginLeft: '10px'
+  },
+  cancelButton: {
+    backgroundColor:'#CE3D4B',
+    color: 'white',
+    borderColor: '#CE3D4B'
   },
   buttonIns: {
     backgroundColor:'#61263D',

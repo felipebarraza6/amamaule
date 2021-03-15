@@ -15,7 +15,7 @@ const ProfileData = () => {
   const [otherTypeProfesional, setOtherTypeProfesional] = useState(false)
   const [otherArtist, setOtheArtist] = useState(false)
   const [otherGener, setOtherGener] = useState(false)
-
+  const [errors, setErrors] = useState(null)
  
  async  function onFinish(values){
     if(values.disciplina){
@@ -41,6 +41,22 @@ const ProfileData = () => {
     const request = await api.user.create_profile(state.user.id, values).then((response)=> {
       message.success('Perfil Creado!!!')
       window.location.reload()
+    }).cath((errors)=> {
+     
+      setErrors(errors.response.data)
+      if(errors){
+        Object.keys(errors).map((key, index)=> {
+          let field = key
+          let message = errors[key]
+          if(key==='non_field_errors'){
+              field='Error'
+          }
+
+          message.errors(`${field}: ${message}`)
+      
+        })
+      }
+    
     })
     
     return request
@@ -94,7 +110,7 @@ const ProfileData = () => {
         <Col span={24}>
             <Card title='Perfil de Usuario' >
                                    
-                                <Form layout='vertical' onFinish={(values)=> onFinish(values)}>
+                                <Form layout='vertical' initialValues={{'url_contenido':'http://'}}   onFinish={(values)=> onFinish(values)}>
                                       <Row>
                                         {state &&<> 
                                           {is_artis &&  <>
@@ -147,36 +163,26 @@ const ProfileData = () => {
                                             }
                                         </Form.Item>
                                       </Col>
-
-
-
                                           </>} 
                                         </>}
                                         {is_prov && <Col span={24} style={{paddingRight:'5px'}}>
                                         <Form.Item label='Tipo de Proveedor' name='tipo_proveedor'>
+                                             <Checkbox onChange={(e)=>setOtherSupplier(e.target.checked)} /> Si no encuentras tu opción puedes agregarla manualmente
                                             {!otherSupplier ? 
-                                            <Select placeholder='Selecciona una opcion' onChange={(value)=>{
-                                              if(value==='otros'){
-                                                setOtherSupplier(true)
-                                              }
-                                            }}>
+                                            <Select placeholder='Selecciona una opcion'>
                                                 <Option value='transporte'>transporte</Option>
                                                 <Option value='técnica'>técnica</Option>
                                                 <Option value='catering'>catering</Option>
-                                                <Option value='otros'>otros</Option>
-                                            </Select>:<Input placeholder='Escribre tu opcione'  />
+                                            </Select>:<Input placeholder='Escribre tu opción'  />
                                             }
                                         </Form.Item>
                                         </Col>}
                                         {is_pro && 
                                         <Col span={24} style={{paddingLeft:'5px'}}>
                                         <Form.Item label='Tipo de Profesional' name='tipo_profesional' >
+                                            <Checkbox onChange={(e)=>setOtherTypeProfesional(e.target.checked)} /> Si no encuentras tu opción puedes agregarla manualmente
                                           {!otherTypeProfesional ? 
-                                            <Select placeholder='Selecciona una opcion' onChange={(value)=> {
-                                            if(value==='otros'){
-                                                setOtherTypeProfesional(true)
-                                            }
-                                        }} >                                             
+                                            <Select placeholder='Selecciona una opción'>                                             
                                                 <Option value='disenador gráfico/a'>diseñador gráfico/a</Option>
                                                 <Option value='escenografo/a'>escenógrafo/a</Option>
                                                 <Option value='sonido'>sonido</Option>
@@ -186,8 +192,7 @@ const ProfileData = () => {
                                                 <Option value='fotografo'>fotógrafo/a</Option>
                                                 <Option value='maquillador'>maquillador/a</Option>
                                                 <Option value='vestuarista'>vestuarista</Option>
-                                                <Option value='otros'>otros</Option>
-                                            </Select>:<Input />
+                                            </Select>:<Input placeholder='Escribre tu opción'  />
                                             }
                                         </Form.Item>
                                         </Col>}
@@ -209,13 +214,13 @@ const ProfileData = () => {
                                     </Form.Item>
                                     </Col>
                                     <Col xs={{span:25}} lg={{span:8}}  style={{paddingRight:'5px'}}  >
-                                       <p>Si tienes un dossier, adjunta!</p>
+                                       <p>Si tienes un dossier, adjunta aquí</p>
                                         <Upload maxCount={1} >
                                             <Button icon={<UploadOutlined />}>Subir Archivo </Button>
                                         </Upload>
                                     </Col>
                                     <Col xs={{span:24}} lg={{span:12}}  style={{paddingLeft:'5px'}}>
-                                    <Form.Item label='URL' name='url_contenido'>
+                                    <Form.Item label='URL' name='url_contenido' rules={[{ type:'url', message:'debes ingresar una url valida' }]}>
                                         <Input />
                                     </Form.Item>
                                     </Col>
