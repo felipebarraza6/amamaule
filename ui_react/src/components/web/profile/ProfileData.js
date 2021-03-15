@@ -110,7 +110,7 @@ const ProfileData = () => {
         <Col span={24}>
             <Card title='Perfil de Usuario' >
                                    
-                                <Form layout='vertical' initialValues={{'url_contenido':'http://'}}   onFinish={(values)=> onFinish(values)}>
+                                <Form layout='vertical' onFinish={(values)=> onFinish(values)}>
                                       <Row>
                                         {state &&<> 
                                           {is_artis &&  <>
@@ -220,8 +220,8 @@ const ProfileData = () => {
                                         </Upload>
                                     </Col>
                                     <Col xs={{span:24}} lg={{span:12}}  style={{paddingLeft:'5px'}}>
-                                    <Form.Item label='URL' name='url_contenido' rules={[{ type:'url', message:'debes ingresar una url valida' }]}>
-                                        <Input />
+                                    <Form.Item label='URL' name='url_contenido'>
+                                        <Input addonBefore='http://'  />
                                     </Form.Item>
                                     </Col>
                                     </Row>

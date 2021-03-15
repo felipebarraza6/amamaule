@@ -122,7 +122,9 @@ const Workshops = () => {
         {profile && 
             <>
               {profile.taller_montaje ? 
-                <Button disabled>Inscrito</Button>:
+                <Button style={styles.cancelButton}  onClick={ ()=> updateProfile({ taller_montaje: false  },false)  }  >
+                     CANCELAR PARTICIPACIÓN
+                </Button>:
                 <Button onClick={()=> updateProfile({taller_montaje: true})  } style={styles.buttonIns}>Inscríbete</Button>
               }
             </>
@@ -139,7 +141,9 @@ const Workshops = () => {
             {profile &&
               <>
                 {profile.taller_ley_de_donaciones ? 
-                  <Button disabled  >Inscrito</Button>:
+                  <Button style={styles.cancelButton}  onClick={ ()=> updateProfile({ taller_ley_de_donaciones: false  },false)  }  >
+                      CANCELAR PARTICIPACIÓN
+                  </Button>:
                   <Button style={styles.buttonIns} onClick={()=> updateProfile({taller_ley_de_donaciones:true})}  >Inscríbete</Button>
                 }
               </>
@@ -158,7 +162,9 @@ const Workshops = () => {
              {profile &&
               <>
                 {profile.taller_marketing_digital ? 
-                  <Button disabled  >Inscrito</Button>:
+                  <Button style={styles.cancelButton}  onClick={ ()=> updateProfile({ taller_marketing_digital: false  },false)  }  >
+                      CANCELAR PARTICIPACIÓN
+                  </Button>:
                   <Button style={styles.buttonIns} onClick={()=> updateProfile({taller_marketing_digital: true})}  >Inscríbete</Button>
                 }
               </>
@@ -183,7 +189,8 @@ const Workshops = () => {
              {profile &&
               <>
                 {profile.taller_herr_gestion ? 
-                  <Button disabled  >Inscrito</Button>:
+                  <Button style={styles.cancelButton}  onClick={ ()=> updateProfile({ taller_herr_gestion: false  },false)  }  >
+                    CANCELAR PARTICIPACIÓN</Button>:
                   <Button style={styles.buttonIns} onClick={()=> updateProfile({taller_herr_gestion:true})}  >Inscríbete</Button>
                 }
               </>
@@ -203,8 +210,9 @@ const Workshops = () => {
               {profile &&
               <>
                 {profile.taller_financiamiento ? 
-                  <Button disabled  >Inscrito</Button>:
-                  <Button stye={styles.buttonIns} onClick={()=> updateProfile({taller_financiamiento:true})}  >Inscríbete</Button>
+                  <Button style={styles.cancelButton}  onClick={ ()=> updateProfile({ taller_financiamiento: false  },false)  }  >
+                    CANCELAR PARTICIPACIÓN</Button>:
+                  <Button style={styles.buttonIns} onClick={()=> updateProfile({taller_financiamiento:true})}  >Inscríbete</Button>
                 }
               </>
         }
