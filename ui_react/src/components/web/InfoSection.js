@@ -19,9 +19,12 @@ const InfoSection = () => {
                         <Paragraph>
                           AMA es el primer encuentro de vinculación online de Artistas Escénicos del Maule, 
                           Impulsado por el Teatro Regional del Maule y la Seremi de las Culturas, las Artes y 
-                          el patriotismo de la Región del Maule. Inscribete y participa en nuestras conferencias, 
-                          mesas de conversación, talleres y rondas de vinculación con programadores nacionales. Además, 
-                          tendrás acceso exclusivo a nuestros showcases y visionados durante esta edición.
+                          el Patrimonio de la Región del Maule. 
+                        </Paragraph> 
+                        <Paragraph>
+                          Inscríbete y participa en nuestras conferencias, 
+                          mesas de conversación, talleres y rondas de vinculación con programadores nacionales.
+                          Además, tendrás acceso exclusivo a nuestros showcases y visionados durante esta edición.
                         </Paragraph>
                         <SignUp />
                 </Card>

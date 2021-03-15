@@ -49,7 +49,7 @@ const Viewings = () => {
     return(
       <Row style={{backgroundColor:'white', padding:'20px'}}>
       <Tooltip title='Descargar Bases'  > 
-<a href={pdf} target='__blank' style={{color:'black'}}  >
+         <Tag color='volcano' style={{fontSize:'16px', marginTop: '10px'}}  >Descarga las bases => </Tag>  <a href={pdf} target='__blank' style={{color:'black'}}  >
               <FilePdfOutlined style={{fontSize:'40px', float:'right', paddingBottom:'20px'}} /></a>
             </Tooltip>
       {profileData &&

@@ -98,7 +98,7 @@ const ProfileData = () => {
                                       <Row>
                                         {state &&<> 
                                           {is_artis &&  <>
-                                             <Col span={12} style={{paddingRight:'5px'}}>
+                                             <Col xs={{span:24}} lg={{span:12}}  style={{paddingRight:'5px'}}>
                                          <p>Si eres artista, indica tu disciplina artística (puedes marcar hasta 3)</p>
                                          <Checkbox onChange={(e)=>setOtheArtist(e.target.checked)}  /> Si no encuentras tus opciones puedes agregarlas manualmente
                                         <Form.Item name='disciplina' rules={[{required:true, message:'Selecciona al menos una opción'}]}  >                                            
@@ -116,7 +116,7 @@ const ProfileData = () => {
                                           }
                                         </Form.Item>
                                         </Col>
-                                        <Col span={12} style={{paddingLeft:'5px'}}  >
+                                        <Col xs={{span:24}} lg={{span:12}}   style={{paddingLeft:'5px'}}  >
                                           <p>Si eres artista, con qué genero te identificas (puedes marcar hasta 3)</p>
                                           <Checkbox onChange={(e)=>setOtherGener(e.target.checked)} /> Si no encuentras tus opciones puedes agregarlas manualmente 
                                         <Form.Item name='genero' rules={[{required:true, message:'Selecciona al menos una opción'}]}  >
@@ -191,13 +191,13 @@ const ProfileData = () => {
                                             }
                                         </Form.Item>
                                         </Col>}
-                                    <Col span={12} style={{paddingRight:'5px'}}>
+                                    <Col xs={{span:24}} lg={{span:12}}  style={{paddingRight:'5px'}}>
                                     <Form.Item label='Nombre de la entidad, organización, elenco o proyecto al que representas' 
                                      rules={[{required:true, message:'Este es un campo obligatorio'}]}  name='nombre_entidad'>
                                         <Input />
                                     </Form.Item>
                                     </Col>
-                                    <Col span={12} style={{paddingLeft:'5px'}}>
+                                    <Col xs={{span:24}} lg={{span:12}}  style={{paddingLeft:'5px'}}>
                                     <Form.Item label='Cargo dentro de la misma' name='cargo'>
                                         <Input style={{marginTop:'22px'}}  />
                                     </Form.Item>
@@ -208,13 +208,13 @@ const ProfileData = () => {
                                         <TextArea />
                                     </Form.Item>
                                     </Col>
-                                    <Col span={8} style={{paddingRight:'5px'}}  >
-                                        Si tienes un dossier, adjunta!
-                                        <Upload maxCount={1}  >
+                                    <Col xs={{span:25}} lg={{span:8}}  style={{paddingRight:'5px'}}  >
+                                       <p>Si tienes un dossier, adjunta!</p>
+                                        <Upload maxCount={1} >
                                             <Button icon={<UploadOutlined />}>Subir Archivo </Button>
                                         </Upload>
                                     </Col>
-                                    <Col span={12} style={{paddingLeft:'5px'}}>
+                                    <Col xs={{span:24}} lg={{span:12}}  style={{paddingLeft:'5px'}}>
                                     <Form.Item label='URL' name='url_contenido'>
                                         <Input />
                                     </Form.Item>

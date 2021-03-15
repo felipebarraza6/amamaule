@@ -5,7 +5,7 @@ import { Modal, Button, Form,
 import api from '../../../api/endpoints'
 import { AuthContext} from '../../../App'
 import { UserOutlined } from '@ant-design/icons'
-
+import ResetPassword from './ResetPassword'
 
 const UserLoginForm = ({ visible, onCreate, onCancel}) => {
     
@@ -37,6 +37,7 @@ const UserLoginForm = ({ visible, onCreate, onCancel}) => {
                     <Col span={12} style={styles.colField} >
                     <Form.Item name='email' label='Correo Electrónico' rules={[
                         { required: true, message: 'Por favor ingrese su correo'},                    
+                        { type: 'email', message: 'Debes ingresar un correo'}
                     ]}>
                         <Input />
                     </Form.Item>    
@@ -50,7 +51,9 @@ const UserLoginForm = ({ visible, onCreate, onCancel}) => {
                     </Form.Item>
                     </Col>  
                 </Row>                                                                                       
-             <Col style={{textAlign:'right', marginRight:'20px'}}> Olvide mi contraseña?</Col>
+             <Col style={{textAlign:'right', marginRight:'20px'}}> 
+                <ResetPassword /> 
+             </Col>
             </Form>
 
         </Modal>
@@ -59,6 +62,7 @@ const UserLoginForm = ({ visible, onCreate, onCancel}) => {
 
 
 const Login = () => {        
+    const [errors, setErrors] = useState(null)
     const {dispatch} = useContext(AuthContext)
     const initialState = {
         visibleModal: false,        
@@ -81,7 +85,17 @@ const Login = () => {
             })
             window.location.replace('/profile')
         }).catch((error)=> {
-            notification.error({message:'El usuario no ha podido acceder, vuelva a intentarlo'})
+            setErrors(error.response.data)
+            if(errors){
+              Object.keys(errors).map((key, index)=> {
+                  let field = key
+                  let message = errors[key]
+                if(key==='non_field_errors'){
+                  field='Error'
+                }
+                  notification.error({message:`${field}: ${message}`})
+              })
+            }
         })
         return request
         

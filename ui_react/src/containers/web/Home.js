@@ -1,7 +1,7 @@
 import React from 'react'
 import { Carousel, Layout } from 'antd'
 import ProfileUser from './ProfileUser'
-
+import '../../assets/css/web.css'
 import NavBar from '../../components/web/NavBar'
 import HeaderLogo from '../../components/web/HeaderLogo'
 import CarouselBanner from '../../components/web/CarouselBanner'

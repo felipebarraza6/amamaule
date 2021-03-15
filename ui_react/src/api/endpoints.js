@@ -42,6 +42,14 @@ const create_profile = async(user, data) => {
   return request
 }
 
+const reset_password = async(data)=> {
+    
+  const request = await POST_LOGIN(`users/reset_password/`, data)
+
+  return request
+
+}
+
 const api = {
     user: {
         login,
@@ -49,7 +57,8 @@ const api = {
         profile,
         get_profile_center,
         update_profile,
-        create_profile
+        create_profile,
+        reset_password
     }
 }
 

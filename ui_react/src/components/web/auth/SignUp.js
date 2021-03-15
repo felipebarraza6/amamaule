@@ -22,7 +22,7 @@ const UserCreateForm = ({ visible, onCreate, onCancel}) => {
     return(
         <Modal
             visible={visible}
-            title='Formulario de Inscripción / Creación de Usuario'
+            title='Formulario de Inscripción'
             okText = 'Inscribirse'
             style={{top:'1px'}}
             width='600px'
@@ -33,9 +33,7 @@ const UserCreateForm = ({ visible, onCreate, onCancel}) => {
                     let password = values['password']
                     let password_conf = values['password_confirmation']
                     if(password === password_conf){
-                        form.resetFields()
-                        onCreate(values)
-                        
+                        onCreate(values, form)
                     } else{
                         message.error('Las contraseñas no coinciden!')
                     }                    
@@ -85,8 +83,9 @@ const UserCreateForm = ({ visible, onCreate, onCancel}) => {
                 </Row>
                 <Row>             
                     <Col span={12} style={styles.colField} >
-                        <Form.Item name='phone_number' label='Teléfono de contacto' rules={[
+                        <Form.Item name='phone_number' label='Telefono/Celular' rules={[
                             { required: true, message: 'Por favor ingrese su telefono'},                                                                       
+                            { max: 12, message:'Solo puedes ingresar 12 Digitos'}
                         ]}>
                             <Input />
                         </Form.Item>
@@ -253,7 +252,7 @@ const UserCreateForm = ({ visible, onCreate, onCancel}) => {
                     </Col>
                 </Row>
                 <Row>
-                    <Col span={12} style={styles.colField}>
+                    <Col span={24} style={styles.colField}>
                         <Form.Item name='password' label='Contraseña' rules={[
                             { required: true, message: 'Por favor ingresa tu contraseña'},
                             { min:6, message:'Debes ingresar al menos 6 caracteres'}
@@ -261,7 +260,7 @@ const UserCreateForm = ({ visible, onCreate, onCancel}) => {
                                 <Input type='password' />
                         </Form.Item>
                     </Col>
-                    <Col span={12} style={styles.colField}>
+                    <Col span={24} style={styles.colField}>
                         <Form.Item name='password_confirmation' label='Confirma tu Contraseña' rules={[
                             { required: true, message: 'Por favor ingresa tu contraseña'},                    
                             {min: 6, message: 'Debes ingresar al menos 6 caracteres'}
@@ -283,6 +282,7 @@ const UserCreateForm = ({ visible, onCreate, onCancel}) => {
 
 const SignUp = () => {
     
+    const [errors, setErrors] = useState(null)
     const initialState = {
         visibleModal: false,        
         data: null,
@@ -293,12 +293,32 @@ const SignUp = () => {
 
     const [globalState, SetGlobalState] = useState(initialState)    
 
-    async function onCreate(values){
+    async function onCreate(values, form){
         const request = await api.user.signup(values).then((response)=> {
             notification.success({ message:`${values.email} fue creado!!!`, title:'Usuario creado'})
             SetGlobalState({...globalState, visibleModal: false})
+            form.resetFields()
         }).catch((error)=> {
-            notification.error({message:'El usuario no sido creado, vuelva a intentarlo'})
+            
+            setErrors(error.response.data)
+            console.log(errors)
+            if(errors){
+            Object.keys(errors).map((key, index) => {
+              let field = key
+              let message = errors[key]
+              
+              if(field==='phone_number'){
+                  field = 'telefono'
+              }
+              if(field === 'username'){
+                  field = 'nombre de usuario'
+              }
+
+                notification.error({message:`${field}: ${message}`})
+              }
+              )}
+
+             
         })
         return request
         
@@ -322,7 +342,7 @@ const SignUp = () => {
     return (
         <React.Fragment>
             <Button size='large' style={styles.button} onClick={changeVisible}>
-                Inscribete Aquí
+                Inscríbete Aquí
             </Button>
             <UserCreateForm visible={globalState.visibleModal} onCreate={onCreate} onCancel={closeModal} />
         </React.Fragment>

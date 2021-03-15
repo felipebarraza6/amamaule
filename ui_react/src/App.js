@@ -5,6 +5,7 @@ import { login_reducer } from './reducers/auth'
 
 //Containers
 import Home from './containers/web/Home'
+import Screen from './containers/mobile/Screen'
 
 export const AuthContext = createContext()
 
@@ -27,7 +28,6 @@ function App() {
     async function getUserData(user) {
       
       const request = await api.user.profile(user).then((response)=> {
-          console.log(response)
           const user = response.data
           dispatch({
             type: 'LOGIN',
@@ -56,7 +56,7 @@ function App() {
     >
       <React.Fragment>
        {size < 800 ? 
-          'Version Mobile': 
+            <Screen />: 
             <Home />  
        }
       </React.Fragment>

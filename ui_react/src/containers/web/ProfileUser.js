@@ -87,8 +87,8 @@ const ProfileUser = () => {
                     </>
                   }
               </Menu>
-              <Row style={{padding:'30px'}}>
-                <Col span={14} style={{padding:'10px'}}  >
+              <Row style={{padding:'0px'}}>
+                <Col lg={{span:14}}  xs={{span:24}}  style={{padding:'10px'}}  >
                   {currentNavigation === '0' &&
                     <>
                     {state.user && 
@@ -110,10 +110,10 @@ const ProfileUser = () => {
                       <Viewings />
                   }
                 </Col>
-                <Col span={10} style={{padding:'10px'}}>
+                <Col lg={{span:10}} xs={{span:24}}  style={{padding:'10px'}}>
                 {state.user &&
                  <Descriptions 
-                    title="DATOS DE INCRIPCIÓN"
+                    title="DATOS DE INSCRIPCIÓN"
                     bordered={true} 
                     style={{backgroundColor:'white', padding:'20px'}} 
                     layout='vertical'>
