@@ -3,7 +3,7 @@ from .users import User
 from apps.utilities.models import APIModel
 
 class Profile(APIModel):
-    user = models.ForeignKey("users.User", verbose_name=("user_profile"), on_delete=models.CASCADE)
+    user = models.OneToOneField("users.User", verbose_name=("user_profile"), on_delete=models.CASCADE)
     disciplina = models.CharField(max_length=800, blank=True, null=True)
     genero = models.CharField(max_length=800, blank=True, null=True)
     tipo_proveedor = models.CharField(max_length=800, blank=True, null=True)
@@ -13,7 +13,7 @@ class Profile(APIModel):
     perfil_profesional = models.TextField(max_length=800, blank=True, null=True)
     dossier_archivo = models.FileField(blank=True, null=True)
     genero = models.CharField(max_length=800, blank=True, null=True)
-    url_contenido = models.URLField(max_length=1200, blank=True, null=True) 
+    url_contenido = models.CharField(max_length=1200, blank=True, null=True) 
 
     taller_pitching = models.BooleanField(default=False, blank=True, null=True)
     formato_proyecto = models.CharField(max_length=400, blank=True, null=True)
@@ -32,7 +32,7 @@ class Profile(APIModel):
     anio_creacion_propuesta = models.CharField(max_length=800, blank=True, null=True)
     anio_estreno = models.CharField(max_length=800, blank=True, null=True)
     formato_ex = models.CharField(max_length=800, blank=True, null=True)
-    url_descarga = models.URLField(max_length=1200, blank=True, null=True) 
+    url_descarga = models.CharField(max_length=1200, blank=True, null=True) 
 
     is_aproved_visio = models.BooleanField(default=False, blank=True, null=True)
     is_send_visio = models.BooleanField(default=False, blank=True, null=True)

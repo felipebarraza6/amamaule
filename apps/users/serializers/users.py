@@ -94,18 +94,18 @@ class UserLoginSerializer(serializers.Serializer):
 
 class UserSignUpSerializer(serializers.Serializer):
     email = serializers.EmailField(
-        validators=[UniqueValidator(queryset=User.objects.all())]
+        validators=[UniqueValidator(queryset=User.objects.all(), message="el email ya existe, prueba con otro email." )]
     )
 
     username = serializers.CharField(
         min_length = 4,
         max_length = 20,
-        validators=[UniqueValidator(User.objects.all())]
+        validators=[UniqueValidator(User.objects.all(), message="el usuario ya existe, prueba con otro nombre.")]
     )
 
     phone_number = serializers.CharField(
         max_length = 17,
-        validators=[UniqueValidator(User.objects.all())]
+        validators=[UniqueValidator(User.objects.all(), message="el telefono ya existe, prueba con otro telefono.")]
     )
 
     first_name = serializers.CharField()
