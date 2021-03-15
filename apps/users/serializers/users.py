@@ -1,11 +1,37 @@
 from django.contrib.auth import password_validation, authenticate
 from django.core.validators import RegexValidator
 
-from .models import User, Profile
+from apps.users.models import User, Profile
 from rest_framework.authtoken.models import Token
-
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
+
+
+class ResetPasswordSerializer(serializers.Serializer):
+    user = serializers.EmailField()
+    phone_number = serializers.CharField()
+    username = serializers.CharField()
+    new_password = serializers.CharField(min_length=6, max_length=64)
+
+    def validate(self, data):
+        user = data['user']
+        phone_number = data['phone_number']
+        username = data['username']
+
+        get_user = User.objects.get(email=user)
+        
+        data_phone_number = get_user.phone_number
+        data_username = get_user.username
+        
+        if phone_number == data_phone_number and username == data_username:
+            get_user.set_password(data['new_password'])
+            get_user.save()
+        else:
+            serializers.ValidationError('Tus datos no coinciden!')
+        return data
+
+
+
 
 class ProfileModelSerializer(serializers.ModelSerializer):
     class Meta:
@@ -94,7 +120,7 @@ class UserSignUpSerializer(serializers.Serializer):
         ('GE','General'),
         ('R','Relator'),
         ('GES','Gestión'), # Cultural/Producción/Programación
-        ('PRO','Proveedor'), # (transporte, técnica, catering, otros)
+        ('PROV','Proveedor'), # (transporte, técnica, catering, otros)
         ('RE','Representante'), #  de organización o empresa, pública o privada
         ('PRO','Profesional asociado'), #  a las artes escénicas (diseñador gráfico/a, escenógrafo/a, sonido, iluminación, comunicación, audiovisualista, fotógrafo/a, maquillador/a, vestuarista, otros)
         ('ADM', 'Administrador de sistema')

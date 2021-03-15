@@ -26,3 +26,13 @@ services:
             - "8000:8000"
         depends_on:
             - postgres
+
+
+    react:
+        build: ./ui_react
+        image: ui_amamaule
+        ports:
+            - "80:80"
+        depends_on:
+            - django
+            - postgres

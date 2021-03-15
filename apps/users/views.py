@@ -9,7 +9,9 @@ from rest_framework.permissions import (
 
 from .serializers import (UserLoginSerializer, 
                         UserModelSerializer, 
-                        UserSignUpSerializer, ProfileModelSerializer)
+                        UserSignUpSerializer, 
+                        ProfileModelSerializer,
+                        ResetPasswordSerializer)
 
 from .models import User, Profile
 
@@ -35,13 +37,25 @@ class UserViewSet(viewsets.GenericViewSet,
 
     def get_permissions(self):
 
-        if self.action in ['login', 'signup']:
+        if self.action in ['login', 'signup', 'reset_password']:
             permissions = [AllowAny]
         elif self.action in ['retrieve']:
             permissions = [IsAuthenticated]
         else:
             permissions = [IsAuthenticated]
         return [p() for p in permissions]
+
+
+    @action(detail=False, methods=['post'])
+    def reset_password(self, request):
+        serializer = ResetPasswordSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        data = {
+            'status': 'OK'
+        }
+        
+        return Response(data, status=status.HTTP_200_OK)
+
 
     @action(detail=False, methods=['post'])
     def create_profile(self,request):

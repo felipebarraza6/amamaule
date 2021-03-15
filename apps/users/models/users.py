@@ -68,7 +68,7 @@ class User(APIModel, AbstractUser):
         'phone_number', 
         'country', 
         'region', 
-        'type_user',
+        'type_user1',
         
     ]
 
