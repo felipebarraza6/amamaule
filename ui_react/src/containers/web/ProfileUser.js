@@ -1,6 +1,6 @@
 import React, {useContext, useState } from 'react'
-import { Menu, Modal, Col, Row, Descriptions, Card, Tag } from 'antd'
-import { RocketOutlined ,UserOutlined, CheckOutlined, EditOutlined, LikeTwoTone } from '@ant-design/icons'
+import { Menu, Result, Col, Row, Button, Descriptions, Card, Tag } from 'antd'
+import { RocketOutlined ,UserOutlined, FilePdfFilled, CheckOutlined, EditOutlined, LikeTwoTone } from '@ant-design/icons'
 import { AuthContext } from '../../App'
 
 import ProfileData from '../../components/web/profile/ProfileData'
@@ -87,7 +87,7 @@ const ProfileUser = () => {
                     </>
                   }
                   {state.user &&
-                  <Menu.Item disabled={!state.user.is_verified}  key={currentNavigation} onClick={()=>Modal.info({title:'Evento Satélite', icon:<RocketOutlined />,content:<>Descarga las bases</>})} icon={<RocketOutlined />}
+                  <Menu.Item disabled={!state.user.is_verified}  key={'3'} icon={<RocketOutlined />}
 
                     style={ currentNavigation === '3' ?  styles.hoverItem : styles.menuItem  } >
                       Evento Satélite 
@@ -115,6 +115,19 @@ const ProfileUser = () => {
                   {currentNavigation === '2' &&
                       <Viewings />
                   }
+                  {currentNavigation === '3' && 
+                      <Card title='Evento Satélite'>
+                          <Result
+                          icon={<FilePdfFilled style={{color:'#CE3D4B'}}  />}
+                          title="Descarga las bases"
+                          extra={[
+                                <Button style={{backgroundColor:'#61263d', borderColor:'#61263d'}}  type="primary" key="console">
+                                    Descargar
+                                  </Button>
+                                ]}
+                        />
+                      </Card>
+                  } 
                 </Col>
                 <Col lg={{span:10}} xs={{span:24}}  style={{padding:'10px'}}>
                 {state.user &&

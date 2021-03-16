@@ -48,10 +48,8 @@ const Viewings = () => {
 
     return(
       <Row style={{backgroundColor:'white', padding:'20px'}}>
-      <Tooltip title='Descargar Bases'  > 
-         <Tag color='volcano' style={{fontSize:'16px', marginTop: '10px'}}  >Descarga las bases => </Tag>  <a href={pdf} target='__blank' style={{color:'black'}}  >
-              <FilePdfOutlined style={{fontSize:'40px', float:'right', paddingBottom:'20px'}} /></a>
-            </Tooltip>
+         <Button type='link' style={{backgroundColor:'#CE3D4B', color:'white'}}><a href={pdf} target='__blank' style={{color:'white'}} >
+            <FilePdfOutlined style={{fontSize:'20px', marginRight:'10px'}}/> DESCARGAR BASES</a></Button>
       {profileData &&
         <Col span={24}>
           {!profileData.is_send_visio ? 
