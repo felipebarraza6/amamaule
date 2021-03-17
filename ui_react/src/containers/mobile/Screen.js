@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { Card, WingBlank, WhiteSpace} from 'antd-mobile'
-import { Button } from 'antd'
 import '../../assets/css/mobile.css'
+import { Button } from 'antd'
 import { BrowserRouter , Switch, Route, Link  } from 'react-router-dom'
 import Login  from '../../components/web/auth/Login'
 import { NavBar as Nav  } from 'antd-mobile'
@@ -13,6 +13,7 @@ import Services from '../../components/web/Services'
 import TrenSectionM from '../../components/mobile/TrenSectionM'
 import ProfileUser from '../../containers/web/ProfileUser'
 import { AuthContext  } from '../../App'
+import RegularTasks from '../../components/web/RegularTasks'
 
 const Screen = () => {
   const {state, dispatch} = useContext(AuthContext) 
@@ -33,12 +34,9 @@ const Screen = () => {
                       {state.isAuthenticated ? <>
                           <Link to='/profile' style={{color:'white'}}  >@{state.user.username}</Link> <Button type='link'  onClick={ ()=> dispatch({type:'LOGOUT'})}  ><LogoutOutlined  style={{color:'white'}} /></Button> </>  : <Login/>  }
                                           </>
-                    }</>
-                      
-
+                    }</>                  
                   ]}
               > 
-
               </Nav>
               <Switch>
                 <Route exact path='/profile' render={()=><>
@@ -64,7 +62,7 @@ const Screen = () => {
                   </WingBlank>
                     <WhiteSpace size="lg" />
                     <Services />
-                   
+                    <RegularTasks />                   
                     <TrenSectionM />
                     <div style={{color:'white', backgroundColor:'#61263d', textAlign:'center', padding:'20px'}}>
                     AMA - Vincular para crear 2021

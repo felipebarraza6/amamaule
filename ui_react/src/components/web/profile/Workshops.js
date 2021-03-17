@@ -1,11 +1,14 @@
 import React, { useContext, useState, useEffect } from 'react'   
-import { AuthContext  } from '../../../App'
+import { AuthContext } from '../../../App'
 import { Select, message, Form, Input, Card, 
-        Row, Col, Button, Pagination } from 'antd'
+        Row, Col, Button, Pagination, Tag, Typography } from 'antd'
 import api from '../../../api/endpoints'
+
 const { Option } = Select
 const { TextArea  } = Input
+const { Title} =Typography
   
+
 
 const Workshops = () => {
 
@@ -14,6 +17,7 @@ const Workshops = () => {
   const [profile, setProfile] = useState(null)
   const [page, setPage] = useState(1)
   const [formPit, setFormPit] = useState(false)
+  const [size, setSize] = useState()
 
   async function updateProfile(data, status){
     const request = await api.user.update_profile(state.user.id, data, status).then((response)=> {
@@ -35,6 +39,7 @@ const Workshops = () => {
 
   useEffect(()=> {
     
+    setSize(window.innerWidth)
     async function getData(){
       const request = await api.user.get_profile_center(state.user.id).then((response)=> {
         setProfile(response.data)
@@ -54,7 +59,10 @@ const Workshops = () => {
       {page ===1 &&  
         <>
       <Col span={24}>
-      <Card hoverable style={styles.card}  title= 'Taller de Pitching' extra='Miércoles 24 y jueves 25 de marzo, 18 horas. '  >
+      <Card hoverable style={styles.card}  title= 'Pitching' extra={<> {size > 800 && 'Miércoles 24 y jueves 25 de marzo, 18 horas.'} </>}>
+        {size < 800 &&
+        <Tag color="warning" style={{marginBottom:'20px'}}>24 y 25 de Marzo 18:00 hrs</Tag>
+        }
         <p>
           En el marco del Encuentro AMA 2021: Vincular para Crear, te invitamos a participar de nuestro Taller de Pitching, cuyo objetivo será entregar herramientas discursivas para una presentación concreta, concisa y efectiva del proyecto artístico y/o de gestión, previo a tu participación en nuestras Rondas de Vinculación AMA. En ellas, podrás agendar reuniones para ser tú mismo/a quien relate su proyecto al representante con quien te toque reunirte. 
         </p>
@@ -113,7 +121,10 @@ const Workshops = () => {
       </Col>
 
       <Col span={24}>
-      <Card hoverable style={styles.card}  title= 'Taller de Montaje Site Specific' extra='Miércoles 14 de abril, 19 horas.'  >
+      <Card hoverable style={styles.card}  title= 'Montaje Site Specific' extra={<> {size > 800 && 'Miércoles 14 de abril, 19 horas.'} </>} >
+      {size < 800 &&
+        <Tag color="warning" style={{marginBottom:'20px'}}>14 de Abril 19:00 hrs</Tag>
+        }
         <p>Este taller propone un espacio de investigación para artistas escénicos en torno a tres temáticas:</p>
         <p>1) Espacio doméstico de cada participante como un espacio compartido de co-creación</p>
         <p>2) Herramientas del site specific para crear</p>
@@ -134,9 +145,10 @@ const Workshops = () => {
       {page ===2 && 
       <>
       <Col span={24}>
-        <Card style={styles.card}  hoverable title='Taller Ley de Donaciones Culturales' extra='Miércoles 14 de abril, 19 horas.'  >
+        <Card style={styles.card}  hoverable title='Ley de Donaciones Culturales'  extra={<> {size > 800 && 'Miércoles 14 de abril, 19 horas.'}</>}  >        
+        <Tag color="warning" style={{marginBottom:'20px'}}>24 de Abril 19:00 hrs</Tag>
         <p>Conoce las claves de esta modalidad de financiamiento y su aplicación un mecanismo mixto que estimula el aporte del Estad            o de Chile y de los contribuyentes a proyectos culturales de instituciones sin fines de lucro, mediante un crédito sobre el Impuesto.</p>
-
+        
         <p>Inscripciones abiertas hasta el día 01 de abril 2021.Cupos limitados.</p> 
             {profile &&
               <>
@@ -152,7 +164,9 @@ const Workshops = () => {
         </Card>
       </Col>
       <Col span={24}>
-        <Card hoverable style={styles.card}  title='Taller de Marketing Digital para la industria musical' extra='Jueves 15 de abril, 19 horas.'  >
+        <Card hoverable style={styles.card}  title='Marketing Digital para la industria musical' extra={<> {size > 800 && 'Jueves 15 de abril, 19 horas.'}</>}  >
+        <p>Marketing Digital para la industria musical</p>
+        <Tag color="warning" style={{marginBottom:'20px', marginTop:'10px'}}>15 de Abril 19:00 hrs</Tag>
           <p>
             Se abordará la utilización eficaz de las principales herramientas y plataformas publicitarias y de comunicación para llevar a cabo las estrategias y acciones de marketing estratégico para el desarrollo y difusión de tu proyecto musical en internet, así como herramientas estratégicas para la productividad, redes sociales, plataformas de contenido, entre otras. 
           </p>
@@ -176,10 +190,11 @@ const Workshops = () => {
       {page ===3 && 
       <>
       <Col span={24}>
-        <Card hoverable style={styles.card}  title='Taller de herramientas para la gestión de proyectos culturales' >
+        <Card hoverable style={styles.card}  title='Taller de herramientas para la gestión de proyectos culturales' extra={<> {size > 800 && 'Jueves 15 y Viernes 16 de abril, 19 horas.'}</>} >
         <p>
-            Jueves 15 y Viernes 16 de abril, 19 horas.
-        </p>
+        Taller de herramientas para la gestión de proyectos culturales
+        </p>                
+        <Tag color="warning" style={{marginBottom:'20px', marginTop:'10px'}}>15 y 16 de Abril 19:00 hrs</Tag>
         <p>
           Herramientas para la planificación y administración cultural, desde la idea hasta la gestión de los recursos. Conoceremos aplicaciones y software: desarrollo, uso y apropiaciones de herramientas digitales para la gestión cultural.
         </p>
@@ -200,7 +215,13 @@ const Workshops = () => {
         </Card>
       </Col>
       <Col span={24}>
-        <Card hoverable style={styles.card}  title='Taller de financiamiento para la circulación internacional' extra='Sábado 17 de abril, 19 horas.'  >
+        <Card hoverable style={styles.card}  title='Taller de financiamiento para la circulación internacional' 
+          extra={<> {size > 800 && 'Sábado 17 de abril, 19 horas.'}</>}
+        >
+          <p>
+            Taller de financiamiento para la circulación internacional
+          </p>
+          <Tag color="warning" style={{marginBottom:'20px', marginTop:'10px'}}>17 de Abril 19:00 hrs</Tag>
           <p>
             Se abordarán distintos programas y/o fuentes de financiamiento públicos para la circulación internacional de proyectos creativos en las disciplinas de artes escénicas y música.
           </p>

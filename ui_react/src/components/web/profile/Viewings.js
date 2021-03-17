@@ -1,18 +1,16 @@
 import React, { useContext, useEffect, useState} from 'react'
 import { AuthContext } from '../../../App'
-import { Tag, Form, message,Button, Select, Card, Input, Col, Row, Tooltip  } from 'antd'
+import { Tag, Form, message,Button, Select, Card, Input, Col, Row, Typography  } from 'antd'
 import { SmileTwoTone, FilePdfOutlined  } from '@ant-design/icons'
 import api from '../../../api/endpoints'
 import pdf from '../../../assets/bases.pdf'
 const { Option } = Select
 const { TextArea } = Input
+const { Paragraph } = Typography
 
 const Viewings = () => {
   
   const [profileData, setProfileData] = useState(null)
-
- 
-
   const { state } = useContext(AuthContext)
   
    async function postView(data){
@@ -47,9 +45,14 @@ const Viewings = () => {
   },[])
 
     return(
-      <Row style={{backgroundColor:'white', padding:'20px'}}>
+      <Row style={{backgroundColor:'white', padding:'20px'}}>          
          <Button type='link' style={{backgroundColor:'#CE3D4B', color:'white'}}><a href={pdf} target='__blank' style={{color:'white'}} >
             <FilePdfOutlined style={{fontSize:'20px', marginRight:'10px'}}/> DESCARGAR BASES</a></Button>
+            <Paragraph style={{marginTop:'30px'}}>
+            Teatro Regional del Maule y la Seremía de las Culturas, las Artes y el Patrimonio de la Región
+             del Maule, te invita a postular a la sección de visionados de creaciones de artes escénicas en 
+             el marco del Encuentro AMA: Vincular para Crear.
+            </Paragraph>
       {profileData &&
         <Col span={24}>
           {!profileData.is_send_visio ? 

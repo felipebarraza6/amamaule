@@ -10,6 +10,8 @@ import TrenSection from '../../components/web/TrenSection'
 import Services from '../../components/web/Services'
 import NavBarClient from '../../components/web/NavBarClient'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import RegularTasks from '../../components/web/RegularTasks'
+
 
 const { Content, Footer } = Layout
 
@@ -30,6 +32,7 @@ const Home = () => {
                   <CarouselBanner />
                   <InfoSection />
                   <Services />
+                  <RegularTasks />
                 </React.Fragment>
               )
             }}  />

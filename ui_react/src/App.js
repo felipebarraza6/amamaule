@@ -8,6 +8,7 @@ import Home from './containers/web/Home'
 import Screen from './containers/mobile/Screen'
 
 export const AuthContext = createContext()
+export const SizeWidth = createContext()
 
 function App() {
   
@@ -59,7 +60,7 @@ function App() {
             <Screen />: 
             <Home />  
        }
-      </React.Fragment>
+      </React.Fragment>     
     </AuthContext.Provider>
   )
 
