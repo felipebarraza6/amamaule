@@ -146,7 +146,7 @@ const Workshops = () => {
       <>
       <Col span={24}>
         <Card style={styles.card}  hoverable title='Ley de Donaciones Culturales'  extra={<> {size > 800 && 'Miércoles 14 de abril, 19 horas.'}</>}  >        
-        <Tag color="warning" style={{marginBottom:'20px'}}>24 de Abril 19:00 hrs</Tag>
+        {size < 800 && <Tag color="warning" style={{marginBottom:'20px'}}>24 de Abril 19:00 hrs</Tag> }
         <p>Conoce las claves de esta modalidad de financiamiento y su aplicación un mecanismo mixto que estimula el aporte del Estad            o de Chile y de los contribuyentes a proyectos culturales de instituciones sin fines de lucro, mediante un crédito sobre el Impuesto.</p>
         
         <p>Inscripciones abiertas hasta el día 01 de abril 2021.Cupos limitados.</p> 
@@ -166,7 +166,7 @@ const Workshops = () => {
       <Col span={24}>
         <Card hoverable style={styles.card}  title='Marketing Digital para la industria musical' extra={<> {size > 800 && 'Jueves 15 de abril, 19 horas.'}</>}  >
         <p>Marketing Digital para la industria musical</p>
-        <Tag color="warning" style={{marginBottom:'20px', marginTop:'10px'}}>15 de Abril 19:00 hrs</Tag>
+        {size < 800 && <Tag color="warning" style={{marginBottom:'20px', marginTop:'10px'}}>15 de Abril 19:00 hrs</Tag> }
           <p>
             Se abordará la utilización eficaz de las principales herramientas y plataformas publicitarias y de comunicación para llevar a cabo las estrategias y acciones de marketing estratégico para el desarrollo y difusión de tu proyecto musical en internet, así como herramientas estratégicas para la productividad, redes sociales, plataformas de contenido, entre otras. 
           </p>
@@ -190,11 +190,11 @@ const Workshops = () => {
       {page ===3 && 
       <>
       <Col span={24}>
-        <Card hoverable style={styles.card}  title='Taller de herramientas para la gestión de proyectos culturales' extra={<> {size > 800 && 'Jueves 15 y Viernes 16 de abril, 19 horas.'}</>} >
+        <Card hoverable style={styles.card}  title='Taller de herramientas para la gestión de proyectos culturales' extra={<> {size > 800 && 'Jueves 15 de abril, 19 horas.'}</>} >
         <p>
         Taller de herramientas para la gestión de proyectos culturales
         </p>                
-        <Tag color="warning" style={{marginBottom:'20px', marginTop:'10px'}}>15 y 16 de Abril 19:00 hrs</Tag>
+        {size < 800 && <Tag color="warning" style={{marginBottom:'20px', marginTop:'10px'}}>15 y 16 de Abril 19:00 hrs</Tag> }
         <p>
           Herramientas para la planificación y administración cultural, desde la idea hasta la gestión de los recursos. Conoceremos aplicaciones y software: desarrollo, uso y apropiaciones de herramientas digitales para la gestión cultural.
         </p>
@@ -221,7 +221,7 @@ const Workshops = () => {
           <p>
             Taller de financiamiento para la circulación internacional
           </p>
-          <Tag color="warning" style={{marginBottom:'20px', marginTop:'10px'}}>17 de Abril 19:00 hrs</Tag>
+          {size < 800 && <Tag color="warning" style={{marginBottom:'20px', marginTop:'10px'}}>17 de Abril 19:00 hrs</Tag> }
           <p>
             Se abordarán distintos programas y/o fuentes de financiamiento públicos para la circulación internacional de proyectos creativos en las disciplinas de artes escénicas y música.
           </p>

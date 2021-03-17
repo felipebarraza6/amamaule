@@ -116,7 +116,7 @@ const ProfileUser = () => {
                       <Viewings />
                   }
                   {currentNavigation === '3' && 
-                      <Card title='Evento Satélite'>
+                      <Card title='Evento Satélite' extra={<Tag color='volcano'>Pronto más información...</Tag>}>
                           <Result
                           icon={<FilePdfFilled style={{color:'#CE3D4B'}}  />}
                           title="Descarga las bases"

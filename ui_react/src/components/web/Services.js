@@ -1,12 +1,11 @@
 import React from 'react'
-import { Row, Col, Typography, Modal, Button } from 'antd'
+import { Row, Col, Typography, Modal, List } from 'antd'
 import service1 from '../../assets/service_icons/CONFERENCIAS.png'
 import service2 from '../../assets/service_icons/RONDAS-DE-VINCULACION.png'
 import service3 from '../../assets/service_icons/SHOWCASES.png'
 import service4 from '../../assets/service_icons/TALLERES.png'
-import {InfoCircleOutlined} from '@ant-design/icons'
-
 const { Title } = Typography
+const { Item } = List
 
 
 const Services = () => {
@@ -17,12 +16,35 @@ const Services = () => {
                     <img onClick={()=>{Modal.info(
                         {                         
                             icon: <img src={service1} style={styles.img2}  />,
-                            content: <p>
-                                Experiencias formativas online diseñadas preferentemente para habitantes 
-                                de la Región del Maule. Las temáticas a abordar son las resultantes de la 
-                                encuesta dirigida a artistas y programadores/as de espacios culturales de 
-                                nuestra región. Esta actividad requiere inscripción previa.
-                            </p>,
+                            content: <Row>
+                                <Col>
+                                    Experiencias formativas online diseñadas preferentemente para habitantes de la Región del Maule. 
+                                    Las temáticas a abordar son las resultantes de la encuesta dirigida a artistas y programadores/as 
+                                    de espacios culturales de nuestra región:
+                                </Col>
+                                <Col>
+                                    <List bordered header={<Title level={5}>Talleres</Title>} style={{marginTop:'10px'}}>                                
+                                        <Item>
+                                            1. Taller de Pitching
+                                        </Item>
+                                        <Item>
+                                            2. Taller de Montaje Site Specific
+                                        </Item>
+                                        <Item>
+                                            3. Taller Ley de Donaciones Culturales
+                                        </Item>
+                                        <Item>
+                                            4. Taller de Marketing Digital para la industria musical
+                                        </Item>
+                                        <Item>
+                                            5. Taller de herramientas para la gestión de proyectos culturales
+                                        </Item>
+                                        <Item>
+                                            6. Taller de financiamiento para la circulación internacional
+                                        </Item>
+                                    </List>
+                                </Col>
+                            </Row>,
                             
                         }
                     )}}
@@ -49,7 +71,7 @@ const Services = () => {
                     <img
                     onClick={()=>{Modal.info(
                         {                         
-                            icon: <img src={service2} style={styles.img2}  />,
+                            icon: <img src={service3} style={styles.img2}  />,
                             content: <p>
                                 Espacios de encuentro virtual entre programadores, artistas u otros participantes de interés para tu 
                                 trabajo. Se trata de rondas de diez minutos, donde podrás presentar tu trabajo y establecer nuevos nexos. 
@@ -65,7 +87,7 @@ const Services = () => {
                     <img 
                     onClick={()=>{Modal.info(
                         {                            
-                            icon: <img src={service2} style={styles.img2}  />,
+                            icon: <img src={service4} style={styles.img2}  />,
                             content: <div><p>
                                 Iniciativa abierta a toda la comunidad. Cada día podrás acceder a un nuevo espectáculo, ya sea a obras que corresponden
                                  a coproducciones del Teatro Regional del Maule como también a espectáculos especialmente seleccionados para los habitantes
@@ -98,7 +120,8 @@ const styles = {
     },
     img: {
       width: '40%',
-      marginBottom: '3%'
+      marginBottom: '3%',
+      cursor:'pointer'
     },
     img2: {
         width:'20%',
