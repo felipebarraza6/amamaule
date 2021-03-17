@@ -8,12 +8,12 @@ import { NavBar as Nav  } from 'antd-mobile'
 import Logo from '../../assets/logo/01B.png'
 import Slider from '../../assets/slider/img1.jpg'
 import { HomeOutlined, LogoutOutlined  } from '@ant-design/icons'
-import SignUp from '../../components/web/auth/SignUp'
 import Services from '../../components/web/Services'
 import TrenSectionM from '../../components/mobile/TrenSectionM'
 import ProfileUser from '../../containers/web/ProfileUser'
 import { AuthContext  } from '../../App'
 import RegularTasks from '../../components/web/RegularTasks'
+import SignUp from '../../components/mobile/auth/SignUp'
 
 const Screen = () => {
   const {state, dispatch} = useContext(AuthContext) 
@@ -32,9 +32,16 @@ const Screen = () => {
                     <>{state && 
                     <>
                       {state.isAuthenticated ? <>
-                          <Link to='/profile' style={{color:'white'}}  >@{state.user.username}</Link> <Button type='link'  onClick={ ()=> dispatch({type:'LOGOUT'})}  ><LogoutOutlined  style={{color:'white'}} /></Button> </>  : <Login/>  }
-                                          </>
-                    }</>                  
+                          <Link to='/profile' style={{color:'white'}}  >
+                            @{state.user.username}
+                            </Link> 
+                            <Button type='link'  
+                                onClick={ ()=> dispatch({type:'LOGOUT'})}  >
+                                  <LogoutOutlined  style={{color:'white'}} />
+                            </Button> </>  
+                            : <Login/>  }
+                        </>}
+                    </>                  
                   ]}
               > 
               </Nav>
@@ -42,6 +49,13 @@ const Screen = () => {
                 <Route exact path='/profile' render={()=><>
                 <ProfileUser />
                 </>} />
+                <Route exact path='/signup'>
+                  <SignUp />
+                  <TrenSectionM />
+                    <div style={{color:'white', backgroundColor:'#61263d', textAlign:'center', padding:'20px'}}>
+                    AMA - Vincular para crear 2021
+                    </div>
+                </Route>
                 <Route exact path='/' render={()=><>
                   <img src={Slider} style={{width:'100%'}}  />
                   <WingBlank size="lg">
@@ -57,7 +71,11 @@ const Screen = () => {
 
                         </p>
                         </Card.Body>
-                        <Card.Footer content={<SignUp />}  />
+                        <Card.Footer content={<Link to='/signup'>
+                          <Button type='link' style={styles.button}>
+                            Inscríbete aquí
+                          </Button>
+                        </Link>}  />
                       </Card>
                   </WingBlank>
                     <WhiteSpace size="lg" />
@@ -77,5 +95,13 @@ const Screen = () => {
   
 }
 
+
+const styles = {
+  button: {
+    backgroundColor: '#CE3D4B', 
+    color:'white', 
+    borderColor:'#CE3D4B'
+}
+}
 
 export default Screen

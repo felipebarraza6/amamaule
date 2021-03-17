@@ -1,10 +1,16 @@
-import React from 'react'
+import React, { useState, useEffect} from 'react'
 import { Row, Col, Card, Typography, Tag } from 'antd'
 import SignUp from './auth/SignUp'
 const { Title, Paragraph } = Typography
 
 
 const InfoSection = () => {
+
+    const [size, setSize] = useState()
+
+    useEffect(()=> {
+        setSize(window.innerWidth)
+    }, [])
 
     return(
         <Row justify='center' style={styles.row}>
@@ -26,6 +32,8 @@ const InfoSection = () => {
                           Además, tendrás acceso exclusivo a nuestros showcases y visionados durante esta edición.
                         </Paragraph>
                         <SignUp />
+                        
+                        
                 </Card>
         </Row>
     )

@@ -17,7 +17,7 @@ const RegularTasks = () => {
             audiovisualistas y comunicadores.`
         },
         {
-            "question": "Si soy artista, ¿debo tener un trabajo terminado para postular?",
+            "question": "Si soy artista, ¿debo tener un trabajo terminado para participar?",
             "answer": `Pueden postular artistas con trabajos terminados del presente periodo y 
              de años anteriores, así como también artistas y colectivos con proyectos en curso. 
              Durante tu inscripción, tendrás la posibilidad de adjuntar tu dossier de trabajo para 
@@ -39,16 +39,18 @@ const RegularTasks = () => {
              cualquiera de los talleres que ofrecerá AMA durante esta versión.`
         },
         {
-            "question": "¿Cuáles son los plazos de postulación?",
+            "question": "¿Cuáles son los plazos de inscripción?",
             "answer": `Para participar del encuentro, el plazo de postulación 
             se mantendrá abierto hasta el 1 de abril vía www.amamaule.cl, mismo 
             periodo en el cual podrás inscribirte en los diferentes talleres online.`
         },
         {
-            "question": "¿Quiénes pueden participar de los visionados AMA 2021?",
-            "answer": `Los visionados están contemplados exclusivamente para artistas de 
-            la Región del Maule y cuentan con una postulación que estará disponible en 
-            www.amamaule.cl hasta el 4 de abril.`
+            "question": "¿Qué es un visionado y cómo participar?",
+            "answer": `Los visionados son instancias creadas para que los programadores puedan revisar trabajos de 
+            las y los artistas escénicos del Maule y conocer en mayor profundidad las propuestas existentes en la región. 
+            Pueden participar artistas con trabajos producidos entre los años 2018 y 2020, o bien, que estén en proceso de 
+            estreno en 2021. Dichas producciones deben estar en condiciones de circular presencial y/o virtualmente durante 
+            2021 y los requisitos para participar se explicitan en las bases descargables de amamaule.cl`
         },
         {
             "question": "¿Cómo se desarrollará el Encuentro AMA 2021?",

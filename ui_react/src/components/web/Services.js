@@ -16,6 +16,7 @@ const Services = () => {
                     <img onClick={()=>{Modal.info(
                         {                         
                             icon: <img src={service1} style={styles.img2}  />,
+                            width:'700px',
                             content: <Row>
                                 <Col>
                                     Experiencias formativas online diseñadas preferentemente para habitantes de la Región del Maule. 
@@ -43,6 +44,9 @@ const Services = () => {
                                             6. Taller de financiamiento para la circulación internacional
                                         </Item>
                                     </List>
+                                    <p style={{marginTop:'20px'}}>
+                                    Esta actividad requiere inscripción previa, completando perfil en www.amamaule.cl
+                                    </p>
                                 </Col>
                             </Row>,
                             
@@ -57,15 +61,14 @@ const Services = () => {
                         {                         
                             icon: <img src={service2} style={styles.img2}  />,
                             content: <p>
-                                Abordaremos temas de interés para el desarrollo artístico, a través de la mirada de 
-                                invitados internacionales, con vasta experiencia y conocimiento en la materia. Con esto, 
-                                apostamos por inspirar a quienes participan en AMA 2021 para abrir paso a nuevas perspectivas 
-                                en torno al trabajo creativo post pandemia.
+                                Abordaremos temas de interés para el desarrollo artístico, a través de la mirada de invitados con experiencia y 
+                                conocimiento en la materia. Con esto, apostamos por inspirar a quienes participan en AMA 2021 e impulsar nuevas 
+                                perspectivas en torno al trabajo creativo post pandemia.
                             </p>
                         }
                     )}}
                      src={service2} style={styles.img}  alt='service2' />
-                    <Title style={styles.title} level={4} >Conferencias</Title>
+                    <Title style={styles.title} level={4} >Conferencias y Mesas Temáticas </Title>
                 </Col>
                 <Col xs={24} lg={6}  style={styles.column} span={6}>
                     <img
@@ -73,10 +76,10 @@ const Services = () => {
                         {                         
                             icon: <img src={service3} style={styles.img2}  />,
                             content: <p>
-                                Espacios de encuentro virtual entre programadores, artistas u otros participantes de interés para tu 
-                                trabajo. Se trata de rondas de diez minutos, donde podrás presentar tu trabajo y establecer nuevos nexos. 
-                                Serán reuniones bilaterales consensuadas por ambas partes. Te haremos llegar un tutorial detallado sobre 
-                                cómo agendar reuniones.
+                                Espacios de encuentro virtual entre programadores, artistas u otros participantes de interés 
+                                para tu trabajo. Se trata de reuniones online de diez minutos de duración, tiempo en el cual 
+                                podrás presentar tu propuesta o proyecto artístico y establecer nexos con tu contraparte. Te 
+                                haremos llegar un tutorial detallado sobre cómo agendar reuniones. 
                             </p>
                         }
                     )}}
@@ -89,14 +92,10 @@ const Services = () => {
                         {                            
                             icon: <img src={service4} style={styles.img2}  />,
                             content: <div><p>
-                                Iniciativa abierta a toda la comunidad. Cada día podrás acceder a un nuevo espectáculo, ya sea a obras que corresponden
-                                 a coproducciones del Teatro Regional del Maule como también a espectáculos especialmente seleccionados para los habitantes
-                                  de nuestra región.
-                            </p>
-                            <p>
-                            En tanto, los programadores y los participantes del encuentro, tendrán la posibilidad de revisar trabajos de artistas escénicos de la 
-                            Región del Maule, a través de un material audiovisual, diseñado especialmente para la ocasión. Esta información estará disponible exclusivamente
-                             para quienes participen del encuentro.
+                                AMA presentará cada día showcases y espectáculos artísticos abiertos a la comunidad 
+                                de forma gratuita. Del mismo modo, los programadores tendrán acceso exclusivo a una 
+                                sección de visionados de propuestas artísticas seleccionadas, de artistas de la Región 
+                                del Maule.
                             </p>
                             </div>
                         }
