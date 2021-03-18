@@ -164,7 +164,7 @@ const Workshops = () => {
         </Card>
       </Col>
       <Col span={24}>
-        <Card hoverable style={styles.card}  title='Marketing Digital para la industria musical' extra={<> {size > 800 && 'Jueves 15 de abril, 19 horas.'}</>}  >
+        <Card hoverable style={styles.card}  title='Marketing Digital para la industria musical' extra={<> {size > 800 && 'Jueves 15 de abril, 19:00 hrs.'}</>}  >
         <p>Marketing Digital para la industria musical</p>
         {size < 800 && <Tag color="warning" style={{marginBottom:'20px', marginTop:'10px'}}>15 de Abril 19:00 hrs</Tag> }
           <p>
@@ -190,7 +190,7 @@ const Workshops = () => {
       {page ===3 && 
       <>
       <Col span={24}>
-        <Card hoverable style={styles.card}  title='Taller de herramientas para la gestión de proyectos culturales' extra={<> {size > 800 && 'Jueves 15 de abril, 19 horas.'}</>} >
+        <Card hoverable style={styles.card}  title='Taller de herramientas para la gestión de proyectos culturales' extra={<> {size > 800 && 'Jueves 15 de abril, 19:00 hrs.'}</>} >
         <p>
         Taller de herramientas para la gestión de proyectos culturales
         </p>                
@@ -216,7 +216,7 @@ const Workshops = () => {
       </Col>
       <Col span={24}>
         <Card hoverable style={styles.card}  title='Taller de financiamiento para la circulación internacional' 
-          extra={<> {size > 800 && 'Sábado 17 de abril, 19 horas.'}</>}
+          extra={<> {size > 800 && 'Sábado 17 de abril, 19:00 hrs.'}</>}
         >
           <p>
             Taller de financiamiento para la circulación internacional

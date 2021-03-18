@@ -8,13 +8,13 @@ const RegularTasks = () => {
     const regularTasksList = [
         {
             "question": "¿Quiénes pueden participar?",
-            "answer": `Pueden postular artistas escénicos de la Región del Maule, 
+            "answer": `Pueden participar artistas escénicos de la Región del Maule, 
             provenientes del ámbito de la música, la ópera, el teatro, la danza, la narración oral, 
             el circo, los títeres, la performance u otras. Asimismo, programadores de espacios culturales regionales, nacionales e 
             internacionales; programadores de festivales, productores y gestores culturales regionales, nacionales y extranjeros. 
             Por último, este llamado está igualmente abierto para representantes de organizaciones ligadas al campo de las artes escénicas, 
             instituciones públicas y privadas, distribuidores, managers, proveedores de transporte, técnicos,  fotógrafos, diseñadores, 
-            audiovisualistas y comunicadores.`
+            audiovisualistas, comunicadores y otros profesionales asociados al ámbito de las artes escénicas.`
         },
         {
             "question": "Si soy artista, ¿debo tener un trabajo terminado para participar?",

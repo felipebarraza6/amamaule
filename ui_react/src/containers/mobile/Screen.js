@@ -36,7 +36,12 @@ const Screen = () => {
                             @{state.user.username}
                             </Link> 
                             <Button type='link'  
-                                onClick={ ()=> dispatch({type:'LOGOUT'})}  >
+                                onClick={ ()=> {
+                                  dispatch({
+                                      type:'LOGOUT'
+                                    })
+                                    window.location.replace('/')
+                                }}  >
                                   <LogoutOutlined  style={{color:'white'}} />
                             </Button> </>  
                             : <Login/>  }

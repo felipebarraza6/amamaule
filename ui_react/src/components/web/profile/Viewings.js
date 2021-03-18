@@ -6,7 +6,7 @@ import api from '../../../api/endpoints'
 import pdf from '../../../assets/bases.pdf'
 const { Option } = Select
 const { TextArea } = Input
-const { Paragraph } = Typography
+const { Paragraph, Title } = Typography
 
 const Viewings = () => {
   
@@ -59,13 +59,17 @@ const Viewings = () => {
             <Paragraph>
               Podrán participar artistas o elencos, con propuestas de teatro, performance, música, circo, danza, títeres, narración oral, ópera u otras similares. 
               Los elencos deben estar compuestos mayoritariamente por integrantes oriundos de la Región del Maule (pueden residir fuera de ella) y sus producciones 
-              deben estar en condiciones de circular presencial y/o virtualmente durante 2021. Más detalles en las bases descargables.
+              deben estar en condiciones de circular presencial y/o virtualmente durante 2021. 
+            </Paragraph>
+            <Paragraph>
+            Más detalles en las bases descargables.
             </Paragraph>
           </Col>
       {profileData &&
         <Col span={24}>
           {!profileData.is_send_visio ? 
           <Form layout='vertical' onFinish={(values)=> postView(values)  }>
+            <Title level={4} style={{marginTop:'10px'}} >Postula aquí</Title>
             <Form.Item name='resena_postulante' style={{marginTop:'20px'}} 
               rules={[{ required: true, message: 'Debes llenar este campo' }]}
 
@@ -105,7 +109,7 @@ const Viewings = () => {
             <Form.Item name='url_descarga'  label='URL de descarga'>
                 <Input />
             </Form.Item>
-            <Button htmlType='submit'  style={{color:'white', backgroundColor:'#CE3D4B', borderColor: '#CE3D4B'}}  >Enviar Solicitud</Button>
+            <Button htmlType='submit'  style={{color:'white', backgroundColor:'#CE3D4B', borderColor: '#CE3D4B'}}  >Enviar postulación</Button>
           </Form>: <Card title='¡Solicitud Enviada!' style={{textAlign:'center'}}   >
                  <SmileTwoTone twoToneColor='#CE3D4B'  style={{fontSize:'140px'}} />
                 <div style={{marginTop:'50px'}}>
