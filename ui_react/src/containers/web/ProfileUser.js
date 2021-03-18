@@ -1,10 +1,10 @@
-import React, {useContext, useState } from 'react'
+import React, {useContext, useState, useEffect } from 'react'
 import { Menu, Result, Col, Row, Button, Descriptions, Card, Tag } from 'antd'
 import { RocketOutlined ,UserOutlined, FilePdfFilled, 
         CheckOutlined, EditOutlined, LikeTwoTone, 
         QuestionCircleFilled } from '@ant-design/icons'
 import { AuthContext } from '../../App'
-
+import { NavBar } from 'antd-mobile'
 import ProfileData from '../../components/web/profile/ProfileData'
 import Workshops from '../../components/web/profile/Workshops'
 import Viewings from '../../components/web/profile/Viewings'
@@ -13,6 +13,9 @@ const ProfileUser = () => {
 
     const { state } = useContext(AuthContext)
     const [currentNavigation, setCurrentNavigation] = useState('0')
+
+    const [isMaule, setIsMaule] = useState(true)
+    const [size, setSize] = useState()
 
     function setNavigator(current) {
         setCurrentNavigation(current.key)
@@ -62,7 +65,36 @@ const ProfileUser = () => {
 
     }
 
+    useEffect(()=> {
+      setSize(window.innerWidth)
+      if(state.user){
+        if(state.user.region === 'Región del Maule'){
+          console.log('ismaule')
+            setIsMaule(false)
+        }
+      }
+    },[])
+
     return(<>
+              {size < 800 ? 
+                <NavBar mode='dark'  
+                style={{backgroundColor:'#F58B88'}}               
+            > 
+              <Button shape={'round'} type='link' style={currentNavigation === '0' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('0')}>
+                  <UserOutlined  style={currentNavigation === '0' ?  styles.iconActive : styles.icon } />{currentNavigation === '0' && 'Perfil'}
+              </Button>
+              <Button shape={'round'} type='link' style={currentNavigation === '1' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('1')}>
+                  <CheckOutlined style={styles.icon} />{currentNavigation === '1' && 'Talleres'}
+              </Button>
+              {!isMaule && 
+              <Button disabled={isMaule} shape={'round'} type='link' style={currentNavigation === '2' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('2')}>
+                  <EditOutlined style={styles.icon} />{currentNavigation === '2' && 'Visionados'}
+              </Button>}
+              <Button shape={'round'} type='link' style={currentNavigation === '3' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('3')}>
+                  <RocketOutlined style={styles.icon} />{currentNavigation === '3' && 'E.Satelite'}
+              </Button>
+            </NavBar>
+              : 
               <Menu 
                     mode='horizontal' 
                     selectedKeys={[currentNavigation]} 
@@ -79,14 +111,11 @@ const ProfileUser = () => {
                       style={ currentNavigation === '1' ?  styles.hoverItem : styles.menuItem  }  >
                     Talleres
                   </Menu.Item>}
-                  {state.user && 
-                    <>
-                    {state.user.region === 'Región del Maule' && 
-                    <Menu.Item disabled={!state.user.is_verified}  icon={<EditOutlined/>} key={'2'} 
+                  {state.user &&                                         
+                    <Menu.Item disabled={isMaule}  icon={<EditOutlined/>} key={'2'} 
                        style={ currentNavigation === '2' ?  styles.hoverItem : styles.menuItem  } >
                       Visionados
-                    </Menu.Item>}
-                    </>
+                    </Menu.Item>                    
                   }
                   {state.user &&
                   <Menu.Item disabled={!state.user.is_verified}  key={'3'} icon={<RocketOutlined />}
@@ -94,7 +123,7 @@ const ProfileUser = () => {
                     style={ currentNavigation === '3' ?  styles.hoverItem : styles.menuItem  } >
                       Evento Satélite 
                   </Menu.Item>}
-              </Menu>
+              </Menu>}
               <Row style={{padding:'0px'}}>
                 <Col lg={{span:14}}  xs={{span:24}}  style={{padding:'10px'}}  >
                   {currentNavigation === '0' &&
@@ -188,6 +217,20 @@ const styles = {
       backgroundColor: '#CE3D4B',
       marginRight:'10px',
       marginLeft:'10px'
+    },
+    icon: {
+      fontSize: '18px'
+    },
+    iconActive: {
+      fontSize: '20px',            
+    },
+    buttonNo: {
+      backgroundColor: '#F58B89',
+      color:'white'
+    },
+    buttonAct: {
+      backgroundColor: '#CE3D4B',
+      color:'white'
     }
 }
 
