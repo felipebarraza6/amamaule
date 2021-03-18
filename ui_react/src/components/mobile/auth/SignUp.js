@@ -23,7 +23,7 @@ const SignUp = () =>{
     return(
             <>
             <Title style={{textAlign:'center', marginTop:'20px', marginBottom:'30px'}} level={4} ><EditOutlined style={{marginRight:'20px', fontSize:'25px'}} /> Formulario de inscripción</Title>
-            <Form name='signup' onFinish={async (values)=>{
+            <Form name='signup' style={{marginBottom:'30px'}} onFinish={async (values)=>{
                 
 
                 
@@ -55,15 +55,11 @@ const SignUp = () =>{
                               if(field === 'username'){
                                   field = 'Nombre de usuario'
                               }
-                
                                 notification.error({message:`${field}: ${message}`})
                               }
                         )}
                     })
-                    
-                }
-                
-                
+                }            
             }}>
                 <Form.Item style={styles.formItem}
                     rules={[{ required: true, message: 'Ingresa tu nombre' }]}
@@ -231,12 +227,7 @@ const SignUp = () =>{
                 <Form.Item style={styles.formItem} >
                     <Button style={{width:'100%'}} size='large' type='primary' htmlType="submit" >
                         Inscribirse
-                    </Button>
-                
-                
-                    <Button style={{width:'100%', backgroundColor:'red', color:'white'}} size='large' type='warning'>
-                        Cancelar
-                    </Button>
+                    </Button>                                                    
                 </Form.Item>
             </Form>
         </>)
@@ -246,9 +237,8 @@ const SignUp = () =>{
 
 const styles = {
     formItem: {
-        margin:'0px',
-        paddingLeft:'10px',
-        paddingRight:'10px'
+        paddingLeft:'5px',
+        paddingRight:'5px',        
     }
 }
 
