@@ -25,8 +25,6 @@ const SignUp = () =>{
             <Title style={{textAlign:'center', marginTop:'20px', marginBottom:'30px'}} level={4} ><EditOutlined style={{marginRight:'20px', fontSize:'25px'}} /> Formulario de inscripción</Title>
             <Form name='signup' style={{marginBottom:'30px'}} onFinish={async (values)=>{
                 
-
-                
                 var password = values['password']
                 var password_confirm = values['password_confirmation']
                 if(password != password_confirm){
