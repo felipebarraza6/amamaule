@@ -12,9 +12,16 @@ import Viewings from '../../components/web/profile/Viewings'
 const ProfileUser = () => {
 
     const { state } = useContext(AuthContext)
+    
     const [currentNavigation, setCurrentNavigation] = useState('0')
+    var isMaule = true
+    
+    if(state.user){
+      if(state.user.region === 'Región del Maule' && state.user.is_verified === true){
+        isMaule = false
+      }
+    }
 
-    const [isMaule, setIsMaule] = useState(true)
     const [size, setSize] = useState()
 
     function setNavigator(current) {
@@ -65,34 +72,33 @@ const ProfileUser = () => {
 
     }
 
+
+   
+
     useEffect(()=> {
       setSize(window.innerWidth)
-      if(state.user){
-        if(state.user.region === 'Región del Maule'){
-          console.log('ismaule')
-            setIsMaule(false)
-        }
-      }
+      
     },[])
 
     return(<>
               {size < 800 ? 
                 <NavBar mode='dark'  
                 style={{backgroundColor:'#F58B88'}}               
-            > 
+            > {state.user && <>
               <Button shape={'round'} type='link' style={currentNavigation === '0' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('0')}>
                   <UserOutlined  style={currentNavigation === '0' ?  styles.iconActive : styles.icon } />{currentNavigation === '0' && 'Perfil'}
               </Button>
-              <Button shape={'round'} type='link' style={currentNavigation === '1' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('1')}>
+              <Button disabled={!state.user.is_verified} shape={'round'} type='link' style={currentNavigation === '1' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('1')}>
                   <CheckOutlined style={styles.icon} />{currentNavigation === '1' && 'Talleres'}
               </Button>
-              {!isMaule && 
-              <Button disabled={isMaule} shape={'round'} type='link' style={currentNavigation === '2' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('2')}>
+              
+              <Button disabled={!state.user.is_verified && isMaule===true} disabled={isMaule} shape={'round'} type='link' style={currentNavigation === '2' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('2')}>
                   <EditOutlined style={styles.icon} />{currentNavigation === '2' && 'Visionados'}
-              </Button>}
-              <Button shape={'round'} type='link' style={currentNavigation === '3' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('3')}>
+              </Button>
+              <Button disabled={!state.user.is_verified} shape={'round'} type='link' style={currentNavigation === '3' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('3')}>
                   <RocketOutlined style={styles.icon} />{currentNavigation === '3' && 'E.Satelite'}
               </Button>
+              </>}
             </NavBar>
               : 
               <Menu 
