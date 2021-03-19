@@ -45,7 +45,7 @@ export const POST_FILE = async(endpoints, field, file) => {
     const token = JSON.parse(localStorage.getItem('access_token'))
     let data = new FormData()
 
-    data.append(field, )
+    data.append(field, file)
 
     const options = {
       headers: {

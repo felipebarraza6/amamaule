@@ -37,8 +37,7 @@ const ProfileData = () => {
         dossier_archivo: values.dossier_archivo.file
       }
     }
-    
-    const request = await api.user.create_profile(state.user.id, values).then((response)=> {
+   const request = await api.user.create_profile(state.user.id, values).then((response)=> {
       message.success('Perfil Creado!!!')
       window.location.reload()
     }).cath((errors)=> {
@@ -47,17 +46,17 @@ const ProfileData = () => {
       if(errors){
         Object.keys(errors).map((key, index)=> {
           let field = key
-          let message = errors[key]
+          let m = errors[key]
           if(key==='non_field_errors'){
               field='Error'
           }
 
-          message.errors(`${field}: ${message}`)
+          message.errors(`${field}: ${m}`)
       
         })
       }
     
-    })
+    }) 
     
     return request
 
@@ -214,10 +213,11 @@ const ProfileData = () => {
                                     </Form.Item>
                                     </Col>
                                     <Col xs={{span:25}} lg={{span:8}}  style={{paddingRight:'5px'}}  >
-                                       <p>Si tienes un dossier, adjunta aquí</p>
-                                        <Upload maxCount={1} >
+                                    <Form.Item name='dossier_archivo' label='Si tienes un dossier, adjunta aquí'>                                       
+                                        <Upload maxCount={1}  >
                                             <Button icon={<UploadOutlined />}>Subir Archivo </Button>
                                         </Upload>
+                                    </Form.Item>
                                     </Col>
                                     <Col xs={{span:24}} lg={{span:12}}  style={{paddingLeft:'5px'}}>
                                     <Form.Item label='URL' name='url_contenido'>

@@ -18,7 +18,7 @@ const RegularTasks = () => {
         },
         {
             "question": "Si soy artista, ¿debo tener un trabajo terminado para participar?",
-            "answer": `Pueden postular artistas con trabajos terminados del presente periodo y 
+            "answer": `Pueden participar artistas con trabajos terminados del presente periodo y 
              de años anteriores, así como también artistas y colectivos con proyectos en curso. 
              Durante tu inscripción, tendrás la posibilidad de adjuntar tu dossier de trabajo para 
              más detalles.`
@@ -40,7 +40,7 @@ const RegularTasks = () => {
         },
         {
             "question": "¿Cuáles son los plazos de inscripción?",
-            "answer": `Para participar del encuentro, el plazo de postulación 
+            "answer": `Para participar del encuentro, el plazo de inscripción 
             se mantendrá abierto hasta el 1 de abril vía www.amamaule.cl, mismo 
             periodo en el cual podrás inscribirte en los diferentes talleres online.`
         },

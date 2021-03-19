@@ -4,7 +4,7 @@ import Login from '../../components/web/auth/Login'
 import { LogoutOutlined } from '@ant-design/icons'
 import { AuthContext } from '../../App'
 import { Link } from 'react-router-dom'
-import Logo from '../../assets/logo/03.png'
+import Logo from '../../assets/logo/white.png'
 const { Header } = Layout
 const { Item } = Menu
 
@@ -17,7 +17,7 @@ const NavBarClient = () => {
     return(
         <Header style={styles.header}>
             <div style={styles.logo}>
-              <img src={Logo} width='140%'  />
+              <img src={Logo} width='300%'  />
             </div>
            <Menu mode="horizontal" theme='dark' style={styles.menu} > 
             <Item style={styles.item}>

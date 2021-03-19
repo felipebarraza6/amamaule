@@ -1,4 +1,5 @@
-import { POST_LOGIN, GET, UPDATE, POST} from './config'
+import { POST_LOGIN, GET, UPDATE, 
+        POST, POST_FILE} from './config'
 
 
 const login = async(data) => {
@@ -50,6 +51,16 @@ const reset_password = async(data)=> {
 
 }
 
+const upload_file = async(field, file, user_id)=> {    
+    const request = await POST_FILE(`users/profile/${user_id}/`, field, file).then((response)=> {
+        console.log(response)
+    }).catch((error)=> {
+        console.log(error)
+    })
+
+    return request
+}
+
 const api = {
     user: {
         login,
@@ -58,7 +69,8 @@ const api = {
         get_profile_center,
         update_profile,
         create_profile,
-        reset_password
+        reset_password,
+        upload_file
     }
 }
 
