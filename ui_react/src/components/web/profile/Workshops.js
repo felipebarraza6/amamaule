@@ -12,7 +12,6 @@ const { Title} =Typography
 
 const Workshops = () => {
 
-
   const { state } = useContext(AuthContext)
   const [profile, setProfile] = useState(null)
   const [page, setPage] = useState(1)
@@ -103,7 +102,10 @@ const Workshops = () => {
                 </Select>
               </Form.Item>
               <Form.Item label='¿Cuál es el elemento diferenciador de tu proyecto artístico o de gestión?' 
-                  rules={[{ required: true, message: 'Respuesta Obligatoria' }]}
+                  rules={[
+                    { required: true, message: 'Respuesta Obligatoria' },
+                    {max:400, message:'Solo puedes ingresar un máximo de 400 carácteres'}
+                  ]}
                   name='elemento_diferenciador'
               >
                 <TextArea />

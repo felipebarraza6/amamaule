@@ -149,14 +149,14 @@ const ProfileUser = () => {
                         <Card style={{textAlign:'center'}}  title='PERFIL COMPLETADO' >
                           <LikeTwoTone style={{fontSize:'200px'}}  twoToneColor='#CE3D4B'  />
                           <Footer style={{marginTop:'20px'}}>
-                          <label for='file_dos'><> 
+                          <label for='file_dos' ><> 
                             <h4>Actualizar dossier...</h4>                                  
-                            <Avatar shape='square' style={styles.uploadAvatar}>
+                            <Avatar shape='square' style={styles.uploadAvatar} >
                                 <FileAddFilled style={{fontSize:'40px', paddingTop:'10px'}} />
                             </Avatar>                                                          
                             </>
                         </label>
-                        <input id='file_dos' type='file' style={styles.uploadFile} onChange={async(evt)=>{
+                        <input id='file_dos' type='file' style={styles.uploadFile1} onChange={async(evt)=>{
                                           setImageFile(evt.target.files[0])           
                                           const request = await api.user.upload_file('dossier_archivo', evt.target.files[0], state.user.id).then((response)=> {
                                             message.success('Dossier actualizado!')                                                                                        
@@ -196,11 +196,11 @@ const ProfileUser = () => {
                 </Col>
                 <Col lg={{span:10}} xs={{span:24}}  style={{padding:'10px'}}>
                 {state.user &&
-                 <Descriptions 
-                    title="DATOS DE INSCRIPCIÓN"
+                 <Descriptions                     
                     bordered={true} 
-                    extra={<>{state.user.principal_image ? <>                      
-                      <label for='file' labe='asd'><>                                   
+                    extra={<b>@ {state.user.username} </b>}
+                    title={<>{state.user.principal_image ? <>                      
+                      <label for='file' labe='asd' style={{paddingLeft:'20px'}}><>                                   
                             <Avatar shape='square' style={styles.uploadAvatar} src={state.user.principal_image}  />                                                          
                             </>
                         </label>
@@ -291,13 +291,13 @@ const styles = {
       backgroundColor: 'rgb(97, 38, 61)',
       cursor:'pointer'
     },
-    uploadIcon: {
-
-    },
     uploadFile: {
-      opacity: '0',
-      position: 'absolute',
-      zIndex: '-1'
+      opacity: '0',                  
+    },
+    uploadFile1: {
+      opacity: '0',                  
+      position:'absolute',
+      zIndex:'-1'
     },
     container: {
         padding:'30px'
