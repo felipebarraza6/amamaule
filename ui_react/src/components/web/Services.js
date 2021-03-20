@@ -122,7 +122,8 @@ const styles = {
         backgroundColor: '#ce3d4b',        
     },
     column: {
-        textAlign:'center'
+        textAlign:'center',
+        margin:'20px'
     },
     img: {
       width: '50%',

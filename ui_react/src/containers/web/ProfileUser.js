@@ -1,19 +1,23 @@
 import React, {useContext, useState, useEffect } from 'react'
-import { Menu, Result, Col, Row, Button, Descriptions, Card, Tag } from 'antd'
-import { RocketOutlined ,UserOutlined, FilePdfFilled, 
-        CheckOutlined, EditOutlined, LikeTwoTone, 
+import { Menu, Result, Col, Row, Button, 
+        Descriptions, Card, Tag, Avatar, message } from 'antd'
+import { RocketOutlined ,UserOutlined, UploadOutlined, 
+        CheckOutlined, EditOutlined, LikeTwoTone, FileAddFilled, 
         QuestionCircleFilled } from '@ant-design/icons'
 import { AuthContext } from '../../App'
 import { NavBar } from 'antd-mobile'
 import ProfileData from '../../components/web/profile/ProfileData'
 import Workshops from '../../components/web/profile/Workshops'
 import Viewings from '../../components/web/profile/Viewings'
+import api from '../../api/endpoints'
+import { Footer } from 'antd/lib/layout/layout'
 
 const ProfileUser = () => {
 
-    const { state } = useContext(AuthContext)
+    const { state, dispatch } = useContext(AuthContext)
     
     const [currentNavigation, setCurrentNavigation] = useState('0')
+    const [imageFile, setImageFile] = useState(null)
     var isMaule = true
     
     if(state.user){
@@ -27,6 +31,10 @@ const ProfileUser = () => {
     function setNavigator(current) {
         setCurrentNavigation(current.key)
   
+    }
+
+    function uploadImage(file){
+
     }
     
     if(state.user){
@@ -140,6 +148,26 @@ const ProfileUser = () => {
                         <ProfileData />:
                         <Card style={{textAlign:'center'}}  title='PERFIL COMPLETADO' >
                           <LikeTwoTone style={{fontSize:'200px'}}  twoToneColor='#CE3D4B'  />
+                          <Footer style={{marginTop:'20px'}}>
+                          <label for='file_dos'><> 
+                            <h4>Actualizar dossier...</h4>                                  
+                            <Avatar shape='square' style={styles.uploadAvatar}>
+                                <FileAddFilled style={{fontSize:'40px', paddingTop:'10px'}} />
+                            </Avatar>                                                          
+                            </>
+                        </label>
+                        <input id='file_dos' type='file' style={styles.uploadFile} onChange={async(evt)=>{
+                                          setImageFile(evt.target.files[0])           
+                                          const request = await api.user.upload_file('dossier_archivo', evt.target.files[0], state.user.id).then((response)=> {
+                                            message.success('Dossier actualizado!')                                                                                        
+                                          }).catch((error)=>{
+                                            message.error('Intendalo más tarde')
+                                          })
+
+
+                                                                                                                                                                 
+                              } }  />    
+                          </Footer>
                         </Card>
                       }
                       </>
@@ -171,6 +199,57 @@ const ProfileUser = () => {
                  <Descriptions 
                     title="DATOS DE INSCRIPCIÓN"
                     bordered={true} 
+                    extra={<>{state.user.principal_image ? <>                      
+                      <label for='file' labe='asd'><>                                   
+                            <Avatar shape='square' style={styles.uploadAvatar} src={state.user.principal_image}  />                                                          
+                            </>
+                        </label>
+                        <input id='file' type='file'  accept='image/*' style={styles.uploadFile} onChange={async(evt)=>{
+                                          setImageFile(evt.target.files[0])           
+                                          const request = await api.user.upload_img('principal_image', evt.target.files[0], state.user.username).then((response)=> {
+                                            message.success('Imagen actualizada!')                                                                                        
+                                          }).catch((error)=>{
+                                            message.error('Intendalo más tarde')
+                                          })
+                                          
+                                          let access_token = state.access_token
+                                          
+                                          const request_user = await api.user.profile(state.user.username).then((response)=> {
+                                            const user = response.data
+                                            dispatch({
+                                              type: 'LOGIN',
+                                              payload: {
+                                                access_token,
+                                                user
+                                              }
+                                            })
+                                        })
+
+
+                                                                                                                                                                 
+                              } }  />                    
+                      
+                      </>:
+                      <>
+                        <label for='file' labe='asd'><>                                   
+                            <Avatar shape='square' style={styles.uploadAvatar}>
+                              <UploadOutlined style={{fontSize:'30px', paddingTop:'14px'}} />
+                            </Avatar>                                      
+                            </>
+                        </label>
+                        <input id='file' type='file' accept='image/*' style={styles.uploadFile} onChange={async(evt)=>{
+                                          setImageFile(evt.target.files[0])           
+                                          const request = await api.user.upload_img('principal_image', evt.target.files[0], state.user.username).then((response)=> {
+                                            message.success('Imagen actualizada!')                                                                                        
+                                          }).catch((error)=>{
+                                            message.error('Intendalo más tarde')
+                                          })                                          
+                                                                                                                                                                 
+                              } }   />                    
+                    </>
+                    }
+                      
+                    </>}
                     style={{backgroundColor:'white', padding:'20px'}} 
                     layout='vertical'>
                       <Descriptions label='Perfil #1'><Tag color='volcano'  >{type1}</Tag></Descriptions>
@@ -205,6 +284,21 @@ const ProfileUser = () => {
 
 
 const styles = {
+    uploadAvatar:{
+      width:'70px', 
+      height:'70px', 
+      border:'3px solid rgb(97, 38, 61)',
+      backgroundColor: 'rgb(97, 38, 61)',
+      cursor:'pointer'
+    },
+    uploadIcon: {
+
+    },
+    uploadFile: {
+      opacity: '0',
+      position: 'absolute',
+      zIndex: '-1'
+    },
     container: {
         padding:'30px'
     },

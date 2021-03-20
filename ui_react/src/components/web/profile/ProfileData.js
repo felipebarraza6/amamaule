@@ -16,6 +16,7 @@ const ProfileData = () => {
   const [otherArtist, setOtheArtist] = useState(false)
   const [otherGener, setOtherGener] = useState(false)
   const [errors, setErrors] = useState(null)
+  const [file, setFile] = useState()
  
  async  function onFinish(values){
     if(values.disciplina){
@@ -31,18 +32,21 @@ const ProfileData = () => {
           genero: values.genero.toString()
         }
     }
-    if(values.dossier_archivo){
-      values = {
-        ...values,
-        dossier_archivo: values.dossier_archivo.file
-      }
-    }
+
+
+
    const request = await api.user.create_profile(state.user.id, values).then((response)=> {
-      message.success('Perfil Creado!!!')
-      window.location.reload()
-    }).cath((errors)=> {
-     
-      setErrors(errors.response.data)
+      message.success('Perfil Creado!!!')      
+      if(!file){
+        window.location.reload()
+      }else{
+        message.warning('Estamos cargando tu dossier...')      
+      }
+    }).catch((error)=> {
+     if(error.response){
+      setErrors(error.response.data)
+     }
+      
       if(errors){
         Object.keys(errors).map((key, index)=> {
           let field = key
@@ -51,12 +55,18 @@ const ProfileData = () => {
               field='Error'
           }
 
-          message.errors(`${field}: ${m}`)
+          message.error(`${field}: ${m}`)
       
         })
       }
     
     }) 
+
+  const file_re = await api.user.upload_file('dossier_archivo', file, state.user.id).then((response)=> {
+    window.location.reload()
+    }).catch((error)=>{
+      console.log({error})
+    })
     
     return request
 
@@ -213,11 +223,20 @@ const ProfileData = () => {
                                     </Form.Item>
                                     </Col>
                                     <Col xs={{span:25}} lg={{span:8}}  style={{paddingRight:'5px'}}  >
-                                    <Form.Item name='dossier_archivo' label='Si tienes un dossier, adjunta aquí'>                                       
-                                        <Upload maxCount={1}  >
-                                            <Button icon={<UploadOutlined />}>Subir Archivo </Button>
-                                        </Upload>
+                                    <h4>Si tienes un dossier, adjunta aquí</h4>
+                                    {file && `${file.name}`}      
+                                    <Form.Item name='dossier' label={<>
+                                      <div style={{padding:'5px', marginTop:'10px', cursor:'pointer', border:'2px solid rgb(97, 38, 61)'}}>
+                                        <UploadOutlined style={{fontSize:'23px', color:'rgb(97, 38, 61)', marginTop:'5px', cursor:'pointer'}} /> 
+                                        <span style={{fontSize:'15px', color:'rgb(97, 38, 61)',marginLeft:'15px'}}>Selecciona tu archivo</span>
+                                        </div>  
+                                      </>} > 
+                                        
+                                        <input style={styles.uploadFile}  type='file' onChange={async(evt)=>{
+                                          setFile(evt.target.files[0])                                                                                                                                  
+                                          } } />                                                                                
                                     </Form.Item>
+                                    
                                     </Col>
                                     <Col xs={{span:24}} lg={{span:12}}  style={{paddingLeft:'5px'}}>
                                     <Form.Item label='URL' name='url_contenido'>
@@ -236,6 +255,14 @@ const ProfileData = () => {
 
   )
 
+}
+
+const styles = {
+  uploadFile: {
+    opacity: '0',
+    position: 'absolute',
+    zIndex: '-1'
+  }
 }
 
 

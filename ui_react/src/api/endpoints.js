@@ -17,6 +17,7 @@ const signup = async(data)=> {
     return request.data
 }
 
+
 const profile = async(user)=> {
     const request = await GET(`users/${user}/`)
     return request
@@ -61,6 +62,17 @@ const upload_file = async(field, file, user_id)=> {
     return request
 }
 
+
+const upload_img = async(field, file, user_id)=> {    
+    const request = await POST_FILE(`users/${user_id}/`, field, file).then((response)=> {
+        console.log(response)
+    }).catch((error)=> {
+        console.log(error)
+    })
+
+    return request
+}
+
 const api = {
     user: {
         login,
@@ -70,7 +82,8 @@ const api = {
         update_profile,
         create_profile,
         reset_password,
-        upload_file
+        upload_file,
+        upload_img
     }
 }
 
