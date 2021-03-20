@@ -66,7 +66,7 @@ const Workshops = () => {
           En el marco del Encuentro AMA 2021: Vincular para Crear, te invitamos a participar de nuestro Taller de Pitching, cuyo objetivo será entregar herramientas discursivas para una presentación concreta, concisa y efectiva del proyecto artístico y/o de gestión, previo a tu participación en nuestras Rondas de Vinculación AMA. En ellas, podrás agendar reuniones para ser tú mismo/a quien relate su proyecto al representante con quien te toque reunirte. 
         </p>
         <p>
-          Cierre de inscripciones: 21 de marzo, 18 horas.
+          Cierre de inscripciones: 23 de marzo, 18 horas.
         </p>
         <p>
           {profile && <>
