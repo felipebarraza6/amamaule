@@ -9,3 +9,4 @@ django-filter
 django-rest-passwordreset
 pylint
 requests
+django-import-export

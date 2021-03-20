@@ -198,9 +198,9 @@ const ProfileUser = () => {
                 {state.user &&
                  <Descriptions                     
                     bordered={true} 
-                    extra={<b>@ {state.user.username} </b>}
+                    extra={`@${state.user.username}`}
                     title={<>{state.user.principal_image ? <>                      
-                      <label for='file' labe='asd' style={{paddingLeft:'20px'}}><>                                   
+                      <label for='file' labe='asd'><>                                   
                             <Avatar shape='square' style={styles.uploadAvatar} src={state.user.principal_image}  />                                                          
                             </>
                         </label>
@@ -224,7 +224,6 @@ const ProfileUser = () => {
                                               }
                                             })
                                         })
-
 
                                                                                                                                                                  
                               } }  />                    
@@ -295,8 +294,8 @@ const styles = {
       opacity: '0',                  
     },
     uploadFile1: {
-      opacity: '0',                  
-      position:'absolute',
+      opacity: '0',                 
+      marginRight:'1200px',       
       zIndex:'-1'
     },
     container: {
