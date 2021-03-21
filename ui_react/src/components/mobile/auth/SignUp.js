@@ -5,7 +5,6 @@ import { countries } from '../../../resources/countries'
 import { geo } from '../../../resources/geo'
 import { EditOutlined } from '@ant-design/icons'
 import api from '../../../api/endpoints'
-const { Item } = Select
 const { Title } = Typography
 const { Option } = Select
 
@@ -27,7 +26,7 @@ const SignUp = () =>{
                 
                 var password = values['password']
                 var password_confirm = values['password_confirmation']
-                if(password != password_confirm){
+                if(password !== password_confirm){
                     message.error('Las contraseñas no coinciden!')
                 }else{
                     const request = await api.user.signup(values).then((response)=> {
@@ -57,6 +56,8 @@ const SignUp = () =>{
                               }
                         )}
                     })
+
+                    return request
                 }            
             }}>
                 <Form.Item style={styles.formItem}

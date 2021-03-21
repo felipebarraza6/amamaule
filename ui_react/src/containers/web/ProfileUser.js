@@ -150,10 +150,12 @@ const ProfileUser = () => {
                           <LikeTwoTone style={{fontSize:'200px'}}  twoToneColor='#CE3D4B'  />
                           <Footer style={{marginTop:'20px'}}>
                           <label for='file_dos' ><> 
-                            <h4>Actualizar dossier...</h4>                                  
-                            <Avatar shape='square' style={styles.uploadAvatar} >
-                                <FileAddFilled style={{fontSize:'40px', paddingTop:'10px'}} />
-                            </Avatar>                                                          
+                            <h4>Actualizar dossier...</h4> 
+                            <center>
+                              <Avatar shape='square' style={styles.uploadAvatar} >
+                                  <FileAddFilled style={{fontSize:'40px', paddingTop:'10px'}} />
+                              </Avatar>                                                          
+                            </center>                                 
                             </>
                         </label>
                         <input id='file_dos' type='file' style={styles.uploadFile1} onChange={async(evt)=>{
@@ -294,8 +296,7 @@ const styles = {
       opacity: '0',                  
     },
     uploadFile1: {
-      opacity: '0',                 
-      marginRight:'1200px',       
+      opacity: '0',                        
       zIndex:'-1'
     },
     container: {

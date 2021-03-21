@@ -9,9 +9,9 @@ import img3 from '../../assets/logos_tren/mincap.png'
 const TrenSectionM = () => {
     return(
         <Flex justify='center' wrap='wrap'  style={styles.container}>
-          <img style={{width:'30%', height:'30%'}} src={img1} />
-          <img style={{width:'30%', height:'30%'}}  src={img2} />
-          <img style={{width:'30%', height:'30%'}}  src={img3} />
+          <img style={{width:'30%', height:'30%'}} alt='img1' src={img1} />
+          <img style={{width:'30%', height:'30%'}} alt='img2'  src={img2} />
+          <img style={{width:'30%', height:'30%'}} alt='img3'  src={img3} />
         </Flex>
     )
 }
