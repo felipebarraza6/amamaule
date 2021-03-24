@@ -11,7 +11,7 @@ const { Option } = Select
 const UserCreateForm = ({ visible, onCreate, onCancel}) => {
     // Hooks of in the state form and child selection void region, communes & provinces (only chilean)
     const [isChilean, setIsChilean] = useState(false)
-    const [provinces, setProvinces] = useState([])        
+    const [activeRegion, setActiveRegion] = useState(false)     
     const [indexElements, setIndexElements] = useState({
         keyRegion: null,
         keyProvince: null
@@ -95,6 +95,7 @@ const UserCreateForm = ({ visible, onCreate, onCancel}) => {
                             { required: true, message: 'Por favor ingrese su país'},                    
                         ]}>
                             <Select onChange={ (value) => { 
+                                setActiveRegion(true)
                                 if(value !== 'chile'){ 
                                     setIsChilean(false) 
                                 }else{
@@ -110,24 +111,24 @@ const UserCreateForm = ({ visible, onCreate, onCancel}) => {
                 <Row>                    
                     
                     <Col span={12} style={styles.colField} >
-                        {isChilean ? 
-                            <Form.Item name='region' label='Región de residencia' rules={[
-                                { required: true, message: 'Por favor ingrese su región'},                    
-                            ]}>
-                                <Select onSelect = { (value, index) => {
-                                    setProvinces(geo[index.key].provincias)
-                                    setIndexElements({...indexElements, keyRegion: index.key})
-                                    }}>
-                                    {geo.map((obj, index)=><Option value={obj.region} key={index}>{obj.region}</Option>)}
-                                </Select>
-                            </Form.Item>:
-                            <Form.Item name='region' label='Región de residencia' rules={[
-                                { required: true, message: 'Por favor ingrese su región'},                    
+                        {activeRegion &&  <React.Fragment>
+                            {isChilean ? 
+                                <Form.Item name='region' label='Región de residencia' rules={[
+                                    { required: true, message: 'Por favor ingrese su región'},                    
                                 ]}>
-                                <Input />
-                            </Form.Item>
-                        
-                        } 
+                                    <Select>
+                                        {geo.map((obj, index)=><Option value={obj.region} key={index}>{obj.region}</Option>)}
+                                    </Select>
+                                </Form.Item>:
+                                <Form.Item name='region' label='Región de residencia' rules={[
+                                    { required: true, message: 'Por favor ingrese su región'},                    
+                                    ]}>
+                                    <Input />
+                                </Form.Item>
+                            
+                            }
+                            </React.Fragment> 
+                        }
                     </Col>
                     
                     {isChilean && <Col span={12} style={styles.colField} >
@@ -285,7 +286,7 @@ const SignUp = () => {
         const request = await api.user.signup(values).then((response)=> {
             notification.success({ message:`${values.email} fue creado!!!`, title:'Usuario creado'})
             SetGlobalState({...globalState, visibleModal: false})
-            form.resetFields()
+            form.resetFields()            
         }).catch((error)=> {
             
             setErrors(error.response.data)

@@ -11,6 +11,7 @@ const { Option } = Select
 const SignUp = () =>{
 
     const [isChilean, setIsChilean] = useState()
+    const [isActiveRegion, setIsActiveRegion] = useState(false)
     const [errors, setErrors] = useState()
 
     const [form] = Form.useForm()   
@@ -50,7 +51,7 @@ const SignUp = () =>{
                                   field = 'Email'
                               }
                               if(field === 'username'){
-                                  field = 'Nombre de usuario'
+                                  field = 'Nombre de </React.Fragment>usuario'
                               }
                                 notification.error({message:`${field}: ${message}`})
                               }
@@ -113,6 +114,7 @@ const SignUp = () =>{
                     name='country'
                 >
                    <Select placeholder='País' style={{width:'100%'}} onChange={(value)=> {
+                       setIsActiveRegion(true)
                        if(value==='chile'){
                            setIsChilean(true)
                        }else{
@@ -123,6 +125,7 @@ const SignUp = () =>{
                        {countries.map((obj)=><Option value={obj} key={obj}> {obj} </Option>)}
                    </Select>                   
                 </Form.Item>
+                {isActiveRegion && 
                 <Form.Item style={styles.formItem} 
                     rules={[{required: true, message: 'Ingresa tu región'},{max:120, message:'Pudes ingresar hasta 120 carácteres'}]}
                     name='region'
@@ -133,6 +136,7 @@ const SignUp = () =>{
                    </Select>:<InputItem placeholder='Escribe tu región' >Región</InputItem>                   
                     }
                 </Form.Item>
+                }
                 {isChilean && 
                 <Form.Item style={styles.formItem}
                 rules={[{required: true, message: 'Ingresa tu comuna'}, {max:120, message: 'Pudes ingresar hasta 120 carácteres'}]}
