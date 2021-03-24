@@ -131,12 +131,15 @@ const ProfileData = () => {
                                             setOtheArtist(e.target.checked)  
                                             setBlockDis(false)
                                             }}  /> Si no encuentras tus opciones puedes agregarlas manualmente
-                                        <Form.Item name='disciplina' rules={[
+                                                                                    
+                                          {!otherArtist ? 
+                                          <Form.Item name='disciplina' rules={[
                                             {required:true, message:'Selecciona al menos una opción'},
                                             
-                                          ]}  >                                            
-                                          {!otherArtist ? 
-                                            <Select disabled={blockDis}  onChange={(value)=>{if(value.length >= 3){                                              
+                                          ]}  >
+                                            <Select disabled={blockDis}  onChange={(value)=>{
+                                              
+                                              if(value.length >= 3){                                              
                                               setBlockDis(true)
                                             }}}  mode='multiple' placeholder='Selecciona hasta 3 opciones'>
                                                 <Option value="teatro">teatro</Option>
@@ -147,9 +150,17 @@ const ProfileData = () => {
                                                 <Option value="narración oral">narración oral</Option>
                                                 <Option value="ópera">ópera</Option>
                                                 <Option value="performance">performance</Option>
-                                            </Select>:<Input placeholder='Escribe tus opciones' maxLength='800' />
+                                            </Select>
+                                            </Form.Item>
+                                            :<Form.Item name='disciplina' rules={[
+                                              {required:true, message:'Selecciona al menos una opción'},
+                                              {max:800, message:'Excede el maximo permitido'}
+                                              
+                                            ]}  >
+                                            <Input placeholder='Escribe tus opciones' />
+                                            </Form.Item>
                                           }
-                                        </Form.Item>
+                                        
                                         </Col>
                                         <Col xs={{span:24}} lg={{span:12}}   style={{paddingLeft:'5px'}}  >
                                           <p>Si eres artista, con qué genero te identificas (puedes marcar hasta 3)</p>
@@ -157,9 +168,10 @@ const ProfileData = () => {
                                               setOtherGener(e.target.checked)
                                               setBlockGener(false)
                                               }} /> Si no encuentras tus opciones puedes agregarlas manualmente 
-                                        <Form.Item name='genero' rules={[{required:true, message:'Selecciona al menos una opción'}]} >
+                                        
                                           
                                         {!otherGener ? 
+                                        <Form.Item name='genero' rules={[{required:true, message:'Selecciona al menos una opción'}]} >
                                             <Select disabled={blockGener} mode='multiple' placeholder='Selecciona hasta 3 opciones' onChange={(value)=>{if(value.length >= 3){                                              
                                               setBlockGener(true)
                                             }}}>
@@ -183,9 +195,16 @@ const ProfileData = () => {
                                                 <Option value='canto popular'>canto popular</Option>
                                                 <Option value='canto lírico'>canto lírico</Option>
                                                 <Option value='canto coral'>canto coral</Option>
-                                            </Select>:<Input maxLength='800' placeholder='Escribe tus opciones'  />
+                                                </Select>
+                                              </Form.Item>
+                                            :<Form.Item name='genero' rules={[
+                                              {required:true, message:'Selecciona al menos una opción'},
+                                              {max:800, message:'Excede el maximo permitido'}
+                                            ]} >
+                                              <Input placeholder='Escribe tus opciones'  />
+                                            </Form.Item>
                                             }
-                                        </Form.Item>
+                                       
                                       </Col>
                                           </>} 
                                         </>}
@@ -197,7 +216,7 @@ const ProfileData = () => {
                                                 <Option value='transporte'>transporte</Option>
                                                 <Option value='técnica'>técnica</Option>
                                                 <Option value='catering'>catering</Option>
-                                            </Select>:<Input placeholder='Escribre tu opción'  />
+                                            </Select>:<Input maxLength={800} placeholder='Escribre tu opción'  />
                                             }
                                         </Form.Item>
                                         </Col>}
@@ -216,7 +235,7 @@ const ProfileData = () => {
                                                 <Option value='fotografo'>fotógrafo/a</Option>
                                                 <Option value='maquillador'>maquillador/a</Option>
                                                 <Option value='vestuarista'>vestuarista</Option>
-                                            </Select>:<Input placeholder='Escribre tu opción'  />
+                                            </Select>:<Input maxLength={800} placeholder='Escribre tu opción'  />
                                             }
                                         </Form.Item>
                                         </Col>}
