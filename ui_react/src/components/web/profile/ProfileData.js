@@ -15,6 +15,8 @@ const ProfileData = () => {
   const [otherTypeProfesional, setOtherTypeProfesional] = useState(false)
   const [otherArtist, setOtheArtist] = useState(false)
   const [otherGener, setOtherGener] = useState(false)
+  const [blockDis, setBlockDis] = useState(false)
+  const [blockGener, setBlockGener] = useState(false)
   const [errors, setErrors] = useState(null)
   const [file, setFile] = useState()
  
@@ -125,10 +127,18 @@ const ProfileData = () => {
                                           {is_artis &&  <>
                                              <Col xs={{span:24}} lg={{span:12}}  style={{paddingRight:'5px'}}>
                                          <p>Si eres artista, indica tu disciplina artística (puedes marcar hasta 3)</p>
-                                         <Checkbox onChange={(e)=>setOtheArtist(e.target.checked)}  /> Si no encuentras tus opciones puedes agregarlas manualmente
-                                        <Form.Item name='disciplina' rules={[{required:true, message:'Selecciona al menos una opción'}]}  >                                            
+                                         <Checkbox onChange={(e)=>{ 
+                                            setOtheArtist(e.target.checked)  
+                                            setBlockDis(false)
+                                            }}  /> Si no encuentras tus opciones puedes agregarlas manualmente
+                                        <Form.Item name='disciplina' rules={[
+                                            {required:true, message:'Selecciona al menos una opción'},
+                                            
+                                          ]}  >                                            
                                           {!otherArtist ? 
-                                            <Select onChange={(value)=>{console.log(value)}}  mode='multiple' placeholder='Selecciona hasta 3 opciones'>
+                                            <Select disabled={blockDis}  onChange={(value)=>{if(value.length >= 3){                                              
+                                              setBlockDis(true)
+                                            }}}  mode='multiple' placeholder='Selecciona hasta 3 opciones'>
                                                 <Option value="teatro">teatro</Option>
                                                 <Option value="música">música</Option>
                                                 <Option value="circo">circo</Option>
@@ -137,17 +147,22 @@ const ProfileData = () => {
                                                 <Option value="narración oral">narración oral</Option>
                                                 <Option value="ópera">ópera</Option>
                                                 <Option value="performance">performance</Option>
-                                            </Select>:<Input placeholder='Escribe tus opciones' />
+                                            </Select>:<Input placeholder='Escribe tus opciones' maxLength='800' />
                                           }
                                         </Form.Item>
                                         </Col>
                                         <Col xs={{span:24}} lg={{span:12}}   style={{paddingLeft:'5px'}}  >
                                           <p>Si eres artista, con qué genero te identificas (puedes marcar hasta 3)</p>
-                                          <Checkbox onChange={(e)=>setOtherGener(e.target.checked)} /> Si no encuentras tus opciones puedes agregarlas manualmente 
-                                        <Form.Item name='genero' rules={[{required:true, message:'Selecciona al menos una opción'}]}  >
+                                          <Checkbox onChange={(e)=>{
+                                              setOtherGener(e.target.checked)
+                                              setBlockGener(false)
+                                              }} /> Si no encuentras tus opciones puedes agregarlas manualmente 
+                                        <Form.Item name='genero' rules={[{required:true, message:'Selecciona al menos una opción'}]} >
                                           
                                         {!otherGener ? 
-                                            <Select mode='multiple' placeholder='Selecciona hasta 3 opciones'>
+                                            <Select disabled={blockGener} mode='multiple' placeholder='Selecciona hasta 3 opciones' onChange={(value)=>{if(value.length >= 3){                                              
+                                              setBlockGener(true)
+                                            }}}>
                                                 <Option value='musica popular'>música popular</Option>
                                                 <Option value='musica docta'>música docta</Option>
                                                 <Option value='folclore o música de raíz'>folclore o música de raíz</Option>
@@ -168,7 +183,7 @@ const ProfileData = () => {
                                                 <Option value='canto popular'>canto popular</Option>
                                                 <Option value='canto lírico'>canto lírico</Option>
                                                 <Option value='canto coral'>canto coral</Option>
-                                            </Select>:<Input placeholder='Escribe tus opciones'  />
+                                            </Select>:<Input maxLength='800' placeholder='Escribe tus opciones'  />
                                             }
                                         </Form.Item>
                                       </Col>
@@ -207,18 +222,28 @@ const ProfileData = () => {
                                         </Col>}
                                     <Col xs={{span:24}} lg={{span:12}}  style={{paddingRight:'5px'}}>
                                     <Form.Item label='Nombre de la entidad, organización, elenco o proyecto al que representas' 
-                                     rules={[{required:true, message:'Este es un campo obligatorio'}]}  name='nombre_entidad'>
+                                     rules={[
+                                       {required:true, message:'Este es un campo obligatorio'},
+                                       {max:800, message:'Maximo de caracteres permitidos'}
+                                       ]}  name='nombre_entidad'>
                                         <Input />
                                     </Form.Item>
                                     </Col>
                                     <Col xs={{span:24}} lg={{span:12}}  style={{paddingLeft:'5px'}}>
-                                    <Form.Item label='Cargo dentro de la misma' name='cargo'>
+                                    <Form.Item label='Cargo dentro de la misma' name='cargo' 
+                                      rules={[                                        
+                                        {max:800, message:'Maximo de caracteres permitidos'}
+                                        ]}
+                                    >
                                         <Input style={{marginTop:'22px'}}  />
                                     </Form.Item>
                                     </Col>
                                     <Col span={24}> 
                                     <Form.Item label='Perfil profesional o de tu organización'  
-                                        rules={[{required:true, message:'Este es un campo obligatorio'}]}  name='perfil_profesional'>
+                                        rules={[
+                                          {required:true, message:'Este es un campo obligatorio'},
+                                          {max:800, message:'Maximo de caracteres permitidos'}
+                                          ]}  name='perfil_profesional'>
                                         <TextArea />
                                     </Form.Item>
                                     </Col>
@@ -239,7 +264,9 @@ const ProfileData = () => {
                                     
                                     </Col>
                                     <Col xs={{span:24}} lg={{span:12}}  style={{paddingLeft:'5px'}}>
-                                    <Form.Item label='URL' name='url_contenido'>
+                                    <Form.Item label='URL' name='url_contenido' rules={[
+                                       {max:1200, message:'Maximo de caracteres permitidos'}
+                                       ]}>
                                         <Input addonBefore='http://'  />
                                     </Form.Item>
                                     </Col>
