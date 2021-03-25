@@ -115,6 +115,11 @@ const Workshops = () => {
                     <Button style={styles.cancelButton}  onClick={ ()=> updateProfile({ taller_pitching: false  },false)  }  >
                        CANCELAR PARTICIPACIÓN
                     </Button>
+                    <Button disabled type='dashed' style={{marginLeft:'20px'}} >
+                       <a href='https://zoom.us/j/96591877626' target='__blank'>
+                        ACCEDER AL TALLER
+                       </a>
+                    </Button>
                   </>
           }</> }
 
@@ -131,13 +136,20 @@ const Workshops = () => {
         <p>1) Espacio doméstico de cada participante como un espacio compartido de co-creación</p>
         <p>2) Herramientas del site specific para crear</p>
         <p>3) Posibilidades performáticas de las plataformas virtuales como Zoom y el espacio online.</p>
-        <p>Inscripciones abiertas hasta el día 01 de abril 2021. Cupos limitados.</p> 
+        <p>Inscripciones abiertas hasta el día 7 de abril, a las 13:00 hrs</p> 
         {profile && 
             <>
-              {profile.taller_montaje ? 
+              {profile.taller_montaje ?
+                <>
                 <Button style={styles.cancelButton}  onClick={ ()=> updateProfile({ taller_montaje: false  },false)  }  >
                      CANCELAR PARTICIPACIÓN
-                </Button>:
+                </Button>
+                <Button disabled type='dashed' style={{marginLeft:'20px'}} >
+                       <a href='https://zoom.us/j/96591877626' target='__blank'>
+                        ACCEDER AL TALLER
+                       </a>
+                </Button>
+                </>:
                 <Button onClick={()=> updateProfile({taller_montaje: true})  } style={styles.buttonIns}>Inscríbete</Button>
               }
             </>
@@ -151,13 +163,21 @@ const Workshops = () => {
         {size < 800 && <Tag color="warning" style={{marginBottom:'20px'}}>24 de Abril 19:00 hrs</Tag> }
         <p>Conoce las claves de esta modalidad de financiamiento y su aplicación un mecanismo mixto que estimula el aporte del Estad            o de Chile y de los contribuyentes a proyectos culturales de instituciones sin fines de lucro, mediante un crédito sobre el Impuesto.</p>
         
-        <p>Inscripciones abiertas hasta el día 01 de abril 2021.Cupos limitados.</p> 
+        <p>Inscripciones abiertas hasta el día 7 de abril, a las 13:00 hrs</p> 
             {profile &&
               <>
                 {profile.taller_ley_de_donaciones ? 
+                <>
                   <Button style={styles.cancelButton}  onClick={ ()=> updateProfile({ taller_ley_de_donaciones: false  },false)  }  >
                       CANCELAR PARTICIPACIÓN
-                  </Button>:
+                  </Button>
+                  <Button disabled type='dashed' style={{marginLeft:'20px'}} >
+                    <a href='https://zoom.us/j/96591877626' target='__blank'>
+                    ACCEDER AL TALLER
+                    </a>
+                  </Button>
+                </>
+                  :
                   <Button style={styles.buttonIns} onClick={()=> updateProfile({taller_ley_de_donaciones:true})}  >Inscríbete</Button>
                 }
               </>
@@ -178,9 +198,16 @@ const Workshops = () => {
              {profile &&
               <>
                 {profile.taller_marketing_digital ? 
+                  <>
                   <Button style={styles.cancelButton}  onClick={ ()=> updateProfile({ taller_marketing_digital: false  },false)  }  >
                       CANCELAR PARTICIPACIÓN
-                  </Button>:
+                  </Button>
+                  <Button disabled type='dashed' style={{marginLeft:'20px'}} >
+                       <a href='https://zoom.us/j/96591877626' target='__blank'>
+                        ACCEDER AL TALLER
+                       </a>
+                  </Button>
+                  </>:
                   <Button style={styles.buttonIns} onClick={()=> updateProfile({taller_marketing_digital: true})}  >Inscríbete</Button>
                 }
               </>
@@ -201,14 +228,23 @@ const Workshops = () => {
           Herramientas para la planificación y administración cultural, desde la idea hasta la gestión de los recursos. Conoceremos aplicaciones y software: desarrollo, uso y apropiaciones de herramientas digitales para la gestión cultural.
         </p>
         <p>
-          Inscripciones abiertas hasta el 04 de abril de 2021. Cupos limitados. 
+          Inscripciones abiertas hasta el 7 de abril, a las 13:00 hrs
         </p>
              {profile &&
               <>
                 {profile.taller_herr_gestion ? 
+                  <>
                   <Button style={styles.cancelButton}  onClick={ ()=> updateProfile({ taller_herr_gestion: false  },false)  }  >
-                    CANCELAR PARTICIPACIÓN</Button>:
+                    CANCELAR PARTICIPACIÓN</Button>
+                    <Button disabled type='dashed' style={{marginLeft:'20px'}} >
+                       <a href='https://zoom.us/j/96591877626' target='__blank'>
+                        ACCEDER AL TALLER
+                       </a>
+                    </Button>
+                  </>
+                  :
                   <Button style={styles.buttonIns} onClick={()=> updateProfile({taller_herr_gestion:true})}  >Inscríbete</Button>
+                  
                 }
               </>
         }
@@ -228,13 +264,20 @@ const Workshops = () => {
             Se abordarán distintos programas y/o fuentes de financiamiento públicos para la circulación internacional de proyectos creativos en las disciplinas de artes escénicas y música.
           </p>
           <p>
-            Inscripciones abiertas hasta el 01 de abril de 2021. Cupos limitados. 
+            Inscripciones abiertas hasta el 7 de abril, a las 13:00 hrs
           </p>
               {profile &&
               <>
                 {profile.taller_financiamiento ? 
+                  <>
                   <Button style={styles.cancelButton}  onClick={ ()=> updateProfile({ taller_financiamiento: false  },false)  }  >
-                    CANCELAR PARTICIPACIÓN</Button>:
+                    CANCELAR PARTICIPACIÓN</Button>
+                    <Button disabled type='dashed' style={{marginLeft:'20px'}} >
+                       <a href='https://zoom.us/j/96591877626' target='__blank'>
+                        ACCEDER AL TALLER
+                       </a>
+                    </Button>
+                  </>:
                   <Button style={styles.buttonIns} onClick={()=> updateProfile({taller_financiamiento:true})}  >Inscríbete</Button>
                 }
               </>
