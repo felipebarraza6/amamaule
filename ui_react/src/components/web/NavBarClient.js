@@ -1,7 +1,7 @@
 import React, {useContext} from 'react'
-import { Layout, Menu, Button, Tooltip } from 'antd'
+import { Layout, Menu, Button, Tooltip, Badge } from 'antd'
 import Login from '../../components/web/auth/Login'
-import { LogoutOutlined } from '@ant-design/icons'
+import { LogoutOutlined, NotificationOutlined } from '@ant-design/icons'
 import { AuthContext } from '../../App'
 import { Link } from 'react-router-dom'
 import Logo from '../../assets/logo/white.png'
@@ -19,16 +19,23 @@ const NavBarClient = () => {
             <div style={styles.logo}>
               <img src={Logo} width='300%'  />
             </div>
-           <Menu mode="horizontal" theme='dark' style={styles.menu} > 
+           <Menu mode="horizontal" theme='dark' style={styles.menu} onClick={(key)=>console.log(key)} > 
             <Item style={styles.item}>
                 <Link to='/'>Inicio</Link>
-            </Item>
+            </Item>            
             {state.isAuthenticated ? 
             <>
                 <Item style={styles.item}>
                     <Link to='/profile'>
                             @{state.user.username} 
                     </Link>
+                </Item>
+                <Item style={styles.item}>
+                    <Tooltip title='Ver invitaciones'>
+                    <Link ><Badge count={0}  style={{marginTop:'-8px'}} >
+                    <p style={{color:'white'}}><NotificationOutlined style={{color:'white'}} /></p>
+                    </Badge></Link>
+                    </Tooltip>
                 </Item>
                 <Item style={styles.itemLogOut}> 
                     <Button type='link' onClick={()=> {
@@ -44,6 +51,7 @@ const NavBarClient = () => {
             
                 <Item style={styles.item}> <Login /> </Item>
             }
+            
            </Menu>
         </Header>
     )

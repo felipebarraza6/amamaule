@@ -15,5 +15,5 @@ class APIModel(models.Model):
 
     class Meta:
         abstract = True,
-        get_latest_by='created',
-        ordering=['-created', '-modified']
+        get_latest_by = 'created',
+        ordering = ['-created', '-modified']

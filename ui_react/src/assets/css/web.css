@@ -1,4 +1,28 @@
 @import '~antd/dist/antd.css';
+body {
+    margin: 0;
+    overflow-y:scroll;
+  
+  }
+
+.meeting-info-container {
+    display:none;
+}
+.send-video-container{
+    display: none;
+}
+
+.full-screen-icon{
+    display: none;
+}
+
+.chat-receiver-list__to-text{
+    display: none;
+}
+
+.chat-container__chat-control{
+    display: none;
+}
 
 .ant-carousel .slick-dots li button {
     background: #ce3d4b;
@@ -10,3 +34,6 @@
     background: #ce3d4b;
 }
 
+#zmmtg-root {
+    display: none;
+  }

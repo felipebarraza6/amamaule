@@ -8,6 +8,7 @@ from import_export.admin import ExportActionMixin
 class UserAdmin(ExportActionMixin, admin.ModelAdmin):
     list_display = ('id', 'first_name', 'last_name')
 
+
 @admin.register(Profile)
-class UserAdmin(ExportActionMixin, admin.ModelAdmin):
+class ProfileAdmin(ExportActionMixin, admin.ModelAdmin):
     list_display = ('id', 'user')

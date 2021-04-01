@@ -15,7 +15,7 @@ from .serializers import (UserLoginSerializer,
 
 from .models import User, Profile
 
-class ProfileViewSet(mixins.RetrieveModelMixin,
+class ProfileViewSet(mixins.RetrieveModelMixin,                    
                     mixins.UpdateModelMixin,
                     viewsets.GenericViewSet):
     
@@ -28,10 +28,11 @@ class ProfileViewSet(mixins.RetrieveModelMixin,
 
 
 class UserViewSet(viewsets.GenericViewSet,
+                mixins.ListModelMixin,
                 mixins.RetrieveModelMixin,
                 mixins.UpdateModelMixin):
     
-    queryset = User.objects.all()
+    queryset = User.objects.filter(is_verified=True)
     serializer_class = UserModelSerializer
     lookup_field = 'username'
 

@@ -3,7 +3,8 @@ import { Menu, Result, Col, Row, Button,
         Descriptions, Card, Tag, Avatar, message } from 'antd'
 import { RocketOutlined ,UserOutlined, UploadOutlined, 
         CheckOutlined, EditOutlined, LikeTwoTone, FileAddFilled, 
-        QuestionCircleFilled } from '@ant-design/icons'
+        QuestionCircleFilled, Loading3QuartersOutlined,
+        GroupOutlined, CalendarOutlined } from '@ant-design/icons'
 import { AuthContext } from '../../App'
 import { NavBar } from 'antd-mobile'
 import ProfileData from '../../components/web/profile/ProfileData'
@@ -11,6 +12,9 @@ import Workshops from '../../components/web/profile/Workshops'
 import Viewings from '../../components/web/profile/Viewings'
 import api from '../../api/endpoints'
 import { Footer } from 'antd/lib/layout/layout'
+import LinksInstances from './LinksInstances'
+
+import HomeTransmissions from '../../components/web/transmissions/home/HomeTransmissions'
 
 const ProfileUser = () => {
 
@@ -93,6 +97,7 @@ const ProfileUser = () => {
                 <NavBar mode='dark'  
                 style={{backgroundColor:'#F58B88'}}               
             > {state.user && <>
+            
               <Button shape={'round'} type='link' style={currentNavigation === '0' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('0')}>
                   <UserOutlined  style={currentNavigation === '0' ?  styles.iconActive : styles.icon } />{currentNavigation === '0' && 'Perfil'}
               </Button>
@@ -116,32 +121,57 @@ const ProfileUser = () => {
                     theme='dark'
                     style={styles.menuOv}
                 >
-                 <Menu.Item  icon={<UserOutlined/>} key={'0'} 
+                 <Menu.Item icon={<Loading3QuartersOutlined spin />} key={'0'} 
                       style={currentNavigation === '0' ?  styles.hoverItem : styles.menuItem }>
+                    Transmisiones
+                  </Menu.Item>                                    
+                  <Menu.Item  icon={<UserOutlined/>} key={'1'} 
+                      style={currentNavigation === '1' ?  styles.hoverItem : styles.menuItem }>
                     Perfil
                   </Menu.Item>
                   {state.user &&
-                  <Menu.Item disabled={!state.user.is_verified} icon={<CheckOutlined/>} key={'1'} 
-                      style={ currentNavigation === '1' ?  styles.hoverItem : styles.menuItem  }  >
+                  <Menu.Item disabled={!state.user.is_verified} icon={<CheckOutlined/>} key={'2'} 
+                      style={ currentNavigation === '2' ?  styles.hoverItem : styles.menuItem  }  >
                     Talleres
                   </Menu.Item>}
                   {state.user &&                                         
-                    <Menu.Item disabled={isMaule}  icon={<EditOutlined/>} key={'2'} 
-                       style={ currentNavigation === '2' ?  styles.hoverItem : styles.menuItem  } >
+                    <Menu.Item disabled={isMaule}  icon={<EditOutlined/>} key={'3'} 
+                       style={ currentNavigation === '3' ?  styles.hoverItem : styles.menuItem  } >
                       Visionados
                     </Menu.Item>                    
                   }
                   {state.user &&
-                  <Menu.Item disabled={!state.user.is_verified}  key={'3'} icon={<RocketOutlined />}
+                  <>
+                  <Menu.Item disabled={!state.user.is_verified}  key={'4'} icon={<RocketOutlined />}
 
-                    style={ currentNavigation === '3' ?  styles.hoverItem : styles.menuItem  } >
+                    style={ currentNavigation === '4' ?  styles.hoverItem : styles.menuItem  } >
                       Evento Satélite 
-                  </Menu.Item>}
+                  </Menu.Item>
+                  
+                  
+                  <Menu.Item disabled={!state.user.is_verified} icon={<GroupOutlined />} key={'5'} 
+                      style={currentNavigation === '5' ?  styles.hoverItem : styles.menuItem }>
+                    Rondas de Vinculación
+                  </Menu.Item>
+                  <Menu.Item  disabled={!state.user.is_verified} icon={<CalendarOutlined />} key={'6'} 
+                      style={currentNavigation === '6' ?  styles.hoverItem : styles.menuItem }>
+                    Dialogos Programaticos
+                  </Menu.Item>
+                  </>
+                  }
               </Menu>}
               <Row style={{padding:'0px'}}>
-                <Col lg={{span:14}}  xs={{span:24}}  style={{padding:'10px'}}  >
-                  {currentNavigation === '0' &&
+                  {currentNavigation === '0' && 
+                    <Col lg={{span:24}}  xs={{span:24}}  style={{padding:'10px'}}  >
+                      <HomeTransmissions />
+                    </Col>
+                  }
+                  {currentNavigation === '5' && 
+                    <LinksInstances />
+                  }   
+                  {currentNavigation === '1' &&
                     <>
+                    <Col lg={{span:14}}  xs={{span:24}}  style={{padding:'10px'}}  >
                     {state.user && 
                       <>
                       {!state.user.is_verified ?
@@ -174,15 +204,21 @@ const ProfileUser = () => {
                       }
                       </>
                     }
+                    </Col>
                     </>
                   }
-                  {currentNavigation === '1' && 
+                  {currentNavigation === '2' && 
+                  <Col lg={{span:14}}  xs={{span:24}}  style={{padding:'10px'}}  >
                       <Workshops />
+                  </Col>
                   }
-                  {currentNavigation === '2' &&
+                  {currentNavigation === '3' &&
+                  <Col lg={{span:14}}  xs={{span:24}}  style={{padding:'10px'}}  >
                       <Viewings />
+                  </Col>
                   }
-                  {currentNavigation === '3' && 
+                  {currentNavigation === '4' && 
+                  <Col lg={{span:14}}  xs={{span:24}}  style={{padding:'10px'}}  >
                       <Card title='Evento Satélite'>
                           <Result
                           icon={<QuestionCircleFilled style={{color:'#CE3D4B'}}  />}
@@ -194,8 +230,10 @@ const ProfileUser = () => {
                                 ]}
                         />
                       </Card>
+                    </Col>
                   } 
-                </Col>
+                
+                {currentNavigation === '1' &&
                 <Col lg={{span:10}} xs={{span:24}}  style={{padding:'10px'}}>
                 {state.user &&
                  <Descriptions                     
@@ -225,11 +263,8 @@ const ProfileUser = () => {
                                                 user
                                               }
                                             })
-                                        })
-
-                                                                                                                                                                 
+                                        })                                                                                                                                                                 
                               } }  />                    
-                      
                       </>:
                       <>
                         <label for='file' labe='asd'><>                                   
@@ -248,8 +283,7 @@ const ProfileUser = () => {
                                                                                                                                                                  
                               } }   />                    
                     </>
-                    }
-                      
+                    }                      
                     </>}
                     style={{backgroundColor:'white', padding:'20px'}} 
                     layout='vertical'>
@@ -278,7 +312,7 @@ const ProfileUser = () => {
                         }
                  </Descriptions>
                 }
-                </Col>
+                </Col>}
               </Row>
 </>)
 }
@@ -308,7 +342,7 @@ const styles = {
     menuItem: {
       color:'white',
       backgroundColor:'#F58B89',
-      marginRight:'10px',
+      marginRight:'10px',      
       marginLeft:'10px'
 
     },
@@ -316,6 +350,7 @@ const styles = {
       color:'white',
       backgroundColor: '#CE3D4B',
       marginRight:'10px',
+      paddingBottom:'2px',
       marginLeft:'10px'
     },
     icon: {

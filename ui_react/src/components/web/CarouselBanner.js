@@ -8,9 +8,10 @@ import Img4 from '../../assets/slider/img4.jpg'
 const CarouselBanner = () => {
 
     return(
+
         <Carousel autoplay dotPosition='right' effect='fade'>
             <div>
-                <img src={Img1} alt='AMA' style={styles.img1}  />
+                <img src={Img1} alt='AMA' style={styles.img1} />
             </div>                                    
             <div>
                 <img src={Img2} alt='AMA' style={styles.img1}  />
@@ -22,6 +23,7 @@ const CarouselBanner = () => {
                 <img src={Img4} alt='AMA' style={styles.img1}  />
             </div>                         
         </Carousel>
+        
     )
 }
 

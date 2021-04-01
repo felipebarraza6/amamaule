@@ -17,7 +17,6 @@ const signup = async(data)=> {
     return request.data
 }
 
-
 const profile = async(user)=> {
     const request = await GET(`users/${user}/`)
     return request

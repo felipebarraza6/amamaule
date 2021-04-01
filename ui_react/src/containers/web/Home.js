@@ -33,14 +33,17 @@ const Home = () => {
                   <InfoSection />
                   <Services />
                   <RegularTasks />
+                  <TrenSection />
+                  <Footer style = {styles.footer}  >AMA - Vincular para crear 2021</Footer>
                 </React.Fragment>
               )
             }}  />
-            <Route exact path='/profile' component={ProfileUser} />
+            <Route exact path='/profile' render={ ()=> <><ProfileUser />              
+            </>} />
           </Switch>
         </Content>
-        <TrenSection />
-        <Footer style = {styles.footer}  >AMA - Vincular para crear 2021</Footer>
+        
+        
       </Layout>
     </Router>
   )
@@ -48,11 +51,20 @@ const Home = () => {
 
 
 const styles = {
-  footer: {
+  footer: {       
     textAlign: 'center',
     backgroundColor: '#61263D',
-    color: 'white',
-  }
+    color: 'white',    
+  },
+  footerFix: {
+    position:'fixed',
+    left:0,
+    bottom:0,
+    width:'100%',     
+    textAlign: 'center',
+    backgroundColor: '#61263D',
+    color: 'white',    
+  }  
 }
 
 

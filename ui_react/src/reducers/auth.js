@@ -1,7 +1,7 @@
 export const login_reducer = (state, action) => {
 
     switch (action.type) {
-
+        
         case "LOGIN":
             localStorage.setItem("access_token", JSON.stringify(action.payload.access_token))
             localStorage.setItem("user", JSON.stringify(action.payload.user))

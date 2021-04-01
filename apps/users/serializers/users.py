@@ -73,6 +73,13 @@ class UserModelSerializer(serializers.ModelSerializer):
             'is_verified'    
         )
 
+class UserCommentsInfo(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = (            
+            'username',
+        )
+
 
 class UserLoginSerializer(serializers.Serializer):
     email = serializers.EmailField()
