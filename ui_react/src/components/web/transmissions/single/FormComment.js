@@ -15,7 +15,6 @@ const FormComment = ({obj}) => {
             message:'Comentario enviado!',
             
         })
-        
 
         const request = await api_transmissions.comments.create(obj.uuid, state.user.id, values.comment).then((response)=> {
             console.log(response)

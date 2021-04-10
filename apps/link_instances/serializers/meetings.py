@@ -8,6 +8,12 @@ class MeetingModelSerializer(serializers.ModelSerializer):
         model = Meeting
         fields = ('__all__')        
 
+class CreateMeetingModelSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Meeting
+        fields = '__all__'
+
 
 class ListMeetingModelSerializer(serializers.ModelSerializer):
     owner = UserModelSerializer()

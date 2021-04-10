@@ -13,13 +13,16 @@ import TrenSectionM from '../../components/mobile/TrenSectionM'
 import ProfileUser from '../../containers/web/ProfileUser'
 import { AuthContext  } from '../../App'
 import RegularTasks from '../../components/web/RegularTasks'
-import SignUp from '../../components/mobile/auth/SignUp'
+import ListTransmissions from "../../components/web/transmissions/list/ListTransmissions";
+import IgFeed from "../../components/web/IgFeed";
+import TrenMobile from '../../assets/tren_patners_m.jpg'
+import Avisement from '../../assets/img/banner_rondas.jpg'
 
 const Screen = () => {
   const {state, dispatch} = useContext(AuthContext) 
   return(
      <div>
-          <img src={Logo} style={{width:'100%'}} alt='logo'  />
+          <img src={Logo} style={{width:'80%', margin:'30px', textAlign:'center'}} alt='logo'  />
           <BrowserRouter>
               <Nav mode='dark'  
                   style={{backgroundColor:'#CE3D4B'}}
@@ -55,14 +58,14 @@ const Screen = () => {
                 <ProfileUser />
                 </>} />
                 <Route exact path='/signup'>
-                  <SignUp />
+
                   <TrenSectionM />
                     <div style={{color:'white', backgroundColor:'#61263d', textAlign:'center', padding:'20px'}}>
                     AMA - Vincular para crear 2021
                     </div>
                 </Route>
                 <Route exact path='/' render={()=><>
-                  <img src={Slider} style={{width:'100%'}}  />
+                    <ListTransmissions is_public={true} />
                   <WingBlank size="lg">
                     <WhiteSpace size="lg" />
                       <Card>
@@ -70,22 +73,28 @@ const Screen = () => {
                           title="Vincular para Crear"
                         />
                         <Card.Body>
-                        <p style={{textAlign:'justify'}}>AMA es el primer encuentro de vinculación online de Artistas Escénicos del Maule, Impulsado por el Teatro Regional del Maule y la Seremi de las Culturas, las Artes y el Patrimonio de la Región del Maule.</p>
+                        <p style={{textAlign:'justify'}}><b>AMA</b> es el primer encuentro de vinculación online para Artistas Escénicos de la Región del Maule. Durante cuatro jornadas, las y los artistas tendrán la oportunidad de reunirse junto a actores del mundo público y privado, con el objetivo de reactivar redes a nivel regional para la programación de Artes Escénicas en el Maule y el resto del país.</p>
                         <p style={{textAlign:'justify'}}>
-                          Inscríbete y participa en nuestras conferencias, mesas de conversación, talleres y rondas de vinculación con programadores nacionales. Además, tendrás acceso exclusivo a nuestros showcases y visionados durante esta edición.
+                          <b>AMA, Vincular Para Crear</b>, propone una agenda de reuniones bilaterales y grupales que permitan a programadores y creadores conocerse, abriendo la oportunidad de ver trabajos estrenados, en progreso y proyectos de creación con sello local.
+
 
                         </p>
+                            <p>
+                                Además, esperamos encontrarnos en el marco de conferencias y mesas de conversación en torno a los nuevos desafíos de la gestión cultural y el acceso trabajo artístico. Finalmente, propociaremos instancias de formación que inciten a la educación continua y sirvan de inspiración para todas y todos los participantes.
+
+                            </p>
                         </Card.Body>
                         <Card.Footer content={<Link to='/signup'>
-                          <Button type='link' style={styles.button}>
-                            Inscríbete aquí
-                          </Button>
+
                         </Link>}  />
                       </Card>
                   </WingBlank>
                     <WhiteSpace size="lg" />
+                    <img src={Avisement} width={'100%'} />
                     <Services />
-                    <RegularTasks />                   
+
+                    <IgFeed />
+                    <img src={TrenMobile} width={'100%'} />
                     <TrenSectionM />
                     <div style={{color:'white', backgroundColor:'#61263d', textAlign:'center', padding:'20px'}}>
                     AMA - Vincular para crear 2021

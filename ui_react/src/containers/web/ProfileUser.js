@@ -1,9 +1,9 @@
 import React, {useContext, useState, useEffect } from 'react'
-import { Menu, Result, Col, Row, Button, 
-        Descriptions, Card, Tag, Avatar, message } from 'antd'
+import { Menu, Result, Col, Row, Button, Badge,
+        Descriptions, Card, Tag, Avatar, message, Affix } from 'antd'
 import { RocketOutlined ,UserOutlined, UploadOutlined, 
         CheckOutlined, EditOutlined, LikeTwoTone, FileAddFilled, 
-        QuestionCircleFilled, Loading3QuartersOutlined,
+        QuestionCircleFilled, LaptopOutlined,
         GroupOutlined, CalendarOutlined } from '@ant-design/icons'
 import { AuthContext } from '../../App'
 import { NavBar } from 'antd-mobile'
@@ -94,34 +94,38 @@ const ProfileUser = () => {
 
     return(<>
               {size < 800 ? 
-                <NavBar mode='dark'  
+                <NavBar mode='dark'
                 style={{backgroundColor:'#F58B88'}}               
             > {state.user && <>
-            
-              <Button shape={'round'} type='link' style={currentNavigation === '0' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('0')}>
-                  <UserOutlined  style={currentNavigation === '0' ?  styles.iconActive : styles.icon } />{currentNavigation === '0' && 'Perfil'}
+                <Button disabled={!state.user.is_verified} shape={'round'} type='link' style={currentNavigation === '0' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('0')}>
+                  <RocketOutlined style={styles.icon} />{currentNavigation === '0' && 'Transmisiones'}
               </Button>
-              <Button disabled={!state.user.is_verified} shape={'round'} type='link' style={currentNavigation === '1' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('1')}>
-                  <CheckOutlined style={styles.icon} />{currentNavigation === '1' && 'Talleres'}
+              <Button shape={'round'} type='link' style={currentNavigation === '1' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('1')}>
+                  <UserOutlined  style={currentNavigation === '1' ?  styles.iconActive : styles.icon } />{currentNavigation === '1' && 'Perfil'}
+              </Button>
+              <Button disabled={!state.user.is_verified} shape={'round'} type='link' style={currentNavigation === '2' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('2')}>
+                  <CheckOutlined style={styles.icon} />{currentNavigation === '2' && 'Talleres'}
               </Button>
               
-              <Button disabled={!state.user.is_verified && isMaule===true} disabled={isMaule} shape={'round'} type='link' style={currentNavigation === '2' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('2')}>
-                  <EditOutlined style={styles.icon} />{currentNavigation === '2' && 'Visionados'}
+              <Button disabled={!state.user.is_verified && isMaule===true} disabled={isMaule} shape={'round'} type='link' style={currentNavigation === '3' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('3')}>
+                  <EditOutlined style={styles.icon} />{currentNavigation === '3' && 'Visionados'}
               </Button>
-              <Button disabled={!state.user.is_verified} shape={'round'} type='link' style={currentNavigation === '3' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('3')}>
-                  <RocketOutlined style={styles.icon} />{currentNavigation === '3' && 'E.Satelite'}
+                    <Button disabled={!state.user.is_verified && isMaule===true} disabled={isMaule} shape={'round'} type='link' style={currentNavigation === '5' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('5')}>
+                  <EditOutlined style={styles.icon} />{currentNavigation === '5' && 'Rondas'}
               </Button>
+
               </>}
             </NavBar>
-              : 
+              :
+              <Affix>
               <Menu 
-                    mode='horizontal' 
+                    mode='horizontal'
                     selectedKeys={[currentNavigation]} 
                     onClick={(current)=> setNavigator(current)}
                     theme='dark'
                     style={styles.menuOv}
                 >
-                 <Menu.Item icon={<Loading3QuartersOutlined spin />} key={'0'} 
+                 <Menu.Item icon={<LaptopOutlined />} key={'0'} 
                       style={currentNavigation === '0' ?  styles.hoverItem : styles.menuItem }>
                     Transmisiones
                   </Menu.Item>                                    
@@ -142,27 +146,17 @@ const ProfileUser = () => {
                   }
                   {state.user &&
                   <>
-                  <Menu.Item disabled={!state.user.is_verified}  key={'4'} icon={<RocketOutlined />}
-
-                    style={ currentNavigation === '4' ?  styles.hoverItem : styles.menuItem  } >
-                      Evento Satélite 
-                  </Menu.Item>
-                  
-                  
-                  <Menu.Item disabled={!state.user.is_verified} icon={<GroupOutlined />} key={'5'} 
+                  <Menu.Item disabled={!state.user.is_verified} icon={<GroupOutlined />} key={'5'}
                       style={currentNavigation === '5' ?  styles.hoverItem : styles.menuItem }>
                     Rondas de Vinculación
                   </Menu.Item>
-                  <Menu.Item  disabled={!state.user.is_verified} icon={<CalendarOutlined />} key={'6'} 
-                      style={currentNavigation === '6' ?  styles.hoverItem : styles.menuItem }>
-                    Dialogos Programaticos
-                  </Menu.Item>
+
                   </>
                   }
-              </Menu>}
+              </Menu></Affix>}
               <Row style={{padding:'0px'}}>
                   {currentNavigation === '0' && 
-                    <Col lg={{span:24}}  xs={{span:24}}  style={{padding:'10px'}}  >
+                    <Col lg={{span:24}}  xs={{span:24}}  style={{padding:'0px'}}  >
                       <HomeTransmissions />
                     </Col>
                   }
@@ -195,9 +189,6 @@ const ProfileUser = () => {
                                           }).catch((error)=>{
                                             message.error('Intendalo más tarde')
                                           })
-
-
-                                                                                                                                                                 
                               } }  />    
                           </Footer>
                         </Card>
@@ -213,25 +204,10 @@ const ProfileUser = () => {
                   </Col>
                   }
                   {currentNavigation === '3' &&
-                  <Col lg={{span:14}}  xs={{span:24}}  style={{padding:'10px'}}  >
+                  <Col lg={{span:24}}  xs={{span:24}}  style={{padding:'10px'}}  >
                       <Viewings />
                   </Col>
                   }
-                  {currentNavigation === '4' && 
-                  <Col lg={{span:14}}  xs={{span:24}}  style={{padding:'10px'}}  >
-                      <Card title='Evento Satélite'>
-                          <Result
-                          icon={<QuestionCircleFilled style={{color:'#CE3D4B'}}  />}
-                          title="Pronto más información..."
-                          extra={[
-                                /*<Button style={{backgroundColor:'#61263d', borderColor:'#61263d'}}  type="primary" key="console">
-                                    Descargar
-                                  </Button>*/
-                                ]}
-                        />
-                      </Card>
-                    </Col>
-                  } 
                 
                 {currentNavigation === '1' &&
                 <Col lg={{span:10}} xs={{span:24}}  style={{padding:'10px'}}>
@@ -337,7 +313,8 @@ const styles = {
         padding:'30px'
     },
     menuOv: {
-      backgroundColor: '#F58B88'
+      backgroundColor: '#F58B88',
+      textAlign:'right',
     },
     menuItem: {
       color:'white',

@@ -30,6 +30,10 @@ const create_comment = async(id_transmissions, user, comment) => {
 
 }
 
+const create_invitation = async (data) => {
+    const request = await POST('invitations/', data)
+    return request
+}
 
 const api_transmissions = {
     transmissions: {
@@ -38,6 +42,9 @@ const api_transmissions = {
     comments: {
         list: list_comments,
         create: create_comment
+    },
+    invitations: {
+        create: create_invitation
     }
 }
 

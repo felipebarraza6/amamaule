@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react'
 import { Modal, Button, Form, 
-        Input, notification, Col, 
-        Row, message } from 'antd'
+        Input, notification, Col,
+        Row } from 'antd'
 import api from '../../../api/endpoints'
 import { AuthContext} from '../../../App'
 import { UserOutlined } from '@ant-design/icons'

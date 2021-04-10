@@ -1,9 +1,10 @@
 import React, {useContext} from 'react'
 import { Layout, Menu, Button, Tooltip } from 'antd'
 import Login from '../../components/web/auth/Login'
-import { LogoutOutlined } from '@ant-design/icons'
+import { LogoutOutlined, FilePdfFilled } from '@ant-design/icons'
 import { AuthContext } from '../../App'
 import { Link } from 'react-router-dom'
+import Program from '../../assets/PROGRAMA.pdf'
 const { Header } = Layout
 const { Item } = Menu
 
@@ -22,8 +23,14 @@ const NavBar = () => {
             {state.isAuthenticated ? 
             <>
                 <Item style={styles.item}>
+                    <a href={Program} target="__blank" >
+                        <FilePdfFilled style={{fontSize:'25px'}} />
+                            PROGRAMA 2021
+                    </a>
+                </Item>
+                <Item style={styles.item}>
                     <Link to='/profile'>
-                            @{state.user.username} 
+                            @{state.user.username}
                     </Link>
                 </Item>
                 <Item style={styles.itemLogOut}> 

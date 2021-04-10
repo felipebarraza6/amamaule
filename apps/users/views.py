@@ -1,6 +1,7 @@
-from rest_framework import mixins, viewsets, status
+from rest_framework import mixins, viewsets, status, pagination
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from django_filters import rest_framework as filters
 
 from rest_framework.permissions import (
     AllowAny,
@@ -15,6 +16,10 @@ from .serializers import (UserLoginSerializer,
 
 from .models import User, Profile
 
+
+class ExamplePagination(pagination.PageNumberPagination):
+    page_size = 1000
+
 class ProfileViewSet(mixins.RetrieveModelMixin,                    
                     mixins.UpdateModelMixin,
                     viewsets.GenericViewSet):
@@ -23,6 +28,7 @@ class ProfileViewSet(mixins.RetrieveModelMixin,
     serializer_class = ProfileModelSerializer
     lookup_field = 'user'
     permission_classes = [IsAuthenticated]
+    pagination_class = ExamplePagination
 
 
 
@@ -35,6 +41,7 @@ class UserViewSet(viewsets.GenericViewSet,
     queryset = User.objects.filter(is_verified=True)
     serializer_class = UserModelSerializer
     lookup_field = 'username'
+    filter_backends = (filters.DjangoFilterBackend,)
 
     def get_permissions(self):
 
@@ -46,6 +53,14 @@ class UserViewSet(viewsets.GenericViewSet,
             permissions = [IsAuthenticated]
         return [p() for p in permissions]
 
+    class TransmissionFilter(filters.FilterSet):
+        class Meta:
+            model = User
+            fields = {
+                'type_user1': ['exact'],
+            }
+
+    filterset_class = TransmissionFilter
 
     @action(detail=False, methods=['post'])
     def reset_password(self, request):

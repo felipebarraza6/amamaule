@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react'
 import ListTransmissions from '../list/ListTransmissions'
-import SDKZoom from '../single/SDKZoom'
 import {AuthContext} from '../../../../App'
+
 
 const HomeTransmissions = () => {
 
@@ -13,18 +13,13 @@ const HomeTransmissions = () => {
     }    
 
     const [state, setState] = useState(initialState)
-    console.log(state)
-    
-    
 
-    return(<>{!state.is_retrieve ? 
-        <ListTransmissions changeState={setState} globalState={state} />:
-        <SDKZoom transmission={state.transmission_selected} user={user_es.user} />
+    return(<>{!state.is_retrieve &&
+           <ListTransmissions is_public={false} changeState={setState} globalState={state} />
         }
         </>
     )
-
-
 }
+
 
 export default HomeTransmissions

@@ -1,7 +1,8 @@
 from rest_framework import mixins, viewsets, status
 
 from rest_framework.permissions import (
-    AllowAny,    
+    AllowAny,
+    IsAuthenticated
 )
 
 from apps.transmissions.models import Transmission
@@ -14,11 +15,18 @@ class TransmissionsViewSet(mixins.RetrieveModelMixin,
                     mixins.UpdateModelMixin,
                     viewsets.GenericViewSet):
     
-    queryset = Transmission.objects.all()
+    queryset = Transmission.objects.all().order_by('created')
     serializer_class = TransmissionModelSerializer
     filter_backends = (filters.DjangoFilterBackend,)
     lookup_field = 'uuid'
-    permission_classes = [AllowAny]
+
+    def get_permissions(self):
+        if self.action in ['retrieve']:
+            permissions = [AllowAny]
+        else:
+            permissions = [IsAuthenticated]
+        return [p() for p in permissions]
+
     class TransmissionFilter(filters.FilterSet):
         class Meta:
             model = Transmission

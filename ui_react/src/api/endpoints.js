@@ -11,10 +11,23 @@ const login = async(data) => {
     return request
 }
 
+
+
+const list_viewings = async()=> {
+    const request = await GET('selected_viewings/')
+
+    return request.data
+}
+
 const signup = async(data)=> {
     const request = await POST_LOGIN('users/signup/',data)
 
     return request.data
+}
+
+const list_users = async(filter)=> {
+    const request = await GET(`users/?type_user1=${filter}`)
+    return request
 }
 
 const profile = async(user)=> {
@@ -76,6 +89,7 @@ const api = {
     user: {
         login,
         signup,
+        list_users,
         profile,
         get_profile_center,
         update_profile,
@@ -83,6 +97,9 @@ const api = {
         reset_password,
         upload_file,
         upload_img
+    },
+    viewings : {
+        list_viewings
     }
 }
 

@@ -21,7 +21,8 @@ const HeaderLogo = () => {
 
 const styles = {
     logo: {
-        width: '40%'
+        width: '30%',
+        margin:'20px'
     },
     col: {
         textAlign:'center',

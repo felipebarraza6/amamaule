@@ -60,7 +60,7 @@ function App() {
             <Screen />: 
             <Home />  
        }
-      </React.Fragment>     
+      </React.Fragment>           
     </AuthContext.Provider>
   )
 

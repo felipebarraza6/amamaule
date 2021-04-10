@@ -31,7 +31,7 @@ const ModalYtVideo = ({obj}) => {
                 extra={obj.title}
                 visible={visible} 
                 footer={[]}
-                title={obj.title}              
+                title={<p style={{marginTop:'20px'}}>{obj.title}</p>}
                 width='100%' 
                 style={{top:'0px', right:'0px'}} >
                     <Row style={{textAlign:'end'}}>
@@ -46,7 +46,7 @@ const ModalYtVideo = ({obj}) => {
                         </Col>
                     </Row>
                     <Row>   
-                        <Col span={15}>
+                        <Col xs={24} lg={15}>
                             <YouTube                                
                                 videoId={obj.yt_api_key}
                                 opts={opts}
@@ -56,7 +56,7 @@ const ModalYtVideo = ({obj}) => {
                                 {obj.description}
                             </Paragraph>
                         </Col>
-                        <Col span={9}>                              
+                        <Col xs={24} lg={9}>
                             <FormComment obj={obj} />
                             
                             <ListCommentaries is_live={obj.is_live} id_transmission={obj.uuid} />

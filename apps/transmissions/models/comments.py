@@ -2,7 +2,7 @@ from django.db import models
 from .transmissions import Transmission
 from apps.utilities.models import APIModel
 from apps.users.models import User
-
+import uuid
 
 class Comment(APIModel):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

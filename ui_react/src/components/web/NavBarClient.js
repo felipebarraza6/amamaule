@@ -30,13 +30,6 @@ const NavBarClient = () => {
                             @{state.user.username} 
                     </Link>
                 </Item>
-                <Item style={styles.item}>
-                    <Tooltip title='Ver invitaciones'>
-                    <Link ><Badge count={0}  style={{marginTop:'-8px'}} >
-                    <p style={{color:'white'}}><NotificationOutlined style={{color:'white'}} /></p>
-                    </Badge></Link>
-                    </Tooltip>
-                </Item>
                 <Item style={styles.itemLogOut}> 
                     <Button type='link' onClick={()=> {
                         dispatch({type:'LOGOUT'})

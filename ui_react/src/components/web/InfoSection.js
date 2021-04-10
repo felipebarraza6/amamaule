@@ -21,17 +21,19 @@ const InfoSection = () => {
                             Vincular para Crear
                         </Title>
                     }>
-                        <Paragraph>
-                          AMA es el primer encuentro de vinculación online de Artistas Escénicos del Maule, 
-                          Impulsado por el Teatro Regional del Maule y la Seremi de las Culturas, las Artes y 
-                          el Patrimonio de la Región del Maule. 
+                        <Paragraph align={'justify'}>
+                          AMA es el primer encuentro de vinculación online para Artistas Escénicos de la Región del Maule. Durante cuatro jornadas, las y los artistas tendrán la oportunidad de reunirse junto a actores del mundo público y privado, con el objetivo de reactivar redes a nivel regional para la programación de Artes Escénicas en el Maule y el resto del país.
+
                         </Paragraph> 
-                        <Paragraph>
-                          Inscríbete y participa en nuestras conferencias, 
-                          mesas de conversación, talleres y rondas de vinculación con programadores nacionales.
-                          Además, tendrás acceso exclusivo a nuestros showcases y visionados durante esta edición.
+                        <Paragraph align={'justify'}>
+                          AMA, Vincular Para Crear, propone una agenda de reuniones bilaterales y grupales que permitan a programadores y creadores conocerse, abriendo la oportunidad de ver trabajos estrenados, en progreso y proyectos de creación con sello local.
+
                         </Paragraph>
-                        <SignUp />
+                        <Paragraph align={'justify'}>
+                            Además, esperamos encontrarnos en el marco de conferencias y mesas de conversación en torno a los nuevos desafíos de la gestión cultural y el acceso trabajo artístico.
+Finalmente, propociaremos instancias de formación que inciten a la educación continua y sirvan de inspiración para todas y todos los participantes.
+                        </Paragraph>
+
                         
                         
                 </Card>

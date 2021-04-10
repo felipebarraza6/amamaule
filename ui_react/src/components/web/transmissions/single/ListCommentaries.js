@@ -55,10 +55,12 @@ const ListCommentaries = ({ is_live, id_transmission }) => {
                     return(
                         <>
                         <Col span={24} style={{textAlign:'end'}}>
-                            <Tag>@{obj.user.username}</Tag>
+                            <span style={{fontSize:'9px'}}>@{obj.user.username}</span>
                         </Col>
                         <Col span={24}>
-                            {obj.message}
+                            <p style={{marginTop:'10px', marginBottom:'10px'}}>
+                                {obj.message}
+                            </p>
                         </Col>                    
                         </>)
                 }) }                                                

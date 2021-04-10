@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import { Modal, Button, Form, 
         Input, notification, Col, 
-        Row, Select, Alert, Tooltip, message } from 'antd'
+        Row } from 'antd'
 import api from '../../../api/endpoints'
-const { Option } = Select
 
 
 const FormPasswordReset  = ({ visible, onCreate, onCancel}) => {

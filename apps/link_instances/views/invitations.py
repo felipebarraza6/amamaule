@@ -14,14 +14,14 @@ class InvitationViewSet(mixins.ListModelMixin,
                     mixins.UpdateModelMixin,
                     viewsets.GenericViewSet):
     
-    queryset = Invitation.objects.all()       
+    queryset = Invitation.objects.filter(is_active=True)
     lookup_field = 'id'
     permission_classes = [IsAuthenticated]
     filter_backends = (filters.DjangoFilterBackend,)
 
     def get_serializer_class(self):
         if self.action == 'list':
-            return InvitationModelSerializer        
+            return ListInvitationModelSerializer
         if self.action == 'retrieve':
             return InvitationModelSerializer        
         else:
