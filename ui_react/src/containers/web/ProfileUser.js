@@ -1,8 +1,8 @@
 import React, {useContext, useState, useEffect } from 'react'
 import { Menu, Result, Col, Row, Button, Badge,
-        Descriptions, Card, Tag, Avatar, message, Affix } from 'antd'
+        Descriptions, Card, Tag, Avatar, message, Affix, Form, Input } from 'antd'
 import { RocketOutlined ,UserOutlined, UploadOutlined, 
-        CheckOutlined, EditOutlined, LikeTwoTone, FileAddFilled, 
+        CheckOutlined, EditOutlined, ForkOutlined, FileAddFilled,
         QuestionCircleFilled, LaptopOutlined,
         GroupOutlined, CalendarOutlined } from '@ant-design/icons'
 import { AuthContext } from '../../App'
@@ -11,10 +11,13 @@ import ProfileData from '../../components/web/profile/ProfileData'
 import Workshops from '../../components/web/profile/Workshops'
 import Viewings from '../../components/web/profile/Viewings'
 import api from '../../api/endpoints'
+import UserProfileData from '../../components/web/profile/UpdateProfileData'
 import { Footer } from 'antd/lib/layout/layout'
 import LinksInstances from './LinksInstances'
 
 import HomeTransmissions from '../../components/web/transmissions/home/HomeTransmissions'
+import UpdateProfileData from "../../components/web/profile/UpdateProfileData";
+const { TextArea } = Input
 
 const ProfileUser = () => {
 
@@ -37,9 +40,6 @@ const ProfileUser = () => {
   
     }
 
-    function uploadImage(file){
-
-    }
     
     if(state.user){
       var type1 = state.user.type_user1
@@ -111,7 +111,7 @@ const ProfileUser = () => {
                   <EditOutlined style={styles.icon} />{currentNavigation === '3' && 'Visionados'}
               </Button>
                     <Button disabled={!state.user.is_verified && isMaule===true} disabled={isMaule} shape={'round'} type='link' style={currentNavigation === '5' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('5')}>
-                  <EditOutlined style={styles.icon} />{currentNavigation === '5' && 'Rondas'}
+                  <ForkOutlined style={styles.icon} />{currentNavigation === '5' && 'Rondas'}
               </Button>
 
               </>}
@@ -170,8 +170,10 @@ const ProfileUser = () => {
                       <>
                       {!state.user.is_verified ?
                         <ProfileData />:
-                        <Card style={{textAlign:'center'}}  title='PERFIL COMPLETADO' >
-                          <LikeTwoTone style={{fontSize:'200px'}}  twoToneColor='#CE3D4B'  />
+                        <Card title={<><EditOutlined style={{fontSize:'20px',marginRight:'20px'}} /> Editar perfil</>} >
+
+                            <UpdateProfileData user={state.user} />
+
                           <Footer style={{marginTop:'20px'}}>
                           <label for='file_dos' ><> 
                             <h4>Actualizar dossier...</h4> 
@@ -199,7 +201,7 @@ const ProfileUser = () => {
                     </>
                   }
                   {currentNavigation === '2' && 
-                  <Col lg={{span:14}}  xs={{span:24}}  style={{padding:'10px'}}  >
+                  <Col lg={{span:24}}  xs={{span:24}}  style={{padding:'10px'}}  >
                       <Workshops />
                   </Col>
                   }

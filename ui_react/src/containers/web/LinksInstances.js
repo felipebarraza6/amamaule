@@ -51,13 +51,12 @@ const LinksInstances = () => {
 		>
 			<Col lg={7} xs={24} style={{padding:'10px'}}>
 				{size > 800 ?
-					<Affix offsetTop={50}>
-					<Card hoverable title={<><SendOutlined style={styles.icon} /> Agenda tu reunión...</>} >
-						<ListUsers />
-					</Card>
-				</Affix>:
-					<Card hoverable title={<><SendOutlined style={styles.icon} /> Agenda tu reunión...</>} >
-						<ListUsers />
+
+					<Card hoverable title={<><SendOutlined style={styles.icon} /> Agenda tu reunión</>} >
+						<ListUsers per_page={30} />
+					</Card>:
+					<Card hoverable title={<><SendOutlined style={styles.icon} /> Agenda tu reunión</>} >
+						<ListUsers per_page={30} />
 					</Card>
 				}
 

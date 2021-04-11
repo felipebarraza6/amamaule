@@ -48,11 +48,13 @@ const Workshops = () => {
 
 
   return(
-    <Row>
+    <Row justify={'center'} alignItem={'center'}>
+      <Col lg={24} xs={24}>
       <Pagination defaultCurrent={page} total={6} onChange={(page)=>setPage(page)}  defaultPageSize={2} />
+      </Col>
       {page ===1 &&  
         <>
-      <Col span={24}>
+      <Col lg={12} xs={24}>
       <Card hoverable style={styles.card}  title= 'Montaje Site Specific' extra={<> {size > 800 && 'Miércoles 14 de abril, 19 horas.'} </>} >
       {size < 800 &&
         <Tag color="warning" style={{marginBottom:'20px'}}>14 de Abril 19:00 hrs</Tag>
@@ -75,13 +77,13 @@ const Workshops = () => {
                        </a>
                 </Button>
                 </>:
-                <Button onClick={()=> updateProfile({taller_montaje: true})  } style={styles.buttonIns}>Inscríbete</Button>
+                <></>
               }
             </>
         }
         </Card>
       </Col>
-          <Col span={24}>
+          <Col lg={12} xs={24}>
         <Card style={styles.card}  hoverable title='Ley de Donaciones Culturales'  extra={<> {size > 800 && 'Miércoles 14 de abril, 19 horas.'}</>}  >
         {size < 800 && <Tag color="warning" style={{marginBottom:'20px'}}>14 de Abril 19:00 hrs</Tag> }
         <p>Conoce las claves de esta modalidad de financiamiento y su aplicación un mecanismo mixto que estimula el aporte del Estad            o de Chile y de los contribuyentes a proyectos culturales de instituciones sin fines de lucro, mediante un crédito sobre el Impuesto.</p>
@@ -101,7 +103,7 @@ const Workshops = () => {
                   </Button>
                 </>
                   :
-                  <Button style={styles.buttonIns} onClick={()=> updateProfile({taller_ley_de_donaciones:true})}  >Inscríbete</Button>
+                  <></>
                 }
               </>
         }
@@ -112,7 +114,7 @@ const Workshops = () => {
         </>}
       {page ===2 &&
       <>
-      <Col span={24}>
+     <Col lg={12} xs={24}>
         <Card hoverable style={styles.card}  title='Marketing Digital para la industria musical' extra={<> {size > 800 && 'Jueves 15 de abril, 19:00 hrs.'}</>}  >
         <p>Marketing Digital para la industria musical</p>
         {size < 800 && <Tag color="warning" style={{marginBottom:'20px', marginTop:'10px'}}>15 de Abril 19:00 hrs</Tag> }
@@ -135,14 +137,14 @@ const Workshops = () => {
                        </a>
                   </Button>
                   </>:
-                  <Button style={styles.buttonIns} onClick={()=> updateProfile({taller_marketing_digital: true})}  >Inscríbete</Button>
+                 <></>
                 }
               </>
         }
 
         </Card>
       </Col>
-        <Col span={24}>
+        <Col lg={12} xs={24}>
         <Card hoverable style={styles.card}  title='Taller de herramientas para la gestión de proyectos culturales' extra={<> {size > 800 && 'Jueves 15 de abril, 19:00 hrs.'}</>} >
         <p>
         Taller de herramientas para la gestión de proyectos culturales
@@ -167,7 +169,7 @@ const Workshops = () => {
                     </Button>
                   </>
                   :
-                  <Button style={styles.buttonIns} onClick={()=> updateProfile({taller_herr_gestion:true})}  >Inscríbete</Button>
+                 <></>
 
                 }
               </>
@@ -179,7 +181,7 @@ const Workshops = () => {
       </>}
       {page ===3 && 
       <>
-      <Col span={24}>
+      <Col lg={12} xs={24}>
         <Card hoverable style={styles.card}  title='Taller de financiamiento para la circulación internacional'
           extra={<> {size > 800 && 'Sábado 17 de abril, 19:00 hrs.'}</>}
         >
@@ -205,13 +207,13 @@ const Workshops = () => {
                        </a>
                     </Button>
                   </>:
-                  <Button style={styles.buttonIns} onClick={()=> updateProfile({taller_financiamiento:true})}  >Inscríbete</Button>
+                  <></>
                 }
               </>
         }
         </Card>
       </Col>
-        <Col span={24}>
+        <Col lg={12} xs={24}>
       <Card hoverable style={styles.card}  title= 'Pitching' extra={<> {size > 800 && 'Miercoles 31 de Marzo y Jueves 01 de Abril, 18 horas.'} </>}>
         {size < 800 &&
         <Tag color="warning" style={{marginBottom:'20px'}}>31 de Marzo y 01 de Abril 18:00 hrs</Tag>
@@ -256,7 +258,7 @@ const styles = {
     marginRight: '10px'
   },
   card: {
-      margin:'20px'
+      margin:'10px'
   }
 }
 

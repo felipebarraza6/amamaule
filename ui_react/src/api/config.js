@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 
-export const BASE_URL = 'http://localhost:8000/'
+export const BASE_URL = 'http://amamaule.cl:8000'
 //export const BASE_URL = 'https://api.amamaule.cl/'
 export const BASE_WHEREBY_API = 'https://api.whereby.dev/v1/'
 

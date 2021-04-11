@@ -237,8 +237,8 @@ const MeetingCalendar = ({meeting}) => {
             <Title>Participantes</Title>
             <Row justify="center" align="top">
 
-                {meeting.participans_invited.map((obj)=><Col span={8} >
-                    <Card hoverable title={`${obj.first_name} ${obj.last_name}`} style={{margin:'20px', backgr:'green', borderRadius:'30px'}} extra={<Tag color={'green'}> DATOS DE CONTACTO </Tag>}>
+                {meeting.participans_invited.map((obj)=><Col lg={8} xs={24} >
+                    <Card hoverable title={`${obj.first_name} ${obj.last_name}`} style={{margin:'20px', backgr:'green', borderRadius:'30px'}} >
                         <Descriptions >
                             <Descriptions.Item label={'Email'} span={3}>
                                 {obj.email}

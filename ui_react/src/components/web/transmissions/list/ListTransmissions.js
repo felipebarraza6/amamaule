@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import api_transmissions from '../../../../api/transmissions/endpoints'
 import {Card, Row, Col, Tag, Badge, Button, Menu, Result, message} from 'antd'
-import { QuestionCircleFilled, NotificationOutlined, DesktopOutlined } from '@ant-design/icons'
+import { QuestionCircleFilled, NotificationOutlined, DesktopOutlined, PlaySquareOutlined } from '@ant-design/icons'
 import ModalYtVideo from '../single/ModalYtVideo'
 import api from "../../../../api/endpoints";
 
@@ -118,6 +118,16 @@ const ListTransmissions = ({globalState, changeState, is_public}) => {
                         }
                     })
                 }
+                if(current.key==='6'){
+
+                    const request  = await api_transmissions.transmissions.list('', 'O').then((response)=> {
+                        if(response.data.count === 0){
+                            setState({...state, transmissions: response.data.results, no_live:true})
+                        }else{
+                            setState({...state, transmissions: response.data.results, no_live:false})
+                        }
+                    })
+                }
 
             }} >
             { is_public ? <>
@@ -128,6 +138,9 @@ const ListTransmissions = ({globalState, changeState, is_public}) => {
                 </Menu.Item>
                 <Menu.Item style={{backgroundColor:'#F58B88', color:'white'}} key='2' >
                     <DesktopOutlined style={{fontSize:'20px'}} /> Showcases
+                </Menu.Item>
+                <Menu.Item style={{backgroundColor:'#F58B88', color:'white'}} key='6' >
+                    <PlaySquareOutlined style={{fontSize:'20px'}} /> Obras
                 </Menu.Item>
 
 
@@ -142,6 +155,9 @@ const ListTransmissions = ({globalState, changeState, is_public}) => {
                     <Menu.Item style={{backgroundColor:'rgb(97, 38, 61)', color:'white'}} key='2' >
                         Showcases
                     </Menu.Item>
+                     <Menu.Item style={{backgroundColor:'rgb(97, 38, 61)', color:'white'}} key='6' >
+                    Obras
+                </Menu.Item>
                     <Menu.Item style={{backgroundColor:'rgb(97, 38, 61)', color:'white'}} key='3' >
                         Mesas temáticas
                     </Menu.Item>
@@ -157,11 +173,12 @@ const ListTransmissions = ({globalState, changeState, is_public}) => {
             </Menu>
 
             {state.transmissions && <Row>
-                {state.no_live && <Row ><Col  span={24}>
-                        <Result style={{padding:'120px'}}
-                            icon={<QuestionCircleFilled style={{color:'rgb(206, 61, 75)'}} />}
-                            title="No hay resultados actualmente..."                            
-                        />
+                {state.no_live && <Row align={'center'} justify={'center'}><Col  span={24} >
+                        <Result
+                  status="500"
+                  title="No disponible"
+                  subTitle="Lo sentimos, aún no hay información disponible."
+              />
                     </Col>
                 </Row>}    
                 {state.transmissions.map((obj)=> {

@@ -80,58 +80,60 @@ const SingleUser = ({user, is_invitations}) => {
 
         {state.user &&
             <>
-                <Modal width={'800px'} visible={state.visible} onCancel={closeModal} footer={[ <Tag color={'volcano'}>{user.country}</Tag>, <Tag color={'volcano'}>{user.region}</Tag>]} title={`${user.first_name} ${user.last_name}`} >
+                <Modal width={'800px'} style={{top:0}} visible={state.visible} onCancel={closeModal} footer={[ <Tag color={'volcano'}>{user.country}</Tag>, <Tag color={'volcano'}>{user.region}</Tag>]} title={`${user.first_name} ${user.last_name}`} >
                     <Row>
-                        <Col span={6} style={{textAlign:'center'}} >
+                        <Col lg={6} xs={24} style={{textAlign:'center'}} >
                             {user.principal_image ?
-                            <img src={user.principal_image} width={'100px'} />:
-                                <Avatar shape={'square'} icon={<FileImageOutlined style={{marginTop:'16px', fontSize:'70px'}} />} style={{width:'120px', height:'100px'}} />
+                            <img src={user.principal_image} width={'100px'} style={{marginBottom: '10px',}} />:
+                                <Avatar shape={'square'} icon={<FileImageOutlined style={{marginTop:'16px',marginBottom:'10px', fontSize:'70px'}} />} style={{width:'120px', height:'100px'}} />
                             }
                         </Col>
-                        <Col span={17}>
-                            <Paragraph><Text mark>{user.type_user1}</Text></Paragraph>
+                        <Col lg={17}>
+                            <Paragraph style={{marginTop:'20px'}}><Text mark>{user.type_user1}</Text></Paragraph>
                             <Paragraph><Text mark>{user.type_user2}</Text></Paragraph>
                             <Paragraph><Text mark>{user.type_user3}</Text></Paragraph>
                         </Col>
                     </Row>
                     <Divider />
                     <Row>
-                        <Col span={6}>
+                        <Col lg={6} xs={24}>
                             <Text mark>Nombre Entidad</Text>
                         </Col>
-                        <Col span={18}>
+                        <Col lg={18} xs={24}>
                                 <Paragraph>
                                 {state.profile && <>{state.profile.nombre_entidad}</> }
                             </Paragraph>
                         </Col>
                     </Row>
                     <Row style={{marginTop:'0%'}} >
-                        <Col span={6}>
+                        <Col lg={6} xs={24}>
                             <Text mark>Cargo</Text>
                         </Col>
-                        <Col span={18}>
+                        <Col lg={18} xs={24}>
                                 <Paragraph>
                                 {state.profile && <>{state.profile.cargo}</> }
                             </Paragraph>
                         </Col>
                     </Row>
                     <Row style={{marginTop:'0%'}} >
-                        <Col span={6}>
+                        <Col lg={6} xs={24}>
                             <Text mark>Perfil Profesional</Text>
                         </Col>
-                        <Col span={18}>
-                                <Paragraph>
+                        <Col lg={18} xs={24}>
+                                <Paragraph align={'justify'}>
                                 {state.profile && <>{state.profile.perfil_profesional}</> }
                             </Paragraph>
                         </Col>
                     </Row>
                     <Row style={{marginTop:'0%'}} >
-                        <Col span={6}>
+                        <Col span={6}>{state.profile && <>
+                            {state.profile.dossier_archivo &&
                           <Button onClick={()=> {
                               if(state.profile){
                               window.open(`${state.profile.dossier_archivo}`)
                                   }
-                          }} icon={<DownloadOutlined />} type={'primary'} >DESCARGAR DOSSIER</Button>
+                          }} icon={<DownloadOutlined />} type={'primary'} >DESCARGAR DOSSIER</Button>}
+                          </>}
                         </Col>
                     </Row>
                 </Modal>

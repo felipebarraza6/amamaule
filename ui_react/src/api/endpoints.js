@@ -41,7 +41,6 @@ const get_profile_center = async(user)=> {
 }
 
 const update_profile = async(user, data) => {
-    console.log(user)
     const request = await UPDATE(`users/profile/${user}/`, data)
   
     return request

@@ -2,75 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="872fca9c-76df-4773-ae30-4641e6aeb75c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../apps/transmissions/routers/invitations.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../apps/transmissions/views/invitations.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/actions/meetings_rounds/getData.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/links_instances/endpoints.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/web/IgFeed.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/web/links_instances/Calendar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/web/links_instances/CreateMeeting.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/web/links_instances/DetailMeeting.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/web/links_instances/FormsRounds.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/web/links_instances/ListInvitations.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/web/links_instances/ListUsers.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/web/links_instances/MeetWhereby.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/web/links_instances/MeetingCalendar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/web/links_instances/SendAnswerInvitation.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/web/links_instances/SinglesUser.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/web/links_instances/SkeletonCalendar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/containers/web/MeetingVideoChat.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/reducers/groups.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/../api/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../apps/link_instances/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/../apps/link_instances/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../apps/link_instances/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../apps/link_instances/models/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../apps/link_instances/models/meetings.py" beforeDir="false" afterPath="$PROJECT_DIR$/../apps/link_instances/models/meetings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../apps/link_instances/models/pools_answers.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../apps/link_instances/routers/pools_answers.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../apps/link_instances/serializers/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../apps/link_instances/serializers/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../apps/link_instances/serializers/invitations.py" beforeDir="false" afterPath="$PROJECT_DIR$/../apps/link_instances/serializers/invitations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../apps/link_instances/serializers/meetings.py" beforeDir="false" afterPath="$PROJECT_DIR$/../apps/link_instances/serializers/meetings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../apps/link_instances/serializers/pools_answers.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../apps/link_instances/views/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../apps/link_instances/views/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../apps/link_instances/views/invitations.py" beforeDir="false" afterPath="$PROJECT_DIR$/../apps/link_instances/views/invitations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../apps/link_instances/views/meetings.py" beforeDir="false" afterPath="$PROJECT_DIR$/../apps/link_instances/views/meetings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../apps/link_instances/views/pools_answers.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../apps/transmissions/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/../apps/transmissions/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../apps/transmissions/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../apps/transmissions/models/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../apps/transmissions/models/comments.py" beforeDir="false" afterPath="$PROJECT_DIR$/../apps/transmissions/models/comments.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../apps/transmissions/routers/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../apps/transmissions/routers/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../apps/transmissions/serializers/transmissions.py" beforeDir="false" afterPath="$PROJECT_DIR$/../apps/transmissions/serializers/transmissions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../apps/transmissions/views/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../apps/transmissions/views/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../apps/transmissions/views/transmissions.py" beforeDir="false" afterPath="$PROJECT_DIR$/../apps/transmissions/views/transmissions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../apps/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/../apps/users/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../production.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/api/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/endpoints.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/endpoints.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/transmissions/endpoints.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/transmissions/endpoints.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/css/mobile.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/css/mobile.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/css/web.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/css/web.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/web/HeaderLogo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/web/HeaderLogo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/web/InfoSection.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/web/InfoSection.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/web/NavBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/web/NavBar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/web/NavBarClient.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/web/NavBarClient.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/web/TrenSection.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/web/TrenSection.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/web/auth/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/web/auth/Login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/web/auth/ResetPassword.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/web/auth/ResetPassword.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/web/profile/Viewings.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/web/profile/Viewings.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/web/links_instances/ListUsers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/web/links_instances/ListUsers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/web/links_instances/SinglesUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/web/links_instances/SinglesUser.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/web/profile/Workshops.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/web/profile/Workshops.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/web/transmissions/home/HomeTransmissions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/web/transmissions/home/HomeTransmissions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/web/transmissions/list/ListTransmissions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/web/transmissions/list/ListTransmissions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/web/transmissions/single/FormComment.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/web/transmissions/single/FormComment.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/web/transmissions/single/ListCommentaries.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/web/transmissions/single/ListCommentaries.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/web/transmissions/single/ModalYtVideo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/web/transmissions/single/ModalYtVideo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/web/transmissions/single/SDKZoom.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/mobile/Screen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/mobile/Screen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/web/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/web/Home.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/containers/web/LinksInstances.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/web/LinksInstances.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/containers/web/ProfileUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/web/ProfileUser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/web/SelectedViewings.js" beforeDir="false" afterPath="$PROJECT_DIR$/../apps/transmissions/models/invitations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,7 +65,7 @@
       <workItem from="1617393013080" duration="116000" />
       <workItem from="1617402740016" duration="3740000" />
       <workItem from="1617426495348" duration="63903000" />
-      <workItem from="1617828488268" duration="71026000" />
+      <workItem from="1617828488268" duration="71031000" />
     </task>
     <servers />
   </component>

@@ -1,16 +1,16 @@
 import React, { useState, useContext} from 'react'
 import api from '../../../api/endpoints'
-import { Skeleton, Table, Avatar, Button,
-        Tooltip, Row, Select } from "antd"
-import { SendOutlined, FileImageOutlined } from '@ant-design/icons'
+import { Skeleton, Table, Avatar,
+        Tooltip, Row, Col, Select, Typography } from "antd"
+import { FileImageOutlined } from '@ant-design/icons'
 import SingleUser from "./SinglesUser"
 import {GroupsContext} from "../../../containers/web/LinksInstances"
 import CreateMeeting from "./CreateMeeting"
 
 const { Option } = Select
+const { Paragraph, Text } = Typography
 
-
-const ListUsers = () => {
+const ListUsers = ({per_page}) => {
 
     const { state: ContextInstances, dispatch } = useContext(GroupsContext)
 
@@ -48,17 +48,22 @@ const ListUsers = () => {
                 key:'id',
                 name: 'id',
                 title: 'Nombre',
-                render: (obj)=>`${obj.first_name} ${obj.last_name}`
+                render: (obj)=><Text ellipsis={{tooltip:`${obj.first_name} ${obj.last_name}`}} >{obj.first_name} {obj.last_name}</Text>
             },
             {
                 key:'id',
                 name: 'id',
-                render:(obj)=><Row justify={'center'}><Tooltip title={'Perfil'}>
-                                <SingleUser user={obj} />
-                </Tooltip>
-                    <Tooltip title={'Envíar invitación'}  color={'cyan'} >
-                               <CreateMeeting invited={obj} />
-                </Tooltip>
+                render:(obj)=><Row>
+                    <Col span={12} >
+                        <Tooltip title={'Perfil'}>
+                            <SingleUser user={obj} />
+                        </Tooltip>
+                    </Col>
+                    <Col span={12} >
+                        <Tooltip title={'Envíar invitación'}  color={'cyan'} >
+                            <CreateMeeting invited={obj} />
+                        </Tooltip>
+                    </Col>
                 </Row>
             }
         ]
@@ -79,7 +84,7 @@ const ListUsers = () => {
                 <Table bordered loading={state.loadingTable} size={'small'} columns={columns}
                        title={()=>'Escoge junto a quienes deseas vincularte y espera que la otra persona acepte para que tu reunión se haga efectiva.'}
                        dataSource={ContextInstances.list_users}
-                       pagination = {{ defaultPageSize:6 }}
+                       pagination = {{ defaultPageSize:per_page }}
                        style={{margin:'0px'}}
                 />
                 </>
