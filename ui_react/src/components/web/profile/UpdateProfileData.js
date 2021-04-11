@@ -34,7 +34,7 @@ const UpdateProfileData = ({user}) => {
         <Form layout={'vertical'} style={{padding:'20px'}} name='update_data' onFinish={UpdateData} initialValues={{'nombre_entidad': state.nombre_entidad, 'cargo':state.cargo, 'perfil_profesional': state.perfil_profesional}}>
             <Row justify={'center'}>
                 <Col lg={12} xs={24}>
-                                <Form.Item name='nombre_entidad' label={'Nombre de la entidad, organización'} rules={[{required:true, message:'Debes ingresar el nombre de tu entidad'},
+                                <Form.Item name='nombre_entidad' label={'Nombre de la entidad, organización o proyecto'} rules={[{required:true, message:'Debes ingresar el nombre de tu entidad'},
                                     {max:800, message:'Has superado los 800 caracteres'}]}>
                                     <Input />
                                 </Form.Item>

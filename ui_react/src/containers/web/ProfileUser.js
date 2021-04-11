@@ -154,11 +154,11 @@ const ProfileUser = () => {
                   </>
                   }
               </Menu></Affix>}
-              <Row style={{padding:'0px'}}>
+              <Row >
                   {currentNavigation === '0' && 
-                    <Col lg={{span:24}}  xs={{span:24}}  style={{padding:'0px'}}  >
+                    <Row justify={'center'}>
                       <HomeTransmissions />
-                    </Col>
+                    </Row>
                   }
                   {currentNavigation === '5' && 
                     <LinksInstances />

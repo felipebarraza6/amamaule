@@ -6,7 +6,7 @@ const {Text, Paragraph} = Typography
 
 
 const SingleUser = ({user, is_invitations}) => {
-
+    console.log(user)
     if(user.type_user1==='AM'){
         user.type_user1 = 'Artista / Manager'
     }else if(user.type_user1==='PROV'){
@@ -53,7 +53,9 @@ const SingleUser = ({user, is_invitations}) => {
 
     useEffect(()=> {
         async function getProfile(user_id){
+            console.log(user_id)
             const request = await api.user.get_profile_center(user_id).then((response)=> {
+                console.log(response)
                 setState({
                     ...state,
                     profile: response.data

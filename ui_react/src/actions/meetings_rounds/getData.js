@@ -7,6 +7,7 @@ import api from "../../api/endpoints";
 export const getUsers =  async({dispatch}) =>{
                 const request = await api.user.list_users('')
 				 			  .then((response)=> {
+				 			  	console.log(response)
 								dispatch({
 									type:'SET_USERS',
 									list_users: response.data.results

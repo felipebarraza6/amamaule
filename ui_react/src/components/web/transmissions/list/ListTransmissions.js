@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from 'react'
 import api_transmissions from '../../../../api/transmissions/endpoints'
 import {Card, Row, Col, Tag, Badge, Button, Menu, Result, message} from 'antd'
-import { QuestionCircleFilled, NotificationOutlined, DesktopOutlined, PlaySquareOutlined } from '@ant-design/icons'
+import { LockOutlined, NotificationOutlined, DesktopOutlined, PlaySquareOutlined } from '@ant-design/icons'
 import ModalYtVideo from '../single/ModalYtVideo'
 import api from "../../../../api/endpoints";
 
 
 const ListTransmissions = ({globalState, changeState, is_public}) => {
-    is_public = is_public
+
     const initialState = {
         transmissions: null,
         transmission_selected: null,
@@ -37,7 +37,7 @@ const ListTransmissions = ({globalState, changeState, is_public}) => {
     useEffect(()=> {
 
         async function get_transmissions(){
-            const request  = await api_transmissions.transmissions.list(false, '').then((response)=> {
+            const request  = await api_transmissions.transmissions.list(false, 'C').then((response)=> {
                 if(response.data.count > 0){
                 setState({...state, transmissions: response.data.results, no_live:false})                                
             }else{
@@ -53,6 +53,7 @@ const ListTransmissions = ({globalState, changeState, is_public}) => {
     
     return(
         <React.Fragment>
+            <Col span={24}>
             <Menu theme='dark' mode='horizontal' style={{ textAlign:'center', backgroundColor:is_public ? '#F58B88': 'rgb(97, 38, 61)', color:'white'}} onClick={async(current)=>{
                 if(current.key==='0'){
                 setPage(0)
@@ -146,9 +147,7 @@ const ListTransmissions = ({globalState, changeState, is_public}) => {
 
                 </>:
                 <>
-                    <Menu.Item style={{backgroundColor:'rgb(97, 38, 61)', color:'white'}} key='0' >
-                    <Badge status='processing' color='orange' />  EN VIVO
-                    </Menu.Item>
+
                     <Menu.Item style={{backgroundColor:'rgb(97, 38, 61)', color:'white'}} key='1' >
                         Conferencias
                     </Menu.Item>
@@ -171,16 +170,17 @@ const ListTransmissions = ({globalState, changeState, is_public}) => {
             }
 
             </Menu>
+                </Col>
 
-            {state.transmissions && <Row>
-                {state.no_live && <Row align={'center'} justify={'center'}><Col  span={24} >
+            {state.transmissions && <>
+                {state.no_live &&
+                    <Col xs={24} lg={24} style={{padding:'10px'}}>
                         <Result
                   status="500"
                   title="No disponible"
                   subTitle="Lo sentimos, aún no hay información disponible."
-              />
-                    </Col>
-                </Row>}    
+                        /></Col>
+                    }
                 {state.transmissions.map((obj)=> {
                     let category = obj.category
                     var color = 'volcano'    
@@ -208,53 +208,43 @@ const ListTransmissions = ({globalState, changeState, is_public}) => {
                         obj.category = 'Showcases'
                         color = 'orange'
                     }
-                    console.log(obj)
+
                     return (
-                        <Col xs={{ span: 24}} lg={{ span: 6 }} style={{padding:'10px', minHeight:'100%'}}> 
-                        
-                        
-                        <Card hoverable={true} 
-                            cover={<img width={'100%'} src={obj.main_image} />}                            
-                        >
-                            <Card.Meta 
+
+                        <Col xs={24} lg={6} style={{padding:'10px'}}>
+                        <Card hoverable={true}
+                            cover={<img width={'100%'} src={obj.main_image} />}>
+                            <Card.Meta
                                     description={<Row>
                                     <Col xs={{ span: 24}} lg={{ span: 14 }} >
                                     <Tag color={color} style={{marginBottom:'10px'}}>
                                 {obj.category}
                                 </Tag></Col>
-
                                     {obj.is_zoom_stream  &&
                                     <Col xs={{ span: 24}} lg={{ span: 6 }}>
                                      <Button  size={'small'} type='primary' style={{backgroundColor:'black', borderColor:'black', color:'Highlight'}}
                                              onClick={()=> createInvitationAndAccess(obj.uuid)} >
                                          EN VIVO <Badge status='processing' color='blue' style={{marginLeft:'10px'}} />
-                                    </Button>                                                                          
+                                    </Button>
                                     </Col>
                                     }
-                                    {obj.is_yt_stream && 
+                                    {obj.is_yt_stream &&
                                     <Col xs={{ span: 24}} lg={{ span: 6 }}>
                                         <ModalYtVideo obj={obj} />
-                                        </Col>                                        
-                                    }                                    
+                                        </Col>
+                                    }
                                     {!obj.is_live & !obj.is_yt_stream ?
                                     <Col xs={{ span: 24}} lg={{ span: 6 }}>
-                                        <Button size={'small'} disabled>NO DISPONIBLE</Button></Col>:''
-                                    
+                                        <Button size={'small'} disabled style={{float:'right'}}><LockOutlined/></Button></Col>:''
                                     }
                                     </Row>}
                                 >
-                            
-                                
-                                    
-                                    
-                               
                                 </Card.Meta>
-                        </Card>                                                    
-                        
+                        </Card>
                         </Col>
-                    )                    
+                    )
                 })}
-            </Row>}
+            </>}
         </React.Fragment>
     )
 }

@@ -13,13 +13,14 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import MeetingVideoChat from "./MeetingVideoChat"
 import IgFeed from "../../components/web/IgFeed";
 import ListTransmissions from "../../components/web/transmissions/list/ListTransmissions";
+import HomeTransmissions from '../../components/web/transmissions/home/HomeTransmissions'
 import BannerRondas from '../../assets/img/banner_rondas.jpg'
 
 const { Content, Footer } = Layout
 const { Title, Paragraph } = Typography
 
 const Home = () => {
-  
+
   return(
     <Router>
       <Layout>
@@ -39,7 +40,9 @@ const Home = () => {
             <Route exact path='/' render = {()=> {
               return(
                 <React.Fragment>
+                <Row justify="center">
                   <ListTransmissions is_public={true} />
+                  </Row>
                   <Row style={{ padding:'80', marginTop:'50px', backgroundColor:'white'}}>
 
                     <Col span={8} style={{padding:'40px'}}>

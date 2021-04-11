@@ -258,7 +258,8 @@ const styles = {
     marginRight: '10px'
   },
   card: {
-      margin:'10px'
+      margin:'10px',
+      minHeight:'330px',
   }
 }
 

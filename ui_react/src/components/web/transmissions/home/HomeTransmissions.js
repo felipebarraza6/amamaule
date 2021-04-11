@@ -14,8 +14,9 @@ const HomeTransmissions = () => {
 
     const [state, setState] = useState(initialState)
 
-    return(<>{!state.is_retrieve &&
+    return(<>{!state.is_retrieve &&<>
            <ListTransmissions is_public={false} changeState={setState} globalState={state} />
+           </>
         }
         </>
     )

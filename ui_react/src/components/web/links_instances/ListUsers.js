@@ -41,18 +41,15 @@ const ListUsers = ({per_page}) => {
     const columns = [
             {
                 key: 'id',
-                name: 'id',
                 render: (obj)=> <Row justify={'center'}><Avatar icon={<FileImageOutlined />} shape='square' src={obj.principal_image} /></Row>,
             },
             {
                 key:'id',
-                name: 'id',
                 title: 'Nombre',
                 render: (obj)=><Text ellipsis={{tooltip:`${obj.first_name} ${obj.last_name}`}} >{obj.first_name} {obj.last_name}</Text>
             },
             {
                 key:'id',
-                name: 'id',
                 render:(obj)=><Row>
                     <Col span={12} >
                         <Tooltip title={'Perfil'}>
@@ -81,10 +78,11 @@ const ListUsers = ({per_page}) => {
                     <Option value='RE' >Representante de organización o empresa, pública o privada</Option>
                     <Option value='GES' >Gestor Cultural / Producción / Programación</Option>
                 </Select>
-                <Table bordered loading={state.loadingTable} size={'small'} columns={columns}
+                <Table loading={state.loadingTable} size={'small'} columns={columns}
                        title={()=>'Escoge junto a quienes deseas vincularte y espera que la otra persona acepte para que tu reunión se haga efectiva.'}
                        dataSource={ContextInstances.list_users}
                        pagination = {{ defaultPageSize:per_page }}
+                       rowKey={'id'}
                        style={{margin:'0px'}}
                 />
                 </>

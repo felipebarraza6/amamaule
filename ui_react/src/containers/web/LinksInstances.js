@@ -50,16 +50,9 @@ const LinksInstances = () => {
 			}}
 		>
 			<Col lg={7} xs={24} style={{padding:'10px'}}>
-				{size > 800 ?
-
-					<Card hoverable title={<><SendOutlined style={styles.icon} /> Agenda tu reunión</>} >
-						<ListUsers per_page={30} />
-					</Card>:
 					<Card hoverable title={<><SendOutlined style={styles.icon} /> Agenda tu reunión</>} >
 						<ListUsers per_page={30} />
 					</Card>
-				}
-
 			</Col>
 			<Col lg={12} xs={24} style={{padding:'10px'}}>
 				<Card title={<><CalendarOutlined style={styles.icon} /> Calendario</>}>
