@@ -73,7 +73,6 @@ const Home = () => {
                         <img src={BannerRondas} width={'100%'} />
                     </Row>
                     <Services />
-                  <IgFeed />
                   <TrenSection />
                   <Footer style = {styles.footer}  >AMA - Vincular para crear 2021</Footer>
                 </React.Fragment>

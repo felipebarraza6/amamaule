@@ -2,16 +2,20 @@ import React, { useContext, useEffect, useState} from 'react'
 import api from '../../../api/endpoints'
 import { Tag, Form, message,Button, Result, Card, Input, Col, Row, Typography, Avatar  } from 'antd'
 import { YoutubeOutlined } from '@ant-design/icons'
+import {AuthContext} from '../../../App'
 const { Title, Paragraph, Text} = Typography
 
 
 
 
 const Viewings = () => {
-  
+
+    const {state:user} = useContext(AuthContext)
+    console.log(user)
     const initialState = {
         data: null,
-        is_loading: false
+        is_loading: false,
+        profile: null
     }
 
     const [state, setState] = useState(initialState)
@@ -24,7 +28,11 @@ const Viewings = () => {
                 console.log(response)
                 setState({...state, data:response.results, is_loading: false})
             })
-            console.log(request)
+
+            const request_user = await api.user.get_profile_center(user.user.id).then((response)=> {
+                setState({...state, profile:response.data})
+            })
+
         }
 
         getViewings()
@@ -33,7 +41,25 @@ const Viewings = () => {
 
     console.log(state)
     return(
-        <><div style={{'marginTop':'20px', 'marginLeft':'20px'}}><Title>Visionados seleccionados 2021</Title></div>
+        <><Row style={{'marginBottom':'20px', 'marginLeft':'20px'}}>
+            <Col lg={18} xs={24}>
+            <Title>Visionados seleccionados 2021</Title>
+                </Col>
+            <Col lg={6} xs={24}>
+                {state.profile &&
+                <>
+                    {!state.profile.is_aproved_visio &&
+                    <Card hoverable bordered={true} style={{backgroundColor:'rgb(97, 38, 61)', color:'white', borderRadius:'20px'}} width={'10px'} >
+                        <Title level={4} style={{textAlign:'center', color:'white'}}>
+                        ¡Tu visionado ha sido seleccionado!
+                            </Title>
+
+                    </Card>
+                    }
+                </>
+                }
+            </Col>
+        </Row>
       <Row style={{backgroundColor:'white', padding:'30px'}}>{state.data && <>
           {state.data.length > 0 ?
             <>

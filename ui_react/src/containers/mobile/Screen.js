@@ -7,7 +7,7 @@ import Login  from '../../components/web/auth/Login'
 import { NavBar as Nav  } from 'antd-mobile'
 import Logo from '../../assets/logo/01B.png'
 import Slider from '../../assets/slider/img1.jpg'
-import { HomeOutlined, LogoutOutlined  } from '@ant-design/icons'
+import {HomeOutlined, LogoutOutlined, FilePdfOutlined, FilePdfFilled} from '@ant-design/icons'
 import Services from '../../components/web/Services'
 import TrenSectionM from '../../components/mobile/TrenSectionM'
 import ProfileUser from '../../containers/web/ProfileUser'
@@ -17,6 +17,7 @@ import ListTransmissions from "../../components/web/transmissions/list/ListTrans
 import IgFeed from "../../components/web/IgFeed";
 import TrenMobile from '../../assets/tren_patners_m.jpg'
 import Avisement from '../../assets/img/banner_rondas.jpg'
+import Program from "../../assets/PROGRAMA.pdf";
 
 const Screen = () => {
   const {state, dispatch} = useContext(AuthContext) 
@@ -31,6 +32,7 @@ const Screen = () => {
                     <HomeOutlined style={{fontSize:'25px',color:'white'}}  />
                     </Link>
                     ]}
+
                   rightContent={[
                     <>{state && 
                     <>
@@ -51,8 +53,13 @@ const Screen = () => {
                         </>}
                     </>                  
                   ]}
-              > 
+              >
+                  <a href={Program} target="__blank" style={{color:'white'}}>
+                        <FilePdfFilled style={{fontSize:'20px', marginRight:'5px'}} />
+                            Programa
+                    </a>
               </Nav>
+
               <Switch>
                 <Route exact path='/profile' render={()=><>
                 <ProfileUser />

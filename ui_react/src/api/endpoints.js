@@ -25,8 +25,8 @@ const signup = async(data)=> {
     return request.data
 }
 
-const list_users = async(filter)=> {
-    const request = await GET(`users/?type_user1=${filter}`)
+const list_users = async({filter='', first_name='', last_name='', region=''})=> {
+    const request = await GET(`users/?type_user1=${filter}&first_name__contains=${first_name}&last_name__contains=${last_name}&region__contains=${region}`)
     return request
 }
 

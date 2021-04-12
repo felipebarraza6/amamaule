@@ -208,6 +208,10 @@ const ListTransmissions = ({globalState, changeState, is_public}) => {
                         obj.category = 'Showcases'
                         color = 'orange'
                     }
+                    if(category === 'O'){
+                        obj.category = 'Obras'
+                        color = 'blue'
+                    }
 
                     return (
 

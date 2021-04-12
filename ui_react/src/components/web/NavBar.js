@@ -20,14 +20,14 @@ const NavBar = () => {
             <Item style={styles.item}>
                 <Link to='/'>Inicio</Link>
             </Item>
-            {state.isAuthenticated ? 
-            <>
-                <Item style={styles.item}>
+               <Item style={styles.item}>
                     <a href={Program} target="__blank" >
                         <FilePdfFilled style={{fontSize:'25px'}} />
                             PROGRAMA 2021
                     </a>
                 </Item>
+            {state.isAuthenticated ? 
+            <>
                 <Item style={styles.item}>
                     <Link to='/profile'>
                             @{state.user.username}

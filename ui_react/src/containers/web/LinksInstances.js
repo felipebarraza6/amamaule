@@ -1,5 +1,5 @@
 import React, { createContext, useReducer, useState,useEffect, useContext } from 'react'
-import {Col, Card, Affix } from 'antd'
+import {Col, Card, Affix, Tag } from 'antd'
 import { MailOutlined, CalendarOutlined,
 		CoffeeOutlined, SendOutlined } from '@ant-design/icons'
 import { groups_reducer } from "../../reducers/groups"
@@ -60,6 +60,9 @@ const LinksInstances = () => {
 				</Card>
 			</Col>
 			<Col lg={5} xs={24} style={{padding:'10px'}}>
+				<Card hoverable title={<><CoffeeOutlined style={styles.icon} /> Mesa de ayuda</>} style={{marginBottom:'10px'}}>
+					Si tienes alguna duda o problema para agendar tu reunión, escríbenos a <Tag style={{fontSize: '15px'}}>ama@qualitynet.cl</Tag>
+				</Card>
 				{size > 800 ?
 				<Affix offsetTop={50}>
 				<Card title={<><MailOutlined style={styles.icon} /> Invitaciones</>} style={{marginBottom:'10px'}}>
