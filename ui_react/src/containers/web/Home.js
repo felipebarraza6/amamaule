@@ -11,7 +11,7 @@ import Services from '../../components/web/Services'
 import NavBarClient from '../../components/web/NavBarClient'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import MeetingVideoChat from "./MeetingVideoChat"
-import IgFeed from "../../components/web/IgFeed";
+
 import ListTransmissions from "../../components/web/transmissions/list/ListTransmissions";
 import HomeTransmissions from '../../components/web/transmissions/home/HomeTransmissions'
 import BannerRondas from '../../assets/img/banner_rondas.jpg'

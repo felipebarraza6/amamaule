@@ -16,6 +16,7 @@ from asgiref.sync import sync_to_async
 class MeetingViewSet(mixins.RetrieveModelMixin,
                     mixins.ListModelMixin,
                     mixins.CreateModelMixin,
+                    mixins.DestroyModelMixin,
                     mixins.UpdateModelMixin,
                     viewsets.GenericViewSet):
     

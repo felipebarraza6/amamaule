@@ -1,6 +1,6 @@
 import React, {useContext} from "react";
 import api_links_instances from "../../api/links_instances/endpoints";
-import {message} from "antd";
+import {message, notification} from "antd";
 import api from "../../api/endpoints";
 
 
@@ -136,5 +136,12 @@ export const updateInvitation = async(data, invitation, dispatch, auth) => {
 }
 
 
-
+export const deleteMeeting = async ({uuid_meeting='', dispatch, auth}) => {
+	const request = api_links_instances.delete_meeting({id_meeting:uuid_meeting}).then((response)=> {
+		console.log(response)
+		notification.success({message:'Reunion cancelado, se ha eliminado la invitación enviada.'})
+		getCalendarData({dispatch:dispatch, auth:auth})
+	}).catch((response)=> {console.log(response)})
+	return request
+}
 

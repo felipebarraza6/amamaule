@@ -54,10 +54,11 @@ const Screen = () => {
                     </>                  
                   ]}
               >
+                  {!state.isAuthenticated &&
                   <a href={Program} target="__blank" style={{color:'white'}}>
                         <FilePdfFilled style={{fontSize:'20px', marginRight:'5px'}} />
                             Programa
-                    </a>
+                    </a>}
               </Nav>
 
               <Switch>
@@ -100,7 +101,6 @@ const Screen = () => {
                     <img src={Avisement} width={'100%'} />
                     <Services />
 
-                    <IgFeed />
                     <img src={TrenMobile} width={'100%'} />
                     <TrenSectionM />
                     <div style={{color:'white', backgroundColor:'#61263d', textAlign:'center', padding:'20px'}}>

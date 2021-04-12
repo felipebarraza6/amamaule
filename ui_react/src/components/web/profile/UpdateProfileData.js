@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {Button, Form, Input, Row, Col, notification} from "antd"
+import {Button, Form, Input, Row, Col, notification, Alert} from "antd"
 import api from '../../../api/endpoints'
 const {TextArea} = Input
 
@@ -32,8 +32,16 @@ const UpdateProfileData = ({user}) => {
 
     return(<>{state &&
         <Form layout={'vertical'} style={{padding:'20px'}} name='update_data' onFinish={UpdateData} initialValues={{'nombre_entidad': state.nombre_entidad, 'cargo':state.cargo, 'perfil_profesional': state.perfil_profesional}}>
-            <Row justify={'center'}>
+                      <Alert
+      message="Advertencia"
+      description="Estos datos seran utilizados en la sección rondas de vinculación"
+      type="warning"
+      showIcon
+      closable
+    />
+            <Row justify={'center'} style={{marginTop:'30px'}}>
                 <Col lg={12} xs={24}>
+
                                 <Form.Item name='nombre_entidad' label={'Nombre de la entidad, organización o proyecto'} rules={[{required:true, message:'Debes ingresar el nombre de tu entidad'},
                                     {max:800, message:'Has superado los 800 caracteres'}]}>
                                     <Input />

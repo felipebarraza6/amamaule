@@ -14,7 +14,7 @@ import api from '../../api/endpoints'
 import UserProfileData from '../../components/web/profile/UpdateProfileData'
 import { Footer } from 'antd/lib/layout/layout'
 import LinksInstances from './LinksInstances'
-
+import {BrowserRouter, Route, Switch} from "react-router-dom";
 import HomeTransmissions from '../../components/web/transmissions/home/HomeTransmissions'
 import UpdateProfileData from "../../components/web/profile/UpdateProfileData";
 const { TextArea } = Input

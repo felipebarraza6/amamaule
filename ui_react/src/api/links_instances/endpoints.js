@@ -1,4 +1,4 @@
-import { GET, POST, UPDATE } from "../config"
+import { GET, POST, UPDATE, DELETE } from "../config"
 
 
 const list_meetings = ({
@@ -34,6 +34,11 @@ const retrieve_meeting = ({uuid = ''}) => {
     return request
 }
 
+const delete_meeting = ({id_meeting= ''}) => {
+    const request = DELETE(`meetings/${id_meeting}/`)
+    return request
+}
+
 const create_meeting = (data) => {
 
     const request = POST('meetings/', data)
@@ -56,6 +61,7 @@ const api_links_instances = {
     create_meeting: create_meeting,
     send_invitation: send_invitation,
     answer_invitation: answer_invitation,
+    delete_meeting: delete_meeting,
     retrieve_meeting: retrieve_meeting
 }
 

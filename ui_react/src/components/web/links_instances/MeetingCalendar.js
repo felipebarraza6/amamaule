@@ -3,8 +3,10 @@ import React, {useContext, useState} from 'react'
 import {Avatar, Badge, Button, Card, Col, Row, Tag, Divider, Typography, Space, Modal, Descriptions} from "antd";
 import {CheckCircleOutlined, ClockCircleOutlined, LikeFilled, TeamOutlined} from "@ant-design/icons";
 import {Link} from 'react-router-dom'
-import {AuthContext} from "../../../App";
+import {AuthContext} from "../../../App"
+import {GroupsContext} from "../../../containers/web/LinksInstances"
 import SingleUser from "./SinglesUser"
+import {deleteMeeting} from "../../../actions/meetings_rounds/getData"
 
 const { Title, Text } = Typography
 
@@ -14,6 +16,7 @@ const MeetingCalendar = ({meeting}) => {
     const [visible, setVisible] = useState(false)
 
     const {state} = useContext(AuthContext)
+    const {state:groupsContext, dispatch} = useContext(GroupsContext)
 
     const start_date_meet = new Date(meeting.start_date.slice(0,16))
 
@@ -112,9 +115,19 @@ const MeetingCalendar = ({meeting}) => {
         </div>)
     }
 
-    const waitingMeeting = (obj) => (<><Card style={{ width:'200px', marginBottom:'10px',borderColor:'#ffc53d', borderRadius:'20px'}}>
+    const waitingMeeting = (obj) => (<><Card style={{ width:'200px', marginBottom:'10px',borderColor:'#ffc53d', borderRadius:'20px'}}
+                                             title={<Row justify={'center'}>
+                                                 <Button style={{backgroundColor:'rgb(255, 197, 61)', borderColor:'rgb(255, 197, 61)', color:'white'}}
+                                                    onClick={()=>{
+                                                        deleteMeeting({uuid_meeting:obj.uuid,dispatch:dispatch,auth:state})
+                                                    }}
+                                                 >
+                                                     CANCELAR
+                                                 </Button>
+                                             </Row>}
+                                            >
 
-                   <Row >
+                   <Row>
                        <Col span={6}>
                         {obj.participans_invited.map((person)=> {
                                console.log(person)
@@ -283,5 +296,6 @@ const MeetingCalendar = ({meeting}) => {
         </>}
         </Col>)
 }
+
 
 export default MeetingCalendar

@@ -93,3 +93,15 @@ export const UPDATE = async(endpoints, data) => {
     return request
 
 }
+
+export const DELETE = async(endpoints, data) => {
+    const token = JSON.parse(localStorage.getItem('access_token'))
+
+    const options = {
+        headers: {
+            Authorization: `Token ${token}`,
+        }
+    }
+    const request = await INSTANCE.delete(endpoints, options)
+    return request
+}
