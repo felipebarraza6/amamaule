@@ -105,7 +105,7 @@ const MeetingVideoChat = ({match})=> {
     console.log(state)
     return(<Row justify={'center'} style={{width:'100%', height:'100%'}} align={'center'} >{state.data && <>
         {state.is_loading ? <Col style={{textAlign:'center',padding:'100px'}} ><Spin size={'large'}/></Col>:<>
-        {state.data.src_host ? <MeetWhereby url={state.url_meet} /> :<Col style={{textAlign:'center',padding:'100px'}}>
+        {state.data.src_host ? <MeetWhereby url={state.data.src_host} /> :<Col style={{textAlign:'center',padding:'100px'}}>
                 <Title> ID REUNION: {state.data.uuid} </Title>
                 <Button onClick={createMeet} type={'primary'} size={'large'} icon={<Badge status={'processing'} color={'white'} />}>Iniciar reunión</Button>
             </Col>

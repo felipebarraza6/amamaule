@@ -173,6 +173,7 @@ const Calendar = () => {
                                     <Row>
                                     <Col span={24}>
                                         {EVENING.friday.map((obj)=><>
+
                                             <MeetingCalendar meeting={obj} />
                                             </>
                                         )}
