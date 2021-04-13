@@ -62,6 +62,8 @@ const MeetingVideoChat = ({match})=> {
         }).then((response)=> {
             window.location.reload()
             setState({...state, is_loading: false})
+        }).catch((error)=> {
+            window.location.reload()
         })
 
 

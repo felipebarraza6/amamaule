@@ -53,7 +53,10 @@ class CreateMeetingSerializer(serializers.Serializer):
     mode = serializers.CharField()
 
     def validate(self, data):
+        get_meeting_obj = Meeting.objects.filter(uuid=data['uuid_meeting']).first()
 
+        if(get_meeting_obj.src_host):
+            raise serializers.ValidationError('Ya existe acceso')
 
         API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmFwcGVhci5pbiIsImF1ZCI6Imh0dHBzOi8vYXBpLmFwcGVhci5pbi92MSIsImV4cCI6OTAwNzE5OTI1NDc0MDk5MSwiaWF0IjoxNjE4MjE3NzYzLCJvcmdhbml6YXRpb25JZCI6OTQxNzgsImp0aSI6IjdiODIxNzFhLWNkM2EtNDBlZS1iODIyLTVmY2I2NTFlY2MxYiJ9.hcmJ8XKGvVZ3mWFxbk1BaiOjNQL43Xa6y6o_Urql4Qg"
 
