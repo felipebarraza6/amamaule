@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { Col, Row, Card, Form, Select, Tag, Input,
-          Upload, Button, message, Checkbox } from 'antd'
+          Upload, Button, message, Checkbox, Alert } from 'antd'
 import { UploadOutlined  } from '@ant-design/icons'
 import { AuthContext } from '../../../App'
 import api from '../../../api/endpoints'
@@ -122,6 +122,14 @@ const ProfileData = () => {
             <Card title='Perfil de Usuario' >
                                    
                                 <Form layout='vertical' onFinish={(values)=> onFinish(values)}>
+                                    <Alert
+                                          description="Estimado Usuario/a: Recordamos actualizar tu información de perfil, escogiendo una foto real y nombre de usuario (nickname).
+                                          Los usuarios/as que no completen correctamente su perfil, no podran acceder a las Rondas de Vinculación"
+                                          type="warning"
+                                          showIcon
+                                          closable
+                                          style={{ marginBottom:'20px' }}
+                                        />
                                       <Row>
                                         {state &&<> 
                                           {is_artis &&  <>

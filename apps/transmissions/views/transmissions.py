@@ -20,8 +20,10 @@ class TransmissionsViewSet(mixins.RetrieveModelMixin,
     filter_backends = (filters.DjangoFilterBackend,)
     lookup_field = 'uuid'
 
+
+
     def get_permissions(self):
-        if self.action in ['retrieve']:
+        if self.action in ['retrieve', 'list']:
             permissions = [AllowAny]
         else:
             permissions = [IsAuthenticated]

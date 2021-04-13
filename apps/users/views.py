@@ -37,11 +37,16 @@ class UserViewSet(viewsets.GenericViewSet,
                 mixins.ListModelMixin,
                 mixins.RetrieveModelMixin,
                 mixins.UpdateModelMixin):
-    
-    queryset = User.objects.filter(is_verified=True)
+        
     serializer_class = UserModelSerializer
     lookup_field = 'username'
     filter_backends = (filters.DjangoFilterBackend,)
+
+    def get_queryset(self):
+        if self.action == 'retrieve':
+            return User.objects.all()
+        if self.action == 'list':
+            User.objects.filter(is_verified=True)
 
     def get_permissions(self):
 

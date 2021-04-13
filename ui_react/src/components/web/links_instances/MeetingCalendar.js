@@ -44,7 +44,7 @@ const MeetingCalendar = ({meeting}) => {
         day = `0${nowDate.getDate()}`
     }
 
-    //var now = new Date(`2021-04-16T11:11`)
+    //var now = new Date(`2021-04-16T11:05`)
     var now = new Date(`${year}-${month}-${day}T${hours}:${minutes}`)
     console.log(`${year}-${month}-${day}T${hours}:${minutes}`)
 

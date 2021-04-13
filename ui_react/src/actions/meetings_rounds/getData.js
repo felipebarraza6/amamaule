@@ -127,7 +127,6 @@ export const updateInvitation = async(data, invitation, dispatch, auth) => {
 	const request = await api_links_instances.answer_invitation(data, invitation).then((response)=>{
 		message.success('Invitacion aceptada!')
 
-		console.log(response)
 		getInvitations({dispatch, auth})
 		getCalendarData({dispatch, auth})
 
@@ -138,8 +137,7 @@ export const updateInvitation = async(data, invitation, dispatch, auth) => {
 
 export const deleteMeeting = async ({uuid_meeting='', dispatch, auth}) => {
 	const request = api_links_instances.delete_meeting({id_meeting:uuid_meeting}).then((response)=> {
-		console.log(response)
-		notification.success({message:'Reunion cancelado, se ha eliminado la invitación enviada.'})
+		notification.success({message:'Reunión cancelada, se ha eliminado la invitación enviada.'})
 		getCalendarData({dispatch:dispatch, auth:auth})
 	}).catch((response)=> {console.log(response)})
 	return request

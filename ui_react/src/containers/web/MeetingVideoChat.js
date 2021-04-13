@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react'
 import api_links_instances from "../../api/links_instances/endpoints";
 import {Button, Row, Col, Typography, message, Spin, Badge} from 'antd'
+import { FullscreenExitOutlined } from '@ant-design/icons'
 import MeetWhereby from "../../components/web/links_instances/MeetWhereby"
-import {POST_CRAETE_MEET} from '../../api/config'
+import api from "../../api/endpoints";
 const { Title } = Typography
 
 const MeetingVideoChat = ({match})=> {
@@ -41,24 +42,33 @@ const MeetingVideoChat = ({match})=> {
         if(date_day<10) {
             date_day = `0${date.getDate()}`
         }
-
+        var mode ='normal'
        date = new Date(`${date_year}-${date_month}-${date_day}T${date_hour}:${date_min}`)
-        const request = await POST_CRAETE_MEET('meetings', {
-                                        "isLocked": true,
-                                        "roomNamePrefix": `/${uuidMeet}`,
-                                        "roomNamePattern": "uuid",
-                                        "roomMode": "normal",
-                                        "startDate": date,
-                                        "endDate": incrementent_date,
-                                        "fields": [
-                                            "hostRoomUrl"
-                                        ]
-                                        }).then((response)=> {
-                                            console.log(response)
-        }).catch((error)=>console.log({error}))
-         }
+        if(state.data){
+            if(state.data.is_programmatic_dialogues){
+                mode = 'group'
+                var add_minutess_max = incrementent_date.getMinutes() + 50
+                incrementent_date.setMinutes(add_minutess_max)
+            }
+        }
+
+        setState({...state, is_loading: true})
+
+        const request = await api_links_instances.create_meeting_whereby({
+            "uuid_meeting":state.data.uuid,
+            "start_date": date,
+            "end_date": incrementent_date,
+            "mode": mode
+        }).then((response)=> {
+            window.location.reload()
+            setState({...state, is_loading: false})
+        })
+
+
+    }
 
     useEffect(()=>{
+
         setState({...state, is_loading:true})
         const token = JSON.parse(localStorage.getItem('access_token'))
         const user = JSON.parse(localStorage.getItem('user'))
@@ -71,7 +81,6 @@ const MeetingVideoChat = ({match})=> {
                     is_loading: false
                 })
                 var participans = response.data.participans_invited
-                console.log(participans)
                 var is_authorized = false
                 participans.map((obj)=> {
                     if(obj.id===user.id){
@@ -79,11 +88,14 @@ const MeetingVideoChat = ({match})=> {
 
                     }
                 })
-                if(is_authorized){
+                if(is_authorized & !response.data.is_end){
                     message.success('Puedes acceder a está reunión')
+
+
                 }else{
                     window.location.assign('/')
                 }
+
 
 
             }).catch((error)=> {
@@ -91,24 +103,37 @@ const MeetingVideoChat = ({match})=> {
             })
             return request
         }
+
         if(user && token){
             getMeetData()
         }else{
             window.location.assign('/')
         }
-
-
     }, [])
 
 
 
-    console.log(state)
-    return(<Row justify={'center'} style={{width:'100%', height:'100%'}} align={'center'} >{state.data && <>
-        {state.is_loading ? <Col style={{textAlign:'center',padding:'100px'}} ><Spin size={'large'}/></Col>:<>
-        {state.data.src_host ? <MeetWhereby url={state.data.src_host} /> :<Col style={{textAlign:'center',padding:'100px'}}>
-                <Title> ID REUNION: {state.data.uuid} </Title>
-                <Button onClick={createMeet} type={'primary'} size={'large'} icon={<Badge status={'processing'} color={'white'} />}>Iniciar reunión</Button>
-            </Col>
+    return(<Row justify={'center'} style={{width:'100%', height:'100%'}} align={'center'} >
+        {state.data && <>
+            {state.is_loading ?
+                <Col style={{textAlign:'center',padding:'100px'}} ><Spin size={'large'}/>
+                </Col>
+                :<>
+                    {state.data.src_host ? <>
+                        <Button onClick={async()=> {
+                            const request =  await api_links_instances.delete_meeting_whereby({
+                                "id_meeting": state.data.message_invited,
+                                "uuid_meeting": state.data.uuid
+                            }).then((response)=> {
+                                window.location.assign('/')
+                            })
+                        }
+                        } size={'large'} style={{ margin:'4px' }} icon = { <FullscreenExitOutlined/> } danger>TERMINAR REUNIÓN</Button>
+                        <MeetWhereby url={state.data.src_host} /> </>:
+                        <Col style={{textAlign:'center',padding:'100px'}}>
+                            <Title> ID REUNION: {state.data.uuid} </Title>
+                            <Button onClick={createMeet} type={'primary'} size={'large'} icon={<Badge status={'processing'} color={'white'} />}>Iniciar reunión</Button>
+               </Col>
         }
 
         </>}

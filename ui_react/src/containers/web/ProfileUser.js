@@ -3,7 +3,7 @@ import { Menu, Result, Col, Row, Button, Badge,
         Descriptions, Card, Tag, Avatar, message, Affix, Form, Input } from 'antd'
 import { RocketOutlined ,UserOutlined, UploadOutlined, 
         CheckOutlined, EditOutlined, ForkOutlined, FileAddFilled,
-        QuestionCircleFilled, LaptopOutlined,
+        EyeOutlined, LaptopOutlined,
         GroupOutlined, CalendarOutlined } from '@ant-design/icons'
 import { AuthContext } from '../../App'
 import { NavBar } from 'antd-mobile'
@@ -108,9 +108,9 @@ const ProfileUser = () => {
               </Button>
               
               <Button disabled={!state.user.is_verified && isMaule===true} disabled={isMaule} shape={'round'} type='link' style={currentNavigation === '3' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('3')}>
-                  <EditOutlined style={styles.icon} />{currentNavigation === '3' && 'Visionados'}
+                  <EyeOutlined style={styles.icon} />{currentNavigation === '3' && 'Visionados'}
               </Button>
-                    <Button disabled={!state.user.is_verified && isMaule===true} disabled={isMaule} shape={'round'} type='link' style={currentNavigation === '5' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('5')}>
+                    <Button shape={'round'} type='link' style={currentNavigation === '5' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('5')}>
                   <ForkOutlined style={styles.icon} />{currentNavigation === '5' && 'Rondas'}
               </Button>
 
@@ -139,7 +139,7 @@ const ProfileUser = () => {
                     Talleres
                   </Menu.Item>}
                   {state.user &&                                         
-                    <Menu.Item disabled={isMaule}  icon={<EditOutlined/>} key={'3'} 
+                    <Menu.Item disabled={isMaule}  icon={<EyeOutlined/>} key={'3'}
                        style={ currentNavigation === '3' ?  styles.hoverItem : styles.menuItem  } >
                       Visionados
                     </Menu.Item>                    

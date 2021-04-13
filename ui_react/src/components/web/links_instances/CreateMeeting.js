@@ -118,7 +118,7 @@ const CreateMeeting = ({invited}) => {
                     </Form.Item>
 
                     <Form.Item name={'message'} rules={[{max:800, message:'Has superado los 800 caracteres...'}]}>
-                        <TextArea  size={'large'} placeholder={'Escribe tu mensaje (opcional)'} rows={4} style={{width:'600px'}} />
+                        <TextArea  size={'large'} placeholder={'Escribe tu mensaje (opcional)'} rows={4} style={{width:'400px'}} />
                     </Form.Item>
 
                     <Form.Item >

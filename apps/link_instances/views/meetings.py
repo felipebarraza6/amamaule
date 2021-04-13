@@ -8,7 +8,9 @@ from rest_framework.response import Response
 from apps.link_instances.models import Meeting, Invitation
 from apps.link_instances.serializers import (MeetingModelSerializer,
                                              ListMeetingModelSerializer,
-                                             CreateMeetingModelSerializer)
+                                             CreateMeetingModelSerializer,
+                                             CreateMeetingSerializer,
+                                             FinishMeetingSerializer)
 from django_filters import rest_framework as filters
 from asgiref.sync import sync_to_async
 
@@ -55,4 +57,18 @@ class MeetingViewSet(mixins.RetrieveModelMixin,
     
     filterset_class = MeetingFilter
 
-    
+    @action(detail=False, methods=['post'])
+    def create_meeting(self, request):
+        serializer = CreateMeetingSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        data = serializer.data
+
+        return Response(data, status=status.HTTP_200_OK)
+
+    @action(detail=False, methods=['post'])
+    def finish_meeting(self, request):
+        serializer = FinishMeetingSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        data = serializer.data
+
+        return Response(data, status=status.HTTP_200_OK)

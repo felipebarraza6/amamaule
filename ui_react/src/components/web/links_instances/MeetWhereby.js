@@ -5,8 +5,8 @@ const MeetWhereby = ({url}) => {
 
     return(<iframe
                 src={url}
-                allow="camera; microphone; fullscreen; speaker; display-capture"
-                height="100%" width="100%"
+                allow="camera; microphone; speaker;"
+                style={{minHeight:'660px', minWidth:'100%'}}
     />)
 
 }

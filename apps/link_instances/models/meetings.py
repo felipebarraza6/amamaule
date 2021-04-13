@@ -8,7 +8,7 @@ class Meeting(APIModel):
     owner = models.ForeignKey("users.User", on_delete=models.CASCADE) 
     start_date = models.DateTimeField(blank=True, null=True)
     end_date = models.DateTimeField(blank=True, null=True)
-    src_host = models.CharField(max_length=120, unique=True, blank=True, null=True)
+    src_host = models.CharField(max_length=720, blank=True, null=True)
     message_invited = models.TextField(max_length=320, blank=True, null=True)
     participans_invited = models.ManyToManyField("users.User", blank=True, related_name='metting_inviteds')
     participans_validated = models.ManyToManyField("users.User", blank=True, related_name='metting_confimeds')
