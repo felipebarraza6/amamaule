@@ -11,7 +11,8 @@ class Transmission(APIModel):
         ('C', 'conferencias'),
         ('MT', 'mesas_tematicas'),
         ('IC', 'intercambios_crativos'),        
-        ('SC', 'showcases')
+        ('SC', 'showcases'),
+        ('0', 'obras')
     ]
 
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)

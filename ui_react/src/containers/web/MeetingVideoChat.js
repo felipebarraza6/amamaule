@@ -82,6 +82,25 @@ const MeetingVideoChat = ({match})=> {
                     data: response.data,
                     is_loading: false
                 })
+                var is_dialogue = response.data.is_programmatic_dialogues
+                            var time_conunt = 0
+                            if(is_dialogue){
+                                time_conunt = 30 * 60 * 10000
+                            }else {
+                                time_conunt = 600000
+                            }
+                setInterval(async() => {
+
+
+                            const request =  await api_links_instances.delete_meeting_whereby({
+                                "id_meeting": response.data.message_invited,
+                                "uuid_meeting": response.data.uuid
+
+                            }).then((response)=> {
+                                window.location.assign('/')
+                            })
+                            }, time_conunt)
+
                 var participans = response.data.participans_invited
                 var is_authorized = false
                 participans.map((obj)=> {

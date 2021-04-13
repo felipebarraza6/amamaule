@@ -25,8 +25,8 @@ const ListTransmissions = ({globalState, changeState, is_public}) => {
         const create_invitation = await api_transmissions.invitations.create({"transmission": transmission})
                         .then((response)=> {
                             setInvitation(response.data.uuid)
-                            message.success('Estamos creando tu acceso privado...')
-                            window.location.href = `http://localhost:3001/${response.data.uuid}/`
+                            message.success('Encriptando...')
+                            window.location.href = `https://webinarsdk.amamaule.cl/${response.data.uuid}/`
                         })
                         .catch((error)=> {
                             message.error('Error al ingresar... intentalo más tarde')
@@ -161,11 +161,14 @@ const ListTransmissions = ({globalState, changeState, is_public}) => {
                         Mesas temáticas
                     </Menu.Item>
                     <Menu.Item style={{backgroundColor:'rgb(97, 38, 61)', color:'white'}} key='4' >
-                        Foro Intercambios crativos
+                        Foro Intercambios creativos
                     </Menu.Item>
                     <Menu.Item style={{backgroundColor:'rgb(97, 38, 61)', color:'white'}} key='5' >
                         Evento Satelite
                     </Menu.Item>
+                     <Menu.Item style={{backgroundColor:'rgb(97, 38, 61)', color:'white'}} key='6' >
+                        Obras
+                </Menu.Item>
                 </>
             }
 
