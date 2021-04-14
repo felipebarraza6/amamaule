@@ -1,6 +1,6 @@
 import React, {useContext, useState, useEffect } from 'react'
 import { Menu, Result, Col, Row, Button, Badge,
-        Descriptions, Card, Tag, Avatar, message, Affix, Form, Input } from 'antd'
+        Descriptions, Card, Tag, Avatar, message, Affix, Form, Inpu, notification, Input } from 'antd'
 import { RocketOutlined ,UserOutlined, UploadOutlined, 
         CheckOutlined, EditOutlined, ForkOutlined, FileAddFilled,
         EyeOutlined, LaptopOutlined,
@@ -40,8 +40,9 @@ const ProfileUser = () => {
   
     }
 
-    
+    var access_visio = false
     if(state.user){
+
       var type1 = state.user.type_user1
       var type2 = state.user.type_user2
       var type3 = state.user.type_user3
@@ -50,8 +51,10 @@ const ProfileUser = () => {
         type1 = 'Artista / Manager'
       }else if(type1 === 'GES'){
         type1 = 'Gestion Cultural'
+          access_visio = true
       }else if(type1 === 'RE'){
         type1 = 'Representante'
+          access_visio = true
       }else if(type1 === 'PROV'){
         type1 = 'Proveedor'
       }else if(type1 === 'PRO'){
@@ -62,8 +65,10 @@ const ProfileUser = () => {
         type2 = 'Artista / Manager'
       }else if(type2 === 'GES'){
         type2 = 'Gestion Cultural'
+           access_visio = true
       }else if(type2 === 'RE'){
         type2 = 'Representante'
+           access_visio = true
       }else if(type2 === 'PROV'){
         type2 = 'Proveedor'
       }else if(type2 === 'PRO'){
@@ -74,8 +79,10 @@ const ProfileUser = () => {
         type3 = 'Artista / Manager'
       }else if(type3 === 'GES'){
         type3 = 'Gestion Cultural'
+        access_visio = true
       }else if(type3 === 'RE'){
         type3 = 'Representante'
+     access_visio = true
       }else if(type3 === 'PROV'){
         type3 = 'Proveedor'
       }else if(type3 === 'PRO'){
@@ -84,11 +91,14 @@ const ProfileUser = () => {
 
     }
 
-
-   
-
     useEffect(()=> {
       setSize(window.innerWidth)
+      if(access_visio){
+          notification.info({message:'Propuestas Maulinas para visionar durante AMA 2021. Accede y conoce estas propuestas durante el encuentro',
+              description:<Button onClick={()=>setCurrentNavigation('3')} type={'primary'}>REVISAR</Button>
+              }
+          )
+      }
       
     },[])
 
@@ -107,7 +117,7 @@ const ProfileUser = () => {
                   <CheckOutlined style={styles.icon} />{currentNavigation === '2' && 'Talleres'}
               </Button>
               
-              <Button disabled={!state.user.is_verified && isMaule===true} disabled={isMaule} shape={'round'} type='link' style={currentNavigation === '3' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('3')}>
+              <Button disabled={!access_visio} shape={'round'} type='link' style={currentNavigation === '3' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('3')}>
                   <EyeOutlined style={styles.icon} />{currentNavigation === '3' && 'Visionados'}
               </Button>
                     <Button shape={'round'} type='link' style={currentNavigation === '5' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('5')}>
@@ -139,7 +149,7 @@ const ProfileUser = () => {
                     Talleres
                   </Menu.Item>}
                   {state.user &&                                         
-                    <Menu.Item disabled={isMaule}  icon={<EyeOutlined/>} key={'3'}
+                    <Menu.Item disabled={!access_visio}  icon={<EyeOutlined/>} key={'3'}
                        style={ currentNavigation === '3' ?  styles.hoverItem : styles.menuItem  } >
                       Visionados
                     </Menu.Item>                    

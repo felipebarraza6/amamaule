@@ -23,8 +23,8 @@ const ModalYtVideo = ({obj}) => {
     return(
         <React.Fragment>
             {obj.is_live ?
-            <Button onClick={()=>setVisible(true)} type='primary' danger >EN VIVO <YoutubeOutlined style={{fontSize:'16px'}} /></Button>:
-            <Button onClick={()=>setVisible(true)} type='primary' danger >VER <YoutubeOutlined style={{fontSize:'16px'}} /></Button>
+            <Button onClick={()=>setVisible(true)}  type='primary' danger >EN VIVO <YoutubeOutlined style={{fontSize:'20px'}} /></Button>:
+            <Button onClick={()=>setVisible(true)} type='primary' danger >VER <YoutubeOutlined style={{fontSize:'20px'}} /></Button>
             }
             <Modal  
                 onCancel={()=>setVisible(false)} 

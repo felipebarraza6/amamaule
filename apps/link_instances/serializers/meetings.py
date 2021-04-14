@@ -1,14 +1,19 @@
 from apps.link_instances.models import Meeting, Invitation
+from apps.users.models import User
 from rest_framework import serializers
 from apps.users.serializers import UserModelSerializer
 from .invitations import InvitationModelSerializer
+from django.core.mail import send_mail
+from django.conf import settings
 import requests
 
 
 class MeetingModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Meeting
-        fields = ('__all__')        
+        fields = ('__all__')
+
+
 
 class CreateMeetingModelSerializer(serializers.ModelSerializer):
 
@@ -16,6 +21,32 @@ class CreateMeetingModelSerializer(serializers.ModelSerializer):
         model = Meeting
         fields = '__all__'
 
+    def validate(self, attrs):
+
+        owner = attrs['owner']
+        participans = attrs['participans_invited']
+        get_user = User.objects.get(id=owner.id)
+        obj_participant = {}
+
+        for element in participans:
+            if element.id != owner.id:
+                invited = User.objects.get(id=element.id)
+                obj_participant = invited
+
+        send_mail('ACABAS DE ENVIAR UNA SOLICITUD PARA UNA REUNIÓN',
+                 ('¡Hola! {}, acabas de enviar una solicitud para una reunión online con un participante de las Rondas de Vinculación de AMA Maule. Dirígete a la sección y revisa el estado de tu reunión. ').format(get_user.first_name),
+                settings.DEFAULT_FROM_EMAIL,
+                [get_user.email])
+
+        send_mail('ACABAS DE RECIBIR UNA INVITACION PARA UNA REUNIÓN',
+                  (
+                      '¡Hola! {}, has recibido una solicitud para una reunión online en las Rondas de Vinculación de AMA Maule. Dirígete a la sección y confirma tu reunión. Dirígete a la sección y confirma tu reunión.').format(
+                      obj_participant.first_name),
+                      settings.DEFAULT_FROM_EMAIL,
+                      [obj_participant.email]
+                  )
+
+        return attrs
 
 class FinishMeetingSerializer(serializers.Serializer):
     id_meeting = serializers.CharField(max_length=122)

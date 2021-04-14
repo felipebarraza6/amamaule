@@ -37,7 +37,7 @@ const ListTransmissions = ({globalState, changeState, is_public}) => {
     useEffect(()=> {
 
         async function get_transmissions(){
-            const request  = await api_transmissions.transmissions.list(false, 'C').then((response)=> {
+            const request  = await api_transmissions.transmissions.list('', 'C').then((response)=> {
                 if(response.data.count > 0){
                 setState({...state, transmissions: response.data.results, no_live:false})                                
             }else{
@@ -57,7 +57,7 @@ const ListTransmissions = ({globalState, changeState, is_public}) => {
             <Menu theme='dark' mode='horizontal' style={{ width:'100%' ,textAlign:'center', backgroundColor:is_public ? '#F58B88': 'rgb(97, 38, 61)', color:'white'}} onClick={async(current)=>{
                 if(current.key==='0'){
                 setPage(0)
-                const request  = await api_transmissions.transmissions.list(true, '').then((response)=> {
+                const request  = await api_transmissions.transmissions.list('', '').then((response)=> {
                     if(response.data.count > 0){                                                
                         setState({...state, transmissions: response.data.results, no_live:false})                                
                     }else{
