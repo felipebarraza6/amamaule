@@ -54,7 +54,7 @@ const ListTransmissions = ({globalState, changeState, is_public}) => {
     return(
         <React.Fragment>
             <Col span={24}>
-            <Menu theme='dark' mode='horizontal' style={{ textAlign:'center', backgroundColor:is_public ? '#F58B88': 'rgb(97, 38, 61)', color:'white'}} onClick={async(current)=>{
+            <Menu theme='dark' mode='horizontal' style={{ width:'100%' ,textAlign:'center', backgroundColor:is_public ? '#F58B88': 'rgb(97, 38, 61)', color:'white'}} onClick={async(current)=>{
                 if(current.key==='0'){
                 setPage(0)
                 const request  = await api_transmissions.transmissions.list(true, '').then((response)=> {
@@ -166,9 +166,6 @@ const ListTransmissions = ({globalState, changeState, is_public}) => {
                     <Menu.Item style={{backgroundColor:'rgb(97, 38, 61)', color:'white'}} key='5' >
                         Evento Satelite
                     </Menu.Item>
-                     <Menu.Item style={{backgroundColor:'rgb(97, 38, 61)', color:'white'}} key='6' >
-                        Obras
-                </Menu.Item>
                 </>
             }
 

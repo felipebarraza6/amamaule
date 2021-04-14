@@ -18,7 +18,7 @@ const Workshops = () => {
         if(status===false){
           message.info('Has cancelar tu inscripción')
         }else{
-          message.success('Inscripcion completada!')
+          message.success('Inscripción completada!')
         }
 
     }).catch((error)=> {
@@ -72,7 +72,7 @@ const Workshops = () => {
                      CANCELAR PARTICIPACIÓN
                 </Button>
                 <Button disabled type='dashed' style={{marginLeft:'20px'}} >
-                       <a href='https://zoom.us/j/96591877626' target='__blank'>
+                       <a href='https://zoom.us/j/93241699378' target='__blank'>
                         ACCEDER AL TALLER
                        </a>
                 </Button>
@@ -97,7 +97,7 @@ const Workshops = () => {
                       CANCELAR PARTICIPACIÓN
                   </Button>
                   <Button disabled type='dashed' style={{marginLeft:'20px'}} >
-                    <a href='https://zoom.us/j/96591877626' target='__blank'>
+                    <a href='https://zoom.us/j/95611751444' target='__blank'>
                     ACCEDER AL TALLER
                     </a>
                   </Button>
@@ -132,7 +132,7 @@ const Workshops = () => {
                       CANCELAR PARTICIPACIÓN
                   </Button>
                   <Button disabled type='dashed' style={{marginLeft:'20px'}} >
-                       <a href='https://zoom.us/j/96591877626' target='__blank'>
+                       <a href='https://zoom.us/j/99103198492' target='__blank'>
                         ACCEDER AL TALLER
                        </a>
                   </Button>
@@ -163,7 +163,7 @@ const Workshops = () => {
                   <Button style={styles.cancelButton}  onClick={ ()=> updateProfile({ taller_herr_gestion: false  },false)  }  >
                     CANCELAR PARTICIPACIÓN</Button>
                     <Button disabled type='dashed' style={{marginLeft:'20px'}} >
-                       <a href='https://zoom.us/j/96591877626' target='__blank'>
+                       <a href='https://zoom.us/j/93410776956' target='__blank'>
                         ACCEDER AL TALLER
                        </a>
                     </Button>
@@ -202,7 +202,7 @@ const Workshops = () => {
                   <Button style={styles.cancelButton}  onClick={ ()=> updateProfile({ taller_financiamiento: false  },false)  }  >
                     CANCELAR PARTICIPACIÓN</Button>
                     <Button disabled type='dashed' style={{marginLeft:'20px'}} >
-                       <a href='https://zoom.us/j/96591877626' target='__blank'>
+                       <a href='https://zoom.us/j/99922679597' target='__blank'>
                         ACCEDER AL TALLER
                        </a>
                     </Button>

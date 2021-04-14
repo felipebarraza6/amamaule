@@ -13,7 +13,7 @@ const MeetingVideoChat = ({match})=> {
     const initialState = {
         data: null,
         is_loading: false,
-        url_meet: ''
+        user: ''
     }
 
     const [state, setState] = useState(initialState)
@@ -80,7 +80,8 @@ const MeetingVideoChat = ({match})=> {
                 setState({
                     ...state,
                     data: response.data,
-                    is_loading: false
+                    is_loading: false,
+                    user: user
                 })
                 var is_dialogue = response.data.is_programmatic_dialogues
                             var time_conunt = 0
@@ -150,7 +151,7 @@ const MeetingVideoChat = ({match})=> {
                             })
                         }
                         } size={'large'} style={{ margin:'4px' }} icon = { <FullscreenExitOutlined/> } danger>TERMINAR REUNIÓN</Button>
-                        <MeetWhereby url={state.data.src_host} /> </>:
+                        <MeetWhereby url={state.data.src_host} user={state.user} /> </>:
                         <Col style={{textAlign:'center',padding:'100px'}}>
                             <Title> ID REUNION: {state.data.uuid} </Title>
                             <Button onClick={createMeet} type={'primary'} size={'large'} icon={<Badge status={'processing'} color={'white'} />}>Iniciar reunión</Button>

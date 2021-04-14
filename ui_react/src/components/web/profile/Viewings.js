@@ -12,15 +12,9 @@ const Viewings = () => {
 
     const {state:user} = useContext(AuthContext)
 
-    const initialState = {
-        data: null,
-        is_loading: false,
-        profile: null,
-        numberElements:0
-    }
+    const [data, setData] = useState()
+    const [profile, setProfile]= useState()
 
-    const [state, setState] = useState(initialState)
-    console.log(state)
 
     useEffect(()=> {
 
@@ -29,11 +23,16 @@ const Viewings = () => {
 
             const request_viewings = await api.viewings.list_viewings().then((response)=> {
                 console.log(response.count)
-                setState({...state, data:response.results, is_loading: false, numberElements:response.count})
+                setData(response.results)
             })
             const request_user = await api.user.get_profile_center(user.user.id).then((response)=> {
-                setState({...state, profile:response.data})
+                setProfile(response.data)
             })
+
+            return {
+                request_viewings,
+                request_user
+            }
 
         }
 
@@ -41,16 +40,15 @@ const Viewings = () => {
 
     }, [])
 
-    console.log(state)
     return(
         <><Row style={{'marginBottom':'20px', 'marginLeft':'20px'}}>
             <Col lg={18} xs={24}>
             <Title>Visionados seleccionados 2021</Title>
                 </Col>
             <Col lg={6} xs={24}>
-                {state.profile &&
+                {profile &&
                 <>
-                    {state.profile.is_aproved_visio &&
+                    {profile.is_aproved_visio &&
                     <Card hoverable bordered={true} style={{backgroundColor:'rgb(97, 38, 61)', color:'white', borderRadius:'20px'}} width={'10px'} >
                         <Title level={4} style={{textAlign:'center', color:'white'}}>
                         ¡Tu visionado ha sido seleccionado!
@@ -63,9 +61,10 @@ const Viewings = () => {
             </Col>
         </Row>
       <Row style={{backgroundColor:'white', padding:'30px'}}>
-          {state.numberElements > 0 ?
+
+          {data &&
             <>
-                {state.data.map((obj, index)=>
+                {data.map((obj, index)=>
                     <Col xs={24} lg={6}><Card hoverable style={{margin:'5px', borderRadius:'20px',backgroundColor:'rgb(97, 38, 61)'}} extra={<Text style={{color:'white', borderRadius:'10%',padding:'7px',backgroundColor:'rgb(206, 61, 75'}}>{index + 1}</Text>}  title={<Text style={{color:'white'}}>{obj.user.first_name} {obj.user.last_name}</Text>}>
                     <Row>
                         <Col lg={12} xs={24} align={'center'}>
@@ -87,11 +86,7 @@ const Viewings = () => {
                         </Col>
                     </Row>
                 </Card></Col>)}
-                    </>:<Col lg={24} xs={24} ><Result
-                  status="500"
-                  title="No disponible"
-                  subTitle="Lo sentimos, aún no hay información disponible."
-              /></Col>
+                    </>
           }
       </Row>
             </>
