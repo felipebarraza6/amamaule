@@ -60,7 +60,7 @@ export const getCalendarData = async ({dispatch, auth}) => {
 				})
 
             const getMeetingThursdayAfternoon = await api_links_instances.list_meetings({
-				invited:auth.user.id, year:'2021', month:'04', hour:'16', range_minute:'0,30',day:'15', is_active:'true'})
+				invited:auth.user.id, year:'2021', month:'04', range_hour:'16, 18',day:'15', is_active:'true'})
 				.then((response)=> {
 					dispatch({
 						type:'SET_AFTERNOON_THURSDAY',
@@ -69,7 +69,7 @@ export const getCalendarData = async ({dispatch, auth}) => {
 				})
 
             const getMeetingFridayAfternoon = await api_links_instances.list_meetings({
-				invited:auth.user.id, year:'2021', month:'04', hour:'16', range_minute:'0,30',day:'16', is_active:'true'})
+				invited:auth.user.id, year:'2021', month:'04', range_hour:'16, 18', day:'16', is_active:'true'})
 				.then((response)=> {
 					dispatch({
 						type:'SET_AFTERNOON_FRIDAY',
@@ -78,7 +78,7 @@ export const getCalendarData = async ({dispatch, auth}) => {
 				})
 
 			const getMeetingSaturdayAfternoon = await api_links_instances.list_meetings({
-				invited:auth.user.id, year:'2021', month:'04', hour:'16', range_minute:'0,30',day:'17', is_active:'true'})
+				invited:auth.user.id, year:'2021', month:'04', range_hour:'16, 18', day:'17', is_active:'true'})
 				.then((response)=> {
 					dispatch({
 						type:'SET_AFTERNOON_SATURDAY',
@@ -101,25 +101,58 @@ export const getCalendarData = async ({dispatch, auth}) => {
 
 export const postMeeting = async(data, state, dispatch, invited) => {
 
+	let start_date = new Date(data.start_date)
+	var day = start_date.getDate()
+    var month = start_date.getMonth() + 1
+    var year = start_date.getFullYear()
+    var hours = start_date.getHours()
+    var minutes = start_date.getMinutes()
+
+	console.log(console.log(hours))
+	var str_date
+
+	let owner = data.owner
+	console.log(owner)
+
+	const validate_is_exist = await api_links_instances.list_meetings({
+		user:owner,
+		day: day,
+		hour:hours,
+		minute: minutes,
+		is_validated: true
+	}).then(async(response)=> {
+		if(response.data.count > 0){
+			notification.error({title:'IMPOSIBLE CREAR REUNIÓ', description:'Su reunión no a podido ser creada ya que, ya tienes una reunion agendada en la fecha seleccionada'})
+		}else{
+			const request_meeting = await api_links_instances.create_meeting(data)
+				.then((response)=> {
+					uuid_meeting = response.data.uuid
+					dispatch({type:'SET_RELOAD', value: true})
+					getCalendarData({dispatch:dispatch, auth:state})
+					dispatch({type:'SET_RELOAD', value: false})
+			}).catch((error)=> {
+				notification.error({message:'ERROR EN CREAR REUNION'})
+				})
+
+			const send_invitation = await api_links_instances.send_invitation({
+
+				meeting: uuid_meeting,
+				invited: invited.id,
+				message: data.message
+			}).then((response)=> {
+				getInvitations({dispatch:dispatch, auth:state})
+			}).catch((response)=> {
+				notification.error({message:'ERROR EN ENVIAR INVITACION'})
+			})
+		}
+
+
+
+	})
+
 	var uuid_meeting = ''
 
-	const request_meeting = await api_links_instances.create_meeting(data).then((response)=> {
-		uuid_meeting = response.data.uuid
-		dispatch({type:'SET_RELOAD', value: true})
-		getCalendarData({dispatch:dispatch, auth:state})
-		dispatch({type:'SET_RELOAD', value: false})
-	})
 
-	const send_invitation = await api_links_instances.send_invitation({
-		meeting: uuid_meeting,
-		invited: invited.id,
-		message: data.message
-	}).then((response)=> {
-		console.log(response)
-		getInvitations({dispatch:dispatch, auth:state})
-	})
-
-	return request_meeting
 }
 
 export const updateInvitation = async(data, invitation, dispatch, auth) => {

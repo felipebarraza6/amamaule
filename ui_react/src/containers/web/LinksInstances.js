@@ -64,11 +64,11 @@ const LinksInstances = () => {
 					Si tienes alguna duda o problema para agendar tu reunión, escríbenos a <Tag style={{fontSize: '15px'}}>ama@qualitynet.cl</Tag>
 				</Card>
 				{size > 800 ?
-				<Affix offsetTop={50}>
+
 				<Card title={<><MailOutlined style={styles.icon} /> Invitaciones</>} style={{marginBottom:'10px'}}>
 					<ListInvitations invitations={state.my_invitations} />
 				</Card>
-				</Affix> : <Card title={<><MailOutlined style={styles.icon} /> Invitaciones</>} style={{marginBottom:'10px'}}>
+				 : <Card title={<><MailOutlined style={styles.icon} /> Invitaciones</>} style={{marginBottom:'10px'}}>
 					<ListInvitations invitations={state.my_invitations} />
 				</Card>}
 			</Col>

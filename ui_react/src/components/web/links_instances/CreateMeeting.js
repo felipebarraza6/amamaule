@@ -29,6 +29,8 @@ const CreateMeeting = ({invited}) => {
             'message': values.message
         }
 
+
+
         postMeeting(values, contextUser, dispatch, invited).then((response)=> {
             form.resetFields()
             setVisible(false)
@@ -62,17 +64,21 @@ const CreateMeeting = ({invited}) => {
                     <Form.Item name='hour_minutes' rules={[{required:true, message:'Debes seleccionar la hora'}]} >
                         <TimePicker
                             size={'large'}
-                            disabledHours={() => [0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ,10, 12,13, 14, 15, 17, 18, 19, 20, 21, 22, 23, 24]}
+                            disabledHours={() => [0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ,10, 12,13, 14, 15,  18, 19, 20, 21, 22, 23, 24]}
                             minuteStep={10}
                             disabledMinutes={(selectedHour)=> {
                                 if (selectedHour === 11) {
                                     return [ 51, 52, 53, 54, 55, 56, 57, 58, 59 ]
                                 }
                                 if (selectedHour === 16){
-                                    return [  21,22,23,24,25,26,27,28,,29,30,31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59 ]
+                                    return [  0, 10, 20 ]
+                                }
+                                if(selectedHour === 17){
+                                    return [ 30, 40, 50]
                                 }
                             }}
                             hideDisabledOptions = {true}
+                            inputReadOnly={true}
                             showNow={false} style={{width:'100%'}} placeholder={'Selecciona la hora(formato 24 hrs)'} format={'HH:mm'} />
                     </Form.Item>
                     </Col>
@@ -103,15 +109,17 @@ const CreateMeeting = ({invited}) => {
                     <Form.Item name='hour_minutes' rules={[{required:true, message:'Debes seleccionar la hora'}]} >
                         <TimePicker
                             size={'large'}
-                            disabledHours={() => [0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ,10, 12,13, 14, 15, 17, 18, 19, 20, 21, 22, 23, 24]}
-                            m
+                            disabledHours={() => [0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ,10, 12,13, 14, 15,  18, 19, 20, 21, 22, 23, 24]}
                             minuteStep={10}
                             disabledMinutes={(selectedHour)=> {
                                 if (selectedHour === 11) {
                                     return [ 51, 52, 53, 54, 55, 56, 57, 58, 59 ]
                                 }
                                 if (selectedHour === 16){
-                                    return [  21,22,23,24,25,26,27,28,,29,30,31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59 ]
+                                    return [  0, 10, 20 ]
+                                }
+                                if(selectedHour === 17){
+                                    return [ 30, 40, 50]
                                 }
                             }}
                             hideDisabledOptions = {true}
