@@ -17,6 +17,7 @@ import LinksInstances from './LinksInstances'
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import HomeTransmissions from '../../components/web/transmissions/home/HomeTransmissions'
 import UpdateProfileData from "../../components/web/profile/UpdateProfileData";
+import ListTransmissions from "../../components/web/transmissions/list/ListTransmissions";
 const { TextArea } = Input
 
 const ProfileUser = () => {
@@ -164,11 +165,9 @@ const ProfileUser = () => {
                   </>
                   }
               </Menu></Affix>}
-              <Row >
-                  {currentNavigation === '0' && 
-                    <Row justify={'center'}>
-                      <HomeTransmissions />
-                    </Row>
+              <Row align={'center'} >
+                  {currentNavigation === '0' &&
+                      <ListTransmissions />
                   }
                   {currentNavigation === '5' && 
                     <LinksInstances />

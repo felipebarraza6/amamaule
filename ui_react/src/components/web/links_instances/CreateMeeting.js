@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react'
 import {SendOutlined} from "@ant-design/icons"
-import {Button, Tooltip, Form, Drawer, Select, TimePicker,Col, message,Row, Typography, Input} from "antd"
+import {Button, Tooltip, Form, Drawer, Select, TimePicker,Col, Row, Typography, Input} from "antd"
 import {AuthContext} from '../../../App'
 import {GroupsContext} from '../../../containers/web/LinksInstances'
 import {postMeeting} from '../../../actions/meetings_rounds/getData'
@@ -104,6 +104,7 @@ const CreateMeeting = ({invited}) => {
                         <TimePicker
                             size={'large'}
                             disabledHours={() => [0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ,10, 12,13, 14, 15, 17, 18, 19, 20, 21, 22, 23, 24]}
+                            m
                             minuteStep={10}
                             disabledMinutes={(selectedHour)=> {
                                 if (selectedHour === 11) {
@@ -114,6 +115,7 @@ const CreateMeeting = ({invited}) => {
                                 }
                             }}
                             hideDisabledOptions = {true}
+                            inputReadOnly={true}
                             showNow={false} style={{width:'300px'}} placeholder={'Selecciona la hora(formato 24 hrs)'} format={'HH:mm'} />
                     </Form.Item>
 

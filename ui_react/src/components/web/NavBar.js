@@ -30,7 +30,7 @@ const NavBar = () => {
             <>
                 <Item style={styles.item}>
                     <Link to='/profile'>
-                            @{state.user.username}
+                          Ir a mi perfil:  @{state.user.username}
                     </Link>
                 </Item>
                 <Item style={styles.itemLogOut}> 
@@ -44,6 +44,7 @@ const NavBar = () => {
             
                 <Item style={styles.item}> <Login /> </Item>
             }
+
            </Menu>
         </Header>
     )

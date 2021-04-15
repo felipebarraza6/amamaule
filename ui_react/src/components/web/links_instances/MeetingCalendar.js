@@ -81,10 +81,20 @@ const MeetingCalendar = ({meeting}) => {
 
     const confiirmMeeting = (obj) => {
 
-        return(<div onClick={() => {
-            setVisible(true)
-        }}><Card hoverable
+        return(<><Card hoverable
+                 title={<Row justify={'center'}>
+                                                 <Button danger
+                                                    onClick={()=>{
+                                                        deleteMeeting({uuid_meeting:obj.uuid,dispatch:dispatch,auth:state})
+                                                    }}
+                                                 >
+                                                     CANCELAR
+                                                 </Button>
+                                             </Row>}
                  style={{width: '200px', marginBottom: '10px', borderColor: '#52c41a', borderRadius: '20px'}}>
+            <div onClick={() => {
+            setVisible(true)
+        }}>
             <Row>
                 <Col span={6}>
                     {obj.participans_invited.map((person) => {
@@ -110,9 +120,9 @@ const MeetingCalendar = ({meeting}) => {
 
                 </Col>
             </Row>
+            </div>
         </Card>
-            <Divider style={{width: '200px'}}/>
-        </div>)
+            <Divider style={{width: '200px'}}/></>)
     }
 
     const waitingMeeting = (obj) => (<><Card style={{ width:'200px', marginBottom:'10px',borderColor:'#ffc53d', borderRadius:'20px'}}

@@ -6,6 +6,7 @@ from .invitations import InvitationModelSerializer
 from django.core.mail import send_mail
 from django.conf import settings
 import requests
+from datetime import datetime
 
 
 class MeetingModelSerializer(serializers.ModelSerializer):
@@ -24,6 +25,10 @@ class CreateMeetingModelSerializer(serializers.ModelSerializer):
     def validate(self, attrs):
 
         owner = attrs['owner']
+
+
+
+
         participans = attrs['participans_invited']
         get_user = User.objects.get(id=owner.id)
         obj_participant = {}
@@ -33,18 +38,18 @@ class CreateMeetingModelSerializer(serializers.ModelSerializer):
                 invited = User.objects.get(id=element.id)
                 obj_participant = invited
 
-        send_mail('ACABAS DE ENVIAR UNA SOLICITUD PARA UNA REUNIÓN',
+        """send_mail('ACABAS DE ENVIAR UNA SOLICITUD PARA UNA REUNIÓN',
                  ('¡Hola! {}, acabas de enviar una solicitud para una reunión online con un participante de las Rondas de Vinculación de AMA Maule. Dirígete a la sección y revisa el estado de tu reunión. ').format(get_user.first_name),
                 settings.DEFAULT_FROM_EMAIL,
                 [get_user.email])
 
         send_mail('ACABAS DE RECIBIR UNA INVITACION PARA UNA REUNIÓN',
                   (
-                      '¡Hola! {}, has recibido una solicitud para una reunión online en las Rondas de Vinculación de AMA Maule. Dirígete a la sección y confirma tu reunión. Dirígete a la sección y confirma tu reunión.').format(
+                      '¡Hola! {}, has recibido una solicitud para una reunión online en las Rondas de Vinculación de AMA Maule. Dirígete a la sección y confirma tu reunión.').format(
                       obj_participant.first_name),
                       settings.DEFAULT_FROM_EMAIL,
                       [obj_participant.email]
-                  )
+                  )"""
 
         return attrs
 

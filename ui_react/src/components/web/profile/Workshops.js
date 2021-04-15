@@ -68,10 +68,7 @@ const Workshops = () => {
             <>
               {profile.taller_montaje ?
                 <>
-                <Button style={styles.cancelButton}  onClick={ ()=> updateProfile({ taller_montaje: false  },false)  }  >
-                     CANCELAR PARTICIPACIÓN
-                </Button>
-                <Button disabled type='dashed' style={{marginLeft:'20px'}} >
+                <Button type='dashed' style={{marginLeft:'20px'}} >
                        <a href='https://zoom.us/j/93241699378' target='__blank'>
                         ACCEDER AL TALLER
                        </a>
@@ -93,10 +90,7 @@ const Workshops = () => {
               <>
                 {profile.taller_ley_de_donaciones ?
                 <>
-                  <Button style={styles.cancelButton}  onClick={ ()=> updateProfile({ taller_ley_de_donaciones: false  },false)  }  >
-                      CANCELAR PARTICIPACIÓN
-                  </Button>
-                  <Button disabled type='dashed' style={{marginLeft:'20px'}} >
+                  <Button  type='dashed' style={{marginLeft:'20px'}} >
                     <a href='https://zoom.us/j/95611751444' target='__blank'>
                     ACCEDER AL TALLER
                     </a>
@@ -128,10 +122,7 @@ const Workshops = () => {
               <>
                 {profile.taller_marketing_digital ?
                   <>
-                  <Button style={styles.cancelButton}  onClick={ ()=> updateProfile({ taller_marketing_digital: false  },false)  }  >
-                      CANCELAR PARTICIPACIÓN
-                  </Button>
-                  <Button disabled type='dashed' style={{marginLeft:'20px'}} >
+                  <Button  type='dashed' style={{marginLeft:'20px'}} >
                        <a href='https://zoom.us/j/99103198492' target='__blank'>
                         ACCEDER AL TALLER
                        </a>
@@ -160,9 +151,8 @@ const Workshops = () => {
               <>
                 {profile.taller_herr_gestion ?
                   <>
-                  <Button style={styles.cancelButton}  onClick={ ()=> updateProfile({ taller_herr_gestion: false  },false)  }  >
-                    CANCELAR PARTICIPACIÓN</Button>
-                    <Button disabled type='dashed' style={{marginLeft:'20px'}} >
+
+                    <Button  type='dashed' style={{marginLeft:'20px'}} >
                        <a href='https://zoom.us/j/93410776956' target='__blank'>
                         ACCEDER AL TALLER
                        </a>
@@ -199,9 +189,7 @@ const Workshops = () => {
               <>
                 {profile.taller_financiamiento ?
                   <>
-                  <Button style={styles.cancelButton}  onClick={ ()=> updateProfile({ taller_financiamiento: false  },false)  }  >
-                    CANCELAR PARTICIPACIÓN</Button>
-                    <Button disabled type='dashed' style={{marginLeft:'20px'}} >
+                    <Button  type='dashed' style={{marginLeft:'20px'}} >
                        <a href='https://zoom.us/j/99922679597' target='__blank'>
                         ACCEDER AL TALLER
                        </a>
@@ -224,9 +212,7 @@ const Workshops = () => {
         <p>
         Cierre de inscripción: miércoles 31 de marzo a las 13:00 horas.
         </p>
-        <p>
-          {}
-        </p>
+
        </Card>
       </Col>
       </>}

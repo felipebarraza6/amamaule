@@ -131,7 +131,8 @@ const Login = () => {
 const styles = {
     button: {
         backgroundColor: '#CE3D4B', 
-        color:'white', 
+        color:'white',
+        height:'64px',
         borderColor:'#CE3D4B'
     },
     colField: {

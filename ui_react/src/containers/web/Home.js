@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import { Layout, Typography, Row, Col } from 'antd'
 import ProfileUser from './ProfileUser'
 import '../../assets/css/web.css'
@@ -15,12 +15,15 @@ import MeetingVideoChat from "./MeetingVideoChat"
 import ListTransmissions from "../../components/web/transmissions/list/ListTransmissions";
 import HomeTransmissions from '../../components/web/transmissions/home/HomeTransmissions'
 import BannerRondas from '../../assets/img/banner_rondas.jpg'
+import {AuthContext} from "../../App";
 
 const { Content, Footer } = Layout
 const { Title, Paragraph } = Typography
 
 const Home = () => {
 
+    const {state} = useContext(AuthContext)
+    console.log(state)
   return(
     <Router>
       <Layout>
@@ -41,7 +44,10 @@ const Home = () => {
               return(
                 <React.Fragment>
                 <Row justify="center">
-                  <ListTransmissions is_public={true} />
+                    {state.isAuthenticated ?
+                  <ListTransmissions is_public={false} />:
+                        <ListTransmissions is_public={true} />
+                  }
                   </Row>
                   <Row style={{ padding:'80', marginTop:'50px', backgroundColor:'white'}}>
 

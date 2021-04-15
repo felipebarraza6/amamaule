@@ -15,7 +15,7 @@ class TransmissionsViewSet(mixins.RetrieveModelMixin,
                     mixins.UpdateModelMixin,
                     viewsets.GenericViewSet):
     
-    queryset = Transmission.objects.all().order_by('created')
+    queryset = Transmission.objects.all().order_by('is_yt_stream')
     serializer_class = TransmissionModelSerializer
     filter_backends = (filters.DjangoFilterBackend,)
     lookup_field = 'uuid'

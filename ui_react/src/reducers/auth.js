@@ -15,6 +15,7 @@ export const login_reducer = (state, action) => {
                    
         case "LOGOUT":
             localStorage.clear()
+            window.location.assign('/')
             return {
                 ...state,
                 isAuthenticated: false,
