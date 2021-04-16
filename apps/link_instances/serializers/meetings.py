@@ -27,8 +27,6 @@ class CreateMeetingModelSerializer(serializers.ModelSerializer):
         owner = attrs['owner']
 
 
-
-
         participans = attrs['participans_invited']
         get_user = User.objects.get(id=owner.id)
         obj_participant = {}
@@ -38,7 +36,7 @@ class CreateMeetingModelSerializer(serializers.ModelSerializer):
                 invited = User.objects.get(id=element.id)
                 obj_participant = invited
 
-        """send_mail('ACABAS DE ENVIAR UNA SOLICITUD PARA UNA REUNIÓN',
+        send_mail('ACABAS DE ENVIAR UNA SOLICITUD PARA UNA REUNIÓN',
                  ('¡Hola! {}, acabas de enviar una solicitud para una reunión online con un participante de las Rondas de Vinculación de AMA Maule. Dirígete a la sección y revisa el estado de tu reunión. ').format(get_user.first_name),
                 settings.DEFAULT_FROM_EMAIL,
                 [get_user.email])
@@ -49,7 +47,7 @@ class CreateMeetingModelSerializer(serializers.ModelSerializer):
                       obj_participant.first_name),
                       settings.DEFAULT_FROM_EMAIL,
                       [obj_participant.email]
-                  )"""
+                  )
 
         return attrs
 
@@ -97,7 +95,7 @@ class CreateMeetingSerializer(serializers.Serializer):
         API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmFwcGVhci5pbiIsImF1ZCI6Imh0dHBzOi8vYXBpLmFwcGVhci5pbi92MSIsImV4cCI6OTAwNzE5OTI1NDc0MDk5MSwiaWF0IjoxNjE4MjE3NzYzLCJvcmdhbml6YXRpb25JZCI6OTQxNzgsImp0aSI6IjdiODIxNzFhLWNkM2EtNDBlZS1iODIyLTVmY2I2NTFlY2MxYiJ9.hcmJ8XKGvVZ3mWFxbk1BaiOjNQL43Xa6y6o_Urql4Qg"
 
         data_meeting = {
-            "isLocked": True,
+            "isLocked": False,
             "roomNamePattern": "uuid",
             "startDate": data['start_date'],
             "endDate": data['end_date'],

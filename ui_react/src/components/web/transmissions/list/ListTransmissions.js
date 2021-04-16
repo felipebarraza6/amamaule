@@ -38,8 +38,6 @@ const ListTransmissions = ({globalState, changeState, is_public}) => {
             const request  = await api_transmissions.transmissions.list('true', '')
                         .then(async (response)=> {
                                     if(!is_public){
-
-
                                     if(response.data.count > 0){
                                         setState({...state, transmissions: response.data.results, no_live:false})
                                     } else {
@@ -48,7 +46,7 @@ const ListTransmissions = ({globalState, changeState, is_public}) => {
                                         })
                                     }
                                     }else{
-                                        const getData = await api_transmissions.transmissions.list('true', '').then(async(response)=> {
+                                        const getData = await api_transmissions.transmissions.list('', '').then(async(response)=> {
                                             if(response.data.count > 0){
                                                 setState({...state, transmissions: response.data.results, no_live:false})
                                             }else {
@@ -84,9 +82,9 @@ const ListTransmissions = ({globalState, changeState, is_public}) => {
                     const request  = await api_transmissions.transmissions.list('', 'C').then((response)=> {                
                         
                         if(response.data.count === 0){
-                            setState({...state, transmissions: response.data.results, no_live:false})
+                            setState({...state, transmissions: response.data.results})
                         }else{
-                            setState({...state, transmissions: response.data.results, no_live:true})
+                            setState({...state, transmissions: response.data.results})
                         }
                     })
                 }
@@ -94,18 +92,18 @@ const ListTransmissions = ({globalState, changeState, is_public}) => {
                 
                     const request  = await api_transmissions.transmissions.list('', 'SC').then((response)=> {                
                         if(response.data.count === 0){
-                            setState({...state, transmissions: response.data.results, no_live:false})
+                            setState({...state, transmissions: response.data.results})
                         }else{
-                            setState({...state, transmissions: response.data.results, no_live:true})
+                            setState({...state, transmissions: response.data.results})
                         }
                     })
                 }
                 if(current.key==='3'){
                     const request  = await api_transmissions.transmissions.list('', 'MT').then((response)=> {                
                         if(response.data.count === 0){
-                            setState({...state, transmissions: response.data.results, no_live:false})
+                            setState({...state, transmissions: response.data.results})
                         }else{
-                            setState({...state, transmissions: response.data.results, no_live:true})
+                            setState({...state, transmissions: response.data.results})
                         }
                         console.log(response)
                     })
@@ -114,9 +112,9 @@ const ListTransmissions = ({globalState, changeState, is_public}) => {
                 
                     const request  = await api_transmissions.transmissions.list('', 'IC').then((response)=> {                
                         if(response.data.count === 0){
-                            setState({...state, transmissions: response.data.results, no_live:false})
+                            setState({...state, transmissions: response.data.results})
                         }else{
-                            setState({...state, transmissions: response.data.results, no_live:true})
+                            setState({...state, transmissions: response.data.results})
                         }
                     })
                 }
@@ -124,9 +122,9 @@ const ListTransmissions = ({globalState, changeState, is_public}) => {
                 
                     const request  = await api_transmissions.transmissions.list('', 'S').then((response)=> {                
                         if(response.data.count === 0){
-                            setState({...state, transmissions: response.data.results, no_live:false})
+                            setState({...state, transmissions: response.data.results})
                         }else{
-                            setState({...state, transmissions: response.data.results, no_live:true})
+                            setState({...state, transmissions: response.data.results})
                         }
                     })
                 }
@@ -134,9 +132,9 @@ const ListTransmissions = ({globalState, changeState, is_public}) => {
 
                     const request  = await api_transmissions.transmissions.list('', 'O').then((response)=> {
                         if(response.data.count === 0){
-                            setState({...state, transmissions: response.data.results, no_live:false})
+                            setState({...state, transmissions: response.data.results})
                         }else{
-                            setState({...state, transmissions: response.data.results, no_live:true})
+                            setState({...state, transmissions: response.data.results})
                         }
                     })
                 }
@@ -144,19 +142,21 @@ const ListTransmissions = ({globalState, changeState, is_public}) => {
 
                     const request  = await api_transmissions.transmissions.list('', '').then((response)=> {
                         if(response.data.count === 0){
-                            setState({...state, transmissions: response.data.results, no_live:false})
+                            setState({...state, transmissions: response.data.results})
                         }else{
-                            setState({...state, transmissions: response.data.results, no_live:true})
+                            setState({...state, transmissions: response.data.results})
                         }
                     })
                 }
 
             }} >
             { is_public ? <>
+                    {!is_public && <>
                 {!state.no_live &&
                     <Menu.Item style={{backgroundColor:'rgb(97, 38, 61)', color:'white'}} key='0' >
                      <Badge color={'volcano'} status={'processing'} />   EN VIVO
                     </Menu.Item>}
+                    </>}
                 <Menu.Item style={{backgroundColor:'#F58B88', color:'white'}} key='7' >
                     Todos
                 </Menu.Item>

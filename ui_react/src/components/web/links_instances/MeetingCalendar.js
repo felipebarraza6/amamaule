@@ -1,6 +1,6 @@
 import React, {useContext, useState} from 'react'
 
-import {Avatar, Badge, Button, Card, Col, Row, Tag, Divider, Typography, Space, Modal, Descriptions} from "antd";
+import {Avatar, Badge, Button, Card, Col, Row, Tag, Divider, Typography, Space, Modal, Descriptions, Popconfirm} from "antd";
 import {CheckCircleOutlined, ClockCircleOutlined, LikeFilled, TeamOutlined} from "@ant-design/icons";
 import {Link} from 'react-router-dom'
 import {AuthContext} from "../../../App"
@@ -82,14 +82,20 @@ const MeetingCalendar = ({meeting}) => {
     const confiirmMeeting = (obj) => {
 
         return(<><Card hoverable
-                 title={<Row justify={'center'}>
-                                                 <Button danger
-                                                    onClick={()=>{
+                 title={<Row justify={'end'}>
+                                                 <Popconfirm
+                                                    title="Estas seguro de eliminar está reunión?"
+                                                    okText="Si"
+                                                    cancelText="No"
+                                                    onConfirm={()=>{
                                                         deleteMeeting({uuid_meeting:obj.uuid,dispatch:dispatch,auth:state})
                                                     }}
+                                                  >
+                                                    <a style={{backgroundColor:'rgb(206, 61, 75)', borderColor:'rgb(206, 61, 75)', color:'white', fontSize:'14px', padding:'3px'}}
                                                  >
                                                      CANCELAR
-                                                 </Button>
+                                                 </a>
+                                                  </Popconfirm>
                                              </Row>}
                  style={{width: '200px', marginBottom: '10px', borderColor: '#52c41a', borderRadius: '20px'}}>
             <div onClick={() => {
@@ -126,14 +132,20 @@ const MeetingCalendar = ({meeting}) => {
     }
 
     const waitingMeeting = (obj) => (<><Card style={{ width:'200px', marginBottom:'10px',borderColor:'#ffc53d', borderRadius:'20px'}}
-                                             title={<Row justify={'center'}>
-                                                 <Button style={{backgroundColor:'rgb(255, 197, 61)', borderColor:'rgb(255, 197, 61)', color:'white'}}
-                                                    onClick={()=>{
+                                             title={<Row justify={'end'}>
+                                                 <Popconfirm
+                                                    title="Estas seguro de eliminar está reunión?"
+                                                    okText="Si"
+                                                    cancelText="No"
+                                                    onConfirm={()=>{
                                                         deleteMeeting({uuid_meeting:obj.uuid,dispatch:dispatch,auth:state})
                                                     }}
+                                                  >
+                                                    <a style={{backgroundColor:'rgb(255, 197, 61)', borderColor:'rgb(255, 197, 61)', color:'white', fontSize:'14px', padding:'3px'}}
                                                  >
                                                      CANCELAR
-                                                 </Button>
+                                                 </a>
+                                                  </Popconfirm>
                                              </Row>}
                                             >
 

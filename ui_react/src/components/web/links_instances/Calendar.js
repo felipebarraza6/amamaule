@@ -43,10 +43,10 @@ const Calendar = () => {
                 <Tag color={'rgb(206, 61, 75)'} style={{marginBottom:'25px'}}>11:00 - 12:00 hrs</Tag>
             </Col>
             <Col lg={8}>
-                <Tag color={'rgb(206, 61, 75)'} style={{marginBottom:'25px'}}>11:00 - 12:00 hrs</Tag>
+                <Tag color={'rgb(206, 61, 75)'} style={{marginBottom:'25px'}}>11:00 - 13:00 hrs</Tag>
             </Col>
             <Col lg={8}>
-                <Tag color={'rgb(206, 61, 75)'} style={{marginBottom:'25px'}}>11:00 - 12:00 hrs</Tag>
+                <Tag color={'rgb(206, 61, 75)'} style={{marginBottom:'25px'}}>11:00 - 13:00 hrs</Tag>
             </Col>
         </Row>
         {loading ?
@@ -78,10 +78,10 @@ const Calendar = () => {
                 <Tag color={'rgb(206, 61, 75)'} style={{marginBottom:'25px'}}>16:00 - 16:30 hrs</Tag>
             </Col>
             <Col span={8}>
-                <Tag color={'rgb(206, 61, 75)'} style={{marginBottom:'25px'}}>16:00 - 16:30 hrs</Tag>
+                <Tag color={'rgb(206, 61, 75)'} style={{marginBottom:'25px'}}>16:00 - 17:00 hrs</Tag>
             </Col>
             <Col span={8}>
-                <Tag color={'rgb(206, 61, 75)'} style={{marginBottom:'25px'}}>16:00 - 16:30 hrs</Tag>
+                <Tag color={'rgb(206, 61, 75)'} style={{marginBottom:'25px'}}>16:00 - 17:00 hrs</Tag>
             </Col>
         </Row>
         {loading ?

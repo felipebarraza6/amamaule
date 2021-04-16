@@ -1,7 +1,7 @@
 import React, { createContext, useReducer, useState,useEffect, useContext } from 'react'
-import {Col, Card, Affix, Tag } from 'antd'
+import {Col, Card, Tag, Button } from 'antd'
 import { MailOutlined, CalendarOutlined,
-		CoffeeOutlined, SendOutlined } from '@ant-design/icons'
+		CoffeeOutlined, SendOutlined, ClockCircleOutlined } from '@ant-design/icons'
 import { groups_reducer } from "../../reducers/groups"
 import ListUsers from "../../components/web/links_instances/ListUsers"
 import Calendar from "../../components/web/links_instances/Calendar"
@@ -55,7 +55,14 @@ const LinksInstances = () => {
 					</Card>
 			</Col>
 			<Col lg={12} xs={24} style={{padding:'10px'}}>
-				<Card title={<><CalendarOutlined style={styles.icon} /> Calendario</>}>
+				<Card title={<><CalendarOutlined style={styles.icon} /> Calendario</>} extra={<><Button onClick={()=> {
+					getCalendarData({dispatch, auth})
+					getInvitations({dispatch, auth})
+				}} type={'primary'} icon ={<ClockCircleOutlined/>} >Actualizar</Button>
+				<Button type={'dashed'} style={{backgroundColor: 'rgb(206, 61, 75)', color:'white', borderColor:'white', marginLeft:'10px'}}>
+					Ver turorial
+				</Button>
+				</>}>
 					{!state.reload &&  <Calendar /> }
 				</Card>
 			</Col>
