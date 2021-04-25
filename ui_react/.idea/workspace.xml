@@ -3,12 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="872fca9c-76df-4773-ae30-4641e6aeb75c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/web/links_instances/MeetWhereby.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/web/links_instances/MeetWhereby.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/web/profile/Viewings.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/web/profile/Viewings.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/web/profile/Workshops.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/web/profile/Workshops.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/web/transmissions/list/ListTransmissions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/web/transmissions/list/ListTransmissions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/web/MeetingVideoChat.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/web/MeetingVideoChat.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,6 +68,7 @@
       <workItem from="1617426495348" duration="63903000" />
       <workItem from="1617828488268" duration="71031000" />
       <workItem from="1618362540056" duration="5099000" />
+      <workItem from="1618583585885" duration="730000" />
     </task>
     <servers />
   </component>

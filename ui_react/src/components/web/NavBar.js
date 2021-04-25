@@ -1,10 +1,11 @@
 import React, {useContext} from 'react'
 import { Layout, Menu, Button, Tooltip } from 'antd'
 import Login from '../../components/web/auth/Login'
-import { LogoutOutlined, FilePdfFilled } from '@ant-design/icons'
+import { LogoutOutlined, FilePdfFilled, TeamOutlined } from '@ant-design/icons'
 import { AuthContext } from '../../App'
 import { Link } from 'react-router-dom'
 import Program from '../../assets/PROGRAMA.pdf'
+import TeamModal from './TeamModal'
 const { Header } = Layout
 const { Item } = Menu
 
@@ -19,12 +20,15 @@ const NavBar = () => {
            <Menu mode="horizontal" theme='dark' style={styles.menu} > 
             <Item style={styles.item}>
                 <Link to='/'>Inicio</Link>
-            </Item>
+            </Item>            
                <Item style={styles.item}>
                     <a href={Program} target="__blank" >
                         <FilePdfFilled style={{fontSize:'25px'}} />
                             PROGRAMA 2021
                     </a>
+                </Item>
+                <Item style={styles.item}s>
+                <TeamModal />
                 </Item>
             {state.isAuthenticated ? 
             <>
