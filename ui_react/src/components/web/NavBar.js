@@ -28,13 +28,13 @@ const NavBar = () => {
                     </a>
                 </Item>
                 <Item style={styles.item}s>
-                <TeamModal />
+                    <TeamModal />
                 </Item>
             {state.isAuthenticated ? 
             <>
                 <Item style={styles.item}>
                     <Link to='/profile'>
-                          Ir a mi perfil:  @{state.user.username}
+                          Ir a mi perfil: @{state.user.username}
                     </Link>
                 </Item>
                 <Item style={styles.itemLogOut}> 

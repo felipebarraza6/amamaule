@@ -1,15 +1,63 @@
 import React, {useEffect, useState} from 'react'
-import {Modal, Menu, Button, Row, Col, Card, Typography} from 'antd'
+import {Modal, Menu, Button, Row, Col, Card, Typography, Avatar} from 'antd'
 import { TeamOutlined } from '@ant-design/icons'
+import { LinkedinOutlined, InstagramOutlined, MailOutlined, DribbbleOutlined, TwitterOutlined, FacebookOutlined } from '@ant-design/icons'
+import kateryn from '../../assets/persons/kgarzon.jpeg'
+import vflores from '../../assets/persons/vflores.jpeg'
+import mrojas from '../../assets/persons/mrojas.jpeg'
+import lalvarez from '../../assets/persons/lalvarez.jpg'
+import phiguera from '../../assets/persons/phiguera.jpg'
+import crojas from '../../assets/persons/crojas.jpg'
+import fcarvajal from '../../assets/persons/fcarvajal.JPG'
+import alara from '../../assets/persons/alara.jpeg'
+import pcontardo from '../../assets/persons/pcontardo.jpg'
+import csalazar from '../../assets/persons/csalazar.jpeg'
+import vbarahona from '../../assets/persons/vbarahona.jpeg'
+import bmunoz from '../../assets/persons/bmunoz.jpg'
+import eurrutia from '../../assets/persons/eurrutia.jpg'
+import fsilva from '../../assets/persons/fsilva.jpeg'
+import forostica from '../../assets/persons/forostica.jpeg'
+import jgualteros from '../../assets/persons/jgualteros.jpg'
+import evaldivieso from '../../assets/persons/evaldivieso.jpeg'
+
+
 const { Item } = Menu
 const { Title, Paragraph, Text} = Typography
 
 const TeamModal = () => {
 
     const [visible, setVisible] = useState(false)
+    const [visibleInfo, setVisibleInfo] = useState(false)
+    const [infoPerson, setInfoPerson] = useState({
+        name: '',
+        charge: '',
+        description: '',
+        image: '',
+        links: []
+    })
 
     return(<>
-        
+        <Modal
+            visible={visibleInfo}
+            title={infoPerson.name}
+            onCancel={()=>setVisibleInfo(false)}            
+            footer={[<Button onClick={()=>setVisibleInfo(false)} style={{backgroundColor:'rgb(97, 38, 61)', color:'white'}}>Cerrar</Button>]}
+        >
+            <Row>
+                <Col lg={6} align="center">
+                    <Avatar style={{borderColor:'rgb(97, 38, 61)', borderStyle:'solid'}} shape='square' src={infoPerson.image} size={120} />
+                </Col>
+                <Col lg={18} style={{paddingLeft:'20px'}}>
+                    <Paragraph align="justify">  
+                        {infoPerson.description}
+                    </Paragraph>
+                </Col>
+                <Col lg={24}>
+                    {infoPerson.links.map((obj)=> obj ) }
+                </Col>
+            </Row>
+
+        </Modal>
         <Modal 
             title='NUESTRO EQUIPO' 
             width="100%" 
@@ -17,15 +65,40 @@ const TeamModal = () => {
             style={styles.modal} 
             footer={[<Button onClick={()=>setVisible(false)} style={{backgroundColor:'rgb(97, 38, 61)', color:'white'}}>Cerrar</Button>]}
             onCancel={()=>setVisible(false)}>
-                <Row align='space-around' style={{textAlign:'center'}}>
-                    <Col style={{marginBottom:'20px'}}>
-                        <Card hoverable style={{width:'300px', backgroundColor:'rgb(206, 61, 75)'}}>
-                            <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Katheryne Garzón</Paragraph>
+                <Row align='space-around'>
+                    <Col style={{marginBottom:'20px',paddingLeft:'365px'}}>
+                        <Card hoverable style={{width:'300px', backgroundColor:'rgb(206, 61, 75)'}} onClick={()=>{
+                            setInfoPerson({
+                                ...infoPerson,
+                                name: 'Kateryn Garzón',
+                                description:'Gestor de proyectos de emprendimiento e innovación, con foco en las Industrias Creativas. Mg. Gestión de Personas en la U. de Chile y Diplomada en Herramientas de Innovación y Metodologías Ágiles en UAI. Dedicada a fortalecer la profesionalización del sector de las Artes Escénicas en Chile a través de programas como Innova Escena y Emprende Escena. Actualmente, Productora General en AMA.',
+                                image: kateryn,
+                                links: [
+                                    <LinkedinOutlined style={{fontSize:'25px', marginRight:'10px', color:'rgb(97, 38, 61)'}} />,
+                                    <InstagramOutlined style={{fontSize:'25px', marginRight:'10px', color:'rgb(97, 38, 61)'}} />,
+                                    <MailOutlined style={{fontSize:'25px', marginRight:'10px', color:'rgb(97, 38, 61)'}} />,
+                                    <DribbbleOutlined style={{fontSize:'25px', marginRight:'10px', color:'rgb(97, 38, 61)'}} />,
+                                    <TwitterOutlined style={{fontSize:'25px', marginRight:'10px', color:'rgb(97, 38, 61)'}} />,
+                                    <FacebookOutlined style={{fontSize:'25px', marginRight:'10px', color:'rgb(97, 38, 61)'}} />
+                                ]
+                                
+                            })
+                            setVisibleInfo(true)
+                        }}  >
+                            <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Kateryn Garzón</Paragraph>
                             <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Producción General</Paragraph>
                         </Card>                        
                     </Col>                
-                    <Col>
-                        <Card hoverable style={{width:'300px', backgroundColor:'rgb(206, 61, 75)'}} >
+                    <Col style={{marginBottom:'20px', paddingRight:'375px'}}>
+                        <Card hoverable style={{width:'300px', backgroundColor:'rgb(206, 61, 75)'}} onClick={()=>{
+                            setInfoPerson({
+                                ...infoPerson,
+                                name: 'Victoria Flores',
+                                description:'Victoria es periodista de profesión, ha estado vinculada al mundo de la cultura y las artes desde la gestión desde hace más de 15 años. Ha trabajo en instituciones público y privadas como El Mercurio de Valparaíso, Conaf, Universidad Católica del Maule, Corporación Cultural Municipal de Talca, y desde hace seis años el Teatro Regional del Maule, desde el que lleva la dirección. Tiene estudios en la Universidad de Concepción, Complutense de Madrid, Federico Santa María y Universidad Adolfo Ibañez. Desde lo profesional a vinculado la cultura con el financiamiento público y privado buscando generar nuevas posibilidades.',
+                                image: vflores
+                            })
+                            setVisibleInfo(true)
+                        }}>
                                 <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Victoria Flores</Paragraph>
                                 <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Producción Ejecutiva</Paragraph>
                         </Card>                        
@@ -37,13 +110,29 @@ const TeamModal = () => {
                         <Card style={{width:'100%', backgroundColor:'rgb(97, 38, 61)', color:'white'}}>Comunicaciones</Card>
                         <Row align='space-around' style={{marginTop:'20px'}}>
                             <Col>
-                                <Card hoverable style={styles.cardPerson}>
+                                <Card hoverable style={styles.cardPerson} onClick={()=>{
+                            setInfoPerson({
+                                ...infoPerson,
+                                name: 'Manuel Rojas',
+                                description:'Periodista especializado en marketing, con más de una década de experiencia en comunicaciones corporativas, campañas publicitarias, relaciones públicas, coordinación de ventas, emprendimiento, producción de eventos y gestión cultural. Ha colaborado en instituciones como Corporación Maule Activa, Universidad Santo Tomás, VideoLab, JUNAEV y Teatro Regional del Maule, donde actualmente se desempeña como encargado de comunicaciones.',
+                                image: mrojas
+                            })
+                            setVisibleInfo(true)
+                        }}>
                                     <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Manuel Rojas</Paragraph>
                                     <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Encargado Comunicaciones TRM</Paragraph>
                                 </Card>
                             </Col>
                             <Col>
-                                <Card hoverable style={styles.cardPerson} >
+                                <Card hoverable style={styles.cardPerson} onClick={()=>{
+                            setInfoPerson({
+                                ...infoPerson,
+                                name: 'Lorena Alvarez',
+                                description:'Periodista. Mag. en Comunicación Social y Educación en la PUC y la UAB. Directora de comunicaciones en Identidades Festival y en Liquenlab Magallanes. Reseña libros de arte e ilustración para B8 Estudio, en Barcelona. Se ha desempeñado como programadora de artes escénicas en festivales en México, Uruguay, España, EEUU y Francia, entre otros.',
+                                image: lalvarez
+                            })
+                            setVisibleInfo(true)
+                        }}>
                                 <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Lorena Alvarez</Paragraph>
                                     <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Encargada Comunicaciones AMA</Paragraph>
                                 </Card>
@@ -52,13 +141,29 @@ const TeamModal = () => {
                         </Row>
                         <Row align='space-around' style={{marginTop:'20px'}}>
                             <Col>
-                                <Card hoverable style={styles.cardPerson}>
+                                <Card hoverable style={styles.cardPerson} onClick={()=>{
+                            setInfoPerson({
+                                ...infoPerson,
+                                name: 'Pilar Higuera',
+                                description:'Periodista PUCV y realizadora audiovisual independiente, diploma en Guión Documental EITCV. Encargada de Contenidos en la Red Salas de Teatro de Santiago y Coordinadora de Comunicaciones del programa de formación Emprende Escena. Producción periodística para festivales, encuentros, residencias artísticas y proyectos afines con enfoque territorial.',
+                                image: phiguera
+                            })
+                            setVisibleInfo(true)
+                        }}>
                                 <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Pilar Higuera</Paragraph>
-                                    <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Encargada Comunicaciones TRM</Paragraph>
+                                    <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Encargada Comunicaciones AMA</Paragraph>
                                 </Card>
                             </Col>
                             <Col>
-                                <Card hoverable style={styles.cardPerson} >
+                                <Card hoverable style={styles.cardPerson} onClick={()=>{
+                            setInfoPerson({
+                                ...infoPerson,
+                                name: 'Claudio Rojas',
+                                description:'Diseñador, trabajador de la Cultura. Hace carrera en comunicaciones y como creador de arte escenográfico en óperas del TRM, premiadas por el Círculo de Críticos de Arte de Chile. Productor creativo, monitor de talleres artísticos y fundador y director de la “Cía. de Teatro & Coro La Libertad” premiada nacionalmente por la calidad de sus obras.',
+                                image: crojas
+                            })
+                            setVisibleInfo(true)
+                        }}>
                                 <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Claudio Rojas</Paragraph>
                                     <Paragraph style={{fontSize:'12px', textAlign:'center', paddingBottom:'35px', color:'white'}}>Diseño Gráfico</Paragraph>
                                 </Card>
@@ -67,13 +172,29 @@ const TeamModal = () => {
                         </Row>
                         <Row align='space-around' style={{marginTop:'20px'}}>
                             <Col>
-                                <Card hoverable style={styles.cardPerson}>
+                                <Card hoverable style={styles.cardPerson} onClick={()=>{
+                            setInfoPerson({
+                                ...infoPerson,
+                                name: 'Francisco Carvajal',
+                                description:'Francisco Carvajal, oriundo de la 4ta región, erradicado hace 9 años en Talca. Desde joven estuve relacionado con el mundo de las artes escénicas.Estudié “Comunicación Audiovisual” en IPST.Pueden ver algunos de mis trabajos en @mirillaaudiovisuall mi marca como realizador desde el año 2016.',
+                                image: fcarvajal
+                            })
+                            setVisibleInfo(true)
+                        }}>
                                 <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Francisco Carvajal</Paragraph>
                                     <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Audiovisual</Paragraph>
                                 </Card>
                             </Col>
                             <Col>
-                                <Card hoverable style={styles.cardPerson} >
+                                <Card hoverable style={styles.cardPerson} onClick={()=>{
+                            setInfoPerson({
+                                ...infoPerson,
+                                name: 'Alvaro Lara',
+                                description:'Realizador Audiovisual maulino, egresado de la carrera de Comunicación Audiovisual de la Universidad Santo Tomás, Sede Talca, que desde lo artístico desarrolla la creación de contenidos, animación y proyección de visuales en los más importantes títulos de Opera desarrollados por el TRM como Don Giovanni, Il Trovatore, Otello, La Traviata y La Fiesta del Mircielago, desde el 2011 pertenece al quipo de comunicaciones del TRM y actualmente está a cargo de las Dirección Audiovisual del programa Sesiones TRM. ',
+                                image: alara
+                            })
+                            setVisibleInfo(true)
+                        }}>
                                 <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Alvaro Lara</Paragraph>
                                     <Paragraph style={{fontSize:'12px', textAlign:'center', paddingBottom:'17px', color:'white'}}>Audiovisual</Paragraph>
                                 </Card>
@@ -82,13 +203,29 @@ const TeamModal = () => {
                         </Row>
                         <Row align='space-around' style={{marginTop:'20px'}}>
                             <Col>
-                                <Card hoverable style={styles.cardPerson}>
+                                <Card hoverable style={styles.cardPerson} onClick={()=>{
+                            setInfoPerson({
+                                ...infoPerson,
+                                name: 'Paola Contardo',
+                                description:'Interesada en Gestión Cultural para potenciar y dar a conocer la riqueza y diversidad cultural e histórica del territorio de la región del Maule.  Su experiencia en el desarrollo de los proyectos radica desde su vinculación como miembro del directorio de la Corporación Cultural Corinto y como socia de la Asociación Gremial de Trabajadores Turísticos del Ramal.',
+                                image: pcontardo
+                            })
+                            setVisibleInfo(true)
+                        }}>
                                 <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Paola Contardo</Paragraph>
                                     <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Apoyo comunicacional</Paragraph>
                                 </Card>
                             </Col>
                             <Col>
-                                <Card hoverable style={styles.cardPerson} >
+                                <Card hoverable style={styles.cardPerson} onClick={()=>{
+                            setInfoPerson({
+                                ...infoPerson,
+                                name: 'Catalina Salazar',
+                                description:'Cientista Político y Gestora Cultural. Coordinadora General de COCUTEMA. Ha impulsado iniciativas de articulación del mundo cultural como Viralizarte, campaña de Recaudación de fondos y Promaucae, iniciativa financiada por el GORE e implementada por el TRM consistente en 6 capítulos vinculados al Patrimonio Cultural de la región, transmitidos por 11 canales Regionales',
+                                image: csalazar
+                            })
+                            setVisibleInfo(true)
+                        }} >
                                 <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Catalina Salazar</Paragraph>
                                     <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Apoyo comunicacional</Paragraph>
                                 </Card>
@@ -100,21 +237,45 @@ const TeamModal = () => {
                         <Card style={{width:'100%', backgroundColor:'rgb(97, 38, 61)', color:'white'}} >Producción</Card>
                         <Row justify='center' style={{marginTop:'20px'}}>
                         <Col style={{marginBottom:'20px'}}>
-                                <Card hoverable style={styles.cardColor}>
+                                <Card hoverable style={styles.cardColor} onClick={()=>{
+                            setInfoPerson({
+                                ...infoPerson,
+                                name: 'Verónica Barahona',
+                                description:'Coordinadora de Producción y Técnica del Teatro Regional del Maule. Actriz, licenciada en Artes Escénicas de la U. Mayor con postítulo en Gestión Cultural de la UST. 15 años de experiencia en areas de producción, educación y gestión cultural.',
+                                image: vbarahona
+                            })
+                            setVisibleInfo(true)
+                        }}>
                                     <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Verónica Barahona</Paragraph>
                                     <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Coordinadora de Producción y Técnica TRM</Paragraph>
                                 </Card>
                             </Col>
                             <Col style={{marginBottom:'20px'}}>
-                                <Card hoverable style={styles.cardColor} >
+                                <Card hoverable style={styles.cardColor} onClick={()=>{
+                            setInfoPerson({
+                                ...infoPerson,
+                                name: 'Bárbara Muñoz',
+                                description:'Productora, gestora cultural y fotógrafa profesional con más de 15 años de experiencia en el área teatral, galería de arte y productoras. He desarrollado diversos procesos creativos dominando las comunicaciones, el trabajo en equipo, capacidades organizativas y administrativas. Dispuesta siempre a conquistar nuevos desafíos y conocimientos.',
+                                image: bmunoz
+                            })
+                            setVisibleInfo(true)
+                        }}>
                                     <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Bárbara Muñoz</Paragraph>
-                                    <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Asistente de Producción</Paragraph>
+                                    <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Asistente de Producción AMA</Paragraph>
                                 </Card>
                             </Col>
                             <Col style={{marginBottom:'20px'}}>
-                                <Card hoverable style={styles.cardColor}>
+                                <Card hoverable style={styles.cardColor} onClick={()=>{
+                            setInfoPerson({
+                                ...infoPerson,
+                                name: 'Enzo Urrutia',
+                                description:'Asistente de Producción del Teatro Regional del Maule, vínculo entre el TRM y los espacios culturales de las 30 comunas de la Región del Maule para el desarrollo de distintas actividades y disciplinas culturales en beneficio de la comunidad regional. Técnico en Dirección y Producción de Eventos de la Universidad del Pacifico, con más de 15 años en gestión cultural en El Centro Cultural Chimkowe, Fundación Futuro y el TRM.',
+                                image: eurrutia
+                            })
+                            setVisibleInfo(true)
+                        }}>
                                     <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Enzo Urrutia</Paragraph>
-                                    <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Asistente Producción TRM</Paragraph>
+                                    <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Asistente de Producción TRM</Paragraph>
                                 </Card>
                             </Col>    
                                                       
@@ -123,38 +284,95 @@ const TeamModal = () => {
 
                     <Col xs={24} lg={6} style={{paddingRight:'10px', textAlign:'center'}}>
                         <Card style={{width:'100%', backgroundColor:'rgb(97, 38, 61)', color:'white'}}>Área TI</Card>
-                        <Row align='center' style={{marginTop:'20px'}}>
-                        <Col  style={{marginBottom:'20px'}}>
-                                <Card style={styles.cardColor} hoverable><Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Felipe Silva</Paragraph></Card>
-                            </Col>
+                        <Row align='center' style={{marginTop:'20px'}}>                        
+                        <Col style={{marginBottom:'20px'}}>
+                                <Card style={styles.cardColor} hoverable onClick={()=>{
+                            setInfoPerson({
+                                ...infoPerson,
+                                name: 'Felipe Barraza',
+                                description:'',
+                                image: ''
+                            })
+                            setVisibleInfo(true)
+                        }}>
+                                    <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Felipe Barraza</Paragraph>
+                                    <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Programador y Artquitectura </Paragraph>
+                                </Card>
+                            </Col>     
                             <Col style={{marginBottom:'20px'}}>
-                                <Card style={styles.cardColor} hoverable><Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Mauricio Selfene</Paragraph></Card>
-                            </Col>
-                            <Col style={{marginBottom:'20px'}}>
-                                <Card style={styles.cardColor} hoverable><Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Felipe Barraza</Paragraph></Card>
-                            </Col>                 
+                                <Card style={styles.cardColor} hoverable onClick={()=>{
+                            setInfoPerson({
+                                ...infoPerson,
+                                name: 'Mauricio Selfene',
+                                description:'',
+                                image: ''
+                            })
+                            setVisibleInfo(true)
+                        }}>
+                                <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Mauricio Selfene</Paragraph>
+                                    <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Desarrollador Web </Paragraph>
+                                </Card>
+                            </Col>                            
+                            <Col  style={{marginBottom:'20px'}}>
+                                <Card style={styles.cardColor} hoverable onClick={()=>{
+                            setInfoPerson({
+                                ...infoPerson,
+                                name: 'Felipe Silva',
+                                description:'Analista Programador encargado de área Informática del Teatro Regional del Maule y asesor informático del Teatro Municipal de Santiago.',
+                                image: fsilva
+                            })
+                            setVisibleInfo(true)
+                        }}>
+                                <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Felipe Silva</Paragraph>
+                                    <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Encargado de Informática</Paragraph>
+                                </Card>
+                            </Col>            
                         </Row>
                     </Col>
                     <Col xs={24} lg={6} style={{paddingRight:'10px', textAlign:'center'}}>
                         <Card style={{width:'100%', backgroundColor:'rgb(97, 38, 61)', color:'white'}} >Contenidos</Card>
                         <Row align='space-around' style={{marginTop:'20px'}}>
                             <Col style={{marginBottom:'20px'}}>
-                                <Card hoverable style={styles.cardColor} >
+                                <Card hoverable style={styles.cardColor} onClick={()=>{
+                            setInfoPerson({
+                                ...infoPerson,
+                                name: 'Francisca Oróstica',
+                                description:'Periodista, Máster en Gestión Cultural y Diplomada en Mediación Cultural y Desarrollo de Públicos.  Trabaja en  gestión cultural  y programación artística. Ha participado en proyectos tales como FEDAM, Festival de Dramaturgia Maulina y La Revuelta Danza, programa de formación en danza contemporánea. Actualmente es gestora cultural de la Dirección de Extensión de la Universidad de Talca. ',
+                                image: forostica
+                            })
+                            setVisibleInfo(true)
+                        }}>
                                 <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Francisca Oróstica</Paragraph>
                                     <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Encargada de Contenidos</Paragraph>
                                 </Card>
                             </Col>
                             <Col span={24} style={{marginBottom:'20px'}}>
-                            <Card style={{width:'100%', backgroundColor:'rgb(97, 38, 61)', color:'white'}}>Sistematización</Card>
+                            <Card style={{width:'100%', backgroundColor:'rgb(97, 38, 61)', color:'white'}} >Sistematización</Card>
                             </Col>
                             <Col style={{marginBottom:'20px'}}>
-                                <Card hoverable style={styles.cardColor} >
+                                <Card hoverable style={styles.cardColor} onClick={()=>{
+                            setInfoPerson({
+                                ...infoPerson,
+                                name: 'Jennifer Gualteros',
+                                description:'Comunicadora Social, diploma superior en Desarrollo Humano, experiencia en la diseño, implementación y monitoreo de programas, proyectos sociales y formativos desarrollados por organizaciones no gubernamentales con cooperación internacional y pública. Cursa Magister en Desarrollo Humano, Facultad Latinoamericana de Ciencias Sociales Sede Argentina. ',
+                                image: jgualteros
+                            })
+                            setVisibleInfo(true)
+                        }}>
                                 <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Jennifer Gualteros</Paragraph>
-                                    <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Encargada de sistematización</Paragraph>
+                                    <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}} >Encargada de sistematización</Paragraph>
                                 </Card>
                             </Col>   
                             <Col  style={{marginBottom:'20px'}}>
-                                <Card style={styles.cardColor} hoverable ><Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Elvira Valdivieso</Paragraph>
+                                <Card style={styles.cardColor} hoverable onClick={()=>{
+                            setInfoPerson({
+                                ...infoPerson,
+                                name: 'Elvira Valdivieso',
+                                description:'Antropóloga con experiencia en temáticas patrimoniales y de reconstrucción de memoria histórica de comunidades, fortalecimiento de ciudadanía y comunidad y construcción colectiva del territorio. Ha trabajado en proyectos de investigación de interés regional y en procesos que buscan empoderar a comunidades para incidir en el desarrollo de sus territorios.',
+                                image: evaldivieso
+                            })
+                            setVisibleInfo(true)
+                        }}><Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Elvira Valdivieso</Paragraph>
                                     <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Encargada de sistematización</Paragraph></Card>
                             </Col>                                                  
                         </Row>
