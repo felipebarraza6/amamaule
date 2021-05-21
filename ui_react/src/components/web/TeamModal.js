@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react'
 import {Modal, Menu, Button, Row, Col, Card, Typography, Avatar} from 'antd'
 import { TeamOutlined } from '@ant-design/icons'
-import { LinkedinOutlined, InstagramOutlined, MailOutlined, DribbbleOutlined, TwitterOutlined, FacebookOutlined } from '@ant-design/icons'
+import { LinkedinOutlined, InstagramOutlined, MailOutlined, DribbbleOutlined, TwitterOutlined, FacebookOutlined, ChromeOutlined, BehanceOutlined } from '@ant-design/icons'
 import kateryn from '../../assets/persons/kgarzon.jpeg'
-import vflores from '../../assets/persons/vflores.jpeg'
+import vflores from '../../assets/persons/vflores.jpg'
 import mrojas from '../../assets/persons/mrojas.jpeg'
 import lalvarez from '../../assets/persons/lalvarez.jpg'
 import phiguera from '../../assets/persons/phiguera.jpg'
@@ -12,7 +12,7 @@ import fcarvajal from '../../assets/persons/fcarvajal.JPG'
 import alara from '../../assets/persons/alara.jpeg'
 import pcontardo from '../../assets/persons/pcontardo.jpg'
 import csalazar from '../../assets/persons/csalazar.jpeg'
-import vbarahona from '../../assets/persons/vbarahona.jpeg'
+import vbarahona from '../../assets/persons/vbarahona.jpg'
 import bmunoz from '../../assets/persons/bmunoz.jpg'
 import eurrutia from '../../assets/persons/eurrutia.jpg'
 import fsilva from '../../assets/persons/fsilva.jpeg'
@@ -74,12 +74,9 @@ const TeamModal = () => {
                                 description:'Gestor de proyectos de emprendimiento e innovación, con foco en las Industrias Creativas. Mg. Gestión de Personas en la U. de Chile y Diplomada en Herramientas de Innovación y Metodologías Ágiles en UAI. Dedicada a fortalecer la profesionalización del sector de las Artes Escénicas en Chile a través de programas como Innova Escena y Emprende Escena. Actualmente, Productora General en AMA.',
                                 image: kateryn,
                                 links: [
-                                    <LinkedinOutlined style={{fontSize:'25px', marginRight:'10px', color:'rgb(97, 38, 61)'}} />,
-                                    <InstagramOutlined style={{fontSize:'25px', marginRight:'10px', color:'rgb(97, 38, 61)'}} />,
-                                    <MailOutlined style={{fontSize:'25px', marginRight:'10px', color:'rgb(97, 38, 61)'}} />,
-                                    <DribbbleOutlined style={{fontSize:'25px', marginRight:'10px', color:'rgb(97, 38, 61)'}} />,
-                                    <TwitterOutlined style={{fontSize:'25px', marginRight:'10px', color:'rgb(97, 38, 61)'}} />,
-                                    <FacebookOutlined style={{fontSize:'25px', marginRight:'10px', color:'rgb(97, 38, 61)'}} />
+                                    <a href='https://www.linkedin.com/in/kateryn-garzon/' target='__blank'><LinkedinOutlined style={{fontSize:'25px', marginRight:'10px', color:'rgb(97, 38, 61)'}} /></a>,
+                                    <a href='https://www.instagram.com/kateryn_garzon/' target='__blank'><InstagramOutlined style={{fontSize:'25px', marginRight:'10px', color:'rgb(97, 38, 61)'}} /></a>,
+                                    <a href='mailto:kgarzon@postgradouchile.cl' target='__blank'><MailOutlined style={{fontSize:'25px', marginRight:'10px', color:'rgb(97, 38, 61)'}} /></a>
                                 ]
                                 
                             })
@@ -95,7 +92,11 @@ const TeamModal = () => {
                                 ...infoPerson,
                                 name: 'Victoria Flores',
                                 description:'Victoria es periodista de profesión, ha estado vinculada al mundo de la cultura y las artes desde la gestión desde hace más de 15 años. Ha trabajo en instituciones público y privadas como El Mercurio de Valparaíso, Conaf, Universidad Católica del Maule, Corporación Cultural Municipal de Talca, y desde hace seis años el Teatro Regional del Maule, desde el que lleva la dirección. Tiene estudios en la Universidad de Concepción, Complutense de Madrid, Federico Santa María y Universidad Adolfo Ibañez. Desde lo profesional a vinculado la cultura con el financiamiento público y privado buscando generar nuevas posibilidades.',
-                                image: vflores
+                                image: vflores,
+                                links: [
+                                    <a href='http://www.teatroregional.cl/' target='__blank'><ChromeOutlined style={{fontSize:'25px', marginRight:'10px', color:'rgb(97, 38, 61)'}} /></a>,
+                                    
+                                ]
                             })
                             setVisibleInfo(true)
                         }}>
@@ -115,7 +116,11 @@ const TeamModal = () => {
                                 ...infoPerson,
                                 name: 'Manuel Rojas',
                                 description:'Periodista especializado en marketing, con más de una década de experiencia en comunicaciones corporativas, campañas publicitarias, relaciones públicas, coordinación de ventas, emprendimiento, producción de eventos y gestión cultural. Ha colaborado en instituciones como Corporación Maule Activa, Universidad Santo Tomás, VideoLab, JUNAEV y Teatro Regional del Maule, donde actualmente se desempeña como encargado de comunicaciones.',
-                                image: mrojas
+                                image: mrojas,
+                                links: [
+                                    <a href='mailto:manuel.rojas@teatroregional.cl' target='__blank'><MailOutlined style={{fontSize:'25px', marginRight:'10px', color:'rgb(97, 38, 61)'}} /></a>,
+                                    
+                                ]
                             })
                             setVisibleInfo(true)
                         }}>
@@ -129,7 +134,11 @@ const TeamModal = () => {
                                 ...infoPerson,
                                 name: 'Lorena Alvarez',
                                 description:'Periodista. Mag. en Comunicación Social y Educación en la PUC y la UAB. Directora de comunicaciones en Identidades Festival y en Liquenlab Magallanes. Reseña libros de arte e ilustración para B8 Estudio, en Barcelona. Se ha desempeñado como programadora de artes escénicas en festivales en México, Uruguay, España, EEUU y Francia, entre otros.',
-                                image: lalvarez
+                                image: lalvarez,
+                                links: [
+                                    <a href='https://www.linkedin.com/in/lorena-álvarez-chávez-94586a177/' target='__blank'><LinkedinOutlined style={{fontSize:'25px', marginRight:'10px', color:'rgb(97, 38, 61)'}} /></a>,
+                                    
+                                ]
                             })
                             setVisibleInfo(true)
                         }}>
@@ -160,7 +169,15 @@ const TeamModal = () => {
                                 ...infoPerson,
                                 name: 'Claudio Rojas',
                                 description:'Diseñador, trabajador de la Cultura. Hace carrera en comunicaciones y como creador de arte escenográfico en óperas del TRM, premiadas por el Círculo de Críticos de Arte de Chile. Productor creativo, monitor de talleres artísticos y fundador y director de la “Cía. de Teatro & Coro La Libertad” premiada nacionalmente por la calidad de sus obras.',
-                                image: crojas
+                                image: crojas,
+                                links: [
+                                    <a href='www.behance.net/claudiorojasp' target='__blank'><BehanceOutlined style={{fontSize:'25px', marginRight:'10px', color:'rgb(97, 38, 61)'}} /></a>,
+                                    <a href='www.teatrolalibertad.cl' target='__blank'><ChromeOutlined style={{fontSize:'25px', marginRight:'10px', color:'rgb(97, 38, 61)'}} /></a>,
+                                    <a href='www.linkedin.com/in/claudiorojasp' target='__blank'><LinkedinOutlined style={{fontSize:'25px', marginRight:'10px', color:'rgb(97, 38, 61)'}} /></a>,
+                                    <a href='www.facebook.com/claudiorojasp' target='__blank'><FacebookOutlined style={{fontSize:'25px', marginRight:'10px', color:'rgb(97, 38, 61)'}} /></a>,
+                                    <a href='www.instagram.com/claudio.sws' target='__blank'><InstagramOutlined style={{fontSize:'25px', marginRight:'10px', color:'rgb(97, 38, 61)'}} /></a>,
+                                    
+                                ]
                             })
                             setVisibleInfo(true)
                         }}>
@@ -177,7 +194,11 @@ const TeamModal = () => {
                                 ...infoPerson,
                                 name: 'Francisco Carvajal',
                                 description:'Francisco Carvajal, oriundo de la 4ta región, erradicado hace 9 años en Talca. Desde joven estuve relacionado con el mundo de las artes escénicas.Estudié “Comunicación Audiovisual” en IPST.Pueden ver algunos de mis trabajos en @mirillaaudiovisuall mi marca como realizador desde el año 2016.',
-                                image: fcarvajal
+                                image: fcarvajal,
+                                links: [
+                                    <a href='https://www.linkedin.com/in/pilar-higuera-valencia-210742a8/' target='__blank'><LinkedinOutlined style={{fontSize:'25px', marginRight:'10px', color:'rgb(97, 38, 61)'}} /></a>,
+                                    
+                                ]
                             })
                             setVisibleInfo(true)
                         }}>
@@ -242,7 +263,12 @@ const TeamModal = () => {
                                 ...infoPerson,
                                 name: 'Verónica Barahona',
                                 description:'Coordinadora de Producción y Técnica del Teatro Regional del Maule. Actriz, licenciada en Artes Escénicas de la U. Mayor con postítulo en Gestión Cultural de la UST. 15 años de experiencia en areas de producción, educación y gestión cultural.',
-                                image: vbarahona
+                                image: vbarahona,
+                                links: [
+                                    <a href='https://www.linkedin.com/in/veronicabarahonadiaz/' target='__blank'><LinkedinOutlined style={{fontSize:'25px', marginRight:'10px', color:'rgb(97, 38, 61)'}} /></a>,                            
+                                    <a href='https://www.instagram.com/vero_barahona_/' target='__blank'><InstagramOutlined style={{fontSize:'25px', marginRight:'10px', color:'rgb(97, 38, 61)'}} /></a>,                                    
+                                ]
+                                
                             })
                             setVisibleInfo(true)
                         }}>
@@ -338,7 +364,11 @@ const TeamModal = () => {
                                 ...infoPerson,
                                 name: 'Francisca Oróstica',
                                 description:'Periodista, Máster en Gestión Cultural y Diplomada en Mediación Cultural y Desarrollo de Públicos.  Trabaja en  gestión cultural  y programación artística. Ha participado en proyectos tales como FEDAM, Festival de Dramaturgia Maulina y La Revuelta Danza, programa de formación en danza contemporánea. Actualmente es gestora cultural de la Dirección de Extensión de la Universidad de Talca. ',
-                                image: forostica
+                                image: forostica,
+                                links: [
+                                    <a href='https://www.instagram.com/franorostik/' target='__blank'><InstagramOutlined style={{fontSize:'25px', marginRight:'10px', color:'rgb(97, 38, 61)'}} /></a>,
+                                    <a href='mailto:franciscaorostica@gmail.com' target='__blank'><MailOutlined style={{fontSize:'25px', marginRight:'10px', color:'rgb(97, 38, 61)'}} /></a>,                                                            
+                                ]
                             })
                             setVisibleInfo(true)
                         }}>
