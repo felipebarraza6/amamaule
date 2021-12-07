@@ -73,6 +73,8 @@ const Screen = () => {
                     </div>
                 </Route>
                 <Route exact path='/' render={()=><>
+
+                    <img src={Avisement} width={'100%'} />
                     <ListTransmissions is_public={true} />
                   <WingBlank size="lg">
                     <WhiteSpace size="lg" />
@@ -98,7 +100,6 @@ const Screen = () => {
                       </Card>
                   </WingBlank>
                     <WhiteSpace size="lg" />
-                    <img src={Avisement} width={'100%'} />
                     <Services />
 
                     <img src={TrenMobile} width={'100%'} />

@@ -43,6 +43,9 @@ const Home = () => {
             <Route exact path='/' render = {()=> {
               return(
                 <React.Fragment>
+                  <Row>
+                        <img src={BannerRondas} width={'100%'} />
+                    </Row>
                 <Row justify="center">
                     {state.isAuthenticated ?
                   <ListTransmissions is_public={false} />:
@@ -75,9 +78,7 @@ const Home = () => {
                     </Col>
 
                     </Row>
-                    <Row>
-                        <img src={BannerRondas} width={'100%'} />
-                    </Row>
+                    
                     <Services />
                   <TrenSection />
                   <Footer style = {styles.footer}  >AMA - Vincular para crear 2021</Footer>
