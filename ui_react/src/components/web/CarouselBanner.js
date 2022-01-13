@@ -19,9 +19,7 @@ const CarouselBanner = () => {
             <div>
                 <img src={Img3} alt='AMA' style={styles.img1}  />
             </div>                                    
-            <div>
-                <img src={Img4} alt='AMA' style={styles.img1}  />
-            </div>                         
+                        
         </Carousel>
         
     )

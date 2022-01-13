@@ -5,6 +5,14 @@ body {
     overflow: scroll;
   
   }
+  [data-theme='compact'] .site-collapse-custom-collapse .site-collapse-custom-panel,
+.site-collapse-custom-collapse .site-collapse-custom-panel {
+  margin-bottom: 24px;
+  overflow: hidden;
+  background: #ffba31;
+  border: 0px;
+  border-radius: 2px;
+}
 
 .meeting-info-container {
     display:none;
@@ -26,13 +34,13 @@ body {
 }
 
 .ant-carousel .slick-dots li button {
-    background: #ce3d4b;
+    background: #3a1f33;
     opacity: 0.4;
 }
 
 .ant-carousel .slick-dots li.slick-active button {
     opacity: 1;
-    background: #ce3d4b;
+    background: #b05db9;
 }
 
 #zmmtg-root {

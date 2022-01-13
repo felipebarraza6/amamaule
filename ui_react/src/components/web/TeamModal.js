@@ -1,7 +1,10 @@
 import React, {useEffect, useState} from 'react'
 import {Modal, Menu, Button, Row, Col, Card, Typography, Avatar} from 'antd'
 import { TeamOutlined } from '@ant-design/icons'
-import { LinkedinOutlined, InstagramOutlined, MailOutlined, DribbbleOutlined, TwitterOutlined, FacebookOutlined, ChromeOutlined, BehanceOutlined } from '@ant-design/icons'
+import { LinkedinOutlined, 
+         InstagramOutlined, 
+         MailOutlined, 
+         FacebookOutlined, ChromeOutlined, BehanceOutlined } from '@ant-design/icons'
 import kateryn from '../../assets/persons/kgarzon.jpeg'
 import vflores from '../../assets/persons/vflores.jpg'
 import mrojas from '../../assets/persons/mrojas.jpeg'

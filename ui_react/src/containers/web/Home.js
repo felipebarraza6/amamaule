@@ -3,18 +3,12 @@ import { Layout, Typography, Row, Col } from 'antd'
 import ProfileUser from './ProfileUser'
 import '../../assets/css/web.css'
 import NavBar from '../../components/web/NavBar'
-import HeaderLogo from '../../components/web/HeaderLogo'
-import CarouselBanner from '../../components/web/CarouselBanner'
 import InfoSection from '../../components/web/InfoSection'
 import TrenSection from '../../components/web/TrenSection'
 import Services from '../../components/web/Services'
 import NavBarClient from '../../components/web/NavBarClient'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import MeetingVideoChat from "./MeetingVideoChat"
-
-import ListTransmissions from "../../components/web/transmissions/list/ListTransmissions";
-import HomeTransmissions from '../../components/web/transmissions/home/HomeTransmissions'
-import BannerRondas from '../../assets/img/banner_rondas.jpg'
 import {AuthContext} from "../../App";
 
 const { Content, Footer } = Layout
@@ -28,7 +22,7 @@ const Home = () => {
     <Router>
       <Layout>
         <Switch>  
-          <Route exact path='/' render={()=><><HeaderLogo/><NavBar/></>}  />
+          <Route exact path='/' render={()=><><NavBar/></>}  />
           <Route exact path='/profile' render={()=> <NavBarClient />}  />
           <Route exact path='/profile/meetings/:id' render={({match})=> {
               return(<>
@@ -43,16 +37,9 @@ const Home = () => {
             <Route exact path='/' render = {()=> {
               return(
                 <React.Fragment>
-                  <Row>
-                        <img src={BannerRondas} width={'100%'} />
-                    </Row>
-                <Row justify="center">
-                    {state.isAuthenticated ?
-                  <ListTransmissions is_public={false} />:
-                        <ListTransmissions is_public={true} />
-                  }
-                  </Row>
+                  <InfoSection />
                   <Row style={{ padding:'80', marginTop:'50px', backgroundColor:'white'}}>
+                  
 
                     <Col span={8} style={{padding:'40px'}}>
                         <Paragraph align={'justify'}><b>AMA</b> es el primer encuentro de vinculación online para Artistas Escénicos de la
@@ -81,7 +68,7 @@ const Home = () => {
                     
                     <Services />
                   <TrenSection />
-                  <Footer style = {styles.footer}  >AMA - Vincular para crear 2021</Footer>
+                  <Footer style = {styles.footer}  >AMA - Vincular para crear 2022</Footer>
                 </React.Fragment>
               )
             }}  />
@@ -98,7 +85,7 @@ const Home = () => {
 const styles = {
   footer: {       
     textAlign: 'center',
-    backgroundColor: '#61263D',
+    backgroundColor: '#ff6d3c',
     color: 'white',    
   },
   footerFix: {
@@ -107,7 +94,7 @@ const styles = {
     bottom:0,
     width:'100%',     
     textAlign: 'center',
-    backgroundColor: '#61263D',
+    backgroundColor: '#ff6d3c',
     color: 'white',    
   }  
 }

@@ -5,6 +5,7 @@ import service2 from '../../assets/service_icons/RONDAS-DE-VINCULACION.png'
 import service3 from '../../assets/service_icons/SHOWCASES.png'
 import service4 from '../../assets/service_icons/TALLERES.png'
 import service5 from '../../assets/service_icons/CATALOGO.png'
+import service6 from '../../assets/service_icons/06.png'
 const { Title } = Typography
 const { Item } = List
 
@@ -13,7 +14,7 @@ const Services = () => {
 
     return(
         <Row style={styles.container} justify='center'>
-                <Col xs={24} lg={4} style={styles.column} >
+                <Col xs={24} lg={3} style={styles.column} >
                     <img onClick={()=>{Modal.info(
                         {                         
                             icon: <img src={service1} style={styles.img2}  />,
@@ -53,10 +54,9 @@ const Services = () => {
                             
                         }
                     )}}
-                    src={service1} style={styles.img}  alt='service1' />
-                    <Title style={styles.title} level={4}>Talleres</Title>
+                    src={service1} style={styles.img}  alt='service1' />                    
                 </Col>
-                <Col xs={24} lg={4}  style={styles.column} span={6}>
+                <Col xs={24} lg={3}  style={styles.column} span={6}>
                     <img
                      onClick={()=>{Modal.info(
                         {                         
@@ -69,9 +69,9 @@ const Services = () => {
                         }
                     )}}
                      src={service2} style={styles.img}  alt='service2' />
-                    <Title style={styles.title} level={4} >Conferencias y Mesas Temáticas </Title>
+                    
                 </Col>
-                <Col xs={24} lg={4}  style={styles.column} span={6}>
+                <Col xs={24} lg={3}  style={styles.column} span={6}>
                     <img
                     onClick={()=>{Modal.info(
                         {                         
@@ -85,9 +85,9 @@ const Services = () => {
                         }
                     )}}
                      src={service3} style={styles.img}  alt='service3' />
-                    <Title style={styles.title} level={4}>Rondas de Vinculación</Title>
+                    
                 </Col>
-                <Col xs={24} lg={4}  style={styles.column} span={6}>
+                <Col xs={24} lg={3}  style={styles.column} span={6}>
                     <img 
                     onClick={()=>{Modal.info(
                         {                            
@@ -102,13 +102,20 @@ const Services = () => {
                         }
                     )}}
                     src={service4} style={styles.img}  alt='service4' />
-                    <Title style={styles.title} level={4}>Visionados y Showcases</Title>
+                    
                 </Col>
-                <Col xs={24} lg={4}  style={styles.column} >
+                <Col xs={24} lg={3}  style={styles.column} >
                     <a target='__blank' href='http://www.teatroregional.cl/catalogo-de-obras-y-artistas-escenicos-region-del-maule'>
                     <img
                     src={service5} style={styles.img}  alt='service4' /></a>
-                    <Title style={styles.title} level={4}>Catálogo de Artistas del Maule</Title>
+                    
+                    
+                </Col>
+                <Col xs={24} lg={3}  style={styles.column} >
+                    <a target='__blank' >
+                    <img
+                    src={service6} style={styles.img}  alt='service4' /></a>
+                    
                 </Col>
         </Row>
     )
@@ -119,14 +126,14 @@ const styles = {
         padding:'2%',
         paddingTop:'8%',
         paddingBottom:'8%', 
-        backgroundColor: '#ce3d4b',        
+        backgroundColor: '#18c5cc',        
     },
     column: {
         textAlign:'center',
         margin:'20px'
     },
     img: {
-      width: '50%',
+      width: '80%',
       marginBottom: '3%',
       cursor:'pointer'
     },

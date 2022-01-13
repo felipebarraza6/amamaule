@@ -1,18 +1,21 @@
 import React from 'react'
-
-import { Row } from 'antd'
+import { InstagramOutlined, TwitterOutlined } from '@ant-design/icons' 
+import { Row } from 'antd' 
 
 import trenImage from '../../assets/img/tren01.png'
 import tresnImage2 from '../../assets/img/tren-media-partners.jpg'
 
 const TrenSection = () => {
     return(<>
-        <Row justify='center'>
+        <Row justify='center' style={{padding:'40px'}}>
             <img src={tresnImage2} alt='tren' style={styles.trenImg2} />
         </Row>
-            <Row justify='center' style={styles.container}>
-            <img src={trenImage} alt='tren' style={styles.trenImg} />
+            
+        <Row style={styles.container} justify='center'>
+            <InstagramOutlined style={{fontSize: '30px', margin:'17px', color:'white'}} />
+            <TwitterOutlined style={{fontSize: '30px', margin:'17px', color:'white'}} />
         </Row>
+        
         </>
     )
 }
@@ -20,7 +23,7 @@ const TrenSection = () => {
 
 const styles = {
     container: {
-        backgroundColor: '#61263D',
+        backgroundColor: '#ff6d3c',
         paddingTop: '20px'
     },
     trenImg: {

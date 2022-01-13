@@ -15,6 +15,7 @@
     "fs-react": "^0.0.4",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-draggable": "^4.4.4",
     "react-ig-feed": "^1.0.4",
     "react-instagram-authless-feed": "jamesmoriarty/react-instagram-authless-feed#v2.0.0",
     "react-router-dom": "^5.2.0",

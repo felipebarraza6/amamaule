@@ -1,14 +1,12 @@
 import React, {useContext} from 'react'
 import { Layout, Menu, Button, Tooltip } from 'antd'
-import Login from '../../components/web/auth/Login'
-import { LogoutOutlined, FilePdfFilled, TeamOutlined } from '@ant-design/icons'
+import { LogoutOutlined, FilePdfFilled, TeamOutlined, InstagramOutlined, TwitterOutlined } from '@ant-design/icons'
 import { AuthContext } from '../../App'
 import { Link } from 'react-router-dom'
-import Program from '../../assets/PROGRAMA.pdf'
-import TeamModal from './TeamModal'
+import Logo from '../../assets/logo/01B.png'
+import TeamModal from './TeamModal' 
 const { Header } = Layout
 const { Item } = Menu
-
 
 const NavBar = () => {
     
@@ -16,38 +14,23 @@ const NavBar = () => {
 
 
     return(
-        <Header style={styles.header}>
-           <Menu mode="horizontal" theme='dark' style={styles.menu} > 
+        <Header style={styles.header}>            
+        <div style={styles.item1}>
+                <img alt='logo' src={Logo} style={{width:'285px'}} />
+        </div>
+           <Menu mode="horizontal" theme='dark' style={styles.menu} >            
             <Item style={styles.item}>
-                <Link to='/'>Inicio</Link>
+                <TeamModal />
             </Item>            
                <Item style={styles.item}>
-                    <a href={Program} target="__blank" >
-                        <FilePdfFilled style={{fontSize:'25px'}} />
-                            PROGRAMA 2021
+                    <a>                        
+                    ¿QUIÉNES PUEDEN PARTICIPAR?
                     </a>
-                </Item>
-                <Item style={styles.item}s>
-                    <TeamModal />
-                </Item>
-            {state.isAuthenticated ? 
-            <>
+                </Item>                               
                 <Item style={styles.item}>
-                    <Link to='/profile'>
-                          Ir a mi perfil: @{state.user.username}
-                    </Link>
-                </Item>
-                <Item style={styles.itemLogOut}> 
-                    <Button type='link' onClick={()=> {dispatch({type:'LOGOUT'})}}>
-                        <Tooltip title='Cerrar Sesión'>
-                            <LogoutOutlined style={{fontSize:'20px', color:'white'}} />
-                        </Tooltip>
-                    </Button> 
-                </Item>
-            </>:
-            
-                <Item style={styles.item}> <Login /> </Item>
-            }
+                    <InstagramOutlined style={{fontSize: '30px', margin:'17px'}} />
+                    <TwitterOutlined style={{fontSize: '30px', margin:'17px'}} />
+                </Item>                  
 
            </Menu>
         </Header>
@@ -58,20 +41,28 @@ const NavBar = () => {
 const styles = {
     header: {      
         width:'100%',   
-        backgroundColor: '#61263D'       
+        backgroundColor: '#b05db9'       
     }, 
     menu: {
         textAlign:'end',
-        backgroundColor: '#61263D'
+        backgroundColor: '#b05db9'
     }, 
     item: {
-        backgroundColor: '#CE3D4B',
+        backgroundColor: '#b05db9',
         marginRight:'5px',
         marginLeft:'5px'
     }, 
+    item1: {
+        backgroundColor: '#b05db9',
+        marginRight:'5px',
+        marginLeft:'5px',
+        float: 'left'
+    }, 
     itemLogOut: {
-        backgroundColor: '#61263D',
-    }
+        backgroundColor: '#b05db9',
+    },logo: {
+        width: '10%',       
+    },
 }
 
 
