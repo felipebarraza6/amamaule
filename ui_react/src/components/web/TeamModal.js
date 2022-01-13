@@ -44,11 +44,11 @@ const TeamModal = () => {
             visible={visibleInfo}
             title={infoPerson.name}
             onCancel={()=>setVisibleInfo(false)}            
-            footer={[<Button onClick={()=>setVisibleInfo(false)} style={{backgroundColor:'rgb(97, 38, 61)', color:'white'}}>Cerrar</Button>]}
+            footer={[<Button onClick={()=>setVisibleInfo(false)} style={{backgroundColor:'#ff6d3c', color:'white'}}>Cerrar</Button>]}
         >
             <Row>
                 <Col lg={6} align="center">
-                    <Avatar style={{borderColor:'rgb(97, 38, 61)', borderStyle:'solid'}} shape='square' src={infoPerson.image} size={120} />
+                    <Avatar style={{borderColor:'#ffba31', borderStyle:'solid'}} shape='square' src={infoPerson.image} size={120} />
                 </Col>
                 <Col lg={18} style={{paddingLeft:'20px'}}>
                     <Paragraph align="justify">  
@@ -70,7 +70,7 @@ const TeamModal = () => {
             onCancel={()=>setVisible(false)}>
                 <Row align='space-around'>
                     <Col style={{marginBottom:'20px',paddingLeft:'365px'}}>
-                        <Card hoverable style={{width:'300px', backgroundColor:'rgb(206, 61, 75)'}} onClick={()=>{
+                        <Card hoverable style={{width:'300px', backgroundColor:'#3a1f33'}} onClick={()=>{
                             setInfoPerson({
                                 ...infoPerson,
                                 name: 'Kateryn Garzón',
@@ -90,7 +90,7 @@ const TeamModal = () => {
                         </Card>                        
                     </Col>                
                     <Col style={{marginBottom:'20px', paddingRight:'375px'}}>
-                        <Card hoverable style={{width:'300px', backgroundColor:'rgb(206, 61, 75)'}} onClick={()=>{
+                        <Card hoverable style={{width:'300px', backgroundColor:'#3a1f33'}} onClick={()=>{
                             setInfoPerson({
                                 ...infoPerson,
                                 name: 'Victoria Flores',
@@ -111,7 +111,7 @@ const TeamModal = () => {
 
                 <Row align='space-around' style={{marginTop:'20px'}}>
                     <Col xs={24} lg={6} style={{paddingRight:'10px', textAlign:'center'}}>
-                        <Card style={{width:'100%', backgroundColor:'rgb(97, 38, 61)', color:'white'}}>Comunicaciones</Card>
+                        <Card style={{width:'100%', backgroundColor:'#3a1f33', color:'white'}}>Comunicaciones</Card>
                         <Row align='space-around' style={{marginTop:'20px'}}>
                             <Col>
                                 <Card hoverable style={styles.cardPerson} onClick={()=>{
@@ -258,7 +258,7 @@ const TeamModal = () => {
                         </Row>
                     </Col>
                     <Col xs={24} lg={6} style={{paddingRight:'10px', textAlign:'center'}}>
-                        <Card style={{width:'100%', backgroundColor:'rgb(97, 38, 61)', color:'white'}} >Producción</Card>
+                        <Card style={{width:'100%', backgroundColor:'#3a1f33', color:'white'}} >Producción</Card>
                         <Row justify='center' style={{marginTop:'20px'}}>
                         <Col style={{marginBottom:'20px'}}>
                                 <Card hoverable style={styles.cardColor} onClick={()=>{
@@ -312,7 +312,7 @@ const TeamModal = () => {
                     </Col>
 
                     <Col xs={24} lg={6} style={{paddingRight:'10px', textAlign:'center'}}>
-                        <Card style={{width:'100%', backgroundColor:'rgb(97, 38, 61)', color:'white'}}>Área TI</Card>
+                        <Card style={{width:'100%', backgroundColor:'#3a1f33', color:'white'}}>Área TI</Card>
                         <Row align='center' style={{marginTop:'20px'}}>                        
                         <Col style={{marginBottom:'20px'}}>
                                 <Card style={styles.cardColor} hoverable onClick={()=>{
@@ -359,7 +359,7 @@ const TeamModal = () => {
                         </Row>
                     </Col>
                     <Col xs={24} lg={6} style={{paddingRight:'10px', textAlign:'center'}}>
-                        <Card style={{width:'100%', backgroundColor:'rgb(97, 38, 61)', color:'white'}} >Contenidos</Card>
+                        <Card style={{width:'100%', backgroundColor:'#3a1f33', color:'white'}} >Contenidos</Card>
                         <Row align='space-around' style={{marginTop:'20px'}}>
                             <Col style={{marginBottom:'20px'}}>
                                 <Card hoverable style={styles.cardColor} onClick={()=>{
@@ -380,7 +380,7 @@ const TeamModal = () => {
                                 </Card>
                             </Col>
                             <Col span={24} style={{marginBottom:'20px'}}>
-                            <Card style={{width:'100%', backgroundColor:'rgb(97, 38, 61)', color:'white'}} >Sistematización</Card>
+                            <Card style={{width:'100%', backgroundColor:'#3a1f33', color:'white'}} >Sistematización</Card>
                             </Col>
                             <Col style={{marginBottom:'20px'}}>
                                 <Card hoverable style={styles.cardColor} onClick={()=>{
@@ -415,8 +415,7 @@ const TeamModal = () => {
                 
 
         </Modal>
-        <Button style={{paddingBottom:'50px', paddingTop:'12px', color:'white'}} type='link' onClick={()=>setVisible(true)}>
-        <TeamOutlined style={{fontSize:'25px', color:'white'}} />
+        <Button style={{paddingBottom:'40px', paddingTop:'12px', color:'white'}} type='link' onClick={()=>setVisible(true)}>
              
                         EQUIPO              
         </Button>
@@ -427,7 +426,7 @@ const TeamModal = () => {
 
 const styles = {
     item: {
-        backgroundColor: '#CE3D4B',
+        backgroundColor: '#b05db9',
         marginRight:'5px',
         marginLeft:'5px'
     },
@@ -436,10 +435,10 @@ const styles = {
     },
     cardPerson: {
         width:'150px',
-        backgroundColor:'rgb(245, 129, 126)'
+        backgroundColor:'#b05db9'
     },
     cardColor: {        
-        backgroundColor:'rgb(245, 129, 126)', 
+        backgroundColor:'#b05db9', 
         width:'300px', color:'white'
     }
 

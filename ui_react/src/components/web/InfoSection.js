@@ -17,7 +17,7 @@ const InfoSection = () => {
     }, [])
 
     return(
-        <Row justify='center' style={{margin: '100px' }} style={{backgroundImage:`url(${Slide1})`,backgroundPosition: 'top',
+        <Row justify='center' style={{backgroundImage:`url(${Slide1})`,backgroundPosition: 'top',
         backgroundSize: '160% auto',
         height: '100%',
         backgroundRepeat: 'no-repeat',
@@ -40,7 +40,7 @@ const InfoSection = () => {
     <Paragraph align={'justify'} style={{color:''}}>AMA está abierta a público general a través de espectáculos gratuitos como showcases, espectáculos de artes escénicas, mercado de las artes y otros eventos artísticos.</Paragraph>
 
     </Panel>
-    <Panel header="¿QUE PUEDES HACER EN AMA?" key="3" className="site-collapse-custom-panel">
+    <Panel header="¿QUIÉNES PUEDEN PARTICIPAR EN AMA?" key="3" className="site-collapse-custom-panel">
     <Paragraph align={'justify'} style={{color:''}}> Pueden participar artistas, programadores y todas aquellas personas que forman parte del ecosistema artístico relacionado a las artes escénicas y de la visualidad, tales como organizaciones que llevan a cabo programas artísticos, culturales o patrimoniales; establecimientos educacionales que contemplan asignaturas artísticas o actividades extracurriculares relacionadas a las artes, coleccionistas y galeristas, y personas que se desarrollan en diversos ámbitos de acción que se detallan a continuación: </Paragraph>
     <Paragraph align={'justify'} style={{color:''}}><b>Artistas Escénicos o representantes</b> de las disciplinas de teatro, danza, circo, narración oral, canto, música orquestada, docta, popular; folclore, ópera, títeres o marionetas, performance, u otras correspondientes.</Paragraph>
     <Paragraph align={'justify'} style={{color:''}}><b>Artistas de la visualidad</b>, de disciplinas como pintura, escultura, muralismo, grabado, dibujo, instalación, performance, vitrales, y técnicas integradas, estos últimos entendidos como proyectos que sumen más de una de las expresiones y géneros anteriormente descritos.</Paragraph>
@@ -70,6 +70,7 @@ const styles = {
     card: {
         width: '900px',
         boxShadow:'25px 25px 5px rgba(0, 0, 0, 0.2)',
+        marginBottom: '100px'
     }
     
 }

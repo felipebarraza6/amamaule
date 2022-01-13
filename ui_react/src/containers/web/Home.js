@@ -38,34 +38,7 @@ const Home = () => {
               return(
                 <React.Fragment>
                   <InfoSection />
-                  <Row style={{ padding:'80', marginTop:'50px', backgroundColor:'white'}}>
-                  
-
-                    <Col span={8} style={{padding:'40px'}}>
-                        <Paragraph align={'justify'}><b>AMA</b> es el primer encuentro de vinculación online para Artistas Escénicos de la
-                            Región del Maule. Durante cuatro jornadas, las y los artistas tendrán la oportunidad de reunirse junto a actores del
-                            mundo público y privado, con el objetivo de reactivar redes a nivel regional para la programación de
-                            Artes Escénicas en el Maule y el resto del país.
-                    </Paragraph>
-                    </Col>
-                    <Col span={8} style={{padding:'40px'}}>
-                        <Paragraph align={'justify'}><b>AMA, Vincular Para Crear</b>, propone una agenda de reuniones bilaterales y grupales que
-                            permitan a programadores y creadores conocerse, abriendo la oportunidad de ver trabajos estrenados, en progreso y
-                            proyectos de creación con sello local.
-
-                    </Paragraph>
-                    </Col>
-                    <Col span={8} style={{padding:'40px'}}>
-                            <Paragraph align={'justify'}>Además, esperamos encontrarnos en el marco de conferencias y mesas de conversación en
-                                torno a los nuevos desafíos de la gestión cultural y el acceso trabajo artístico. Finalmente, propociaremos
-                                instancias de formación que inciten a la educación continua y sirvan de inspiración para todas y todos los
-                                participantes.
-
-                    </Paragraph>
-                    </Col>
-
-                    </Row>
-                    
+                   
                     <Services />
                   <TrenSection />
                   <Footer style = {styles.footer}  >AMA - Vincular para crear 2022</Footer>
