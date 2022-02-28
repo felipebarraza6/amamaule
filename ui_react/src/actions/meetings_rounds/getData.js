@@ -18,10 +18,18 @@ export const getUsers =  async({dispatch}) =>{
 
 export const getInvitations = async({dispatch, auth}) => {
 
-	const request = await api_links_instances.list_invitations({user:auth.user.id})
+	const request = await api_links_instances.list_invitations(auth.user.id)
 				.then((response)=> {
 					dispatch({
 						type:'SET_INVITATIONS',
+						payload: response.data.results
+					})
+				})
+
+	const rq2 = await api_links_instances.list_invitations(null, auth.user.id)
+				.then((response)=> {
+					dispatch({
+						type:'SET_INVITATIONS_OWNER',
 						payload: response.data.results
 					})
 				})
@@ -31,72 +39,45 @@ export const getInvitations = async({dispatch, auth}) => {
 
 export const getCalendarData = async ({dispatch, auth}) => {
 
-			const getMeetingThursdayMorning = await api_links_instances.list_meetings({
-				invited:auth.user.id, year:'2021', month:'04', range_hour:'10,12', day:'15', is_active:'true'})
+			const rq = await api_links_instances.list_meetings({
+				invited:auth.user.id, is_active:'true'})
 				.then((response)=> {
+					console.log(response.data.results)
 					dispatch({
-						type:'SET_MORNING_THURSDAY',
+						type:'SET_MEETINGS',
 						payload: response.data.results
 					})
 				})
 
-			const getMeetingFridayMorning = await api_links_instances.list_meetings({
-				invited:auth.user.id, year:'2021', month:'04', range_hour:'11,12', day:'16', is_active:'true'})
-				.then((response)=> {
-					dispatch({
-						type:'SET_MORNING_FRIDAY',
-						payload: response.data.results
-					})
-				})
-
-			const getMeetingSaturdayMorning = await api_links_instances.list_meetings({
-				invited:auth.user.id, year:'2021', month:'04', range_hour:'11,12', day:'17', is_active:'true'})
-				.then((response)=> {
-					dispatch({
-						type:'SET_MORNING_SATURDAY',
-						payload: response.data.results
-					})
-				})
-
-            const getMeetingThursdayAfternoon = await api_links_instances.list_meetings({
-				invited:auth.user.id, year:'2021', month:'04', range_hour:'16,16',day:'15', is_active:'true'})
-				.then((response)=> {
-					dispatch({
-						type:'SET_AFTERNOON_THURSDAY',
-						payload: response.data.results
-					})
-				})
-
-            const getMeetingFridayAfternoon = await api_links_instances.list_meetings({
-				invited:auth.user.id, year:'2021', month:'04', range_hour:'16,16', day:'16', is_active:'true'})
-				.then((response)=> {
-					dispatch({
-						type:'SET_AFTERNOON_FRIDAY',
-						payload: response.data.results
-					})
-				})
-
-			const getMeetingSaturdayAfternoon = await api_links_instances.list_meetings({
-				invited:auth.user.id, year:'2021', month:'04', range_hour:'16,16', day:'17', is_active:'true'})
-				.then((response)=> {
-					dispatch({
-						type:'SET_AFTERNOON_SATURDAY',
-						payload: response.data.results
-					})
-				})
-
-
-
-            return {
-			    getMeetingThursdayMorning,
-                getMeetingFridayMorning,
-                getMeetingSaturdayMorning,
-
-                getMeetingThursdayAfternoon,
-                getMeetingFridayAfternoon,
-                getMeetingSaturdayAfternoon
-            }
+			
+            return rq
 }
+
+
+export const sendInvitation = async(data, state, dispatch, invited, setLoading, closeDrawer, form) => {
+
+	
+	const send_invitation = await api_links_instances.send_invitation({
+		invited: invited.id,
+		message: data.message,				
+		date_meeting: data.start_date
+	}).then((response)=> {
+		getInvitations({dispatch:dispatch, auth:state})
+		notification.success({duration:10,message:'INVITACIÓN ENVÍADA CORRECTAMENTE ',
+			description:'Hemos envíado correctamente tu invitación'})
+		setLoading(false)
+		closeDrawer(false)
+		form.resetFields()
+	}).catch((response)=> {
+		notification.error({message:'ERROR EN ENVIAR INVITACION'})
+		setLoading(false)
+	})
+
+	return send_invitation
+}
+
+
+
 
 export const postMeeting = async(data, state, dispatch, invited, setLoading, closeDrawer, form) => {
 
@@ -156,7 +137,7 @@ export const postMeeting = async(data, state, dispatch, invited, setLoading, clo
 						const send_invitation = await api_links_instances.send_invitation({
 							meeting: uuid_meeting,
 							invited: invited.id,
-							message: data.message
+							message: data.message,							
 						}).then((response)=> {
 							getInvitations({dispatch:dispatch, auth:state})
 							notification.success({duration:10,message:'INVITACIÓN ENVÍADA CORRECTAMENTE ',
@@ -180,9 +161,11 @@ export const postMeeting = async(data, state, dispatch, invited, setLoading, clo
 }
 
 
-export const updateInvitation = async(data, invitation, dispatch, auth, setLoadingCard) => {
-	setLoadingCard(true)
-	let start_date = new Date(invitation.meeting.start_date)
+
+
+export const updateInvitation = async(data, invitation, dispatch, auth) => {
+
+	let start_date = new Date(invitation.date_meeting)
 	var day = start_date.getDate()
     var month = start_date.getMonth() + 1
     var year = start_date.getFullYear()
@@ -214,7 +197,7 @@ export const updateInvitation = async(data, invitation, dispatch, auth, setLoadi
 			notification.warning({duration:10,message:'PROBLEMAS DE DISPONIBILIDAD', description:'No es aceptar una reunión en este horario, pues ya tienes una reunión en tu agenda en dicho instante.'})
 		}else{
 			const validated_invited = await api_links_instances.list_meetings({
-				invited: invitation.meeting.owner.id,
+				invited: invitation.invited.id,
 				day: day,
 				hour:hours,
 				minute: minutes,
@@ -222,35 +205,29 @@ export const updateInvitation = async(data, invitation, dispatch, auth, setLoadi
 			}).then(async(response)=> {
 				if(response.data.count > 0){
 					notification.warning({duration:10,message:'PROBLEMAS DE DISPONIBILIDAD', description:'No es aceptar una reunión de este usuario, pues ya tiene reservada la fecha.'})
-					setLoadingCard(false)
+					
 				}else{
 					const request_confirm = await api_links_instances.answer_invitation(data, invitation.id)
 				.then(async(response)=>{
 					message.info('Has aceptado participar en la reunión')
-					setLoadingCard(false)
+					
 
 				})
 				}
 			})
 		}
 	}).catch((response)=> {
-		setLoadingCard(false)
 		})
 
 	}else{
 		const request_cancel = await api_links_instances.answer_invitation(data, invitation.id)
 				.then(async(response)=>{
-					message.info('Has cancelado la reunión')
-					deleteMeeting({uuid_meeting: invitation.meeting.uuid, dispatch:dispatch, auth:auth})
-						.then((response)=> {
-							notification.info(
-								{
-									duration:6,
-									message:'Reunión eliminada',
-									description:'Hemos eliminado la reunión'
-								})
-						})
+					message.info('Has cancelado la reunión')					
+					getInvitations({dispatch, auth})
+					getCalendarData({dispatch, auth})
 				})
+
+				return request_cancel
 	}
 
 
@@ -263,7 +240,7 @@ export const updateInvitation = async(data, invitation, dispatch, auth, setLoadi
 export const deleteMeeting = async ({uuid_meeting='', dispatch, auth}) => {
 	const request = api_links_instances.delete_meeting({id_meeting:uuid_meeting})
 		.then((response)=> {
-			notification.success({duration:6,message:'Reunión cancelada, se ha eliminado la invitación enviada.'})
+			notification.success({duration:6,message:'Reunión cancelada, se ha eliminado la reunion.'})
 			getCalendarData({dispatch:dispatch, auth:auth})
 			getInvitations({dispatch:dispatch, auth:auth})
 		}).catch((error)=> {message.error('Error al eliminar la reunion')})

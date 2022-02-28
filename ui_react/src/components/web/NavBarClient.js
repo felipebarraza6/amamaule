@@ -4,7 +4,7 @@ import Login from '../../components/web/auth/Login'
 import { LogoutOutlined, NotificationOutlined } from '@ant-design/icons'
 import { AuthContext } from '../../App'
 import { Link } from 'react-router-dom'
-import Logo from '../../assets/logo/white.png'
+import Logo from '../../assets/logo/01B.png'
 const { Header } = Layout
 const { Item } = Menu
 
@@ -58,22 +58,23 @@ const styles = {
     },
     header: {      
         width:'100%',   
-        backgroundColor: '#61263D',
+        backgroundColor: 'rgb(176, 93, 185)',
         paddingTop: '20px',
         paddingBottom:'90px'    
 
     }, 
     menu: {
         textAlign:'end',
-        backgroundColor: '#61263D',
+        backgroundColor: 'rgb(176, 93, 185)',
     }, 
     item: {
-        backgroundColor: '#CE3D4B',
+        backgroundColor: 'rgb(176, 93, 185)',
         marginRight:'5px',
         marginLeft:'5px'
     }, 
     itemLogOut: {
-        backgroundColor: '#61263D',
+        height: '40px',
+        backgroundColor: 'rgb(176, 93, 185)',
     }
 }
 

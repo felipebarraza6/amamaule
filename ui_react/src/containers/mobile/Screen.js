@@ -26,7 +26,7 @@ const Screen = () => {
           <img src={Logo} style={{width:'80%', margin:'30px', textAlign:'center'}} alt='logo'  />
           <BrowserRouter>
               <Nav mode='dark'  
-                  style={{backgroundColor:'#CE3D4B'}}
+                  style={{backgroundColor:'#FFBA31'}}
                   leftContent={[
                     <Link to='/'>
                     <HomeOutlined style={{fontSize:'25px',color:'white'}}  />
@@ -69,7 +69,7 @@ const Screen = () => {
 
                   <TrenSectionM />
                     <div style={{color:'white', backgroundColor:'#61263d', textAlign:'center', padding:'20px'}}>
-                    AMA - Vincular para crear 2021
+                    AMA - Vincular para crear 2022
                     </div>
                 </Route>
                 <Route exact path='/' render={()=><>

@@ -154,7 +154,7 @@ const MeetingVideoChat = ({match})=> {
                         <MeetWhereby url={state.data.src_host} user={state.user} /> </>:
                         <Col style={{textAlign:'center',padding:'100px'}}>
                             <Title> ID REUNION: {state.data.uuid} </Title>
-                            <Button onClick={createMeet} type={'primary'} size={'large'} icon={<Badge status={'processing'} color={'white'} />}>Iniciar reunión</Button>
+                            <Button style={{backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}} onClick={createMeet} type={'primary'} size={'large'} icon={<Badge status={'processing'} color={'white'} />}>Iniciar reunión</Button>
                </Col>
         }
 

@@ -68,7 +68,7 @@ const ListTransmissions = ({globalState, changeState, is_public}) => {
     return(
         <React.Fragment>
 
-            <Menu theme='dark' mode='horizontal' style={{ width:'100%' ,textAlign:'center', backgroundColor:is_public ? '#F58B88': 'rgb(97, 38, 61)', color:'white'}} onClick={async(current)=>{
+            <Menu theme='dark' mode='horizontal' style={{ width:'100%' ,textAlign:'center', backgroundColor:is_public ? '#3A1F33': '#3A1F33', color:'white'}} onClick={async(current)=>{
                 if(current.key==='0'){
                 const request  = await api_transmissions.transmissions.list('true', '').then((response)=> {
                     if(response.data.count > 0){                                                
@@ -153,20 +153,20 @@ const ListTransmissions = ({globalState, changeState, is_public}) => {
             { is_public ? <>
                     {!is_public && <>
                 {!state.no_live &&
-                    <Menu.Item style={{backgroundColor:'rgb(97, 38, 61)', color:'white'}} key='0' >
+                    <Menu.Item style={{backgroundColor:'#3A1F33', color:'white'}} key='0' >
                      <Badge color={'volcano'} status={'processing'} />   EN VIVO
                     </Menu.Item>}
                     </>}
-                <Menu.Item style={{backgroundColor:'#F58B88', color:'white'}} key='7' >
+                <Menu.Item style={{backgroundColor:'#3A1F33', color:'white'}} key='7' >
                     Todos
                 </Menu.Item>
-                <Menu.Item style={{backgroundColor:'#F58B88', color:'white'}} key='1' >
+                <Menu.Item style={{backgroundColor:'#3A1F33', color:'white'}} key='1' >
                    <NotificationOutlined style={{fontSize:'20px'}} /> Conferencias
                 </Menu.Item>
-                <Menu.Item style={{backgroundColor:'#F58B88', color:'white'}} key='2' >
+                <Menu.Item style={{backgroundColor:'#3A1F33', color:'white'}} key='2' >
                     <DesktopOutlined style={{fontSize:'20px'}} /> Showcases
                 </Menu.Item>
-                <Menu.Item style={{backgroundColor:'#F58B88', color:'white'}} key='6' >
+                <Menu.Item style={{backgroundColor:'#3A1F33', color:'white'}} key='6' >
                     <PlaySquareOutlined style={{fontSize:'20px'}} /> Obras
                 </Menu.Item>
 
@@ -174,29 +174,21 @@ const ListTransmissions = ({globalState, changeState, is_public}) => {
                 </>:
                 <>
                     {!state.no_live &&
-                    <Menu.Item style={{backgroundColor:'rgb(97, 38, 61)', color:'white'}} key='0' >
-                     <Badge color={'volcano'} status={'processing'} />   EN VIVO
-                    </Menu.Item>}
-                     <Menu.Item style={{backgroundColor:'rgb(97, 38, 61)', color:'white'}} key='7' >
+                      <Menu.Item style={{backgroundColor:'#3A1F33', color:'white'}} key='0' >
+                        <Badge color={'volcano'} status={'processing'} />   EN VIVO
+                        </Menu.Item>
+                    }
+                    <Menu.Item style={{backgroundColor:'#3A1F33', color:'white'}} key='7' >
                         Todos
                     </Menu.Item>
-                    <Menu.Item style={{backgroundColor:'rgb(97, 38, 61)', color:'white'}} key='1' >
+                    <Menu.Item style={{backgroundColor:'#3A1F33', color:'white'}} key='1' >
                         Conferencias
                     </Menu.Item>
-                    <Menu.Item style={{backgroundColor:'rgb(97, 38, 61)', color:'white'}} key='2' >
+                    <Menu.Item style={{backgroundColor:'#3A1F33', color:'white'}} key='2' >
                         Showcases
                     </Menu.Item>
-                     <Menu.Item style={{backgroundColor:'rgb(97, 38, 61)', color:'white'}} key='6' >
-                    Obras
-                </Menu.Item>
-                    <Menu.Item style={{backgroundColor:'rgb(97, 38, 61)', color:'white'}} key='3' >
+                    <Menu.Item style={{backgroundColor:'#3A1F33', color:'white'}} key='3' >
                         Mesas temáticas
-                    </Menu.Item>
-                    <Menu.Item style={{backgroundColor:'rgb(97, 38, 61)', color:'white'}} key='4' >
-                        Foro Intercambios creativos
-                    </Menu.Item>
-                    <Menu.Item style={{backgroundColor:'rgb(97, 38, 61)', color:'white'}} key='5' >
-                        Evento Satelite
                     </Menu.Item>
                 </>
             }
@@ -226,7 +218,7 @@ const ListTransmissions = ({globalState, changeState, is_public}) => {
                     }
                     if(category === 'MT'){
                         obj.category = 'Mesas temáticas'
-                        color = 'green'
+                        color = 'pink'
                         is_public_content =false
                     }
                     if(category === 'IC'){
@@ -275,7 +267,7 @@ const ListTransmissions = ({globalState, changeState, is_public}) => {
                                         <Button size={'small'} disabled style={{float:'right'}}><LockOutlined/></Button></Col>:''
                                     }
                                     </Row>}
-                                >
+                                >                                    
                                 </Card.Meta>
                         </Card>
                         </Col>

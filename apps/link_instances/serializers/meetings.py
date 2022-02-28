@@ -31,7 +31,7 @@ class CreateMeetingModelSerializer(serializers.ModelSerializer):
         get_user = User.objects.get(id=owner.id)
         obj_participant = {}
 
-        for element in participans:
+        """for element in participans:
             if element.id != owner.id:
                 invited = User.objects.get(id=element.id)
                 obj_participant = invited
@@ -47,7 +47,7 @@ class CreateMeetingModelSerializer(serializers.ModelSerializer):
                       obj_participant.first_name),
                       settings.DEFAULT_FROM_EMAIL,
                       [obj_participant.email]
-                  )
+                  )"""
 
         return attrs
 
@@ -92,7 +92,7 @@ class CreateMeetingSerializer(serializers.Serializer):
         if(get_meeting_obj.src_host):
             raise serializers.ValidationError('Ya existe acceso')
 
-        API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmFwcGVhci5pbiIsImF1ZCI6Imh0dHBzOi8vYXBpLmFwcGVhci5pbi92MSIsImV4cCI6OTAwNzE5OTI1NDc0MDk5MSwiaWF0IjoxNjE4MjE3NzYzLCJvcmdhbml6YXRpb25JZCI6OTQxNzgsImp0aSI6IjdiODIxNzFhLWNkM2EtNDBlZS1iODIyLTVmY2I2NTFlY2MxYiJ9.hcmJ8XKGvVZ3mWFxbk1BaiOjNQL43Xa6y6o_Urql4Qg"
+        API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmFwcGVhci5pbiIsImF1ZCI6Imh0dHBzOi8vYXBpLmFwcGVhci5pbi92MSIsImV4cCI6OTAwNzE5OTI1NDc0MDk5MSwiaWF0IjoxNjQ1OTEyMDE1LCJvcmdhbml6YXRpb25JZCI6MTU0MTE0LCJqdGkiOiI1MDJhMDdiYS0yNTUyLTQxMWQtOTI3NC1iYjZmMTVlOGQ1MTcifQ.JyG49Ds849RQwaugrGvMl0uhv581NUjtQcz6MJcVfGo"
 
         data_meeting = {
             "isLocked": False,
@@ -127,14 +127,8 @@ class ListMeetingModelSerializer(serializers.ModelSerializer):
     owner = UserModelSerializer()
     participans_invited = UserModelSerializer(many=True)
     participans_validated = UserModelSerializer(many=True)
-    invitations = serializers.SerializerMethodField('get_invitations')
 
-    def get_invitations(self, meeting):
-        qs = Invitation.objects.filter(meeting=meeting)
-        serializer = InvitationModelSerializer(instance=qs, many=True)
-        data = serializer.data
-        return data
-    
+   
     class Meta:
         model = Meeting
         fields = ('__all__')

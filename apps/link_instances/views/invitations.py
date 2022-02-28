@@ -5,25 +5,26 @@ from rest_framework.permissions import (
 )
 
 from apps.link_instances.models import Invitation
-from apps.link_instances.serializers import InvitationModelSerializer, ListInvitationModelSerializer
+from apps.link_instances.serializers import InvitationModelSerializer, ListInvitationModelSerializer, RetrieveModalSerializer
 from django_filters import rest_framework as filters
 
 
 class InvitationViewSet(mixins.ListModelMixin, 
                     mixins.CreateModelMixin,                   
                     mixins.UpdateModelMixin,
+                    mixins.DestroyModelMixin,
                     viewsets.GenericViewSet):
     
-    queryset = Invitation.objects.filter(is_active=True)
+    queryset = Invitation.objects.all()
     lookup_field = 'id'
     permission_classes = [IsAuthenticated]
     filter_backends = (filters.DjangoFilterBackend,)
 
     def get_serializer_class(self):
         if self.action == 'list':
-            return ListInvitationModelSerializer
+            return RetrieveModalSerializer
         if self.action == 'retrieve':
-            return InvitationModelSerializer        
+            return RetrieveModalSerializer        
         else:
             return InvitationModelSerializer
 
@@ -31,8 +32,8 @@ class InvitationViewSet(mixins.ListModelMixin,
         class Meta:
             model = Invitation
             fields = {       
+                'owner': ['exact'],
                 'invited':['exact'],
-                'meeting': ['exact'],
                 'is_active': ['exact'],
                 'answer': ['exact']   
             }

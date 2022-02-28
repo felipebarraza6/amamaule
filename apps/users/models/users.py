@@ -9,33 +9,19 @@ from apps.utilities.models import APIModel
 class User(APIModel, AbstractUser):
 
     TYPES_USERS = [
-        ('AM','Artista / Manager'),
-        ('GE','General'),
-        ('R','Relator'),
-        ('GES','Gestión'), # Cultural/Producción/Programación
-        ('PROV','Proveedor'), # (transporte, técnica, catering, otros)
-        ('RE','Representante'), #  de organización o empresa, pública o privada
-        ('PRO','Profesional asociado'), #  a las artes escénicas (diseñador gráfico/a, escenógrafo/a, sonido, iluminación, comunicación, audiovisualista, fotógrafo/a, maquillador/a, vestuarista, otros)
+        ('GES','gestor/a cultural, programador/a o similar'),
+        ('AR','artista escénico o representante '),       
+        ('AV','artista de la visualidad '), 
+        ('PT','profesional o trabajador relacionado a las artes escénicas o de la visualidad'), 
+        ('PS','proveedor/a de bienes y servicios asociados'),
+        ('OPP','organización pública o privada'), 
         ('ADM', 'Administrador de sistema')
     ]
 
-    type_user1 = models.CharField(
+    type_user = models.CharField(
         max_length=4,
         choices=TYPES_USERS,    
-    )
-
-    type_user2 = models.CharField(
-        max_length=4,
-        choices=TYPES_USERS,
-        blank=True,
-        null=True
-    )
-
-    type_user3 = models.CharField(
-        max_length=4,
-        choices=TYPES_USERS,        
-        blank=True,
-        null=True
+        blank=True, null=True
     )
 
     email = models.EmailField(
@@ -47,8 +33,7 @@ class User(APIModel, AbstractUser):
         regex=r'\+?1?\d{9,15}$',
         message="Phone number must be entered in the format: +999999999. Up to 15 digits allowed."
     )
-    phone_number = models.CharField(validators=[phone_regex], max_length=17, blank=True, unique=True)
-    principal_image = models.ImageField(blank=True, null=True)
+    phone_number = models.CharField(validators=[phone_regex], max_length=17, blank=True, unique=True)    
 
     country = models.CharField(max_length=50)
     region = models.CharField(max_length=120)
@@ -68,8 +53,7 @@ class User(APIModel, AbstractUser):
         'phone_number', 
         'country', 
         'region', 
-        'type_user1',
-        
+        'type_user',
     ]
 
 

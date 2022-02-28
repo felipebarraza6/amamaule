@@ -35,7 +35,7 @@ const ListInvitations = ({invitations}) => {
             return(<>
                 {loading ? <Skeleton active /> :
                     <>
-                <Card  loading={loadingCard} hoverable title={ <><Text style={{color:'white'}} > {obj.meeting.start_date.slice(0,10)} {obj.meeting.start_date.slice(11,16)} hrs</Text></> }
+                <Card  loading={loadingCard} hoverable title={ <><Text style={{color:'white'}} > {obj.start_date.slice(0,10)} {obj.meeting.start_date.slice(11,16)} hrs</Text></> }
                       style={{backgroundColor:'#1890ff', borderRadius:'30px'}}>
                     {console.log(obj.message)}
                     <Row>

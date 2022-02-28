@@ -1,5 +1,5 @@
 import { POST_LOGIN, GET, UPDATE, 
-        POST, POST_FILE} from './config'
+        POST, POST_FILE, INSTANCE} from './config'
 
 
 const login = async(data) => {
@@ -25,8 +25,8 @@ const signup = async(data)=> {
     return request.data
 }
 
-const list_users = async({filter='', first_name='', last_name='', region=''})=> {
-    const request = await GET(`users/?type_user1=${filter}&first_name__contains=${first_name}&last_name__contains=${last_name}&region__contains=${region}`)
+const list_users = async({filter='', first_name='', last_name='', region='', city=''})=> {
+    const request = await GET(`users/?type_user=${filter}&first_name__contains=${first_name}&last_name__contains=${last_name}&region__contains=${region}&commune__contains=${city}`)
     return request
 }
 
@@ -44,6 +44,11 @@ const update_profile = async(user, data) => {
     const request = await UPDATE(`users/profile/${user}/`, data)
   
     return request
+}
+
+const update_user = async(user, data) => {
+    const rq = await UPDATE(`users/${user}/`, data)
+    return rq
 }
 
 const create_profile = async(user, data) => {
@@ -84,11 +89,41 @@ const upload_img = async(field, file, user_id)=> {
     return request
 }
 
+const getWorkshops = async() => {
+    const rq = await GET('workshops/')
+
+    return rq
+}
+
+export const UPLOAD_FILE_OR_IMG = async(endpoints, field, file) => {
+    console.log({file})
+    const token = JSON.parse(localStorage.getItem('access_token'))
+    let data = new FormData()
+
+    data.append(field, file)
+
+    const options = {
+      headers: {
+          Authorization: `Token ${token}`,
+          'content-type': 'multipart/form-data'
+      }
+    }
+
+    const request = await INSTANCE.patch(endpoints, data, options)
+    return request
+
+}
+
 const api = {
+    workshops: {
+        get: getWorkshops
+    },
     user: {
+        UPLOAD_FILE_OR_IMG,
         login,
         signup,
         list_users,
+        update_user,
         profile,
         get_profile_center,
         update_profile,

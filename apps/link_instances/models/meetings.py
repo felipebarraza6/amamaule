@@ -22,14 +22,17 @@ class Meeting(APIModel):
     
 
 class Invitation(APIModel):
-    meeting = models.ForeignKey(Meeting, on_delete=models.CASCADE)
+    owner = models.ForeignKey("users.User", on_delete=models.CASCADE, related_name='invitation_owner')    
     invited = models.ForeignKey("users.User", on_delete=models.CASCADE)
     answer = models.BooleanField(default=False)
+    date_meeting = models.DateTimeField() 
     message = models.TextField(max_length=800, blank=True, null=True)
     is_active = models.BooleanField(default=True)
+    rescheduled = models.BooleanField(default=False)
+    date_meeting = models.DateTimeField(blank=True, null=True)
 
 
     def __str__(self):
-        return str(self.meeting)
+        return str(self.owner)
 
 

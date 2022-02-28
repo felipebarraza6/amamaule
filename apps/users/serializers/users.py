@@ -30,18 +30,21 @@ class ResetPasswordSerializer(serializers.Serializer):
             serializers.ValidationError('Tus datos no coinciden!')
         return data
 
-
-
+class SuppUserModelSerializer(serializers.ModelSerializer):    
+    class Meta:
+        model = User
+        fields = '__all__'
 
 class ProfileModelSerializer(serializers.ModelSerializer):
+    user = SuppUserModelSerializer()
     class Meta:
         model = Profile
         fields = '__all__'
     
     def update(self, instance, validated_data):
-        if('dossier_archivo' in  validated_data):
+        if('dossier_file' in  validated_data):
             User.objects.filter(id=instance.user.id).update(is_upload_dossier=True)
-            instance.dossier_archivo = validated_data['dossier_archivo']
+            instance.dossier_archivo = validated_data['dossier_file']
 
         return super(ProfileModelSerializer, self).update(instance,
                 validated_data)
@@ -52,6 +55,7 @@ class ProfileModelSerializer(serializers.ModelSerializer):
         return data
     
 class UserModelSerializer(serializers.ModelSerializer):
+    profile = ProfileModelSerializer()
     class Meta:
         model = User
         fields = (
@@ -61,16 +65,14 @@ class UserModelSerializer(serializers.ModelSerializer):
             'username',
             'phone_number',
             'email',
-            'type_user1',
-            'type_user2',
-            'type_user3',
-            'principal_image',
+            'type_user',
             'country',
             'region',
             'province',
             'commune',
             'is_active',
-            'is_verified'    
+            'is_verified',
+            'profile'    
         )
 
 class UserCommentsInfo(serializers.ModelSerializer):
@@ -122,20 +124,7 @@ class UserSignUpSerializer(serializers.Serializer):
     province = serializers.CharField(allow_null=True, required=False)
     commune = serializers.CharField(allow_null=True, required=False)
 
-    TYPES_USERS = [
-        ('AM','Artista / Manager'),
-        ('GE','General'),
-        ('R','Relator'),
-        ('GES','Gestión'), # Cultural/Producción/Programación
-        ('PROV','Proveedor'), # (transporte, técnica, catering, otros)
-        ('RE','Representante'), #  de organización o empresa, pública o privada
-        ('PRO','Profesional asociado'), #  a las artes escénicas (diseñador gráfico/a, escenógrafo/a, sonido, iluminación, comunicación, audiovisualista, fotógrafo/a, maquillador/a, vestuarista, otros)
-        ('ADM', 'Administrador de sistema')
-    ]
-
-    type_user1 = serializers.ChoiceField(choices=TYPES_USERS)
-    type_user2 = serializers.ChoiceField(choices=TYPES_USERS, allow_null=True, required=False)
-    type_user3 = serializers.ChoiceField(choices=TYPES_USERS, allow_null=True, required=False)
+    
 
     password = serializers.CharField(min_length =6, max_length =64)
     password_confirmation = serializers.CharField(min_length =6, max_length =64)
@@ -152,5 +141,6 @@ class UserSignUpSerializer(serializers.Serializer):
         data.pop('password_confirmation')
         user = User.objects.create_user(**data, is_active=True)
         # Crear perfil
+        Profile.objects.create(user=user)
         return user
 

@@ -19,6 +19,7 @@ const ProfileData = () => {
   const [blockGener, setBlockGener] = useState(false)
   const [errors, setErrors] = useState(null)
   const [file, setFile] = useState()
+
  
  async  function onFinish(values){
     if(values.disciplina){
@@ -35,8 +36,6 @@ const ProfileData = () => {
         }
     }
 
-
-
    const request = await api.user.create_profile(state.user.id, values).then((response)=> {
       message.success('Perfil Creado!!!')      
       if(!file){
@@ -45,10 +44,9 @@ const ProfileData = () => {
         message.warning('Estamos cargando tu dossier...')      
       }
     }).catch((error)=> {
-     if(error.response){
-      setErrors(error.response.data)
-     }
-      
+      if(error.response){
+        setErrors(error.response.data)
+      }
       if(errors){
         Object.keys(errors).map((key, index)=> {
           let field = key
@@ -73,6 +71,8 @@ const ProfileData = () => {
     return request
 
   }
+
+
   var is_artis = false
   if(state.user){
    if(state.user.type_user1 === 'AM'){
@@ -102,17 +102,16 @@ const ProfileData = () => {
   }
 
   var is_pro = false
- if(state.user){
-   if(state.user.type_user1 === 'PRO'){
-      is_pro = true
-   }else if(state.user.type_user2 === 'PRO'){
-      is_pro = true
-   }else if(state.user.type_user3 === 'PRO'){
-      is_pro = true
-   }else{
-      is_pro = false
-   } 
-
+  if(state.user){
+    if(state.user.type_user1 === 'PRO'){
+        is_pro = true
+    }else if(state.user.type_user2 === 'PRO'){
+        is_pro = true
+    }else if(state.user.type_user3 === 'PRO'){
+        is_pro = true
+    }else{
+        is_pro = false
+    } 
   }
 
   
@@ -278,9 +277,9 @@ const ProfileData = () => {
                                     <h4>Si tienes un dossier, adjunta aquí</h4>
                                     {file && `${file.name}`}      
                                     <Form.Item name='dossier' label={<>
-                                      <div style={{padding:'5px', marginTop:'10px', cursor:'pointer', border:'2px solid rgb(97, 38, 61)'}}>
-                                        <UploadOutlined style={{fontSize:'23px', color:'rgb(97, 38, 61)', marginTop:'5px', cursor:'pointer'}} /> 
-                                        <span style={{fontSize:'15px', color:'rgb(97, 38, 61)',marginLeft:'15px'}}>Selecciona tu archivo</span>
+                                      <div style={{padding:'5px', marginTop:'10px', cursor:'pointer', border:'#B05DB9'}}>
+                                        <UploadOutlined style={{fontSize:'23px', color:'#B05DB9', marginTop:'5px', cursor:'pointer'}} /> 
+                                        <span style={{fontSize:'15px', color:'#B05DB9',marginLeft:'15px'}}>Selecciona tu archivo</span>
                                         </div>  
                                       </>} > 
                                         
@@ -299,7 +298,7 @@ const ProfileData = () => {
                                     </Col>
                                     </Row>
                                     <Form.Item>
-                                        <Button size="large" type='primary' htmlType='submit' style={{backgroundColor:'#CE3D4B', borderColor:'#CE3D4B'}}>Enviar Perfil</Button>
+                                        <Button size="large" type='primary' htmlType='submit' style={{backgroundColor:'#FFBA31', borderColor:'#FFBA31'}}>Enviar Perfil</Button>
                                     </Form.Item>
                                 </Form>     
                             </Card>

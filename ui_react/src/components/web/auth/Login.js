@@ -118,7 +118,7 @@ const Login = () => {
 
     return (
         <React.Fragment>
-            <Button size='large' style={styles.button} onClick={changeVisible}>
+            <Button size='large' type='link' style={styles.button} onClick={changeVisible}>
                 <UserOutlined style={{fontSize:'20px'}} />
                 Ingresar
             </Button>
@@ -130,10 +130,8 @@ const Login = () => {
 
 const styles = {
     button: {
-        backgroundColor: '#CE3D4B', 
-        color:'white',
         height:'64px',
-        borderColor:'#CE3D4B'
+        color:'white'
     },
     colField: {
         paddingRight: '10px'

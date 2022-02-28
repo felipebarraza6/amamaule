@@ -38,6 +38,12 @@ export const groups_reducer = (state, action) => {
                 ...state,
                 my_invitations: action.payload
             }
+        
+        case 'SET_INVITATIONS_OWNER':
+            return {
+                ...state,
+                my_invitations_sends: action.payload
+            }
 
         case 'SET_MORNING_SATURDAY':
             return {
@@ -76,9 +82,10 @@ export const groups_reducer = (state, action) => {
             }
 
         case 'SET_MEETINGS':
+            console.log()
             return {
                 ...state,
-                list_meetings: action.list_meetings
+                meetings: action.payload
             }
 
 

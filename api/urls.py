@@ -18,5 +18,6 @@ urlpatterns = [
 
     path(r'meetings/', include('apps.link_instances.routers.meetings')),
     path(r'meetings-invitations/', include('apps.link_instances.routers.invitations')),
+    path(r'workshops/', include('apps.workshops.routers')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

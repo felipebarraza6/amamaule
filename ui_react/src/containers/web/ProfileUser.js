@@ -1,112 +1,93 @@
 import React, {useContext, useState, useEffect } from 'react'
-import { Menu, Result, Col, Row, Button, Badge,
-        Descriptions, Card, Tag, Avatar, message, Affix, Form, Inpu, notification, Input } from 'antd'
+import { Menu, Col, Row, Button,
+        Descriptions, Card, Tag, 
+        Avatar, message, Affix, 
+        notification, Input, Tooltip } from 'antd'
 import { RocketOutlined ,UserOutlined, UploadOutlined, 
         CheckOutlined, EditOutlined, ForkOutlined, FileAddFilled,
         EyeOutlined, LaptopOutlined,
-        GroupOutlined, CalendarOutlined } from '@ant-design/icons'
+        GroupOutlined } from '@ant-design/icons'
 import { AuthContext } from '../../App'
 import { NavBar } from 'antd-mobile'
 import ProfileData from '../../components/web/profile/ProfileData'
 import Workshops from '../../components/web/profile/Workshops'
+import WorkshopsFace from '../../components/web/profile/WorkshopsFace'
 import Viewings from '../../components/web/profile/Viewings'
 import api from '../../api/endpoints'
-import UserProfileData from '../../components/web/profile/UpdateProfileData'
 import { Footer } from 'antd/lib/layout/layout'
 import LinksInstances from './LinksInstances'
-import {BrowserRouter, Route, Switch} from "react-router-dom";
-import HomeTransmissions from '../../components/web/transmissions/home/HomeTransmissions'
-import UpdateProfileData from "../../components/web/profile/UpdateProfileData";
-import ListTransmissions from "../../components/web/transmissions/list/ListTransmissions";
-const { TextArea } = Input
+import UpdateProfileData from "../../components/web/profile/UpdateProfileData"
+import ListTransmissions from "../../components/web/transmissions/list/ListTransmissions"
+import LinksInstancesAE from '../../components/web/profile/LinkInstancesAE'
+import LinksInstancesAV from '../../components/web/profile/LinkInstancesAV'
+
 
 const ProfileUser = () => {
 
     const { state, dispatch } = useContext(AuthContext)
-    
-    const [currentNavigation, setCurrentNavigation] = useState('0')
-    const [imageFile, setImageFile] = useState(null)
-    var isMaule = true
-    
-    if(state.user){
-      if(state.user.region === 'Región del Maule' && state.user.is_verified === true){
-        isMaule = false
-      }
-    }
+    const [currentNavigation, setCurrentNavigation] = useState('1')
+    const [currentNavigationT, setCurrentNavigationT] = useState('6')
+    const [imageFile, setImageFile] = useState(null)    
 
+    const [isDigital, setIsDigital] = useState(true)
+    
     const [size, setSize] = useState()
 
     function setNavigator(current) {
         setCurrentNavigation(current.key)
   
     }
+    function setNavigatorT(current) {
+      setCurrentNavigationT(current.key)
 
-    var access_visio = false
+  }
+
     if(state.user){
 
-      var type1 = state.user.type_user1
-      var type2 = state.user.type_user2
-      var type3 = state.user.type_user3
+      var type_user = state.user.type_user
+      var txt_type = ''
       
-      if(type1 === 'AM'){
-        type1 = 'Artista / Manager'
-      }else if(type1 === 'GES'){
-        type1 = 'Gestion Cultural'
-          access_visio = true
-      }else if(type1 === 'RE'){
-        type1 = 'Representante'
-          access_visio = true
-      }else if(type1 === 'PROV'){
-        type1 = 'Proveedor'
-      }else if(type1 === 'PRO'){
-        type1 = 'Profesional Asociado'
-      }
-
-       if(type2 === 'AM'){
-        type2 = 'Artista / Manager'
-      }else if(type2 === 'GES'){
-        type2 = 'Gestion Cultural'
-           access_visio = true
-      }else if(type2 === 'RE'){
-        type2 = 'Representante'
-           access_visio = true
-      }else if(type2 === 'PROV'){
-        type2 = 'Proveedor'
-      }else if(type2 === 'PRO'){
-        type2 = 'Profesional Asociado'
-      }
-
- if(type3 === 'AM'){
-        type3 = 'Artista / Manager'
-      }else if(type3 === 'GES'){
-        type3 = 'Gestion Cultural'
-        access_visio = true
-      }else if(type3 === 'RE'){
-        type3 = 'Representante'
-     access_visio = true
-      }else if(type3 === 'PROV'){
-        type3 = 'Proveedor'
-      }else if(type3 === 'PRO'){
-        type3 = 'Profesional Asociado'
+      if(type_user === 'GES'){
+        txt_type = 'Gestor/a cultural, programador/a o similar'
+      }else if(type_user === 'AR'){
+        type_user = 'Artista escénico o representante'        
+      }else if(type_user === 'AV'){
+        type_user = 'Artista de la visualidad'        
+      }else if(type_user === 'PT'){
+        txt_type = 'Profesional o trabajador relacionado a las artes escénicas o de la visualidad'
+      }else if(type_user === 'PS'){
+        txt_type = 'Proveedor/a de bienes y servicios asociados'
+      }else if(type_user === 'OPP'){
+        txt_type = 'Organización pública o privada' 
+      }else if(type_user === 'ADM'){
+        txt_type = 'Administrador de sistema'  
       }
 
     }
 
     useEffect(()=> {
       setSize(window.innerWidth)
-      if(access_visio){
-          notification.info({message:'Propuestas Maulinas para visionar durante AMA 2021. Accede y conoce estas propuestas durante el encuentro',
-              description:<Button onClick={()=>setCurrentNavigation('3')} type={'primary'}>REVISAR</Button>
-              }
-          )
-      }
+      
       
     },[])
 
     return(<>
-              {size < 800 ? 
+              {size < 800 ? <>
                 <NavBar mode='dark'
-                style={{backgroundColor:'#F58B88'}}               
+               style={{backgroundColor:'#18c5cc'}}               
+            > {state.user && <>
+                
+              <Button shape={'round'} type='link' style={currentNavigationT === '6' ?  styles.buttonAct : styles.menuItemT } onClick={()=>setCurrentNavigationT('6')}>
+                  <LaptopOutlined  style={currentNavigationT === '6' ?  styles.iconActive : styles.menuItemT } />{currentNavigationT === '6' && 'Digital'}
+              </Button>              
+                  <Button shape={'round'} type='link' style={currentNavigationT === '7' ?  styles.buttonAct : styles.menuItemT } onClick={()=>setCurrentNavigationT('7')}>
+                  <UserOutlined style={styles.icon} />{currentNavigationT === '7' && 'Presencial'}
+              </Button>
+
+              </>}
+            </NavBar>
+            {currentNavigationT == 6 ? <NavBar mode='dark'
+               style={{backgroundColor:'#b05db9'}}               
             > {state.user && <>
                 <Button disabled={!state.user.is_verified} shape={'round'} type='link' style={currentNavigation === '0' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('0')}>
                   <RocketOutlined style={styles.icon} />{currentNavigation === '0' && 'Transmisiones'}
@@ -117,54 +98,117 @@ const ProfileUser = () => {
               <Button disabled={!state.user.is_verified} shape={'round'} type='link' style={currentNavigation === '2' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('2')}>
                   <CheckOutlined style={styles.icon} />{currentNavigation === '2' && 'Talleres'}
               </Button>
-              
-              <Button disabled={!access_visio} shape={'round'} type='link' style={currentNavigation === '3' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('3')}>
-                  <EyeOutlined style={styles.icon} />{currentNavigation === '3' && 'Visionados'}
+             {state.upser.type_user === 'ADM' &&
+              <Button  shape={'round'} type='link' style={currentNavigation === '3' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('3')}>
+                  <EyeOutlined style={styles.icon} />{currentNavigation === '3' && 'Soporte'}
               </Button>
+              } 
                     <Button shape={'round'} type='link' style={currentNavigation === '5' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('5')}>
                   <ForkOutlined style={styles.icon} />{currentNavigation === '5' && 'Rondas'}
               </Button>
 
               </>}
-            </NavBar>
+            </NavBar>: <NavBar mode='dark'
+               style={{backgroundColor:'#b05db9'}}               
+            > {state.user && <>
+              <Button shape={'round'} type='link' style={currentNavigation === '1' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('1')}>
+                  <UserOutlined  style={currentNavigation === '1' ?  styles.iconActive : styles.icon } />{currentNavigation === '1' && 'Perfil'}
+              </Button>
+              <Button disabled={!state.user.is_verified} shape={'round'} type='link' style={currentNavigation === '2' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('2')}>
+                  <CheckOutlined style={styles.icon} />{currentNavigation === '2' && 'Talleres'}
+              </Button>              
+              </>}
+            </NavBar>}
+                
+            </>
               :
               <Affix>
               <Menu 
-                    mode='horizontal'
-                    selectedKeys={[currentNavigation]} 
-                    onClick={(current)=> setNavigator(current)}
+                    mode='horizontal'                   
                     theme='dark'
-                    style={styles.menuOv}
+                    style={styles.menuT}
                 >
-                 <Menu.Item icon={<LaptopOutlined />} key={'0'} 
-                      style={currentNavigation === '0' ?  styles.hoverItem : styles.menuItem }>
-                    Transmisiones
-                  </Menu.Item>                                    
-                  <Menu.Item  icon={<UserOutlined/>} key={'1'} 
-                      style={currentNavigation === '1' ?  styles.hoverItem : styles.menuItem }>
-                    Perfil
-                  </Menu.Item>
-                  {state.user &&
-                  <Menu.Item disabled={!state.user.is_verified} icon={<CheckOutlined/>} key={'2'} 
-                      style={ currentNavigation === '2' ?  styles.hoverItem : styles.menuItem  }  >
-                    Talleres
-                  </Menu.Item>}
-                  {state.user &&                                         
-                    <Menu.Item disabled={!access_visio}  icon={<EyeOutlined/>} key={'3'}
-                       style={ currentNavigation === '3' ?  styles.hoverItem : styles.menuItem  } >
-                      Visionados
-                    </Menu.Item>                    
-                  }
-                  {state.user &&
-                  <>
-                  <Menu.Item disabled={!state.user.is_verified} icon={<GroupOutlined />} key={'5'}
-                      style={currentNavigation === '5' ?  styles.hoverItem : styles.menuItem }>
-                    Rondas de Vinculación
-                  </Menu.Item>
+                  <Button icon={<LaptopOutlined />}  type='link' onClick={()=> setIsDigital(true)}
+                      style={isDigital ?  styles.hoverItemT : styles.menuItemT }>
+                    Digital
+                  </Button>                                    
+                  <Button  icon={<UserOutlined/>} type='link' onClick={()=> setIsDigital(false)} 
+                      style={!isDigital ?  styles.hoverItemT : styles.menuItemT }>
+                    Presencial
+                  </Button>
+                  
+              </Menu>
+              
+            <Menu 
+                mode='horizontal'
+                selectedKeys={[currentNavigation]} 
+                onClick={(current)=> setNavigator(current)}
+                theme='dark'
+                style={styles.menuOv}
+            >
+              {isDigital ? <>
+                
+             <Menu.Item icon={<LaptopOutlined />} key={'0'} 
+                  style={currentNavigation === '0' ?  styles.hoverItem : styles.menuItem }>
+                Contenido
+              </Menu.Item>                                    
+              <Menu.Item  icon={<UserOutlined/>} key={'1'} 
+                  style={currentNavigation === '1' ?  styles.hoverItem : styles.menuItem }>
+                Perfil
+              </Menu.Item>
+              {state.user &&
+              <Menu.Item disabled={!state.user.is_verified} icon={<CheckOutlined/>} key={'2'} 
+                  style={ currentNavigation === '2' ?  styles.hoverItem : styles.menuItem  }  >
+                Talleres
+              </Menu.Item>}              
+              {state.user && <>
+                {state.user.type_user === 'ADMIN' &&                                         
+                  <Menu.Item   icon={<EyeOutlined/>} key={'3'}
+                    style={ currentNavigation === '3' ?  styles.hoverItem : styles.menuItem  } >
+                      Soporte
+                  </Menu.Item>                    
+                }
+              </>}
+              {state.user &&
+              <>
+              <Menu.Item disabled={!state.user.is_verified} icon={<GroupOutlined />} key={'5'}
+                  style={currentNavigation === '5' ?  styles.hoverItem : styles.menuItem }>
+                Rondas de Vinculación
+              </Menu.Item>
 
-                  </>
-                  }
-              </Menu></Affix>}
+              </>
+              }
+              </>  :
+              <>
+           
+            {state.user && <>
+              <Menu.Item icon={<LaptopOutlined />} key={'0'} 
+                  style={currentNavigation === '0' ?  styles.hoverItem : styles.menuItem }>
+                Contenido
+              </Menu.Item>    
+            <Menu.Item  icon={<UserOutlined/>} key={'1'} 
+                  style={currentNavigation === '1' ?  styles.hoverItem : styles.menuItem }>
+                Perfil
+              </Menu.Item>
+              <Menu.Item disabled={!state.user.is_verified} icon={<GroupOutlined />} key={'12'}
+                  style={currentNavigation === '12' ?  styles.hoverItem : styles.menuItem }>
+                Rondas de Vinculación / artistas escenicos
+                
+              
+              </Menu.Item>
+              <Menu.Item disabled={!state.user.is_verified} icon={<GroupOutlined />} key={'11'}
+                  style={currentNavigation === '11' ?  styles.hoverItem : styles.menuItem }>
+                Rondas de Vinculación / artistas de la viasualidad
+                
+              </Menu.Item>
+            <Menu.Item disabled={!state.user.is_verified} icon={<CheckOutlined/>} key={'20'} 
+                style={ currentNavigation === '20' ?  styles.hoverItem : styles.menuItem  }  >
+              Talleres
+            </Menu.Item></>}            
+            
+            </>
+              }</Menu>
+              </Affix>}
               <Row align={'center'} >
                   {currentNavigation === '0' &&
                       <ListTransmissions />
@@ -172,39 +216,21 @@ const ProfileUser = () => {
                   {currentNavigation === '5' && 
                     <LinksInstances />
                   }   
+                  {currentNavigation === '20' && 
+                    <WorkshopsFace />
+                  }  
+                  {currentNavigation === '12' && 
+                    <LinksInstancesAE />
+                  }  
+                  {currentNavigation === '11' && 
+                    <LinksInstancesAV />
+                  }  
+                  
                   {currentNavigation === '1' &&
                     <>
-                    <Col lg={{span:14}}  xs={{span:24}}  style={{padding:'10px'}}  >
+                    <Col lg={{span:14}}  xs={{span:24}}  style={{padding:'0px'}}  >
                     {state.user && 
-                      <>
-                      {!state.user.is_verified ?
-                        <ProfileData />:
-                        <Card title={<><EditOutlined style={{fontSize:'20px',marginRight:'20px'}} /> Editar perfil</>} >
-
-                            <UpdateProfileData user={state.user} />
-
-                          <Footer style={{marginTop:'20px'}}>
-                          <label for='file_dos' ><> 
-                            <h4>Actualizar dossier...</h4> 
-                            <center>
-                              <Avatar shape='square' style={styles.uploadAvatar} >
-                                  <FileAddFilled style={{fontSize:'40px', paddingTop:'10px'}} />
-                              </Avatar>                                                          
-                            </center>                                 
-                            </>
-                        </label>
-                        <input id='file_dos' type='file' style={styles.uploadFile1} onChange={async(evt)=>{
-                                          setImageFile(evt.target.files[0])           
-                                          const request = await api.user.upload_file('dossier_archivo', evt.target.files[0], state.user.id).then((response)=> {
-                                            message.success('Dossier actualizado!')                                                                                        
-                                          }).catch((error)=>{
-                                            message.error('Intendalo más tarde')
-                                          })
-                              } }  />    
-                          </Footer>
-                        </Card>
-                      }
-                      </>
+                      <UpdateProfileData user={state.user} type_user={type_user} txt_type_user={txt_type} />
                     }
                     </Col>
                     </>
@@ -222,82 +248,74 @@ const ProfileUser = () => {
                 
                 {currentNavigation === '1' &&
                 <Col lg={{span:10}} xs={{span:24}}  style={{padding:'10px'}}>
-                {state.user &&
-                 <Descriptions                     
-                    bordered={true} 
-                    extra={`@${state.user.username}`}
-                    title={<>{state.user.principal_image ? <>                      
+                {state.user && <Affix offsetTop={93}><Row>
+                  <Col span={7} style={{backgroundColor:'white', padding:'10px'}}>
+                  {state.user.profile.avatar ? <>                      
                       <label for='file' labe='asd'><>                                   
-                            <Avatar shape='square' style={styles.uploadAvatar} src={state.user.principal_image}  />                                                          
+                            <Avatar shape='square' style={styles.uploadAvatar} src={state.user.profile.avatar}  />                                                          
                             </>
                         </label>
                         <input id='file' type='file'  accept='image/*' style={styles.uploadFile} onChange={async(evt)=>{
                                           setImageFile(evt.target.files[0])           
-                                          const request = await api.user.upload_img('principal_image', evt.target.files[0], state.user.username).then((response)=> {
-                                            message.success('Imagen actualizada!')                                                                                        
+                                          const request = await api.user.UPLOAD_FILE_OR_IMG(`users/profile/${state.user.id}/`, 'avatar', evt.target.files[0]).then((response)=> {
+                                            message.success('Imagen actualizada!')  
+                                            window.location.reload()                                                                                      
                                           }).catch((error)=>{
                                             message.error('Intendalo más tarde')
                                           })
-                                          
-                                          let access_token = state.access_token
-                                          
-                                          const request_user = await api.user.profile(state.user.username).then((response)=> {
-                                            const user = response.data
-                                            dispatch({
-                                              type: 'LOGIN',
-                                              payload: {
-                                                access_token,
-                                                user
-                                              }
-                                            })
-                                        })                                                                                                                                                                 
+                                                                                                                                                                                                         
                               } }  />                    
                       </>:
                       <>
                         <label for='file' labe='asd'><>                                   
+                        <Tooltip title='Actualizar imagen'>
                             <Avatar shape='square' style={styles.uploadAvatar}>
-                              <UploadOutlined style={{fontSize:'30px', paddingTop:'14px'}} />
+                              
+                              <UploadOutlined style={{fontSize:'50px', paddingTop:'40px'}} />
+                              
                             </Avatar>                                      
+                            </Tooltip>
                             </>
                         </label>
                         <input id='file' type='file' accept='image/*' style={styles.uploadFile} onChange={async(evt)=>{
                                           setImageFile(evt.target.files[0])           
-                                          const request = await api.user.upload_img('principal_image', evt.target.files[0], state.user.username).then((response)=> {
+                                          const request = await api.user.UPLOAD_FILE_OR_IMG(`users/profile/${state.user.id}/`, 'avatar', evt.target.files[0]).then((response)=> {
                                             message.success('Imagen actualizada!')                                                                                        
+                                            window.location.reload()                                                                                      
                                           }).catch((error)=>{
                                             message.error('Intendalo más tarde')
-                                          })                                          
+                                          })
                                                                                                                                                                  
                               } }   />                    
-                    </>
-                    }                      
-                    </>}
-                    style={{backgroundColor:'white', padding:'20px'}} 
-                    layout='vertical'>
-                      <Descriptions label='Perfil #1'><Tag color='volcano'  >{type1}</Tag></Descriptions>
-                      <Descriptions label='Perfil #2'><Tag color='volcano'>{type2}</Tag></Descriptions>
-                      <Descriptions label='Perfil #3'><Tag color='volcano' >{type3}</Tag></Descriptions>
-                      <Descriptions.Item label="Nombre"> {state.user.first_name} {state.user.last_name} </Descriptions.Item>
-                      <Descriptions.Item label="Telefono"> {state.user.phone_number} </Descriptions.Item>
-                      <Descriptions.Item label="Usuario"> {state.user.username} </Descriptions.Item>
-                      <Descriptions.Item span={3} label="Correo Electrónico"> {state.user.email} </Descriptions.Item>
-                      <Descriptions.Item label="País" >
-                        {state.user.country}
-                      </Descriptions.Item>
-                      <Descriptions.Item label="Región" span={2}>
-                        {state.user.region}
-                      </Descriptions.Item>
-                        {state.user.country === 'Chile' &&
-                          <>
-                            <Descriptions.Item label="Provincia" >
-                              {state.user.province}
-                            </Descriptions.Item>
-                            <Descriptions.Item label="Comuna">
-                              {state.user.commune}
-                            </Descriptions.Item>
-                          </>
-                        }
-                 </Descriptions>
+                    </>}   
+                  </Col>
+                  <Col span={17}>
+                      <Descriptions                     
+                        bordered={true}                                             
+                        style={{backgroundColor:'white', padding:'5px'}} 
+                        layout='vertical'>
+                          <Descriptions label={`Perfil: @${state.user.username}`} span={3}><Tag color='pink'>{txt_type}</Tag></Descriptions>
+                          <Descriptions.Item label="Nombre" span={2}> {state.user.first_name} {state.user.last_name} </Descriptions.Item>
+                          <Descriptions.Item label="Telefono"> {state.user.phone_number} </Descriptions.Item>
+                          
+                          <Descriptions.Item span={3} label="Correo Electrónico"> {state.user.email} </Descriptions.Item>
+                          <Descriptions.Item label="País" >
+                            {state.user.country}
+                          </Descriptions.Item>
+                          <Descriptions.Item label="Región" span={2}>
+                            {state.user.region}
+                          </Descriptions.Item>
+                            {state.user.country === 'Chile' &&
+                              <>                                
+                                <Descriptions.Item label="Ciudad">
+                                  {state.user.commune}
+                                </Descriptions.Item>
+                              </>
+                            }
+                      </Descriptions>
+                  </Col>
+                </Row></Affix>
+                 
                 }
                 </Col>}
               </Row>
@@ -307,11 +325,12 @@ const ProfileUser = () => {
 
 const styles = {
     uploadAvatar:{
-      width:'70px', 
-      height:'70px', 
-      border:'3px solid rgb(97, 38, 61)',
-      backgroundColor: 'rgb(97, 38, 61)',
-      cursor:'pointer'
+      width:'140px', 
+      height:'140px', 
+      border:'#B05DB9',
+      backgroundColor: '#B05DB9',
+      cursor:'pointer',
+      margin:'5px'
     },
     uploadFile: {
       opacity: '0',                  
@@ -324,21 +343,37 @@ const styles = {
         padding:'30px'
     },
     menuOv: {
-      backgroundColor: '#F58B88',
+      backgroundColor: '#FFBA31',
       textAlign:'right',
+    },
+    menuT: {
+      backgroundColor: '#18c5cc',
+      textAlign:'left',
     },
     menuItem: {
       color:'white',
-      backgroundColor:'#F58B89',
+      backgroundColor:'#FFBA31',
+      marginRight:'10px',      
+      marginLeft:'10px'
+
+    },
+    menuItemT: {
+      color:'white',
+      backgroundColor:'#18c5cc',
       marginRight:'10px',      
       marginLeft:'10px'
 
     },
     hoverItem: {
       color:'white',
-      backgroundColor: '#CE3D4B',
+      backgroundColor: '#FF6D3C',
       marginRight:'10px',
-      paddingBottom:'2px',
+      marginLeft:'10px'
+    },
+    hoverItemT: {
+      color:'white',
+      backgroundColor: '#3a1f33',
+      marginRight:'10px',
       marginLeft:'10px'
     },
     icon: {
@@ -348,11 +383,11 @@ const styles = {
       fontSize: '20px',            
     },
     buttonNo: {
-      backgroundColor: '#F58B89',
+      backgroundColor: '#B05DB9',
       color:'white'
     },
     buttonAct: {
-      backgroundColor: '#CE3D4B',
+      backgroundColor: '#3A1F33',
       color:'white'
     }
 }

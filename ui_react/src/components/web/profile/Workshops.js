@@ -13,6 +13,8 @@ const Workshops = () => {
   const [page, setPage] = useState(1)
   const [size, setSize] = useState()
 
+  const [workshops, setWorkshops] = useState([])
+
   async function updateProfile(data, status){
     const request = await api.user.update_profile(state.user.id, data, status).then((response)=> {
         if(status===false){
@@ -35,10 +37,12 @@ const Workshops = () => {
     
     setSize(window.innerWidth)
     async function getData(){
-      const request = await api.user.get_profile_center(state.user.id).then((response)=> {
-        setProfile(response.data)
+      const request = await api.workshops.get().then((response)=> {
+        console.log(response)
+        setWorkshops(response.data)
         })
-      }
+        return request
+      }      
 
       if(state.user){
         getData()
@@ -49,13 +53,14 @@ const Workshops = () => {
 
   return(
     <Row justify={'center'} alignItem={'center'}>
+      {console.log(workshops)}
       <Col lg={24} xs={24}>
       <Pagination defaultCurrent={page} total={6} onChange={(page)=>setPage(page)}  defaultPageSize={2} />
       </Col>
       {page ===1 &&  
         <>
       <Col lg={12} xs={24}>
-      <Card hoverable style={styles.card}  title= 'Montaje Site Specific' extra={<> {size > 800 && 'Miércoles 14 de abril, 19 horas.'} </>} >
+      <Card hoverable style={styles.card}  title= 'De la sala a la calle: montaje en espacio público' extra={<> {size > 800 && 'Miércoles 14 de abril, 19 horas.'} </>} >
       {size < 800 &&
         <Tag color="warning" style={{marginBottom:'20px'}}>14 de Abril 19:00 hrs</Tag>
         }
@@ -64,6 +69,7 @@ const Workshops = () => {
         <p>2) Herramientas del site specific para crear</p>
         <p>3) Posibilidades performáticas de las plataformas virtuales como Zoom y el espacio online.</p>
         <p>Inscripciones abiertas hasta el día 7 de abril, a las 13:00 hrs</p>
+        <Button style={{backgroundColor:'rgb(176, 93, 185)', borderColor: 'rgb(176, 93, 185)'}} type='primary'>PARTICIPAR</Button>
         {profile &&
             <>
               {profile.taller_montaje ?
@@ -81,7 +87,7 @@ const Workshops = () => {
         </Card>
       </Col>
           <Col lg={12} xs={24}>
-        <Card style={styles.card}  hoverable title='Ley de Donaciones Culturales'  extra={<> {size > 800 && 'Miércoles 14 de abril, 19 horas.'}</>}  >
+        <Card style={styles.card}  hoverable title='Gestión Cultural y Proyectos Transmedia'  extra={<> {size > 800 && 'Miércoles 14 de abril, 19 horas.'}</>}  >
         {size < 800 && <Tag color="warning" style={{marginBottom:'20px'}}>14 de Abril 19:00 hrs</Tag> }
         <p>Conoce las claves de esta modalidad de financiamiento y su aplicación un mecanismo mixto que estimula el aporte del Estad            o de Chile y de los contribuyentes a proyectos culturales de instituciones sin fines de lucro, mediante un crédito sobre el Impuesto.</p>
 

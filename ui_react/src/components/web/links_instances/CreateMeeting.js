@@ -3,7 +3,7 @@ import {SendOutlined} from "@ant-design/icons"
 import {Button, Tooltip, Form, Drawer, Select, TimePicker,Col, Row, Typography, Spin, Input} from "antd"
 import {AuthContext} from '../../../App'
 import {GroupsContext} from '../../../containers/web/LinksInstances'
-import {postMeeting} from '../../../actions/meetings_rounds/getData'
+import {sendInvitation} from '../../../actions/meetings_rounds/getData'
 const { Option } =Select
 const { Text} = Typography
 const { TextArea } = Input
@@ -20,7 +20,7 @@ const CreateMeeting = ({invited}) => {
     async function onFinish(values){
         setLoading(true)
         var format_time = values.hour_minutes.format('HH:mm:ss')
-        var date_formated = `2021-04-${values.day}T${format_time}`
+        var date_formated = `2022-03-${values.day}T${format_time}`
 
         values = {
             'owner': contextUser.user.id,
@@ -30,12 +30,16 @@ const CreateMeeting = ({invited}) => {
             'message': values.message
         }
 
-        postMeeting(values, contextUser, dispatch, invited, setLoading, setVisible, form).then((response)=> {
 
+        sendInvitation(values, contextUser, dispatch, invited, setLoading, setVisible, form)
+
+       /* postMeeting(values, contextUser, dispatch, invited, setLoading, setVisible, form).then((response)=> {
+
+        
 
         }).catch((error)=> {
             console.log(error)
-        })
+        })*/
     }
 
     useEffect(()=> {
@@ -45,7 +49,7 @@ const CreateMeeting = ({invited}) => {
 
     return(<>
             <Drawer placement={'top'}
-                    title={<>Envíar invitación a <Text mark> {invited.first_name} {invited.last_name}</Text></>} visible={visible} onClose={()=>setVisible(false)}
+                    title={<>Envíar invitación a <Text> "{invited.first_name} {invited.last_name}"</Text></>} visible={visible} onClose={()=>setVisible(false)}
                 height={350}
             >{!state > 800 ?
                 <Row justify={'center'}>
@@ -87,8 +91,8 @@ const CreateMeeting = ({invited}) => {
 
                     <Form.Item name='day' rules={[{required:true, message:'Debes seleccionar un día'}]} >
                         <Select size={'large'} style={{width:'100%'}} placeholder={'Selecciona el día de la reunión'}>
-                            <Option value={'16'}>Viernes 16</Option>
-                            <Option value={'17'}>Sábado 17</Option>
+                            <Option value={'16'}>dia #1</Option>
+                            <Option value={'17'}>dia #2</Option>
                         </Select>
                     </Form.Item>
 
@@ -107,7 +111,7 @@ const CreateMeeting = ({invited}) => {
                     </Form.Item>
 
                     <Form.Item >
-                        <Button size={'large'} style={{marginRight:'10px'}} type={'primary'} htmlType={'submit'} >AGENDAR</Button>
+                        <Button size={'large'} style={{marginRight:'10px',backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}} type={'primary'} htmlType={'submit'} >AGENDAR</Button>
 
                         <Button danger size={'large'} type={'primary'} onClick={()=> setVisible(false)} >CANCELAR</Button>
                     </Form.Item>
@@ -121,11 +125,11 @@ const CreateMeeting = ({invited}) => {
 
             }
             </Drawer>
-        <Tooltip title={'Envíar invitación'} color={'geekblue'}>
+        <Tooltip title={'Envíar invitación'} color={'#ff6d3c'}>
         <Button size={'medium'} icon={<SendOutlined />}
                 style={{
-                    borderColor:'rgb(97, 38, 61)' ,
-                    backgroundColor:'rgb(97, 38, 61)',
+                    borderColor:'#18c5cc' ,
+                    backgroundColor:'#18c5cc',
                     color:'white'
                 }}
                 onClick={()=>setVisible(true)} />

@@ -57,7 +57,8 @@ LOCAL_APPS = [
     'apps.users',
     'apps.transmissions',
     'apps.selected_viewings',
-    'apps.link_instances'        
+    'apps.link_instances',
+    'apps.workshops'        
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS

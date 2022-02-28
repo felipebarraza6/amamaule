@@ -1,14 +1,16 @@
 import React, { createContext, useReducer, useState,useEffect, useContext } from 'react'
-import {Col, Card, Tag, Button } from 'antd'
+import {Col, Row, Card, Tag, Button, Collapse, Table, Modal, Input,Form, TimePicker, Select, Affix } from 'antd'
 import { MailOutlined, CalendarOutlined,
-		CoffeeOutlined, SendOutlined, ClockCircleOutlined } from '@ant-design/icons'
+		CoffeeOutlined, SendOutlined, ClockCircleOutlined  } from '@ant-design/icons'
 import { groups_reducer } from "../../reducers/groups"
 import ListUsers from "../../components/web/links_instances/ListUsers"
 import Calendar from "../../components/web/links_instances/Calendar"
 import {AuthContext} from '../../App'
 import {getUsers, getCalendarData, getInvitations} from '../../actions/meetings_rounds/getData'
+import { updateInvitation } from '../../actions/meetings_rounds/getData'
 import ListInvitations from "../../components/web/links_instances/ListInvitations"
-
+import { FormProvider } from 'rc-field-form'
+const { Panel } = Collapse
 export const GroupsContext = createContext()
 
 
@@ -16,20 +18,13 @@ const LinksInstances = () => {
 
 	const { state:auth } = useContext(AuthContext)
 	const [size, setSize] = useState()
+	const [dateN, setDate] = useState(null)
 
 	const initialState = {
 		list_users: null,
-		morning_meetings: {
-			thursday: [],
-			friday: [],
-			saturday: []
-		},
-		evening_meetings: {
-			thursday: [],
-			friday: [],
-			saturday: []
-		},
+		meetings: [],
 		my_invitations: null,
+		my_invitations_sends: null,
 		reload: false,
 	}
 
@@ -42,6 +37,7 @@ const LinksInstances = () => {
 		setSize(window.innerWidth)
 	}, [])
 
+
 	return(
 		<GroupsContext.Provider
 			value={{
@@ -49,35 +45,198 @@ const LinksInstances = () => {
 				dispatch
 			}}
 		>
-			<Col lg={7} xs={24} style={{padding:'10px'}}>
+			<Col lg={6} xs={24} style={{padding:'10px'}}><Affix offsetTop={80}>
 					<Card hoverable title={<><SendOutlined style={styles.icon} /> Agenda tu reunión</>} >
 						<ListUsers per_page={30} />
-					</Card>
-			</Col>
-			<Col lg={12} xs={24} style={{padding:'10px'}}>
+					</Card></Affix>
+			</Col>			
+			<Col lg={14} xs={24} style={{padding:'10px'}}>
+			<Collapse style={{marginBottom:'10px'}}>
+			<Panel header={<><h3><MailOutlined style={styles.icon} />Invitaciones enviadas</h3></>} key="2">
+				<Table bordered columns={ [
+                            {
+                                title: 'HORARIO',
+                                
+                                render: (x) => {
+									return(`Dia ${x.date_meeting.slice(8,10)} / ${x.date_meeting.slice(11,16)} hrs`)
+								}
+                            },
+                            {
+                                title: 'USUARIO',                                
+                                render: (x) => {
+									return(`${x.invited.first_name} ${x.invited.last_name}`)
+								}
+                            },
+                            {
+                                title: 'ESTADO',
+                                render: (x) => {
+									let txt = ''
+									if(x.answer && !x.is_active){
+										txt = 'CONFIRMADA'
+									}else if(!x.answer && x.is_active){
+										txt = 'ESPERANDO RESPUESTA...'
+									} else if(!x.answer && !x.is_active && !x.rescheduled){
+										txt= 'RECHAZADO'
+									}  
+									else if(x.rescheduled && !x.answer){
+										txt = 'RE-AGENDADA'
+									}
+									return(<Tag color='magenta'>{txt}</Tag>)
+								}                                
+                            }, 
+                            ]} dataSource={state.my_invitations_sends}>
+
+                        </Table>
+				</Panel>	
+				<Panel header={<><h3><MailOutlined style={styles.icon} />Invitaciones recibidas</h3></>} key="1">
+				<Table bordered columns={ [
+                            {
+                                title: 'HORARIO',
+                                ellipsis: true,
+                                render: (x) => {
+									return(`Dia ${x.date_meeting.slice(8,10)} / ${x.date_meeting.slice(11,16)} hrs`)
+								}
+                            },
+                            {
+                                title: 'USUARIO',                                
+                                render: (x) => {
+									return(`${x.owner.first_name} ${x.owner.last_name}`)
+								}
+                            },
+                            {
+                                title: 'ESTADO',
+								ellipsis: true,
+                                render: (x) => {
+									let txt = ''
+									if(x.answer && !x.is_active){
+										txt = 'CONFIRMADA'
+									}else if(!x.answer && x.is_active){
+										txt = 'ESPERANDO RESPUESTA...'
+									} else if(!x.answer && !x.is_active && !x.rescheduled){
+										txt= 'RECHAZADO'
+									}  
+									else if(x.rescheduled && !x.answer){
+										txt = 'RE-AGENDADA'
+									}
+									return(<Tag color='magenta'>{txt}</Tag>)
+								}                                
+                            }, 
+							{
+								render: (x)=> {
+									return(<>
+										{x.is_active && <Row>
+											<Col span={24} style={{margin:'2px'}}>
+												<Button onClick={()=> {
+													//updateInvitation({}, x.id, dispatch, auth, setLoad)
+													updateInvitation({answer:true}, x, dispatch, auth)
+												}} type='primary' style={{width:'100%',backgroundColor:'rgb(24, 197, 204)', borderColor:'rgb(24, 197, 204)'}} size='small'>Aceptar</Button>
+											</Col>
+											<Col onClick={()=> {
+													//updateInvitation({}, x.id, dispatch, auth, setLoad)
+													updateInvitation({answer:false}, x, dispatch, auth)
+												}}  span={24} style={{margin:'2px'}}>
+												<Button danger type='primary' type='primary' style={{width:'100%'}} size='small'>Rechazar</Button>
+											</Col>
+											<Col span={24} style={{margin:'2px'}}>
+												<Button onClick={()=> {
+													//updateInvitation({}, x.id, dispatch, auth, setLoad)
+													Modal.info({
+														title:'NUEVA FECHA DE REUNION',
+														icon: <CalendarOutlined />,
+														content: <Form onFinish={(values)=>{
+															let start_date = new Date(values.date_meeting)
+															var day = start_date.getDate()
+															var month = start_date.getMonth() + 1
+															var year = start_date.getFullYear()
+															var hours = start_date.getHours()
+															var minutes = start_date.getMinutes()
+															var seconds = start_date.getSeconds()
+
+															if(minutes<10){
+																minutes = `0${start_date.getMinutes()}`
+															}
+															if(month<10){
+																month = `0${start_date.getMonth()+1}`
+															}
+															if(hours<10){
+																hours = `0${start_date.getHours()}`
+															}
+															if(day<10) {
+																day = `0${start_date.getDate()}`
+															}
+															if(seconds<10) {
+																seconds = `0${start_date.getSeconds()}`
+															}
+
+															values = {
+																...values,
+																date_meeting:`${year}-${month}-${values.day}T${hours}:${minutes}:${seconds}` 
+															}
+															console.log(values)
+															updateInvitation({
+																rescheduled:true, 
+																date_meeting: `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`},
+																x, 
+																dispatch, 
+																auth
+															).then((r)=> Modal.destroyAll())
+														}}>
+														<Form.Item name='day' rules={[{ required: true, message: 'Selecciona un dia'}]}>
+															<Select placeholder='Selecciona un dia...'>
+																<Select.Option>Dia #1</Select.Option>
+																<Select.Option>Dia #2</Select.Option>
+															</Select>
+														</Form.Item>
+														<Form.Item name='date_meeting' rules={[{ required: true, message: 'Selecciona un horario'}]}>
+														<TimePicker
+														size={'large'}
+														disabledHours={() => [0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ,10,13, 14, 15, 17, 18, 19, 20, 21, 22, 23, 24]}
+														minuteStep={10}
+														hideDisabledOptions = {true}														
+														inputReadOnly={true}
+														showNow={false} style={{width:'100%'}} placeholder={'Selecciona la hora(formato 24 hrs)'} format={'HH:mm'} />
+														</Form.Item>
+														<Form.Item>
+															<Button htmlType='submit' type='primary' style={{marginTop:'30px',float:'right',backgroundColor:'rgb(255, 186, 49)', borderColor:'rgb(255, 186, 49)'}}>Re-Agendar</Button>
+														</Form.Item>
+														</Form>,																												
+														okText: 'Volver',
+														cancelText: 'Cancelar'
+														
+													})													
+												}} style={{width:'100%',backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}} type='primary' size='small'>Re-Agendar</Button>
+											</Col>
+										</Row>}
+									</>)
+								}
+							}
+                            ]}
+                            
+                            dataSource={state.my_invitations}>
+
+                        </Table>
+				</Panel>
+        
+
+			</Collapse>
+      
 				<Card title={<><CalendarOutlined style={styles.icon} /> Calendario</>} extra={<><Button onClick={()=> {
 					getCalendarData({dispatch, auth})
 					getInvitations({dispatch, auth})
-				}} type={'primary'} icon ={<ClockCircleOutlined/>} >Actualizar</Button>
-				<Button type={'dashed'} style={{backgroundColor: 'rgb(206, 61, 75)', color:'white', borderColor:'white', marginLeft:'10px'}}>
+				}} type={'primary'} style={{backgroundColor: '#b05db9', color:'white', borderColor:'white', marginLeft:'10px'}} icon ={<ClockCircleOutlined/>} >Actualizar</Button>
+				<Button type={'dashed'} style={{backgroundColor: '#b05db9', color:'white', borderColor:'white', marginLeft:'10px'}}>
 					Ver turorial
 				</Button>
 				</>}>
 					{!state.reload &&  <Calendar /> }
 				</Card>
 			</Col>
-			<Col lg={5} xs={24} style={{padding:'10px'}}>
-				<Card hoverable title={<><CoffeeOutlined style={styles.icon} /> Mesa de ayuda</>} style={{marginBottom:'10px'}}>
-					Si tienes alguna duda o problema para agendar tu reunión, escríbenos a <Tag style={{fontSize: '15px'}}>ama@qualitynet.cl</Tag>
-				</Card>
-				{size > 800 ?
-
-				<Card title={<><MailOutlined style={styles.icon} /> Invitaciones</>} style={{marginBottom:'10px'}}>
-					<ListInvitations invitations={state.my_invitations} />
-				</Card>
-				 : <Card title={<><MailOutlined style={styles.icon} /> Invitaciones</>} style={{marginBottom:'10px'}}>
-					<ListInvitations invitations={state.my_invitations} />
-				</Card>}
+			<Col lg={4} xs={24} style={{padding:'0px'}}>
+				<Affix offsetTop={80}>
+				<Card hoverable title={<><CoffeeOutlined style={styles.icon} /> Soporte</>} style={{marginBottom:'0px'}}>
+					Si tienes alguna duda o problema, escríbenos a soporte@amamaule.cl
+				</Card>				
+				</Affix>
 			</Col>
 
 		</GroupsContext.Provider>
@@ -87,7 +246,7 @@ const LinksInstances = () => {
 
 const styles = {
 	icon: {
-		backgroundColor: 'rgb(206, 61, 75)',
+		backgroundColor: '#ffba31',
 		color: 'white',
 		borderRadius: '10%',
 		padding: '8px',

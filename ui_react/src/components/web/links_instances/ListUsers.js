@@ -6,6 +6,8 @@ import { FileImageOutlined, SearchOutlined, CloseSquareOutlined } from '@ant-des
 import SingleUser from "./SinglesUser"
 import {GroupsContext} from "../../../containers/web/LinksInstances"
 import CreateMeeting from "./CreateMeeting"
+import { geo, geo_re_ci } from '../../../resources/geo'
+import { countries } from '../../../resources/countries'
 
 const { Option } = Select
 const {Search} = Input
@@ -21,16 +23,20 @@ const ListUsers = ({per_page}) => {
         first_name: '',
         last_name: '',
         region:'',
+        city: '',
+        country: '',
         loading: false,
         loadingTable: false
     })
 
-    async function filterUsers(filter, first_name, last_name, region){
+    const [cities, setCities] = useState([])
+
+    async function filterUsers(filter, first_name, last_name, region, city){
         setState({...state,
             loadingTable: true
         })
 
-        const request = await api.user.list_users({filter: filter, first_name:first_name ,last_name:last_name, region: region}).then((response)=> {
+        const request = await api.user.list_users({filter: filter, first_name:first_name ,last_name:last_name, region: region, city: city}).then((response)=> {
             dispatch({...state,
                 type: 'SET_USERS',
                 list_users: response.data.results
@@ -47,7 +53,7 @@ const ListUsers = ({per_page}) => {
     const columns = [
             {
                 key: 'id',
-                render: (obj)=> <Row justify={'center'}><Avatar icon={<FileImageOutlined />} shape='square' src={obj.principal_image} /></Row>,
+                render: (obj)=> <Row justify={'center'}><Avatar icon={<FileImageOutlined />} shape='square' src={obj.profile.avatar} /></Row>,
             },
             {
                 key:'id',
@@ -77,35 +83,74 @@ const ListUsers = ({per_page}) => {
             <Skeleton active />:
             <>{state && <>
                 <Row>
-                    <Col lg={12} xs={24}>
+                    <Col lg={24} xs={24}>
                 <Input placeholder={'Buscar por nombre'} onChange={(input)=>{
                     setState({...state, first_name:input.target.value })
 
 
                 }} />
                 </Col>
-                    <Col lg={12} xs={24}>
+                <Col lg={24} xs={24}>
                 <Input placeholder={'Buscar por apellido'}  onChange={(input)=>{
                     setState({...state, last_name:input.target.value })
 
-
                 }} />
                 </Col>
+                <Col lg={24} xs={24}>
+                
+                </Col>
                     <Col lg={24} xs={24}>
-                        <Select placeholder='Filtrar por perfil...' style={{width:'100%', marginBottom:'5px' }} onChange={(value)=> {
+                        <Select showSearch placeholder='Tipo por perfil...' style={{width:'100%', marginBottom:'0px' }} onChange={(value)=> {
                     setState({...state, type_user:value })
+
+                }}>               
+                  <Option value=''>Todos</Option>
+                    <Option value='GES'>Gestor/a cultural, programador/a o similar</Option>
+                    <Option value='AR'>Artista escénico o representante</Option>
+                    <Option value='AV' >Artista de la visualidad</Option>
+                    <Option value='PT' >Profesional o trabajador relacionado a las artes escénicas o de la visualidad</Option>
+                    <Option value='PS' >Proveedor/a de bienes y servicios asociados</Option>
+                    <Option value='OPP' >Organización pública o privada</Option>
+                </Select>
+                    </Col>
+                <Col lg={24} xs={24}>
+                        <Select showSearch placeholder='Region...' style={{width:'100%', marginBottom:'0px' }} onChange={(value)=> {
+                    setState({...state, region:geo[value].region})
+                    setCities(geo_re_ci[value].provincias)
+
+                }}>
+                    {geo.map((x, p)=> <Select.Option value={p}> {x.region} </Select.Option>)}
+                      </Select>
+                </Col>
+                {cities.length > 0 && 
+                <Col lg={24} xs={24}>
+                        <Select showSearch placeholder='Ciudad...' style={{width:'100%', marginBottom:'0px' }} onChange={(value)=> {
+                    setState({...state, city:value })
 
                 }}>
                     <Option value=''>Todos</Option>
-                    <Option value='AM'>Artista / Manager</Option>
-                    <Option value='PROV'>Proveedor (transporte, técnica, catering, otros)</Option>
-                    <Option value='PRO' >Profesional a las artes escénicas</Option>
-                    <Option value='RE' >Representante de organización o empresa, pública o privada</Option>
-                    <Option value='GES' >Gestor Cultural / Producción / Programación</Option>
+                    {cities.map((x)=><Select.Option value={x.name}> {x.name} </Select.Option>)}
+                      </Select>
+                </Col>}
+
+                <Col lg={24} xs={24}>
+                        <Select showSearch placeholder='Pais...' style={{width:'100%', marginBottom:'5px' }} onChange={(value)=> {
+                    setState({...state, country:value })
+                    
+
+                }}>
+                    <Option value=''>Todos</Option>
+                    {countries.map((x)=> <Select.Option value={x}> {x} </Select.Option>)}
+                    
                 </Select>
                     </Col>
                     <Col lg={24} xs={24}>
-                        <Button style={{width:'100%', marginBottom:'5px', color:'white',backgroundColor:'rgb(206, 61, 75)', borderColor:'rgb(206, 61, 75)'}} icon={<SearchOutlined style={{fontSize:'20px', color:'white'}} />} onClick={()=>filterUsers(state.type_user, state.first_name, state.last_name, state.region)} >
+                        <Button style={{width:'100%', marginBottom:'5px', color:'white',backgroundColor:'#b05db9', borderColor:'#b05db9'}} 
+                            icon={<SearchOutlined style={{fontSize:'20px', color:'white'}} />} 
+                            onClick={()=>{
+                                filterUsers(state.type_user, state.first_name, state.last_name, state.region, state.city)
+                                console.log(state)
+                            }} >
                         Realizar busqueda
                         </Button>
                 </Col>

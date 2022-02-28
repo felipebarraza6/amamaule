@@ -10,6 +10,8 @@ import NavBarClient from '../../components/web/NavBarClient'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import MeetingVideoChat from "./MeetingVideoChat"
 import {AuthContext} from "../../App";
+import Login from '../../components/web/auth/Login'
+import SignUp, { UserCreateForm } from '../../components/web/auth/SignUp'
 
 const { Content, Footer } = Layout
 const { Title, Paragraph } = Typography
@@ -32,11 +34,13 @@ const Home = () => {
           }
           }  />
         </Switch>
+        
         <Content>
           <Switch>
             <Route exact path='/' render = {()=> {
               return(
                 <React.Fragment>
+
                   <InfoSection />
                    
                     <Services />

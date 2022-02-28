@@ -25,9 +25,14 @@ const list_meetings = ({
     return request
 }
 
-const list_invitations = ({user=''}) => {
-    const request = GET(`meetings-invitations/?invited=${user}`)
-    return request
+const list_invitations = (user, owner) => {
+    if(user){
+        const request = GET(`meetings-invitations/?invited=${user}`)    
+        return request
+    } else if(owner){
+        const request = GET(`meetings-invitations/?owner=${owner}`)     
+        return request
+    } 
 }
 
 const retrieve_meeting = ({uuid = ''}) => {

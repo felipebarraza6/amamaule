@@ -62,7 +62,12 @@ class UserViewSet(viewsets.GenericViewSet,
         class Meta:
             model = User
             fields = {
-                'type_user1': ['exact'],
+                'type_user': ['exact'],
+                'first_name': ['contains'],
+                'last_name': ['contains'],
+                'region': ['contains'],
+                'country': ['contains'],
+                'commune':['contains'], 
             }
 
     filterset_class = TransmissionFilter

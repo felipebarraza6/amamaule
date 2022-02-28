@@ -27,12 +27,17 @@ const InfoSection = () => {
                    >
 <CarouselBanner />
 <Collapse style={{marginTop:'60px'}} defaultActiveKey={['1']} bordered={false} className="site-collapse-custom-collapse">
-    <Panel header="¿QUÉ ES AMA?" key="1" className="site-collapse-custom-panel">
+      <Panel header="INSCRIPCION" key="1" className="site-collapse-custom-panel">
+    
+<SignUp />
+
+    </Panel>
+    <Panel header="¿QUÉ ES AMA?" key="2" className="site-collapse-custom-panel">
     <Paragraph align={'justify'} style={{color:''}}> AMA es un encuentro impulsado por el Teatro Regional del Maule y la Seremía de las Culturas, las Artes y el Patrimonio para vincular a artistas del Maule con programadores/as regionales y nacionales y otros agentes del campo artístico-cultural. AMA se realiza desde el año 2021, constituyéndose como una plataforma para diálogos, intercambios y alianzas entre artistas, representantes de entidades públicas y privadas con programas establecidos o potenciales instancias para el financiamiento del trabajo artístico; proveedores de bienes y servicios relacionados a la creación, producción y circulación de obra; y con otros profesionales o trabajadores/as relacionados o asociados al sector.</Paragraph>
     <Paragraph align={'justify'} style={{color:''}}>AMA-Vincular para Crear se desarrollará en formato presencial y virtual.</Paragraph>
 
     </Panel>
-    <Panel header="¿QUÉ PUEDES HACER EN AMA?" key="2" className="site-collapse-custom-panel">
+    <Panel header="¿QUÉ PUEDES HACER EN AMA?" key="3" className="site-collapse-custom-panel">
     <Paragraph align={'justify'} style={{color:''}}>Los participantes de AMA (artistas, programadores, y otros mencionados) podrán sostener reuniones en rondas de vinculación tanto presenciales como en modalidad on line para presentar proyectos, planes de trabajo, esbozar potenciales alianzas, conocer procesos creativos y experiencias de otros centros culturales, informarse de fuentes de financiamiento posible, entre otros temas que convoquen el interés de las partes involucradas. </Paragraph>
 
     <Paragraph align={'justify'} style={{color:''}}>AMA también es una instancia para asistir a conferencias y mesas de conversación sobre temas atingentes a la gestión cultural y al trabajo artístico, así como para participar en talleres de formación en ámbitos de interés para quienes se inscriban en esta versión. </Paragraph>
@@ -40,7 +45,7 @@ const InfoSection = () => {
     <Paragraph align={'justify'} style={{color:''}}>AMA está abierta a público general a través de espectáculos gratuitos como showcases, espectáculos de artes escénicas, mercado de las artes y otros eventos artísticos.</Paragraph>
 
     </Panel>
-    <Panel header="¿QUIÉNES PUEDEN PARTICIPAR EN AMA?" key="3" className="site-collapse-custom-panel">
+    <Panel header="¿QUIÉNES PUEDEN PARTICIPAR EN AMA?" key="4" className="site-collapse-custom-panel">
     <Paragraph align={'justify'} style={{color:''}}> Pueden participar artistas, programadores y todas aquellas personas que forman parte del ecosistema artístico relacionado a las artes escénicas y de la visualidad, tales como organizaciones que llevan a cabo programas artísticos, culturales o patrimoniales; establecimientos educacionales que contemplan asignaturas artísticas o actividades extracurriculares relacionadas a las artes, coleccionistas y galeristas, y personas que se desarrollan en diversos ámbitos de acción que se detallan a continuación: </Paragraph>
     <Paragraph align={'justify'} style={{color:''}}><b>Artistas Escénicos o representantes</b> de las disciplinas de teatro, danza, circo, narración oral, canto, música orquestada, docta, popular; folclore, ópera, títeres o marionetas, performance, u otras correspondientes.</Paragraph>
     <Paragraph align={'justify'} style={{color:''}}><b>Artistas de la visualidad</b>, de disciplinas como pintura, escultura, muralismo, grabado, dibujo, instalación, performance, vitrales, y técnicas integradas, estos últimos entendidos como proyectos que sumen más de una de las expresiones y géneros anteriormente descritos.</Paragraph>
