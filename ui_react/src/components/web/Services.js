@@ -104,14 +104,7 @@ const Services = () => {
                     src={service4} style={styles.img}  alt='service4' />
                     
                 </Col>
-                <Col xs={24} lg={3}  style={styles.column} >
-                    <a target='__blank' href='http://www.teatroregional.cl/catalogo-de-obras-y-artistas-escenicos-region-del-maule'>
-                    <img
-                    src={service5} style={styles.img}  alt='service4' /></a>
-                    
-                    
-                </Col>
-                <Col xs={24} lg={3}  style={styles.column} >
+               <Col xs={24} lg={3}  style={styles.column} >
                     <a target='__blank' >
                     <img
                     src={service6} style={styles.img}  alt='service4' /></a>

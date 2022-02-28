@@ -22,14 +22,14 @@ const NavBar = () => {
             <Item style={styles.item}>
                 <TeamModal />
             </Item>            
-               <Item style={styles.item}>
+               <Item>
                     <a>                        
                     ¿QUIÉNES PUEDEN PARTICIPAR?
                     </a>
                 </Item>                               
-                <Item style={styles.item}>
-                    <InstagramOutlined style={{fontSize: '30px', margin:'17px'}} />
-                    <TwitterOutlined style={{fontSize: '30px', margin:'17px'}} />
+                <Item>
+                    <InstagramOutlined style={{fontSize: '30px', margin:'12px'}} />
+                    <TwitterOutlined style={{fontSize: '30px', margin:'12px'}} />
                 </Item>                  
 
            </Menu>
