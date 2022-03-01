@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import Logo from '../../assets/logo/01B.png'
 import TeamModal from './TeamModal' 
 import OldAma from './OldAma'
+
 const { Header } = Layout
 const { Item } = Menu
 

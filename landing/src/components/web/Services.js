@@ -9,7 +9,7 @@ import service5 from '../../assets/service_icons/CATALOGO.png'
 
 import service6 from '../../assets/service_icons/06.png'
 import Avi from '../../assets/img/avisuales.jpg'
-const { Title } = Typography
+const { Title, Paragraph } = Typography
 const { Item } = List
 
 
@@ -24,9 +24,15 @@ const Services = () => {
                             width:'700px',
                             content: <Row>
                                 <Col>
-                                   Una vez inscrito/a y con perfil en nuestra plataforma, podrás acceder al formulario de postulación a los talleres, ya sea en aquellos impartidos en formato presencial o aquellos en formato on line. Se te confirmará de acuerdo a la disponibilidad de cupos.
+                                    <Paragraph>"De la sala a la calle: montaje en espacio público".  Relator: Tamara Figueroa y Kevin Morizur, ADTRES, Agrupación de Diseñadores, Técnicos y Realizadores Escénicos.</Paragraph>
+"Gestión Cultural y Proyectos Transmedia": Relatora: Natalia Roca, periodista, gestora cultural y productora ejecutiva audiovisual penquista .
+"Cuerpo y conciencia para el bienestar de los artistas". Relator: José Vidal  
+"Distribución y Marketing Digital para la Música" Relatora: Natalia Gajardo.
+"Marketing y Comunicación Cultural para las Artes Escénicas". Relator: Fernando Costa, Fundador agencia MERCA.
+"Collage feminista y político: estrategias interdisciplinarias para la performance." Relator: Colectivo LASTESIS.
+
  
-                                </Col>
+                                </Col>                                
                             </Row>,
                             
                         }

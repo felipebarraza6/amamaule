@@ -16,6 +16,7 @@ import Viewings from '../../components/web/profile/Viewings'
 import api from '../../api/endpoints'
 import { Footer } from 'antd/lib/layout/layout'
 import LinksInstances from './LinksInstances'
+import ListTransmissionsPresencial from '../../components/web/transmissions/list/ListTransmissionsPresencial'
 import UpdateProfileData from "../../components/web/profile/UpdateProfileData"
 import ListTransmissions from "../../components/web/transmissions/list/ListTransmissions"
 import LinksInstancesAE from '../../components/web/profile/LinkInstancesAE'
@@ -44,6 +45,7 @@ const ProfileUser = () => {
 
     if(state.user){
 
+      console.log(state)
       var type_user = state.user.type_user
       var txt_type = ''
       
@@ -98,7 +100,7 @@ const ProfileUser = () => {
               <Button disabled={!state.user.is_verified} shape={'round'} type='link' style={currentNavigation === '2' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('2')}>
                   <CheckOutlined style={styles.icon} />{currentNavigation === '2' && 'Talleres'}
               </Button>
-             {state.upser.type_user === 'ADM' &&
+             {state.user.type_user === 'ADM' &&
               <Button  shape={'round'} type='link' style={currentNavigation === '3' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('3')}>
                   <EyeOutlined style={styles.icon} />{currentNavigation === '3' && 'Soporte'}
               </Button>
@@ -148,7 +150,7 @@ const ProfileUser = () => {
             >
               {isDigital ? <>
                 
-             <Menu.Item icon={<LaptopOutlined />} key={'0'} 
+             <Menu.Item disabled={true} icon={<LaptopOutlined />} key={'0'} 
                   style={currentNavigation === '0' ?  styles.hoverItem : styles.menuItem }>
                 Contenido
               </Menu.Item>                                    
@@ -157,7 +159,7 @@ const ProfileUser = () => {
                 Perfil
               </Menu.Item>
               {state.user &&
-              <Menu.Item disabled={!state.user.is_verified} icon={<CheckOutlined/>} key={'2'} 
+              <Menu.Item disabled={state.user.is_verified} icon={<CheckOutlined/>} key={'2'} 
                   style={ currentNavigation === '2' ?  styles.hoverItem : styles.menuItem  }  >
                 Talleres
               </Menu.Item>}              
@@ -171,7 +173,7 @@ const ProfileUser = () => {
               </>}
               {state.user &&
               <>
-              <Menu.Item disabled={!state.user.is_verified} icon={<GroupOutlined />} key={'5'}
+              <Menu.Item disabled={state.user.is_verified} icon={<GroupOutlined />} key={'5'}
                   style={currentNavigation === '5' ?  styles.hoverItem : styles.menuItem }>
                 Rondas de Vinculación
               </Menu.Item>
@@ -182,7 +184,7 @@ const ProfileUser = () => {
               <>
            
             {state.user && <>
-              <Menu.Item icon={<LaptopOutlined />} key={'0'} 
+              <Menu.Item disabled={true} icon={<LaptopOutlined />} key={'0'} 
                   style={currentNavigation === '0' ?  styles.hoverItem : styles.menuItem }>
                 Contenido
               </Menu.Item>    
@@ -190,18 +192,18 @@ const ProfileUser = () => {
                   style={currentNavigation === '1' ?  styles.hoverItem : styles.menuItem }>
                 Perfil
               </Menu.Item>
-              <Menu.Item disabled={!state.user.is_verified} icon={<GroupOutlined />} key={'12'}
+              <Menu.Item disabled={state.user.is_verified} icon={<GroupOutlined />} key={'12'}
                   style={currentNavigation === '12' ?  styles.hoverItem : styles.menuItem }>
-                Rondas de Vinculación / artistas escenicos
+                Rondas de Vinculación / artistas escénicos
                 
               
               </Menu.Item>
-              <Menu.Item disabled={!state.user.is_verified} icon={<GroupOutlined />} key={'11'}
+              <Menu.Item disabled={state.user.is_verified} icon={<GroupOutlined />} key={'11'}
                   style={currentNavigation === '11' ?  styles.hoverItem : styles.menuItem }>
                 Rondas de Vinculación / artistas de la viasualidad
                 
               </Menu.Item>
-            <Menu.Item disabled={!state.user.is_verified} icon={<CheckOutlined/>} key={'20'} 
+            <Menu.Item disabled={state.user.is_verified} icon={<CheckOutlined/>} key={'20'} 
                 style={ currentNavigation === '20' ?  styles.hoverItem : styles.menuItem  }  >
               Talleres
             </Menu.Item></>}            
@@ -211,7 +213,8 @@ const ProfileUser = () => {
               </Affix>}
               <Row align={'center'} >
                   {currentNavigation === '0' &&
-                      <ListTransmissions />
+                    <>{isDigital ? <ListTransmissions />:<ListTransmissionsPresencial />}                      
+                    </>
                   }
                   {currentNavigation === '5' && 
                     <LinksInstances />
@@ -250,7 +253,8 @@ const ProfileUser = () => {
                 <Col lg={{span:10}} xs={{span:24}}  style={{padding:'10px'}}>
                 {state.user && <Affix offsetTop={93}><Row>
                   <Col span={7} style={{backgroundColor:'white', padding:'10px'}}>
-                  {state.user.profile.avatar ? <>                      
+                  
+                  {state.user.profile ? <>                      
                       <label for='file' labe='asd'><>                                   
                             <Avatar shape='square' style={styles.uploadAvatar} src={state.user.profile.avatar}  />                                                          
                             </>
@@ -294,9 +298,9 @@ const ProfileUser = () => {
                         bordered={true}                                             
                         style={{backgroundColor:'white', padding:'5px'}} 
                         layout='vertical'>
-                          <Descriptions label={`Perfil: @${state.user.username}`} span={3}><Tag color='pink'>{txt_type}</Tag></Descriptions>
+                          <Descriptions label={`Perfil: @${state.user.username}`} span={3}><Tag color='pink'>{state.user.type_user}</Tag></Descriptions>
                           <Descriptions.Item label="Nombre" span={2}> {state.user.first_name} {state.user.last_name} </Descriptions.Item>
-                          <Descriptions.Item label="Telefono"> {state.user.phone_number} </Descriptions.Item>
+                          <Descriptions.Item label="Teléfono"> {state.user.phone_number} </Descriptions.Item>
                           
                           <Descriptions.Item span={3} label="Correo Electrónico"> {state.user.email} </Descriptions.Item>
                           <Descriptions.Item label="País" >

@@ -9,9 +9,9 @@ import Services from '../../components/web/Services'
 import NavBarClient from '../../components/web/NavBarClient'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import MeetingVideoChat from "./MeetingVideoChat"
-import {AuthContext} from "../../App";
-import Login from '../../components/web/auth/Login'
-import SignUp, { UserCreateForm } from '../../components/web/auth/SignUp'
+import IgFeed from '../../components/web/IgFeed'
+import {AuthContext} from "../../App"
+
 
 const { Content, Footer } = Layout
 const { Title, Paragraph } = Typography
@@ -40,11 +40,10 @@ const Home = () => {
             <Route exact path='/' render = {()=> {
               return(
                 <React.Fragment>
-
-                  <InfoSection />
-                   
+                    <InfoSection />                   
                     <Services />
-                  <TrenSection />
+                    <IgFeed />
+                    <TrenSection />
                   <Footer style = {styles.footer}  >AMA - Vincular para crear 2022</Footer>
                 </React.Fragment>
               )

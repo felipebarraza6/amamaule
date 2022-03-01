@@ -41,16 +41,16 @@ const ListTransmissions = ({globalState, changeState, is_public}) => {
                                     if(response.data.count > 0){
                                         setState({...state, transmissions: response.data.results, no_live:false})
                                     } else {
-                                        const getData = await api_transmissions.transmissions.list('', '').then((response)=> {
+                                        const getData = await api_transmissions.transmissions.list('', '', 'true').then((response)=> {
                                           setState({...state, transmissions: response.data.results, no_live:true})
                                         })
                                     }
                                     }else{
-                                        const getData = await api_transmissions.transmissions.list('', '').then(async(response)=> {
+                                        const getData = await api_transmissions.transmissions.list('', '', 'true').then(async(response)=> {
                                             if(response.data.count > 0){
                                                 setState({...state, transmissions: response.data.results, no_live:false})
                                             }else {
-                                                const getData = await api_transmissions.transmissions.list('', '').then((response)=> {
+                                                const getData = await api_transmissions.transmissions.list('', '', 'true').then((response)=> {
                                                   setState({...state, transmissions: response.data.results, no_live:true})
                                                 })
                                             }
@@ -79,7 +79,7 @@ const ListTransmissions = ({globalState, changeState, is_public}) => {
                 })
                 }
                 if(current.key==='1'){
-                    const request  = await api_transmissions.transmissions.list('', 'C').then((response)=> {                
+                    const request  = await api_transmissions.transmissions.list('', 'C', 'true').then((response)=> {                
                         
                         if(response.data.count === 0){
                             setState({...state, transmissions: response.data.results})
@@ -90,7 +90,7 @@ const ListTransmissions = ({globalState, changeState, is_public}) => {
                 }
                 if(current.key==='2'){
                 
-                    const request  = await api_transmissions.transmissions.list('', 'SC').then((response)=> {                
+                    const request  = await api_transmissions.transmissions.list('', 'SC', 'true').then((response)=> {                
                         if(response.data.count === 0){
                             setState({...state, transmissions: response.data.results})
                         }else{
@@ -99,7 +99,7 @@ const ListTransmissions = ({globalState, changeState, is_public}) => {
                     })
                 }
                 if(current.key==='3'){
-                    const request  = await api_transmissions.transmissions.list('', 'MT').then((response)=> {                
+                    const request  = await api_transmissions.transmissions.list('', 'MT', 'true').then((response)=> {                
                         if(response.data.count === 0){
                             setState({...state, transmissions: response.data.results})
                         }else{
@@ -110,7 +110,7 @@ const ListTransmissions = ({globalState, changeState, is_public}) => {
                 }
                 if(current.key==='4'){
                 
-                    const request  = await api_transmissions.transmissions.list('', 'IC').then((response)=> {                
+                    const request  = await api_transmissions.transmissions.list('', 'IC', 'true').then((response)=> {                
                         if(response.data.count === 0){
                             setState({...state, transmissions: response.data.results})
                         }else{
@@ -120,7 +120,7 @@ const ListTransmissions = ({globalState, changeState, is_public}) => {
                 }
                 if(current.key==='5'){
                 
-                    const request  = await api_transmissions.transmissions.list('', 'S').then((response)=> {                
+                    const request  = await api_transmissions.transmissions.list('', 'S', 'true').then((response)=> {                
                         if(response.data.count === 0){
                             setState({...state, transmissions: response.data.results})
                         }else{
@@ -130,7 +130,7 @@ const ListTransmissions = ({globalState, changeState, is_public}) => {
                 }
                 if(current.key==='6'){
 
-                    const request  = await api_transmissions.transmissions.list('', 'O').then((response)=> {
+                    const request  = await api_transmissions.transmissions.list('', 'O', 'true').then((response)=> {
                         if(response.data.count === 0){
                             setState({...state, transmissions: response.data.results})
                         }else{
@@ -140,7 +140,7 @@ const ListTransmissions = ({globalState, changeState, is_public}) => {
                 }
                 if(current.key==='7'){
 
-                    const request  = await api_transmissions.transmissions.list('', '').then((response)=> {
+                    const request  = await api_transmissions.transmissions.list('', '', 'true').then((response)=> {
                         if(response.data.count === 0){
                             setState({...state, transmissions: response.data.results})
                         }else{
@@ -150,48 +150,11 @@ const ListTransmissions = ({globalState, changeState, is_public}) => {
                 }
 
             }} >
-            { is_public ? <>
-                    {!is_public && <>
-                {!state.no_live &&
-                    <Menu.Item style={{backgroundColor:'#3A1F33', color:'white'}} key='0' >
-                     <Badge color={'volcano'} status={'processing'} />   EN VIVO
-                    </Menu.Item>}
-                    </>}
-                <Menu.Item style={{backgroundColor:'#3A1F33', color:'white'}} key='7' >
-                    Todos
-                </Menu.Item>
-                <Menu.Item style={{backgroundColor:'#3A1F33', color:'white'}} key='1' >
-                   <NotificationOutlined style={{fontSize:'20px'}} /> Conferencias
-                </Menu.Item>
-                <Menu.Item style={{backgroundColor:'#3A1F33', color:'white'}} key='2' >
-                    <DesktopOutlined style={{fontSize:'20px'}} /> Showcases
-                </Menu.Item>
-                <Menu.Item style={{backgroundColor:'#3A1F33', color:'white'}} key='6' >
-                    <PlaySquareOutlined style={{fontSize:'20px'}} /> Obras
-                </Menu.Item>
-
-
-                </>:
-                <>
-                    {!state.no_live &&
-                      <Menu.Item style={{backgroundColor:'#3A1F33', color:'white'}} key='0' >
-                        <Badge color={'volcano'} status={'processing'} />   EN VIVO
-                        </Menu.Item>
-                    }
-                    <Menu.Item style={{backgroundColor:'#3A1F33', color:'white'}} key='7' >
-                        Todos
-                    </Menu.Item>
-                    <Menu.Item style={{backgroundColor:'#3A1F33', color:'white'}} key='1' >
-                        Conferencias
-                    </Menu.Item>
-                    <Menu.Item style={{backgroundColor:'#3A1F33', color:'white'}} key='2' >
-                        Showcases
-                    </Menu.Item>
+             
                     <Menu.Item style={{backgroundColor:'#3A1F33', color:'white'}} key='3' >
                         Mesas temáticas
                     </Menu.Item>
-                </>
-            }
+              
 
             </Menu>
 

@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react'
 import { Button, Form, Input, 
         Row, Col, notification, 
-        Checkbox, Select, Card } from "antd"
+        Checkbox, Select, Card, Typography } from "antd"
 import api from '../../../api/endpoints'
 const {TextArea} = Input
+const {Title, Text} = Typography
 
 
 const UpdateProfileData = ({user, type_user, txt_type_user}) => {
@@ -12,33 +13,46 @@ const UpdateProfileData = ({user, type_user, txt_type_user}) => {
     const [ama2021, setAma2021] = useState(false)
     const [profileType, setProfileType] = useState(null)
     const [file, setFile] = useState(null)
-
-    console.log(user)
+    const [needScholarship, setneedScholarship] = useState(false)
+    const [valueNeed, setValueNeed] = useState(null)
+    
+    
 
     async function UpdateData (values){
+        
+        
         values = {
             ...values,
-            participated_in_last_edition: ama2021,            
+            participated_in_last_edition: ama2021,                        
         }
+
+        if(!needScholarship){
+            values = {
+                ...values,
+                need_cholarship: null
+            }
+        }
+
         
-        const rq = await api.user.update_user(user.username, {'type_user': values.type_user, 'is_verified': 'true'}).then((res)=> {
-            notification.success({message:'Tipo de perfil establecido'}) 
+        const rq = await api.user.update_user(user.username, {'type_user': values.type_user, 'is_verified': 'true'}).then((res)=> {            
             if(res.data.is_verified){
                 notification.success({message:'Perfil verificado'})  
-                window.location.reload()
             }           
         })
         const request = await api.user.update_profile(user.id, values).then((response)=> {            
             notification.success({message:'Perfil actualizado'})
+            if(file){ 
+                const rq = api.user.UPLOAD_FILE_OR_IMG(`users/profile/${user.id}/`, 'dossier_file', file).then((res)=> {
+                    notification.success({message: 'Dossier actualizado!'})    
+                    window.location.reload()
+                })
+                window.location.reload()
+            }
         }).catch((error)=> {
             console.log(error)
         })
 
-        if(file){ 
-            const rq = api.user.UPLOAD_FILE_OR_IMG(`users/profile/${user.id}/`, 'dossier_file', file).then((res)=> {
-                notification.success({message: 'Dossier actualizado!'})
-            })
-        }
+        
 
         getUserData(user.id)
 
@@ -51,7 +65,11 @@ const UpdateProfileData = ({user, type_user, txt_type_user}) => {
             setState(response.data)
             setProfileType(response.data.user.type_user)
             setAma2021(response.data.participated_in_last_edition)
-            console.log(response.data)
+            if(response.data.need_cholarship === '1' || response.data.need_cholarship==='2'){
+                setneedScholarship(true)
+            }else{
+                setneedScholarship(false) 
+            }
         }).catch((error)=> {
             console.log(error)
         })        
@@ -59,8 +77,7 @@ const UpdateProfileData = ({user, type_user, txt_type_user}) => {
     }
 
     useEffect(()=> {
-        getUserData(user.id)
-        
+        getUserData(user.id)      
         
     },[])
 
@@ -78,13 +95,31 @@ const UpdateProfileData = ({user, type_user, txt_type_user}) => {
                 'participated_in_last_edition': state.participated_in_last_edition,
                 'review': state.review,
                 'what_looking': state.what_looking,
-                'website': state.website,
-                'url_dossier': state.url_dossier,
-                'you_made_rounds': state.you_made_rounds
+                'website': state.website,                
+                'you_made_rounds': state.you_made_rounds,
+                'need_cholarsh': state.need_cholarsh
             }}>
                     
             <Row justify={'center'} >
                 <Col lg={24} xs={24}>
+                    <Form.Item name='participated_in_last_edition' valuePropName="checked" label={'¿Participaste en Ama 2021?'} >
+                                    <Checkbox checked={ama2021} onChange={(x)=>{
+                                        if(x.target.checked===true){
+                                            setAma2021(true)
+                                        }else{setAma2021(false)}
+                                    }}/> SI
+                                    <Checkbox checked={!ama2021} onChange={(x)=>{
+                                        if(x.target.checked===false){
+                                            setAma2021(false)
+                                        }else{setAma2021(false)}
+                                    }}/> NO
+                                </Form.Item>
+                                {ama2021 && 
+                                    <Form.Item name='you_made_rounds' 
+                                            label={'¿Concretaste algún resultado luego de tus rondas de vinculación? Describe si contrataste artistas o fuiste contactado y contratado por algún espacio.'} 
+                                            rules={[{required:true, message:'Descripcion...'}]}>
+                                        <TextArea rows={3} />
+                    </Form.Item>}
                     <Form.Item name='type_user' label={'Selecciona la categoría que más identifica tu participación en AMA 2022'} rules={[{required:true, message:'Debes seleccionar al menos una opcion'},]}>
                         <Select placeholder='Selecciona una opcion...' onChange={(x)=>setProfileType(x)}>
                             <Select value='GES'>Gestor/a cultural, programador/a o similar</Select>
@@ -96,7 +131,7 @@ const UpdateProfileData = ({user, type_user, txt_type_user}) => {
                         </Select>
                     </Form.Item>
                    {profileType &&   
-                    <Form.Item name='options_profile' label={`Selecciona las alternativas que representen tu perfil`} 
+                    <Form.Item name='options_profile' label={`Selecciona la o las alternativas que representen a tu perfil`} 
                         rules={[{required:true, message:'Debes seleccionar al menos una opcion'},]}>
                             <Select mode='multiple' placeholder='Selecciona una opcion...'>
                                 {profileType === 'GES' &&  
@@ -293,8 +328,34 @@ const UpdateProfileData = ({user, type_user, txt_type_user}) => {
                                 </> }
                         </Select>
                     </Form.Item>}
+                    <Form.Item name='review' label={'Reseña de tu perfil. Si eres persona natural, empresa, artista, programador/a, organización, elenco, etc; cuéntanos cómo te llamas, a qué te dedicas y en qué territorio trabajas.'} rules={[{required:true, message:'Debes ingresar tu reseña'},
+                                {max:800, message:'Has superado los 800 caracteres'}]}>
+                                    <TextArea rows={4} />
+                    </Form.Item>
+                    <Form.Item name='what_looking' label={'¿Qué buscas en AMA 2022? Puedes marcar todas las alternativas que te representen.'} rules={[{required:true, message:'Debes seleccionar al menos una opcion'},]}>
+                                    <Select mode='multiple'>
+                                        <Select.Option value='Conocer artistas escénicos para programar o hacer redes'>
+                                        Conocer artistas escénicos para programar o hacer redes
+                                        </Select.Option>
+                                        <Select.Option value='Conocer artistas de la visualidad para programar o hacer redes'>
+                                        Conocer artistas de la visualidad para programar o hacer redes
+                                        </Select.Option>
+                                        <Select.Option value='Dar a conocer mi trabajo como artista escénico o de la visualidad'>
+                                        Dar a conocer mi trabajo como artista escénico o de la visualidad
+                                        </Select.Option>
+                                        <Select.Option value='Conocer alternativas de financiamiento'>
+                                        Conocer alternativas de financiamiento
+                                        </Select.Option>
+                                        <Select.Option value='Conocer otros programadores/as-gestores/as para generar proyectos conjuntos'>
+                                        Conocer otros programadores/as-gestores/as para generar proyectos conjuntos
+                                        </Select.Option>
+                                        <Select.Option value='Participar de conferencias, mesas temáticas o talleres que fortalezcan mi trabajo'>
+                                        Participar de conferencias, mesas temáticas o talleres que fortalezcan mi trabajo
+                                        </Select.Option>                                        
+                                    </Select>
+                    </Form.Item>
 
-                    {profileType === 'GES' && <Form.Item name='preference_ges' label={'Selecciona las alternativas que te representen'} rules={[{required:true, message:'Selecciona al menos una opcion'}]}>
+                    {profileType === 'GES' && <Form.Item name='preference_ges' label={'Si eres programador/a o gestor/a selecciona las alternativas que te representen (si corresponde)'} rules={[{required:true, message:'Selecciona al menos una opcion'}]}>
                                     <Select mode='multiple'>
                                         <Select.Option value='mi_espacio_tiene_programacion_habitual_o_esporadica_de_artes_escenicas'>
                                             Mi espacio tiene programación habitual o esporádica de Artes Escénicas
@@ -314,65 +375,65 @@ const UpdateProfileData = ({user, type_user, txt_type_user}) => {
                                         <Select.Option value='mi_espacio_cuenta_con_financiamiento_publico'>
                                             Mi espacio cuenta con financiamiento público
                                         </Select.Option>
-                                        <Select.Option value='otra...'>
-                                            Otra...
-                                        </Select.Option>
                                     </Select>
                                 </Form.Item>}
-                                <Form.Item name='how_do_you_participate' label={'Como participaras en Ama 2022?'} rules={[{required:true, message:'Describe seleccionar una opcion...'}]}>
+                                <Form.Item name='how_do_you_participate' label={'¿Como participaras en Ama 2022?'} rules={[{required:true, message:'Describe seleccionar una opcion...'}]}>
                                     <Select placeholder='Selecciona una opcion...'>
                                         <Select.Option value='digital'>Digital</Select.Option>
                                         <Select.Option value='presencial'>Presencial</Select.Option>
                                         <Select.Option value='ambas'>Ambas</Select.Option>
                                     </Select>
                                 </Form.Item>
-                                <Form.Item name='participated_in_last_edition' valuePropName="checked" label={'Participaste en Ama 2021?'} >
-                                    <Checkbox checked={ama2021} onChange={(x)=>{
+                                {profileType === 'AR'  && <>
+                                <div>
+                                <Text >¿Necesitas beca para alojamiento y alimentación? (*Cupos limitados. Se priorizarán comunas alejadas de Talca)</Text>
+                                </div>
+                                <Checkbox style={{marginTop:'10px', marginBottom:'10px'}} checked={needScholarship} onChange={(x)=>{
                                         if(x.target.checked===true){
-                                            setAma2021(true)
-                                        }else{setAma2021(false)}
+                                            setneedScholarship(true)
+                                        }else{setneedScholarship(false)}
                                     }}/> SI
-                                </Form.Item>
-                                {ama2021 && 
-                                    <Form.Item name='you_made_rounds' label={'¿Concretaste algún resultado luego de tus rondas de vinculación? Describe si contrataste artistas o fuiste contactado y contratado por algún espacio.'} >
-                                        <TextArea rows={3} />
-                                    </Form.Item> 
-                                }
-                                <Form.Item name='what_looking' label={'¿Qué buscas en AMA 2022? Puedes marcar todas las alternativas que te representen.'} rules={[{required:true, message:'Debes seleccionar al menos una opcion'},]}>
-                                    <Select mode='multiple'>
-                                        <Select.Option value='Conocer artistas escénicos para programar o hacer redes'>
-                                        Conocer artistas escénicos para programar o hacer redes
+                                    <Checkbox style={{marginTop:'10px', marginBottom:'10px'}} checked={!needScholarship} onChange={(x)=>{
+                                        if(x.target.checked===false){
+                                            setneedScholarship(false)
+                                        }else{setneedScholarship(false)}
+                                    }}/> NO
+                                    
+                                    {needScholarship ? <Form.Item name='need_cholarship' rules={[{required:true, message:'Selecciona al menos una opcion'}]}>
+                                    <Select style={{marginTop:'10px'}} defaultValue={state.need_cholarship} placeholder='¿Para cuantos días?'>
+                                        <Select.Option value='1'>
+                                            1 Día
                                         </Select.Option>
-                                        <Select.Option value='Conocer artistas de la visualidad para programar o hacer redes'>
-                                        Conocer artistas de la visualidad para programar o hacer redes
+                                        <Select.Option value='2'>
+                                            2 Días
+                                        </Select.Option>                                        
+                                    </Select></Form.Item>:''}
+                                    </>}
+                                {profileType === 'AV'  && <>
+                                <Text level={3}>¿Necesitas beca para alojamiento y alimentación? (*Cupos limitados. Se priorizarán comunas alejadas de Talca)</Text>
+                                <Checkbox style={{marginTop:'10px', marginBottom:'10px'}} checked={needScholarship} onChange={(x)=>{
+                                        if(x.target.checked===true){
+                                            setneedScholarship(true)
+                                        }else{setneedScholarship(false)}
+                                    }}/> SI
+                                    <Checkbox style={{marginTop:'10px', marginBottom:'10px'}} checked={!needScholarship} onChange={(x)=>{
+                                        if(x.target.checked===false){
+                                            setneedScholarship(false)
+                                        }else{setneedScholarship(false)}
+                                    }}/> NO
+                                    {needScholarship ? <Form.Item name='need_cholarship' label={''} rules={[{required:true, message:'Selecciona al menos una opcion'}]}>
+                                    <Select style={{marginTop:'10px'}} placeholder='¿Para cuantos días?'>
+                                        <Select.Option value='1'>
+                                            1 Dia
                                         </Select.Option>
-                                        <Select.Option value='Dar a conocer mi trabajo como artista escénico o de la visualidad'>
-                                        Dar a conocer mi trabajo como artista escénico o de la visualidad
-                                        </Select.Option>
-                                        <Select.Option value='Conocer alternativas de financiamiento'>
-                                        Conocer alternativas de financiamiento
-                                        </Select.Option>
-                                        <Select.Option value='Conocer otros programadores/as-gestores/as para generar proyectos conjuntos'>
-                                        Conocer otros programadores/as-gestores/as para generar proyectos conjuntos
-                                        </Select.Option>
-                                        <Select.Option value='Participar de conferencias, mesas temáticas o talleres que fortalezcan mi trabajo'>
-                                        Participar de conferencias, mesas temáticas o talleres que fortalezcan mi trabajo
-                                        </Select.Option>
-                                        <Select.Option value='Otra'>
-                                        Otra...
-                                        </Select.Option>
-                                    </Select>
-                                </Form.Item>
+                                        <Select.Option value='1'>
+                                            2 Dias
+                                        </Select.Option>                                        
+                                    </Select></Form.Item>:''}
+                                </>}                                
                                 <Form.Item name='website' label={'Página web o perfil en redes sociales'} >
                                     <Input />
-                                </Form.Item>
-                                <Form.Item name='review' label={'Reseña'} rules={[{required:true, message:'Debes ingresar tu reseña'},
-                                {max:800, message:'Has superado los 800 caracteres'}]}>
-                                    <TextArea rows={4} />
-                                </Form.Item>
-                                <Form.Item name='url_dossier' label='Ingresa la URL de tu dossier' >
-                                    <Input />
-                                </Form.Item>
+                                </Form.Item>                                
                                 <Form.Item label='Adjunta tu dossier' onChange={(evt)=> {
                                     setFile(evt.target.files[0])
                                 }}>

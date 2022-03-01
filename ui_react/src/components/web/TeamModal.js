@@ -9,7 +9,7 @@ import kateryn from '../../assets/persons/kgarzon.jpeg'
 import vflores from '../../assets/persons/vflores.jpg'
 import mrojas from '../../assets/persons/mrojas.jpeg'
 import lalvarez from '../../assets/persons/lalvarez.jpg'
-import phiguera from '../../assets/persons/phiguera.jpg'
+import cmunoz from '../../assets/persons/cmunoz.jpg'
 import crojas from '../../assets/persons/crojas.jpg'
 import fcarvajal from '../../assets/persons/fcarvajal.JPG'
 import alara from '../../assets/persons/alara.jpeg'
@@ -67,10 +67,10 @@ const TeamModal = () => {
             visible={visible} 
             style={styles.modal} 
             footer={[<Button onClick={()=>setVisible(false)} style={{backgroundColor:'rgb(97, 38, 61)', color:'white'}}>Cerrar</Button>]}
-            onCancel={()=>setVisible(false)}>
-                <Row align='space-around'>
-                    <Col style={{marginBottom:'20px',paddingLeft:'365px'}}>
-                        <Card hoverable style={{width:'300px', backgroundColor:'#3a1f33'}} onClick={()=>{
+            onCancel={()=>setVisible(false)}>        
+            <Row justify="center">
+      <Col span={4}>
+      <Card hoverable style={{width:'200px', backgroundColor:'#3a1f33'}} onClick={()=>{
                             setInfoPerson({
                                 ...infoPerson,
                                 name: 'Kateryn Garzón',
@@ -87,10 +87,14 @@ const TeamModal = () => {
                         }}  >
                             <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Kateryn Garzón</Paragraph>
                             <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Producción General</Paragraph>
-                        </Card>                        
-                    </Col>                
-                    <Col style={{marginBottom:'20px', paddingRight:'375px'}}>
-                        <Card hoverable style={{width:'300px', backgroundColor:'#3a1f33'}} onClick={()=>{
+                        </Card>     
+      </Col>
+      <Col span={4}>
+      <Card hoverable style={{width:'200px', backgroundColor:'#3a1f33'}}   >
+                            <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Seremia de las Culturas y las Artes Región del Maule</Paragraph>
+                        </Card>
+      </Col>
+      <Col span={4}><Card hoverable style={{width:'200px', backgroundColor:'#3a1f33'}} onClick={()=>{
                             setInfoPerson({
                                 ...infoPerson,
                                 name: 'Victoria Flores',
@@ -105,9 +109,8 @@ const TeamModal = () => {
                         }}>
                                 <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Victoria Flores</Paragraph>
                                 <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Producción Ejecutiva</Paragraph>
-                        </Card>                        
-                    </Col>
-                </Row>
+                        </Card></Col>
+    </Row>        
 
                 <Row align='space-around' style={{marginTop:'20px'}}>
                     <Col xs={24} lg={6} style={{paddingRight:'10px', textAlign:'center'}}>
@@ -132,6 +135,15 @@ const TeamModal = () => {
                                 </Card>
                             </Col>
                             <Col>
+                                <Card hoverable style={styles.cardPerson} >
+                                <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Unidad de Fomento de la Cultura y las Artes / Seremi Cultura Maule</Paragraph>                                    
+                                </Card>
+                            </Col>
+                           
+                            
+                        </Row>
+                        <Row align='space-around' style={{marginTop:'20px'}}>
+                        <Col>
                                 <Card hoverable style={styles.cardPerson} onClick={()=>{
                             setInfoPerson({
                                 ...infoPerson,
@@ -149,24 +161,25 @@ const TeamModal = () => {
                                     <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Encargada Comunicaciones AMA</Paragraph>
                                 </Card>
                             </Col>
-                            
-                        </Row>
-                        <Row align='space-around' style={{marginTop:'20px'}}>
                             <Col>
                                 <Card hoverable style={styles.cardPerson} onClick={()=>{
                             setInfoPerson({
                                 ...infoPerson,
-                                name: 'Pilar Higuera',
-                                description:'Periodista PUCV y realizadora audiovisual independiente, diploma en Guión Documental EITCV. Encargada de Contenidos en la Red Salas de Teatro de Santiago y Coordinadora de Comunicaciones del programa de formación Emprende Escena. Producción periodística para festivales, encuentros, residencias artísticas y proyectos afines con enfoque territorial.',
-                                image: phiguera
+                                name: 'Cinthia Muñoz',
+                                description:'Periodista y Licenciada en Comunicación Social de la Universidad Santo Tomás. Comenzó su formación en el Museo de la Memoria y los Derechos Humanos. Ha trabajado en diversos medios de comunicación de la región del Maule como Redmaule.com y TV Contivisión. Se ha desempeñado en investigación periodística y en campañas políticas. Actualmente trabaja como periodista en el área de Comunicaciones del Teatro Regional del Maule.',
+                                image: cmunoz
                             })
                             setVisibleInfo(true)
                         }}>
-                                <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Pilar Higuera</Paragraph>
+                                <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Cinthia Muñoz</Paragraph>
                                     <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Encargada Comunicaciones AMA</Paragraph>
                                 </Card>
                             </Col>
-                            <Col>
+                           
+                            
+                        </Row>
+                        <Row align='space-around' style={{marginTop:'20px'}}>
+                        <Col>
                                 <Card hoverable style={styles.cardPerson} onClick={()=>{
                             setInfoPerson({
                                 ...infoPerson,
@@ -188,9 +201,6 @@ const TeamModal = () => {
                                     <Paragraph style={{fontSize:'12px', textAlign:'center', paddingBottom:'35px', color:'white'}}>Diseño Gráfico</Paragraph>
                                 </Card>
                             </Col>
-                            
-                        </Row>
-                        <Row align='space-around' style={{marginTop:'20px'}}>
                             <Col>
                                 <Card hoverable style={styles.cardPerson} onClick={()=>{
                             setInfoPerson({
@@ -208,8 +218,11 @@ const TeamModal = () => {
                                 <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Francisco Carvajal</Paragraph>
                                     <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Audiovisual</Paragraph>
                                 </Card>
-                            </Col>
-                            <Col>
+                            </Col>                            
+                            
+                        </Row>
+                        <Row align='space-around' style={{marginTop:'20px'}}>
+                        <Col>
                                 <Card hoverable style={styles.cardPerson} onClick={()=>{
                             setInfoPerson({
                                 ...infoPerson,
@@ -223,43 +236,16 @@ const TeamModal = () => {
                                     <Paragraph style={{fontSize:'12px', textAlign:'center', paddingBottom:'17px', color:'white'}}>Audiovisual</Paragraph>
                                 </Card>
                             </Col>
+                        
+                           
                             
-                        </Row>
-                        <Row align='space-around' style={{marginTop:'20px'}}>
-                            <Col>
-                                <Card hoverable style={styles.cardPerson} onClick={()=>{
-                            setInfoPerson({
-                                ...infoPerson,
-                                name: 'Paola Contardo',
-                                description:'Interesada en Gestión Cultural para potenciar y dar a conocer la riqueza y diversidad cultural e histórica del territorio de la región del Maule.  Su experiencia en el desarrollo de los proyectos radica desde su vinculación como miembro del directorio de la Corporación Cultural Corinto y como socia de la Asociación Gremial de Trabajadores Turísticos del Ramal.',
-                                image: pcontardo
-                            })
-                            setVisibleInfo(true)
-                        }}>
-                                <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Paola Contardo</Paragraph>
-                                    <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Apoyo comunicacional</Paragraph>
-                                </Card>
-                            </Col>
-                            <Col>
-                                <Card hoverable style={styles.cardPerson} onClick={()=>{
-                            setInfoPerson({
-                                ...infoPerson,
-                                name: 'Catalina Salazar',
-                                description:'Cientista Político y Gestora Cultural. Coordinadora General de COCUTEMA. Ha impulsado iniciativas de articulación del mundo cultural como Viralizarte, campaña de Recaudación de fondos y Promaucae, iniciativa financiada por el GORE e implementada por el TRM consistente en 6 capítulos vinculados al Patrimonio Cultural de la región, transmitidos por 11 canales Regionales',
-                                image: csalazar
-                            })
-                            setVisibleInfo(true)
-                        }} >
-                                <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Catalina Salazar</Paragraph>
-                                    <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Apoyo comunicacional</Paragraph>
-                                </Card>
-                            </Col>
                             
                         </Row>
                     </Col>
                     <Col xs={24} lg={6} style={{paddingRight:'10px', textAlign:'center'}}>
                         <Card style={{width:'100%', backgroundColor:'#3a1f33', color:'white'}} >Producción</Card>
                         <Row justify='center' style={{marginTop:'20px'}}>
+                            
                         <Col style={{marginBottom:'20px'}}>
                                 <Card hoverable style={styles.cardColor} onClick={()=>{
                             setInfoPerson({
@@ -361,6 +347,19 @@ const TeamModal = () => {
                     <Col xs={24} lg={6} style={{paddingRight:'10px', textAlign:'center'}}>
                         <Card style={{width:'100%', backgroundColor:'#3a1f33', color:'white'}} >Contenidos</Card>
                         <Row align='space-around' style={{marginTop:'20px'}}>
+                            
+                            <Col style={{marginBottom:'20px'}}>
+                                <Card hoverable style={styles.cardColor}>
+                                <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Unidad Regional de Ciudadanía Cultural / Seremi Cultura Maule</Paragraph>                                    
+                                </Card>
+                                
+                            </Col>
+                            <Col style={{marginBottom:'20px'}}>
+                                <Card hoverable style={styles.cardColor}>
+                                <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Unidad de Fomento de la Cultura y las Artes / Seremi Cultura Maule</Paragraph>                                    
+                                </Card>
+                                
+                            </Col>
                             <Col style={{marginBottom:'20px'}}>
                                 <Card hoverable style={styles.cardColor} onClick={()=>{
                             setInfoPerson({
@@ -378,38 +377,16 @@ const TeamModal = () => {
                                 <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Francisca Oróstica</Paragraph>
                                     <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Encargada de Contenidos</Paragraph>
                                 </Card>
+                                
                             </Col>
-                            <Col span={24} style={{marginBottom:'20px'}}>
-                            <Card style={{width:'100%', backgroundColor:'#3a1f33', color:'white'}} >Sistematización</Card>
-                            </Col>
-                            <Col style={{marginBottom:'20px'}}>
-                                <Card hoverable style={styles.cardColor} onClick={()=>{
-                            setInfoPerson({
-                                ...infoPerson,
-                                name: 'Jennifer Gualteros',
-                                description:'Comunicadora Social, diploma superior en Desarrollo Humano, experiencia en la diseño, implementación y monitoreo de programas, proyectos sociales y formativos desarrollados por organizaciones no gubernamentales con cooperación internacional y pública. Cursa Magister en Desarrollo Humano, Facultad Latinoamericana de Ciencias Sociales Sede Argentina. ',
-                                image: jgualteros
-                            })
-                            setVisibleInfo(true)
-                        }}>
-                                <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Jennifer Gualteros</Paragraph>
-                                    <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}} >Encargada de sistematización</Paragraph>
-                                </Card>
-                            </Col>   
-                            <Col  style={{marginBottom:'20px'}}>
-                                <Card style={styles.cardColor} hoverable onClick={()=>{
-                            setInfoPerson({
-                                ...infoPerson,
-                                name: 'Elvira Valdivieso',
-                                description:'Antropóloga con experiencia en temáticas patrimoniales y de reconstrucción de memoria histórica de comunidades, fortalecimiento de ciudadanía y comunidad y construcción colectiva del territorio. Ha trabajado en proyectos de investigación de interés regional y en procesos que buscan empoderar a comunidades para incidir en el desarrollo de sus territorios.',
-                                image: evaldivieso
-                            })
-                            setVisibleInfo(true)
-                        }}><Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Elvira Valdivieso</Paragraph>
-                                    <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Encargada de sistematización</Paragraph></Card>
-                            </Col>                                                  
+                            
+                            
+                            
+                               
+                                                                              
                         </Row>
                     </Col>
+                    
                 </Row>
 
                 

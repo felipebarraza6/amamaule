@@ -15,10 +15,7 @@ const CarouselBanner = () => {
             </div>                                    
             <div>
                 <img src={Img2} alt='AMA' style={styles.img1}  />
-            </div>                                    
-            <div>
-                <img src={Img3} alt='AMA' style={styles.img1}  />
-            </div>                                    
+            </div>                                                                                    
                         
         </Carousel>
         
@@ -29,7 +26,7 @@ const CarouselBanner = () => {
 const styles = {    
     img1: {
         display: 'block',
-        width:'75%',
+        width:'80%',
         marginLeft: 'auto',
         marginRight: 'auto'
     }

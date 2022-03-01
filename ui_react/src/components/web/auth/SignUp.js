@@ -62,7 +62,7 @@ const SignUp = () => {
               let message = errors[key]
               
               if(field==='phone_number'){
-                  field = 'Telefono'
+                  field = 'Teléfono'
               }
               if(field==='email'){
                   field = 'Email'
@@ -199,7 +199,7 @@ const SignUp = () => {
                     </Col>
                     <Col span={18}>
                     <p>¿Problemas para crear tu cuenta?</p> 
-                    <p>Envíanos un correo a <a href='mailto:info@amamaule.cl' style={{color:'rgb(176, 93, 185)'}}  >info@amamaule.cl</a></p>
+                    <p>Envíanos un correo a <a href='mailto:soporte@amamaule.cl' style={{color:'rgb(176, 93, 185)'}}  >soporte@amamaule.cl</a></p>
                     </Col>
                     <Col span={6}>
                       <Button htmlType='submit' style={{marginRight:'10px'}} style={{backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)', marginRight:'10px'}} type='primary' >Crear</Button> 

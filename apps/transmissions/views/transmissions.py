@@ -35,6 +35,7 @@ class TransmissionsViewSet(mixins.RetrieveModelMixin,
             fields = {
                 'category':['exact'],
                 'is_live': ['exact'] ,
+                'is_digital': ['exact'] ,
                 'required_auth': ['exact'],
                 'broadcast_date': ['exact', 'contains']              
             }

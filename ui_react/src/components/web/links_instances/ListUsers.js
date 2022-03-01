@@ -52,8 +52,14 @@ const ListUsers = ({per_page}) => {
 
     const columns = [
             {
-                key: 'id',
-                render: (obj)=> <Row justify={'center'}><Avatar icon={<FileImageOutlined />} shape='square' src={obj.profile.avatar} /></Row>,
+                render: (obj)=> {
+                    return(
+                    <Row justify={'center'}>
+                        
+                                <Avatar icon={<FileImageOutlined />} shape='square' src={obj.profile.avatar} />            
+                        
+                    </Row>)
+                },
             },
             {
                 key:'id',

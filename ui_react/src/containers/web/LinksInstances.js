@@ -45,10 +45,10 @@ const LinksInstances = () => {
 				dispatch
 			}}
 		>
-			<Col lg={6} xs={24} style={{padding:'10px'}}><Affix offsetTop={80}>
+			<Col lg={6} xs={24} style={{padding:'10px'}}>
 					<Card hoverable title={<><SendOutlined style={styles.icon} /> Agenda tu reunión</>} >
 						<ListUsers per_page={30} />
-					</Card></Affix>
+					</Card>
 			</Col>			
 			<Col lg={14} xs={24} style={{padding:'10px'}}>
 			<Collapse style={{marginBottom:'10px'}}>
@@ -183,7 +183,7 @@ const LinksInstances = () => {
 														}}>
 														<Form.Item name='day' rules={[{ required: true, message: 'Selecciona un dia'}]}>
 															<Select placeholder='Selecciona un dia...'>
-																<Select.Option>Dia #1</Select.Option>
+																<Select.Option value='dia1'>Dia #1</Select.Option>
 																<Select.Option>Dia #2</Select.Option>
 															</Select>
 														</Form.Item>
@@ -219,7 +219,6 @@ const LinksInstances = () => {
         
 
 			</Collapse>
-      
 				<Card title={<><CalendarOutlined style={styles.icon} /> Calendario</>} extra={<><Button onClick={()=> {
 					getCalendarData({dispatch, auth})
 					getInvitations({dispatch, auth})

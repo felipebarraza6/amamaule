@@ -55,7 +55,6 @@ const SingleUser = ({user, is_invitations}) => {
         })
     }
 
-    console.log(user.profile.avatar)
 
     return(<>
 
@@ -64,7 +63,7 @@ const SingleUser = ({user, is_invitations}) => {
                 <Modal width={'800px'} style={{top:25}} visible={state.visible} onCancel={closeModal} footer={[ <Tag color={'pink'}>{user.country}</Tag>, <Tag color={'pink'}>{user.region}</Tag>]} title={`${user.first_name} ${user.last_name}`} >
                     <Row>
                         <Col lg={6} xs={24} style={{textAlign:'center'}} >
-                            {user.profile.avatar ?
+                            {user.profile ?
                             <img src={user.profile.avatar} width={'100px'} style={{marginBottom: '10px',}} />:
                                 <Avatar shape={'square'} icon={<FileImageOutlined style={{marginTop:'16px',marginBottom:'10px', fontSize:'70px'}} />} style={{width:'120px', height:'100px'}} />
                             }

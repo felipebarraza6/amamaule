@@ -49,7 +49,7 @@ const Calendar = () => {
                                             <Col span={12}>
                                                 <Button type='primary' style={{marginBottom:'5px',marginRight:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}
                                                     onClick={()=> {
-                                                        window.open(`http://localhost:3000/profile/meetings/${x.uuid}`)
+                                                        window.open(`http://test.amamaule.cl/profile/meetings/${x.uuid}`)
                                                     }}
                                                 >Ingresar</Button>
                                             </Col>

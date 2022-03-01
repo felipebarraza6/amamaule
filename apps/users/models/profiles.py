@@ -17,6 +17,7 @@ class Profile(APIModel):
     preference_ges = ArrayField(models.CharField(max_length=1000, blank=True, null=True), default=list, blank=True, null =True) 
     review = models.TextField(max_length=1200, null=True, blank=True) 
     how_do_you_participate = models.CharField(max_length=1200, blank=True, null=True) 
+    need_cholarship = models.CharField(max_length=1200, blank=True, null=True)  
 
 
     def __str__(self):

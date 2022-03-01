@@ -6,13 +6,14 @@ import service3 from '../../assets/service_icons/SHOWCASES.png'
 import service4 from '../../assets/service_icons/TALLERES.png'
 import service5 from '../../assets/service_icons/CATALOGO.png'
 import service6 from '../../assets/service_icons/06.png'
-const { Title } = Typography
+import Avi from '../../assets/img/avisuales.jpg'
+const { Title, Paragraph } = Typography
 const { Item } = List
 
 
 const Services = () => {
 
-    return(
+    return(<>
         <Row style={styles.container} justify='center'>
                 <Col xs={24} lg={3} style={styles.column} >
                     <img onClick={()=>{Modal.info(
@@ -20,35 +21,27 @@ const Services = () => {
                             icon: <img src={service1} style={styles.img2}  />,
                             width:'700px',
                             content: <Row>
-                                <Col>
-                                    Experiencias formativas online diseñadas preferentemente para habitantes de la Región del Maule. 
-                                    Las temáticas a abordar son las resultantes de la encuesta dirigida a artistas y programadores/as 
-                                    de espacios culturales de nuestra región:
-                                </Col>
-                                <Col>
-                                    <List bordered header={<Title level={5}>Talleres</Title>} style={{marginTop:'10px'}}>                                
-                                        <Item>
-                                            1. Taller de Pitching
-                                        </Item>
-                                        <Item>
-                                            2. Taller de Montaje Site Specific
-                                        </Item>
-                                        <Item>
-                                            3. Taller Ley de Donaciones Culturales
-                                        </Item>
-                                        <Item>
-                                            4. Taller de Marketing Digital para la industria musical
-                                        </Item>
-                                        <Item>
-                                            5. Taller de herramientas para la gestión de proyectos culturales
-                                        </Item>
-                                        <Item>
-                                            6. Taller de financiamiento para la circulación internacional
-                                        </Item>
-                                    </List>
-                                    <p style={{marginTop:'20px'}}>
-                                    Esta actividad requiere inscripción previa, completando perfil en www.amamaule.cl
-                                    </p>
+                                <Col style={{marginTop:'20px'}}>    
+                                    <Paragraph>Una vez inscrito/a y con perfil en nuestra plataforma, podrás acceder al formulario de postulación a los talleres, ya sea en aquellos impartidos en formato presencial o aquellos en formato on line. Se te confirmará de acuerdo a la disponibilidad de cupos.</Paragraph>                               
+                                    <Paragraph style={{marginTop:'20px'}}><strong>TALLERES</strong></Paragraph>
+                                    <Paragraph style={{marginLeft:'20px'}}>
+                                    <strong>1.</strong> "De la sala a la calle: montaje en espacio público".  Relator: Tamara Figueroa y Kevin Morizur, ADTRES, Agrupación de Diseñadores, Técnicos y Realizadores Escénicos.
+                                    </Paragraph>
+                                    <Paragraph style={{marginLeft:'20px'}}>
+                                    <strong>2.</strong> "Gestión Cultural y Proyectos Transmedia": Relatora: Natalia Roca, periodista, gestora cultural y productora ejecutiva audiovisual penquista .
+                                    </Paragraph>
+                                    <Paragraph style={{marginLeft:'20px'}}>
+                                    <strong>3.</strong> "Cuerpo y conciencia para el bienestar de los artistas". Relator: José Vidal  
+                                    </Paragraph>
+                                    <Paragraph style={{marginLeft:'20px'}}>
+                                    <strong>4.</strong> "Distribución y Marketing Digital para la Música" Relatora: Natalia Gajardo.
+                                    </Paragraph>
+                                    <Paragraph style={{marginLeft:'20px'}}>
+                                    <strong>5.</strong> "Marketing y Comunicación Cultural para las Artes Escénicas". Relator: Fernando Costa, Fundador agencia MERCA.
+                                    </Paragraph>
+                                    <Paragraph style={{marginLeft:'20px'}}>
+                                    <strong>6.</strong> "Collage feminista y político: estrategias interdisciplinarias para la performance." Relator: Colectivo LASTESIS.
+                                    </Paragraph>
                                 </Col>
                             </Row>,
                             
@@ -62,9 +55,7 @@ const Services = () => {
                         {                         
                             icon: <img src={service2} style={styles.img2}  />,
                             content: <p>
-                                Abordaremos temas de interés para el desarrollo artístico, a través de la mirada de invitados con experiencia y 
-                                conocimiento en la materia. Con esto, apostamos por inspirar a quienes participan en AMA 2021 e impulsar nuevas 
-                                perspectivas en torno al trabajo creativo post pandemia.
+                          Para participar solo debes ingresar a www.amamaule.cl el día de la actividad, sin necesidad de estar inscritos y tener perfil en el encuentro.
                             </p>
                         }
                     )}}
@@ -76,28 +67,52 @@ const Services = () => {
                     onClick={()=>{Modal.info(
                         {                         
                             icon: <img src={service3} style={styles.img2}  />,
-                            content: <p>
-                                Espacios de encuentro virtual entre programadores, artistas u otros participantes de interés 
-                                para tu trabajo. Se trata de reuniones online de diez minutos de duración, tiempo en el cual 
-                                podrás presentar tu propuesta o proyecto artístico y establecer nexos con tu contraparte. Te 
-                                haremos llegar un tutorial detallado sobre cómo agendar reuniones. 
-                            </p>
+                            content: <><p>
+                          Las Rondas de Vinculación en formato presencial consisten en reuniones previamente agendadas entre un grupo de programadores u organizaciones que tengan programas de apoyo y/o colaboración con el sector artístico (escénico o de la visualidad) con artistas escénicos y de la visualidad. Esas reuniones de vinculación serán en horarios diferenciados de acuerdo a la disciplina artística. 
+De acuerdo a tu perfil inscrito, se te enviará una invitación a participar en las rondas, y se te indicarán los detalles importantes a considerar al momento de la reunión. </p>
+                      <p>
+                          Las Rondas de Vinculación en formato on line se realizarán desde la plataforma web. Para ello podrás agendarlas directamente con la persona u organización de tu interés. Al inscribirte recibirás un correo con las instrucciones para agendar, y además podrás consultar el tutorial en www.amamaule.cl
+
+                      </p>
+                          <p>
+Las rondas on line durarán 10 minutos, ocasión en la que podrás presentar tu trabajo y establecer nexos con quienes te reúnas, o terminar conversaciones y/o alianzas iniciadas de manera presencial.
+                          </p>
+                          </>
                         }
                     )}}
                      src={service3} style={styles.img}  alt='service3' />
                     
                 </Col>
+                
                 <Col xs={24} lg={3}  style={styles.column} span={6}>
                     <img 
                     onClick={()=>{Modal.info(
                         {                            
                             icon: <img src={service4} style={styles.img2}  />,
                             content: <div><p>
-                                AMA presentará cada día showcases y espectáculos artísticos abiertos a la comunidad 
-                                de forma gratuita. Del mismo modo, los programadores tendrán acceso exclusivo a una 
-                                sección de visionados de propuestas artísticas seleccionadas, de artistas de la Región 
-                                del Maule.
+                               Los espectáculos como showcases y obras de artes escénicas en espacios abiertos o cerrados, serán con entrada gratuita, descargando previamente tu entrada en el sitio web del Teatro Regional del Maule.  (el link sería www.vivoticket.cl) este tendría acces directo desde www.amamaule.cl 
+ 
                             </p>
+                            <Paragraph><strong>SHOWCASES</strong></Paragraph>
+                            <Paragraph style={{marginLeft:'20px'}}>
+                                - Invierno Nuclear
+                            </Paragraph>
+                            <Paragraph style={{marginLeft:'20px'}}>
+                                - Idea Blanco
+                                </Paragraph>
+                                <Paragraph style={{marginLeft:'20px'}}>
+                                - Winters of Blue
+                                </Paragraph>
+                                <Paragraph style={{marginLeft:'20px'}}>
+                                - Odia Las Jaulas
+                                </Paragraph>
+                                <Paragraph style={{marginLeft:'20px'}}>
+                                - Mandi Gómez
+                                </Paragraph>
+                                <Paragraph style={{marginLeft:'20px'}}>- Adrik Caleidoscopio</Paragraph>
+                                <Paragraph style={{marginLeft:'20px'}}>- Tomi no me ama</Paragraph>
+                                <Paragraph style={{marginLeft:'20px'}}>- Yorka</Paragraph>
+                            
                             </div>
                         }
                     )}}
@@ -105,12 +120,29 @@ const Services = () => {
                     
                 </Col>
                <Col xs={24} lg={3}  style={styles.column} >
-                    <a target='__blank' >
                     <img
-                    src={service6} style={styles.img}  alt='service4' /></a>
+                    onClick={()=>{
+                      Modal.info({
+                        icon: <img src={service5} style={styles.img2} />,
+                        content: <p>Instancia para la difusión y promoción de los artistas de la visualidad inscritos en AMA-Maule. La invitación a participar se efectuará directamente por correo a los participantes, indicando los detalles importantes a considerar al momento de su realización.
+</p>
+                      })
+                    }}
+                    src={service5} style={styles.img}  alt='service4' />
                     
                 </Col>
+<Col xs={24} lg={3}  style={styles.column} span={6}>
+                <a target='__blank' href='http://www.teatroregional.cl/wp-content/uploads/2021/06/Catálogo-de-Artistas-ABRIL-2021.pdf'>
+                    <img src={service6} style={styles.img}  alt='service3' />
+                </a>     
+                </Col>
         </Row>
+      <Row justify="center" style={{backgroundColor:'#3a1f33'}}>
+      
+        <a href='https://docs.google.com/forms/d/e/1FAIpQLSdaM-um2blDVLazhJ7qjnk4sNsk0d_OAbi9FurItP-9mtQAaw/viewform?vc=0&c=0&w=1&flr=0' target='_blank'>
+        <img src={Avi} style={{maxWidth:'100%'}} />
+        </a>
+      </Row></>
     )
 }
 

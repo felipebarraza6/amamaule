@@ -12,7 +12,7 @@ class Transmission(APIModel):
         ('MT', 'mesas_tematicas'),
         ('IC', 'intercambios_crativos'),        
         ('SC', 'showcases'),
-        ('0', 'obras')
+        ('O', 'obras')
     ]
 
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -42,6 +42,7 @@ class Transmission(APIModel):
     zoom_role = models.CharField(max_length=3, blank=True, null=True, default=0)
     zoom_passcode = models.CharField(max_length=40, blank=True, null=True)
 
+    is_digital = models.BooleanField(default=False)
 
     def __str__(self):
         return str(self.uuid)

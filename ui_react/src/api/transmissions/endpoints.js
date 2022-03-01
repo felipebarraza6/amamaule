@@ -2,9 +2,9 @@ import { POST_LOGIN, GET, UPDATE,
     POST, GET_NOT_TOK} from '../config'
 
 
-const list_transmissions = async(is_live, category)=> {
+const list_transmissions = async(is_live, category, is_digital)=> {
 
-    const request = await GET_NOT_TOK(`transmissions/?is_live=${is_live}&category=${category}`)
+    const request = await GET_NOT_TOK(`transmissions/?is_live=${is_live}&category=${category}&is_digital=${is_digital}`)
     return request
 }
 
