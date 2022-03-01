@@ -22,6 +22,7 @@ import fsilva from '../../assets/persons/fsilva.jpeg'
 import forostica from '../../assets/persons/forostica.jpeg'
 import jgualteros from '../../assets/persons/jgualteros.jpg'
 import evaldivieso from '../../assets/persons/evaldivieso.jpeg'
+import cpacheco from '../../assets/persons/cpacheco.jpg'
 
 
 const { Item } = Menu
@@ -136,7 +137,7 @@ const TeamModal = () => {
                             </Col>
                             <Col>
                                 <Card hoverable style={styles.cardPerson} >
-                                <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Unidad de Fomento de la Cultura y las Artes / Seremi Cultura Maule</Paragraph>                                    
+                                <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Comunicaciones Institucionales / Seremi Cultura Maule</Paragraph>                                    
                                 </Card>
                             </Col>
                            
@@ -205,6 +206,29 @@ const TeamModal = () => {
                                 <Card hoverable style={styles.cardPerson} onClick={()=>{
                             setInfoPerson({
                                 ...infoPerson,
+                                name: 'Charlot Pachecto',
+                                description:'Diseñadora, Titulada con Mención en Diseño de Productos en la Universidad de Talca. Se ha desempeñado como Diseñadora en el equipo de Comunicaciones del Teatro Regional del Maule. “Desde que conocí el mundo del diseño, he visto como la creatividad nos puede ayudar a crear y comunicar una identidad propia sobre las cosas que nos rodean”.',
+                                image: cpacheco,
+                                links: [                                    
+                                    
+                                ]
+                            })
+                            setVisibleInfo(true)
+                        }}>
+                                
+                                    <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Charlot Pachecto</Paragraph>
+                                    <Paragraph style={{fontSize:'12px', textAlign:'center', paddingBottom:'15px', color:'white'}}>Diseño Gráfico</Paragraph>
+                                
+                                </Card>
+                            </Col>
+                                                        
+                            
+                        </Row>
+                        <Row align='space-around' style={{marginTop:'20px'}}>
+                        <Col>
+                                <Card hoverable style={styles.cardPerson} onClick={()=>{
+                            setInfoPerson({
+                                ...infoPerson,
                                 name: 'Francisco Carvajal',
                                 description:'Francisco Carvajal, oriundo de la 4ta región, erradicado hace 9 años en Talca. Desde joven estuve relacionado con el mundo de las artes escénicas.Estudié “Comunicación Audiovisual” en IPST.Pueden ver algunos de mis trabajos en @mirillaaudiovisuall mi marca como realizador desde el año 2016.',
                                 image: fcarvajal,
@@ -218,10 +242,7 @@ const TeamModal = () => {
                                 <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Francisco Carvajal</Paragraph>
                                     <Paragraph style={{fontSize:'12px', textAlign:'center', color:'white'}}>Audiovisual</Paragraph>
                                 </Card>
-                            </Col>                            
-                            
-                        </Row>
-                        <Row align='space-around' style={{marginTop:'20px'}}>
+                            </Col>
                         <Col>
                                 <Card hoverable style={styles.cardPerson} onClick={()=>{
                             setInfoPerson({

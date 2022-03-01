@@ -34,7 +34,7 @@ const Services = () => {
                                     <strong>3.</strong> "Cuerpo y conciencia para el bienestar de los artistas". Relator: José Vidal  
                                     </Paragraph>
                                     <Paragraph style={{marginLeft:'20px'}}>
-                                    <strong>4.</strong> "Distribución y Marketing Digital para la Música" Relatora: Natalia Gajardo.
+                                    <strong>4.</strong> "Producción musical" Relatora: Natalia Suazo, "Natisú"
                                     </Paragraph>
                                     <Paragraph style={{marginLeft:'20px'}}>
                                     <strong>5.</strong> "Marketing y Comunicación Cultural para las Artes Escénicas". Relator: Fernando Costa, Fundador agencia MERCA.
@@ -93,7 +93,7 @@ Las rondas on line durarán 10 minutos, ocasión en la que podrás presentar tu 
                                Los espectáculos como showcases y obras de artes escénicas en espacios abiertos o cerrados, serán con entrada gratuita, descargando previamente tu entrada en el sitio web del Teatro Regional del Maule.  (el link sería www.vivoticket.cl) este tendría acces directo desde www.amamaule.cl 
  
                             </p>
-                            <Paragraph><strong>SHOWCASES</strong></Paragraph>
+                            <Paragraph><strong>SHOWCASES REGIONALES</strong></Paragraph>
                             <Paragraph style={{marginLeft:'20px'}}>
                                 - Invierno Nuclear
                             </Paragraph>
@@ -111,8 +111,9 @@ Las rondas on line durarán 10 minutos, ocasión en la que podrás presentar tu 
                                 </Paragraph>
                                 <Paragraph style={{marginLeft:'20px'}}>- Adrik Caleidoscopio</Paragraph>
                                 <Paragraph style={{marginLeft:'20px'}}>- Tomi no me ama</Paragraph>
+                                <Paragraph><strong>SHOWCASES REGIONALES</strong></Paragraph> 
+
                                 <Paragraph style={{marginLeft:'20px'}}>- Yorka</Paragraph>
-                            
                             </div>
                         }
                     )}}

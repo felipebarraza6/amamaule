@@ -17,7 +17,7 @@ const Services = () => {
 
     return(<>
         <Row style={styles.container} justify='center'>
-                <Col xs={24} lg={3} style={styles.column} >
+                <Col xs={12} lg={3} style={styles.column} >
                     <img onClick={()=>{Modal.info(
                         {                         
                             icon: <img src={service1} style={styles.img2}  />,
@@ -39,7 +39,7 @@ const Services = () => {
                     )}}
                     src={service1} style={styles.img}  alt='service1' />                    
                 </Col>
-                <Col xs={24} lg={3}  style={styles.column} span={6}>
+                <Col xs={12} lg={3}  style={styles.column} span={6}>
                     <img
                      onClick={()=>{Modal.info(
                         {                         
@@ -52,7 +52,7 @@ const Services = () => {
                      src={service2} style={styles.img}  alt='service2' />
                     
                 </Col>
-                <Col xs={24} lg={3}  style={styles.column} span={6}>
+                <Col xs={12} lg={3}  style={styles.column} span={6}>
                     <img
                     onClick={()=>{Modal.info(
                         {                         
@@ -74,7 +74,7 @@ Las rondas on line durarán 10 minutos, ocasión en la que podrás presentar tu 
                     
                 </Col>
                 
-                <Col xs={24} lg={3}  style={styles.column} span={6}>
+                <Col xs={12} lg={3}  style={styles.column} span={6}>
                     <img 
                     onClick={()=>{Modal.info(
                         {                            
@@ -89,7 +89,7 @@ Las rondas on line durarán 10 minutos, ocasión en la que podrás presentar tu 
                     src={service4} style={styles.img}  alt='service4' />
                     
                 </Col>
-               <Col xs={24} lg={3}  style={styles.column} >
+               <Col xs={12} lg={3}  style={styles.column} >
                     <img
                     onClick={()=>{
                       Modal.info({
@@ -101,7 +101,7 @@ Las rondas on line durarán 10 minutos, ocasión en la que podrás presentar tu 
                     src={service5} style={styles.img}  alt='service4' />
                     
                 </Col>
-<Col xs={24} lg={3}  style={styles.column} span={6}>
+<Col xs={12} lg={3}  style={styles.column} span={6}>
                 <a target='__blank' href='http://www.teatroregional.cl/wp-content/uploads/2021/06/Catálogo-de-Artistas-ABRIL-2021.pdf'>
                     <img src={service6} style={styles.img}  alt='service3' />
                 </a>     
