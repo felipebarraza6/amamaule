@@ -2,11 +2,14 @@ from rest_framework import mixins, viewsets, status, pagination
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from django_filters import rest_framework as filters
-
+from django.conf import settings
 from rest_framework.permissions import (
     AllowAny,
     IsAuthenticated
 )
+from django.template.loader import render_to_string
+from django.core.mail import EmailMultiAlternatives
+from django.core.mail import send_mail
 
 from .serializers import (UserLoginSerializer, 
                         UserModelSerializer, 
@@ -79,7 +82,6 @@ class UserViewSet(viewsets.GenericViewSet,
         data = {
             'status': 'OK'
         }
-        
         return Response(data, status=status.HTTP_200_OK)
 
 
@@ -111,4 +113,24 @@ class UserViewSet(viewsets.GenericViewSet,
         serializer.is_valid(raise_exception=True)
         user = serializer.save()
         data = UserModelSerializer(user).data
+       
+
+        """send_mail('ACABAS DE CONFIRMAR LA INVITACIÓN A UNA REUNIÓN',
+                      (
+                          '¡Hola! {}, acabas de confirmar la invitación a una reunión online en las Rondas de Vinculación de AMA Maule. Cuando sea la hora de tu reunión, se activará la opción de "Acceder" para que puedas ingresar a tu reunión programada.').format(
+                          data['first_name']),
+                      settings.DEFAULT_FROM_EMAIL,
+                      [data['email']])"""  
+
+        subject = 'Bienvenidos/as a AMA 2022'
+        from_email = '<noreply@amamaule.cl>'
+        content = render_to_string(
+            'signup.html',
+            { 'user': data}
+        )
+        msg = EmailMultiAlternatives(subject, content, from_email, [user.email])
+        msg.attach_alternative(content, "text/html")
+        msg.send()
+
+
         return Response(data, status=status.HTTP_201_CREATED)

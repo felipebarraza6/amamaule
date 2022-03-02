@@ -124,7 +124,7 @@ const SignUp = () => {
                         <Form.Item name='country' label='País de residencia' rules={[
                             { required: true, message: 'Por favor ingrese su país'},                    
                         ]}>
-                            <Select onChange={ (value) => { 
+                            <Select showSearch onChange={ (value) => { 
                                 setActiveRegion(true)
                                 if(value !== 'chile'){ 
                                     setIsChilean(false) 

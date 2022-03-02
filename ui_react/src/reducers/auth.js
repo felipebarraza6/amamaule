@@ -9,7 +9,13 @@ export const login_reducer = (state, action) => {
                 ...state,
                 isAuthenticated: true,                
                 access_token: action.payload.access_token,
-                user: action.payload.user,                
+                user: action.payload.user,                                
+            }
+
+        case "UPDATE_USER":
+            return {
+                ...state,
+                user: action.user
             }
 
                    

@@ -15,12 +15,14 @@ function App() {
   const initialState = {
     isAuthenticated: false,
     access_token: null,
-    user: null
+    user: null    
   }
+
+  
   
   const [state, dispatch] = useReducer(login_reducer, initialState)
   const [size, setSize] = useState()
-
+  console.log(state)
   useEffect(()=>{
   
     const access_token = JSON.parse(localStorage.getItem('access_token' || null ))

@@ -26,11 +26,14 @@ import LinksInstancesAV from '../../components/web/profile/LinkInstancesAV'
 const ProfileUser = () => {
 
     const { state, dispatch } = useContext(AuthContext)
+    console.log(state)
+    const [profile, setProfile] = useState(null)
     const [currentNavigation, setCurrentNavigation] = useState('1')
     const [currentNavigationT, setCurrentNavigationT] = useState('6')
     const [imageFile, setImageFile] = useState(null)    
 
     const [isDigital, setIsDigital] = useState(true)
+    const [txtName, SetTxtName] = useState('')
     
     const [size, setSize] = useState()
 
@@ -43,35 +46,48 @@ const ProfileUser = () => {
 
   }
 
-    if(state.user){
+  console.log(state)
 
-      console.log(state)
-      var type_user = state.user.type_user
-      var txt_type = ''
-      
-      if(type_user === 'GES'){
-        txt_type = 'Gestor/a cultural, programador/a o similar'
-      }else if(type_user === 'AR'){
-        type_user = 'Artista escénico o representante'        
-      }else if(type_user === 'AV'){
-        type_user = 'Artista de la visualidad'        
-      }else if(type_user === 'PT'){
-        txt_type = 'Profesional o trabajador relacionado a las artes escénicas o de la visualidad'
-      }else if(type_user === 'PS'){
-        txt_type = 'Proveedor/a de bienes y servicios asociados'
-      }else if(type_user === 'OPP'){
-        txt_type = 'Organización pública o privada' 
-      }else if(type_user === 'ADM'){
-        txt_type = 'Administrador de sistema'  
-      }
-
+  if(state.user){        
+    var type_user = state.user.type_user
+    var txt_type = ''
+    
+    if(type_user === 'GES'){
+      txt_type = 'Gestor/a cultural, programador/a o similar'
+    }else if(type_user === 'AR'){
+      txt_type = 'Artista escénico o representante'        
+    }else if(type_user === 'AV'){
+      txt_type = 'Artista de la visualidad'        
+    }else if(type_user === 'PT'){
+      txt_type = 'Profesional o trabajador relacionado a las artes escénicas o de la visualidad'
+    }else if(type_user === 'PS'){
+      txt_type = 'Proveedor/a de bienes y servicios asociados'
+    }else if(type_user === 'OPP'){
+      txt_type = 'Organización pública o privada' 
+    }else if(type_user === 'ADM'){
+      txt_type = 'Administrador de sistema'  
+    }else{
+     txt_type = 'NOT'
     }
+  }
+
+  async function getUserData(user) {
+    const request = await api.user.get_profile_center(user).then((response)=> {
+        //setState(response.data)
+        setProfile(response.data)
+        
+    }).catch((error)=> {
+        console.log(error)
+    })        
+    return request
+}
+    
 
     useEffect(()=> {
-      setSize(window.innerWidth)
-      
-      
+      setSize(window.innerWidth)           
     },[])
+
+    
 
     return(<>
               {size < 800 ? <>
@@ -233,7 +249,7 @@ const ProfileUser = () => {
                     <>
                     <Col lg={{span:14}}  xs={{span:24}}  style={{padding:'0px'}}  >
                     {state.user && 
-                      <UpdateProfileData user={state.user} type_user={type_user} txt_type_user={txt_type} />
+                      <UpdateProfileData user={state.user} />
                     }
                     </Col>
                     </>
@@ -252,8 +268,8 @@ const ProfileUser = () => {
                 {currentNavigation === '1' &&
                 <Col lg={{span:10}} xs={{span:24}}  style={{padding:'10px'}}>
                 {state.user && <Affix offsetTop={93}><Row>
-                  <Col span={7} style={{backgroundColor:'white', padding:'10px'}}>
-                  
+                  <Col span={7} style={{backgroundColor:'white', padding:'10px'}}>                    
+                  {console.log(state)}                  
                   {state.user.profile ? <>                      
                       <label for='file' labe='asd'><>                                   
                             <Avatar shape='square' style={styles.uploadAvatar} src={state.user.profile.avatar}  />                                                          
@@ -273,10 +289,8 @@ const ProfileUser = () => {
                       <>
                         <label for='file' labe='asd'><>                                   
                         <Tooltip title='Actualizar imagen'>
-                            <Avatar shape='square' style={styles.uploadAvatar}>
-                              
+                            <Avatar shape='square' style={styles.uploadAvatar} >
                               <UploadOutlined style={{fontSize:'50px', paddingTop:'40px'}} />
-                              
                             </Avatar>                                      
                             </Tooltip>
                             </>
@@ -298,7 +312,7 @@ const ProfileUser = () => {
                         bordered={true}                                             
                         style={{backgroundColor:'white', padding:'5px'}} 
                         layout='vertical'>
-                          <Descriptions label={`Perfil: @${state.user.username}`} span={3}><Tag color='pink'>{state.user.type_user}</Tag></Descriptions>
+                          <Descriptions label={`Perfil: @${state.user.username}`} span={3}><Tag color='pink'>{txt_type.slice(0,35)}...</Tag></Descriptions>
                           <Descriptions.Item label="Nombre" span={2}> {state.user.first_name} {state.user.last_name} </Descriptions.Item>
                           <Descriptions.Item label="Teléfono"> {state.user.phone_number} </Descriptions.Item>
                           

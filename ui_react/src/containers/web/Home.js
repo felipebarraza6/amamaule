@@ -42,7 +42,6 @@ const Home = () => {
                 <React.Fragment>
                     <InfoSection />                   
                     <Services />
-                    <IgFeed />
                     <TrenSection />
                   <Footer style = {styles.footer}  >AMA - Vincular para crear 2022</Footer>
                 </React.Fragment>

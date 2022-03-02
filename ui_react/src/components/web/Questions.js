@@ -19,7 +19,7 @@ const Questions = () => {
             la posibilidad de adjuntar tu dossier de trabajo para más detalles.
         </Paragraph>       
     </Panel>    
-    <Panel header="SI SOY PROFESIONAL ASOCIADO, ¿QUÉ RERQUISITOS DEBO CUMPLIR?" key="5" className="site-collapse-custom-panel">
+    <Panel header="SI SOY PROFESIONAL ASOCIADO, ¿QUÉ REQUISITOS DEBO CUMPLIR?" key="5" className="site-collapse-custom-panel">
         <Paragraph align={'justify'} style={{color:''}}>
             Puede participar todo profesional ligado a las artes escénicas y a las artes visuales, 
             desde sus respectivos oficios, si están estos nombrados en el primer punto o bien si se 

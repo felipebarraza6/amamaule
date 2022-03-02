@@ -1,8 +1,9 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useContext} from 'react'
 import { Button, Form, Input, 
-        Row, Col, notification, 
+        Row, Col, notification, Tag,
         Checkbox, Select, Card, Typography } from "antd"
 import api from '../../../api/endpoints'
+import { AuthContext } from '../../../App'
 const {TextArea} = Input
 const {Title, Text} = Typography
 
@@ -10,16 +11,16 @@ const {Title, Text} = Typography
 const UpdateProfileData = ({user, type_user, txt_type_user}) => {
 
     const [state, setState] = useState(null)
+    const { dispatch } = useContext(AuthContext)
     const [ama2021, setAma2021] = useState(false)
     const [profileType, setProfileType] = useState(null)
     const [file, setFile] = useState(null)
     const [needScholarship, setneedScholarship] = useState(false)
-    const [valueNeed, setValueNeed] = useState(null)
+    const [subcate, setSubCate] = useState(true)
     
-    
+    const [form] = Form.useForm()
 
     async function UpdateData (values){
-        
         
         values = {
             ...values,
@@ -33,7 +34,6 @@ const UpdateProfileData = ({user, type_user, txt_type_user}) => {
             }
         }
 
-        
         const rq = await api.user.update_user(user.username, {'type_user': values.type_user, 'is_verified': 'true'}).then((res)=> {            
             if(res.data.is_verified){
                 notification.success({message:'Perfil verificado'})  
@@ -41,6 +41,8 @@ const UpdateProfileData = ({user, type_user, txt_type_user}) => {
         })
         const request = await api.user.update_profile(user.id, values).then((response)=> {            
             notification.success({message:'Perfil actualizado'})
+            setSubCate(true)
+            form.resetFields(['options_profile'])
             if(file){ 
                 const rq = api.user.UPLOAD_FILE_OR_IMG(`users/profile/${user.id}/`, 'dossier_file', file).then((res)=> {
                     notification.success({message: 'Dossier actualizado!'})    
@@ -52,8 +54,6 @@ const UpdateProfileData = ({user, type_user, txt_type_user}) => {
             console.log(error)
         })
 
-        
-
         getUserData(user.id)
 
     }
@@ -62,8 +62,15 @@ const UpdateProfileData = ({user, type_user, txt_type_user}) => {
 
     async function getUserData(user) {
         const request = await api.user.get_profile_center(user).then((response)=> {
+            console.log(response)
             setState(response.data)
             setProfileType(response.data.user.type_user)
+            let userobj = {
+                ...response.data.user,
+                profile: response.data
+            }
+            console.log(userobj)
+            dispatch({type:'UPDATE_USER', user:userobj})
             setAma2021(response.data.participated_in_last_edition)
             if(response.data.need_cholarship === '1' || response.data.need_cholarship==='2'){
                 setneedScholarship(true)
@@ -85,11 +92,11 @@ const UpdateProfileData = ({user, type_user, txt_type_user}) => {
         <Form 
             layout={'vertical'} 
             style={styles.form} 
+            form={form}
             name='update_data' 
             onFinish={UpdateData} 
             initialValues={{
-                'type_user': state.user.type_user, 
-                'options_profile': state.options_profile,
+                'type_user': state.user.type_user,                 
                 'preference_ges': state.preference_ges,
                 'how_do_you_participate': state.how_do_you_participate,                
                 'participated_in_last_edition': state.participated_in_last_edition,
@@ -116,12 +123,16 @@ const UpdateProfileData = ({user, type_user, txt_type_user}) => {
                                 </Form.Item>
                                 {ama2021 && 
                                     <Form.Item name='you_made_rounds' 
-                                            label={'¿Concretaste algún resultado luego de tus rondas de vinculación? Describe si contrataste artistas o fuiste contactado y contratado por algún espacio.'} 
+                                            label={'¿Concretaste algún resultado luego de tus rondas de vinculación? Describe si contrataste artistas o fuiste contactado y/o contratado por algún espacio.'} 
                                             rules={[{required:true, message:'Descripcion...'}]}>
                                         <TextArea rows={3} />
                     </Form.Item>}
                     <Form.Item name='type_user' label={'Selecciona la categoría que más identifica tu participación en AMA 2022'} rules={[{required:true, message:'Debes seleccionar al menos una opcion'},]}>
-                        <Select placeholder='Selecciona una opcion...' onChange={(x)=>setProfileType(x)}>
+                        <Select placeholder='Selecciona una opcion...' onChange={(x)=>{ 
+                            setProfileType(x) 
+                            setSubCate(false)
+                            form.resetFields(['options_profile'])
+                            } }>
                             <Select value='GES'>Gestor/a cultural, programador/a o similar</Select>
                             <Select value='AR'>Artista escénico o representante</Select>
                             <Select value='AV'>Artista de la visualidad</Select>
@@ -130,28 +141,34 @@ const UpdateProfileData = ({user, type_user, txt_type_user}) => {
                             <Select value='OPP'>Organización pública o privada</Select>                            
                         </Select>
                     </Form.Item>
+                    {subcate  && <>
+                        Subcategorías:
+                        <div style={{marginBottom: '10px'}}>
+                            {state.options_profile.map((x)=> <Tag color={'pink'} value={x} selected>{x}</Tag>)}
+                        </div>
+                    </>}
                    {profileType &&   
                     <Form.Item name='options_profile' label={`Selecciona la o las alternativas que representen a tu perfil`} 
-                        rules={[{required:true, message:'Debes seleccionar al menos una opcion'},]}>
-                            <Select mode='multiple' placeholder='Selecciona una opcion...'>
+                        rules={[{required:true, message:'Debes seleccionar al menos una opcion'},]}>                            
+                            <Select mode='multiple'  placeholder='Selecciona una opcion...'>                                
                                 {profileType === 'GES' &&  
                                     <>
-                                        <Select.Option value='centro cultural autogestionado'>
+                                        <Select.Option value='Centro cultural autogestionado'>
                                             Centro cultural autogestionado
                                         </Select.Option>
-                                        <Select.Option value='conocer artistas de la visualidad para programar o hacer redes'>
-                                            Conocer artistas de la visualidad para programar o hacer redes
+                                        <Select.Option value='Centro cultural dependiente de una organización público y/o privada'>
+                                            Centro cultural dependiente de una organización público y/o privada
                                         </Select.Option>
                                         <Select.Option value='Espacio expositivo (museos, galerías, etc)'>
-                                            espacio expositivo (museos, galerías, etc)
+                                            Espacio expositivo (museos, galerías, etc)
                                         </Select.Option>
-                                        <Select.Option value='sala de conciertos'>
+                                        <Select.Option value='Sala de conciertos'>
                                             Sala de conciertos
                                         </Select.Option>
-                                        <Select.Option value='salón de eventos'>
+                                        <Select.Option value='Salón de eventos'>
                                             Salón de eventos
                                         </Select.Option>
-                                        <Select.Option value='festival'>
+                                        <Select.Option value='Festival'>
                                             Festival
                                         </Select.Option>
                                         <Select.Option value='Otra'>
@@ -160,169 +177,169 @@ const UpdateProfileData = ({user, type_user, txt_type_user}) => {
                                     </>}
                                 {profileType === 'AR' && 
                                     <>
-                                        <Select.Option value='teatro'>
+                                        <Select.Option value='Teatro'>
                                             Teatro
                                         </Select.Option>
-                                        <Select.Option value='danza'>
+                                        <Select.Option value='Danza'>
                                             Danza
                                         </Select.Option>
-                                        <Select.Option value='circo'>
+                                        <Select.Option value='Circo'>
                                             Circo
                                         </Select.Option>
-                                        <Select.Option value='narracion_oral'>
+                                        <Select.Option value='Narración oral oral'>
                                             Narración oral
                                         </Select.Option>
-                                        <Select.Option value='canto'>
+                                        <Select.Option value='Canto'>
                                             Canto
                                         </Select.Option>
-                                        <Select.Option value='musica_orquestada'>
+                                        <Select.Option value='Musica orquestada'>
                                             Musica orquestada
                                         </Select.Option>
-                                        <Select.Option value='musica_popular'>
+                                        <Select.Option value='Musica popular'>
                                             Musica popular
                                         </Select.Option>
-                                        <Select.Option value='folclore'>
+                                        <Select.Option value='Folclore'>
                                             Folclore
                                         </Select.Option>
-                                        <Select.Option value='opera'>
+                                        <Select.Option value='Opera'>
                                             Opera
                                         </Select.Option>
-                                        <Select.Option value='titeres_o_marionetas'>
+                                        <Select.Option value='Títeres o marionetas'>
                                             Títeres o marionetas
                                         </Select.Option>
-                                        <Select.Option value='performance'>
+                                        <Select.Option value='Performance'>
                                             Performance
                                         </Select.Option>
-                                        <Select.Option value='musica_docta'>
+                                        <Select.Option value='Música docta'>
                                             Música docta
                                         </Select.Option>
-                                        <Select.Option value='otra...'>
+                                        <Select.Option value='Otra'>
                                             Otra...
                                         </Select.Option>
                                     </>
                                 }
                                 {profileType === 'AV' && 
                                     <>
-                                        <Select.Option value='pintura'>
+                                        <Select.Option value='Pintura'>
                                             Pintura
                                         </Select.Option>
-                                        <Select.Option value='escultura'>
+                                        <Select.Option value='Escultura'>
                                             Escultura
                                         </Select.Option>
-                                        <Select.Option value='muralismo'>
+                                        <Select.Option value='Muralismo'>
                                             Muralismo
                                         </Select.Option>
-                                        <Select.Option value='grabado'>
+                                        <Select.Option value='Grabado'>
                                             Grabado
                                         </Select.Option>
-                                        <Select.Option value='dibujo'>
+                                        <Select.Option value='Dibujo'>
                                             Dibujo
                                         </Select.Option>
-                                        <Select.Option value='instalacion'>
+                                        <Select.Option value='Instalación'>
                                             Instalación
                                         </Select.Option>
-                                        <Select.Option value='performance'>
+                                        <Select.Option value='Performance'>
                                             Performance
                                         </Select.Option>
-                                        <Select.Option value='vitrales'>
+                                        <Select.Option value='Vitrales'>
                                             Vitrales
                                         </Select.Option>
-                                        <Select.Option value='tecnicas_integradas'>
+                                        <Select.Option value='Técnicas integradas'>
                                             Técnicas integradas
                                         </Select.Option>
-                                        <Select.Option value='fotografía'>
+                                        <Select.Option value='Fotografía'>
                                             Fotografía
                                         </Select.Option>                                       
-                                        <Select.Option value='otra...'>
+                                        <Select.Option value='Otra'>
                                             Otra...
                                         </Select.Option>
                                     </>
                                 }
                                 {profileType === 'PT' && 
                                     <>
-                                        <Select.Option value='disenador_a_gráfico'>
+                                        <Select.Option value='Diseñador/a gráfico'>
                                             Diseñador/a gráfico
                                         </Select.Option>
-                                        <Select.Option value='disenador_a_escénico'>
+                                        <Select.Option value='Diseñador/a escénico'>
                                             Diseñador/a escénico
                                         </Select.Option>
-                                        <Select.Option value='sonidista'>
+                                        <Select.Option value='Sonidista'>
                                             Sonidista
                                         </Select.Option>
-                                        <Select.Option value='iluminador_a'>
+                                        <Select.Option value='Iluminador/a'>
                                             Iluminador/a
                                         </Select.Option>
-                                        <Select.Option value='maquillador_a'>
+                                        <Select.Option value='Maquillador/a'>
                                             Maquillador/a
                                         </Select.Option>
-                                        <Select.Option value='arquitecto_a'>
+                                        <Select.Option value='Arquitecto'>
                                             Arquitecto/a
                                         </Select.Option>
-                                        <Select.Option value='curador_a'>
+                                        <Select.Option value='Curador/a'>
                                             Curador/a
                                         </Select.Option>
-                                        <Select.Option value='museografo_a'>
+                                        <Select.Option value='Museógrafo/a'>
                                             Museógrafo/a
                                         </Select.Option>
-                                        <Select.Option value='museologo_a'>
+                                        <Select.Option value='Museólogo/a'>
                                             Museólogo/a
                                         </Select.Option>
-                                        <Select.Option value='montajista'>
+                                        <Select.Option value='Montajista'>
                                             Montajista
                                         </Select.Option>                                       
-                                        <Select.Option value='docente_o_educador_artistico'>
+                                        <Select.Option value='Docente o educador artístico'>
                                             Docente o educador artístico
                                         </Select.Option>
-                                        <Select.Option value='coleccionista'>
+                                        <Select.Option value='Coleccionista'>
                                             Coleccionista
                                         </Select.Option>
-                                        <Select.Option value='fotografo_a'>
+                                        <Select.Option value='Fotógrafo/a'>
                                             Fotógrafo/a
                                         </Select.Option>
-                                        <Select.Option value='comunicador_a'>
+                                        <Select.Option value='Comunicador/a'>
                                             Comunicador/a
                                         </Select.Option>
-                                        <Select.Option value='otra...'>
+                                        <Select.Option value='Otra'>
                                             Otra...
                                         </Select.Option>
                                     </>
                                 }
                                 {profileType === 'PS' && 
                                     <>
-                                        <Select.Option value='proveedor_servicios_de_transporte'>
+                                        <Select.Option value='Proveedor servicios de transporte'>
                                             Proveedor servicios de transporte
                                         </Select.Option>
-                                        <Select.Option value='proveedor_servicios_técnicos'>
+                                        <Select.Option value='Proveedor servicios técnicos (iluminación, sonido, etc)'>
                                             Proveedor servicios técnicos (iluminación, sonido, etc)
                                         </Select.Option>
-                                        <Select.Option value='proveedor_de_servicios_de_catering'>
+                                        <Select.Option value='Proveedor de servicios de catering'>
                                             Proveedor de servicios de catering
                                         </Select.Option>
-                                        <Select.Option value='productora_de_eventos'>
+                                        <Select.Option value='Productora de eventos'>
                                             Productora de eventos
                                         </Select.Option>
-                                        <Select.Option value='otra...'>
+                                        <Select.Option value='otra'>
                                             Otra...
                                         </Select.Option>
                                 </> }
                                 {profileType === 'OPP' && 
                                     <>
-                                        <Select.Option value='organismo_estatal'>
+                                        <Select.Option value='Organismo estatal (corfo, prochile, dirac, otras)'>
                                             Organismo estatal (corfo, prochile, dirac, otras)
                                         </Select.Option>
-                                        <Select.Option value='organismos_privados'>
+                                        <Select.Option value='Organismos privados (corporaciones, fundaciones, empresas, otros)'>
                                             Organismos privados (corporaciones, fundaciones, empresas, otros)
                                         </Select.Option>
-                                        <Select.Option value='establecimientos_educacionales'>
+                                        <Select.Option value='Establecimientos educacionales (escuelas, institutos, universidades, otros)'>
                                             Establecimientos educacionales (escuelas, institutos, universidades, otros)
                                         </Select.Option>
-                                        <Select.Option value='organizaciones_con_fines_sociales'>
+                                        <Select.Option value='Organizaciones con fines sociales (ongs, juntas de vecinos, organizaciones sociales, otras)                                            '>
                                             Organizaciones con fines sociales (ongs, juntas de vecinos, organizaciones sociales, otras)                                            
                                         </Select.Option>
-                                        <Select.Option value='museos_galerías_públicas_o_privadas_bibliotecas'>
+                                        <Select.Option value='Museos, galerías públicas o privadas, bibliotecas'>
                                             Museos, galerías públicas o privadas, bibliotecas
                                         </Select.Option>
-                                        <Select.Option value='otra...'>
+                                        <Select.Option value='otra'>
                                             Otra...
                                         </Select.Option>
                                 </> }
@@ -357,27 +374,27 @@ const UpdateProfileData = ({user, type_user, txt_type_user}) => {
 
                     {profileType === 'GES' && <Form.Item name='preference_ges' label={'Si eres programador/a o gestor/a selecciona las alternativas que te representen (si corresponde)'} rules={[{required:true, message:'Selecciona al menos una opcion'}]}>
                                     <Select mode='multiple'>
-                                        <Select.Option value='mi_espacio_tiene_programacion_habitual_o_esporadica_de_artes_escenicas'>
+                                        <Select.Option value='Mi espacio tiene programación habitual o esporádica de Artes Escénicas'>
                                             Mi espacio tiene programación habitual o esporádica de Artes Escénicas
                                         </Select.Option>
-                                        <Select.Option value='mi_espacio_tiene_programacion_habitual_o_esporadica_de_artes_visuales'>
+                                        <Select.Option value='Mi espacio tiene programación habitual o esporádica de Artes Visuales'>
                                             Mi espacio tiene programación habitual o esporádica de Artes Visuales
                                         </Select.Option>
-                                        <Select.Option value='mi_espacio_tiene_salas_o_lugares_para_ensayar'>
+                                        <Select.Option value='Mi espacio tiene salas o lugares para ensayar'>
                                             Mi espacio tiene salas o lugares para ensayar
                                         </Select.Option>
-                                        <Select.Option value='mi_espacio_tiene_infraestructura_especialmente_dedicada_a_las_artes_visuales'>
+                                        <Select.Option value='Mi espacio tiene infraestructura especialmente dedicada a las artes visuales                                            '>
                                             Mi espacio tiene infraestructura especialmente dedicada a las artes visuales                                            
                                         </Select.Option>
-                                        <Select.Option value='mi_espacio_posee_infraestructura_y_equipamiento_para_artes_escenicas'>
+                                        <Select.Option value='Mi espacio posee infraestructura y equipamiento para artes escénicas'>
                                             Mi espacio posee infraestructura y equipamiento para artes escénicas
                                         </Select.Option>
-                                        <Select.Option value='mi_espacio_cuenta_con_financiamiento_publico'>
+                                        <Select.Option value='Mi espacio cuenta con financiamiento público'>
                                             Mi espacio cuenta con financiamiento público
                                         </Select.Option>
                                     </Select>
                                 </Form.Item>}
-                                <Form.Item name='how_do_you_participate' label={'¿Como participaras en Ama 2022?'} rules={[{required:true, message:'Describe seleccionar una opcion...'}]}>
+                                <Form.Item name='how_do_you_participate' label={'¿Cómo participarás en Ama 2022?'} rules={[{required:true, message:'Describe seleccionar una opcion...'}]}>
                                     <Select placeholder='Selecciona una opcion...'>
                                         <Select.Option value='digital'>Digital</Select.Option>
                                         <Select.Option value='presencial'>Presencial</Select.Option>
