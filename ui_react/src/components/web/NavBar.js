@@ -1,9 +1,10 @@
-import React, {useContext} from 'react'
+import React, {useContext, useState, useEffect} from 'react'
 import { Layout, Menu, Button, Tooltip } from 'antd'
 import { LogoutOutlined, FilePdfFilled, TeamOutlined, InstagramOutlined, TwitterOutlined, FacebookOutlined } from '@ant-design/icons'
 import { AuthContext } from '../../App'
 import { Link } from 'react-router-dom'
 import Logo from '../../assets/logo/01B.png'
+import Logo1 from '../../assets/logo/logom.png'
 import Login from '../../components/web/auth/Login'
 import TeamModal from './TeamModal' 
 import Questions from './Questions'
@@ -13,14 +14,17 @@ const { Item } = Menu
 const NavBar = () => {
     
     const { state, dispatch } = useContext(AuthContext)
+    const [size, setSize] = useState(0)
 
+    useEffect(()=> {
+        setSize(window.innerWidth)
+    },[])
 
-    return(
-        <Header style={styles.header}>            
+    return(<>
+        {size > 800 && <><Header style={styles.header}>            
         <div style={styles.item1}>
                 <img alt='logo' src={Logo} style={{width:'285px'}} />
-        </div>
-           <Menu mode="horizontal" theme='dark' style={styles.menu} >            
+        </div><Menu mode="horizontal" theme='dark' style={styles.menu} >            
             <Item style={styles.item}>
                 <TeamModal />
             </Item>            
@@ -43,8 +47,15 @@ const NavBar = () => {
               <TwitterOutlined style={{fontSize: '30px', margin:'12px'}} />
               </a></Item>
                              
-           </Menu>               
-        </Header>
+           </Menu></Header></>     }                     
+        
+        {size <800 && <div style={styles.header}><img style={{width:'250px',paddingLeft:'20px', paddingTop:'20px'}} src={Logo1} /><Menu mode="horizontal" theme='dark' style={styles.menu} >      
+        {state.isAuthenticated ? <Item style={styles.item}><Link to='/profile'>@{state.user.username}</Link></Item>:<Item style={styles.item}>
+                  <Login />
+                </Item>}</Menu> 
+            
+            </div>}
+        </>
     )
 }
 

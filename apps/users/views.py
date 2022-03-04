@@ -115,15 +115,8 @@ class UserViewSet(viewsets.GenericViewSet,
         data = UserModelSerializer(user).data
        
 
-        """send_mail('ACABAS DE CONFIRMAR LA INVITACIÓN A UNA REUNIÓN',
-                      (
-                          '¡Hola! {}, acabas de confirmar la invitación a una reunión online en las Rondas de Vinculación de AMA Maule. Cuando sea la hora de tu reunión, se activará la opción de "Acceder" para que puedas ingresar a tu reunión programada.').format(
-                          data['first_name']),
-                      settings.DEFAULT_FROM_EMAIL,
-                      [data['email']])"""  
-
         subject = 'Bienvenidos/as a AMA 2022'
-        from_email = '<noreply@amamaule.cl>'
+        from_email = '<noresponder@amamaule.cl>'
         content = render_to_string(
             'signup.html',
             { 'user': data}

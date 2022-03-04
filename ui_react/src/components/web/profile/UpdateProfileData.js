@@ -471,7 +471,7 @@ const UpdateProfileData = ({user, type_user, txt_type_user}) => {
 
 const styles = {
     form: {
-        paddingRight:'100px', paddingLeft:'100px', paddingTop:'30px'
+        paddingRight:'00px', paddingLeft:'00px', paddingTop:'30px'
     }
 }
 

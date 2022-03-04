@@ -1,10 +1,11 @@
-import React, {useContext} from 'react'
+import React, {useContext, useState, useEffect} from 'react'
 import { Layout, Menu, Button, Tooltip, Badge } from 'antd'
 import Login from '../../components/web/auth/Login'
 import { LogoutOutlined, NotificationOutlined } from '@ant-design/icons'
 import { AuthContext } from '../../App'
 import { Link } from 'react-router-dom'
 import Logo from '../../assets/logo/01B.png'
+import Logo1 from '../../assets/logo/logom.png'
 const { Header } = Layout
 const { Item } = Menu
 
@@ -12,9 +13,13 @@ const { Item } = Menu
 const NavBarClient = () => {
     
     const { state, dispatch } = useContext(AuthContext)
+    const [size, setSize] = useState(0)
 
+    useEffect(()=> {
+        setSize(window.innerWidth)
+    },[])
 
-    return(
+    return(<>{size > 800 ? 
         <Header style={styles.header}>
             <div style={styles.logo}>
               <img src={Logo} width='300%'  />
@@ -46,7 +51,38 @@ const NavBarClient = () => {
             }
             
            </Menu>
-        </Header>
+        </Header>: <> <div style={styles.headerM2}>
+            <div style={styles.logo}>
+              <img src={Logo1} width='120%' style={{paddingLeft:'20px', paddingTop:'20px'}}  />
+            </div></div><div style={styles.headerM}>
+           <Menu mode="horizontal" theme='dark' style={styles.menu} onClick={(key)=>console.log(key)} > 
+            <Item style={styles.item}>
+                <Link to='/'>Inicio</Link>
+            </Item>            
+            {state.isAuthenticated ? 
+            <>
+                <Item style={styles.item}>
+                    <Link to='/profile'>
+                            @{state.user.username} 
+                    </Link>
+                </Item>
+                <Item style={styles.itemLogOut}> 
+                    <Button type='link' onClick={()=> {
+                        dispatch({type:'LOGOUT'})
+                        window.location.replace('/')
+                    }}>
+                        <Tooltip title='Cerrar Sesión'>
+                            <LogoutOutlined style={{fontSize:'20px', color:'white'}} />
+                        </Tooltip>
+                    </Button> 
+                </Item>
+            </>:
+            
+                <Item style={styles.item}> <Login /> </Item>
+            }
+            
+           </Menu>
+        </div></>}</>
     )
 }
 
@@ -61,6 +97,27 @@ const styles = {
         backgroundColor: 'rgb(176, 93, 185)',
         paddingTop: '20px',
         paddingBottom:'90px'    
+
+    }, 
+    header: {      
+        width:'100%',   
+        backgroundColor: 'rgb(176, 93, 185)',
+        paddingTop: '20px',
+        paddingBottom:'80px'    
+
+    }, 
+    headerM: {      
+        width:'100%',   
+        backgroundColor: 'rgb(176, 93, 185)',
+        paddingTop: '0px',
+        paddingBottom:'5px'    
+
+    }, 
+    headerM2: {      
+        width:'100%',   
+        backgroundColor: 'rgb(176, 93, 185)',
+        paddingTop: '0px',
+        paddingBottom:'10px'    
 
     }, 
     menu: {

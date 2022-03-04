@@ -59,7 +59,7 @@ function App() {
     >
       <React.Fragment>
        {size < 800 ? 
-            <Screen />: 
+            <Home />: 
             <Home />  
        }
       </React.Fragment>           
