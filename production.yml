@@ -56,9 +56,9 @@ services:
         expose:
             - "80"
         environment:
-            - VIRTUAL_HOST=api.amamaule.cl, www.api.amamaule.cl
-            - LETSENCRYPT_HOST=api.amamaule.cl, www.api.amamaule.cl
-            - LETSENCRYPT_EMAIL=api@amamaule.cl
+            - VIRTUAL_HOST=qualitynet.cl, www.qualitynet.cl
+            - LETSENCRYPT_HOST=qualitynet.cl, www.qualitynet.cl
+            - LETSENCRYPT_EMAIL=api@qualitynet.cl
 
         depends_on:
             - nginx_proxy
@@ -66,16 +66,16 @@ services:
             - postgres
 
 
-    react:
-        build: ./ui_react
-        image: ui_amamaule
-        expose:
-            - "80"
-        environment:
-            - VIRTUAL_HOST=amamaule.cl, www.amamaule.cl
-            - LETSENCRYPT_HOST=amamaule.cl, www.amamaule.cl
-            - LETSENCRYPT_EMAIL=app@amamaule.cl
-        depends_on:
-            - django
-            - nginx_proxy
-            - letsencrypt
+    #react:
+    #    build: ./ui_react
+    #     image: ui_amamaule
+    #     expose:
+   #         - "80"
+    #    environment:
+    #        - VIRTUAL_HOST=amamaule.cl, www.amamaule.cl
+   #         - LETSENCRYPT_HOST=amamaule.cl, www.amamaule.cl
+   #         - LETSENCRYPT_EMAIL=app@amamaule.cl
+   #     depends_on:
+   #         - django
+   #         - nginx_proxy
+   #         - letsencrypt
