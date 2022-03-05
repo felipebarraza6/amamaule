@@ -4,7 +4,7 @@ from rest_framework import serializers
 
 
 
-class WorkshopModelSerializer(serializers.Serializer):
+class WorkshopModelSerializer(serializers.ModelSerializer):
      class Meta:
             model = Workshop
             fields = ('__all__')

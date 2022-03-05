@@ -51,6 +51,7 @@ const ProfileUser = () => {
   if(state.user){        
     var type_user = state.user.type_user
     var txt_type = ''
+    var disabled = true
     
     if(type_user === 'GES'){
       txt_type = 'Gestor/a cultural, programador/a o similar'
@@ -65,7 +66,8 @@ const ProfileUser = () => {
     }else if(type_user === 'OPP'){
       txt_type = 'Organización pública o privada' 
     }else if(type_user === 'ADM'){
-      txt_type = 'Administrador de sistema'  
+      txt_type = 'Administrador de sistema'      
+      disabled = false
     }else{
      txt_type = 'NOT'
     }
@@ -107,13 +109,13 @@ const ProfileUser = () => {
             {currentNavigationT == 6 ? <NavBar mode='dark'
                style={{backgroundColor:'#b05db9'}}               
             > {state.user && <>
-                <Button disabled={true} shape={'round'} type='link' style={currentNavigation === '0' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('0')}>
+                <Button disabled={disabled} shape={'round'} type='link' style={currentNavigation === '0' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('0')}>
                   <RocketOutlined style={styles.icon} />{currentNavigation === '0' && 'Transmisiones'}
               </Button>
               <Button shape={'round'} type='link' style={currentNavigation === '1' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('1')}>
                   <UserOutlined  style={currentNavigation === '1' ?  styles.iconActive : styles.icon } />{currentNavigation === '1' && 'Perfil'}
               </Button>
-              <Button disabled={true} shape={'round'} type='link' style={currentNavigation === '2' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('2')}>
+              <Button disabled={disabled} shape={'round'} type='link' style={currentNavigation === '2' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('2')}>
                   <CheckOutlined style={styles.icon} />{currentNavigation === '2' && 'Talleres'}
               </Button>
              {state.user.type_user === 'ADM' &&
@@ -121,7 +123,7 @@ const ProfileUser = () => {
                   <EyeOutlined style={styles.icon} />{currentNavigation === '3' && 'Soporte'}
               </Button>
               } 
-                    <Button disabled={true} shape={'round'} type='link' style={currentNavigation === '5' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('5')}>
+                    <Button disabled={disabled} shape={'round'} type='link' style={currentNavigation === '5' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('5')}>
                   <ForkOutlined style={styles.icon} />{currentNavigation === '5' && 'Rondas'}
               </Button>
 
@@ -132,7 +134,7 @@ const ProfileUser = () => {
               <Button shape={'round'} type='link' style={currentNavigation === '1' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('1')}>
                   <UserOutlined  style={currentNavigation === '1' ?  styles.iconActive : styles.icon } />{currentNavigation === '1' && 'Perfil'}
               </Button>
-              <Button disabled={true} shape={'round'} type='link' style={currentNavigation === '2' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('2')}>
+              <Button disabled={disabled} shape={'round'} type='link' style={currentNavigation === '2' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('2')}>
                   <CheckOutlined style={styles.icon} />{currentNavigation === '2' && 'Talleres'}
               </Button>              
               </>}
@@ -166,7 +168,7 @@ const ProfileUser = () => {
             >
               {isDigital ? <>
                 
-             <Menu.Item disabled={true} icon={<LaptopOutlined />} key={'0'} 
+             <Menu.Item disabled={disabled} icon={<LaptopOutlined />} key={'0'} 
                   style={currentNavigation === '0' ?  styles.hoverItem : styles.menuItem }>
                 Contenido
               </Menu.Item>                                    
@@ -175,7 +177,7 @@ const ProfileUser = () => {
                 Perfil
               </Menu.Item>
               {state.user &&
-              <Menu.Item disabled={true} icon={<CheckOutlined/>} key={'2'} 
+              <Menu.Item disabled={disabled} icon={<CheckOutlined/>} key={'2'} 
                   style={ currentNavigation === '2' ?  styles.hoverItem : styles.menuItem  }  >
                 Talleres
               </Menu.Item>}              
@@ -189,7 +191,7 @@ const ProfileUser = () => {
               </>}
               {state.user &&
               <>
-              <Menu.Item disabled={true} icon={<GroupOutlined />} key={'5'}
+              <Menu.Item disabled={disabled} icon={<GroupOutlined />} key={'5'}
                   style={currentNavigation === '5' ?  styles.hoverItem : styles.menuItem }>
                 Rondas de Vinculación
               </Menu.Item>
@@ -200,7 +202,7 @@ const ProfileUser = () => {
               <>
            
             {state.user && <>
-              <Menu.Item disabled={true} icon={<LaptopOutlined />} key={'0'} 
+              <Menu.Item disabled={disabled} icon={<LaptopOutlined />} key={'0'} 
                   style={currentNavigation === '0' ?  styles.hoverItem : styles.menuItem }>
                 Contenido
               </Menu.Item>    
@@ -208,18 +210,18 @@ const ProfileUser = () => {
                   style={currentNavigation === '1' ?  styles.hoverItem : styles.menuItem }>
                 Perfil
               </Menu.Item>
-              <Menu.Item disabled={true} icon={<GroupOutlined />} key={'12'}
+              <Menu.Item disabled={disabled} icon={<GroupOutlined />} key={'12'}
                   style={currentNavigation === '12' ?  styles.hoverItem : styles.menuItem }>
                 Rondas de Vinculación / artistas escénicos
                 
               
               </Menu.Item>
-              <Menu.Item disabled={true} icon={<GroupOutlined />} key={'11'}
+              <Menu.Item disabled={disabled} icon={<GroupOutlined />} key={'11'}
                   style={currentNavigation === '11' ?  styles.hoverItem : styles.menuItem }>
                 Rondas de Vinculación / artistas de la viasualidad
                 
               </Menu.Item>
-            <Menu.Item disabled={true} icon={<CheckOutlined/>} key={'20'} 
+            <Menu.Item disabled={disabled} icon={<CheckOutlined/>} key={'20'} 
                 style={ currentNavigation === '20' ?  styles.hoverItem : styles.menuItem  }  >
               Talleres
             </Menu.Item></>}            
@@ -236,7 +238,7 @@ const ProfileUser = () => {
                     <LinksInstances />
                   }   
                   {currentNavigation === '20' && 
-                    <WorkshopsFace />
+                    <Workshops is_digital={false} />
                   }  
                   {currentNavigation === '12' && 
                     <LinksInstancesAE />
@@ -255,9 +257,9 @@ const ProfileUser = () => {
                     </>
                   }
                   {currentNavigation === '2' && 
-                  <Col lg={{span:24}}  xs={{span:24}}  style={{padding:'10px'}}  >
-                      <Workshops />
-                  </Col>
+                  
+                      <Workshops is_digital={true} />
+                  
                   }
                   {currentNavigation === '3' &&
                   <Col lg={{span:24}}  xs={{span:24}}  style={{padding:'10px'}}  >

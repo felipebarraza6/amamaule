@@ -89,8 +89,8 @@ const upload_img = async(field, file, user_id)=> {
     return request
 }
 
-const getWorkshops = async() => {
-    const rq = await GET('workshops/')
+const getWorkshops = async(is_digital) => {
+    const rq = await GET(`workshops/?is_digital=${is_digital}`)
 
     return rq
 }

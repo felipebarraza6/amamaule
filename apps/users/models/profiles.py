@@ -19,6 +19,14 @@ class Profile(APIModel):
     how_do_you_participate = models.CharField(max_length=1200, blank=True, null=True) 
     need_cholarship = models.CharField(max_length=1200, blank=True, null=True)  
 
+    ae_24_inscribed =  ArrayField(models.CharField(max_length=1000, blank=True, null=True), default=list, blank=True, null =True)
+    ae_25_inscribed =  ArrayField(models.CharField(max_length=1000, blank=True, null=True), default=list, blank=True, null =True)
+    ae_26_inscribed =  ArrayField(models.CharField(max_length=1000, blank=True, null=True), default=list, blank=True, null =True)
+
+    av_programmers =  ArrayField(models.CharField(max_length=1000, blank=True, null=True), default=list, blank=True, null =True)
+    av_25_artists =  ArrayField(models.CharField(max_length=1000, blank=True, null=True), default=list, blank=True, null =True)
+
+
 
     def __str__(self):
         return str(self.user)

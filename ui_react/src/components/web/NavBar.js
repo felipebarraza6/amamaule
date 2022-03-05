@@ -49,7 +49,7 @@ const NavBar = () => {
                              
            </Menu></Header></>     }                     
         
-        {size <800 && <div style={styles.header}><img style={{width:'250px',paddingLeft:'20px', paddingTop:'20px'}} src={Logo1} /><Menu mode="horizontal" theme='dark' style={styles.menu} >      
+        {size <800 && <div style={styles.header}><img style={{width:'150px',paddingLeft:'20px', paddingTop:'20px'}} src={Logo1} /><Menu mode="horizontal" theme='dark' style={styles.menu} >      
         {state.isAuthenticated ? <Item style={styles.item}><Link to='/profile'>@{state.user.username}</Link></Item>:<Item style={styles.item}>
                   <Login />
                 </Item>}</Menu> 
