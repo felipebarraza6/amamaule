@@ -2,7 +2,7 @@ import React, {useContext, useState, useEffect } from 'react'
 import { Menu, Col, Row, Button,
         Descriptions, Card, Tag, 
         Avatar, message, Affix, 
-        notification, Input, Tooltip } from 'antd'
+        notification, Input, Tooltip, Typography } from 'antd'
 import { RocketOutlined ,UserOutlined, UploadOutlined, 
         CheckOutlined, EditOutlined, ForkOutlined, FileAddFilled,
         EyeOutlined, LaptopOutlined,
@@ -97,10 +97,16 @@ const ProfileUser = () => {
                style={{backgroundColor:'#18c5cc'}}               
             > {state.user && <>
                 
-              <Button shape={'round'} type='link' style={currentNavigationT === '6' ?  styles.buttonAct : styles.menuItemT } onClick={()=>setCurrentNavigationT('6')}>
+              <Button shape={'round'} type='link' style={currentNavigationT === '6' ?  styles.buttonAct : styles.menuItemT } onClick={()=>{
+              setCurrentNavigationT('6') 
+              setIsDigital(true)}}>
                   <LaptopOutlined  style={currentNavigationT === '6' ?  styles.iconActive : styles.menuItemT } />{currentNavigationT === '6' && 'Digital'}
               </Button>              
-                  <Button shape={'round'} type='link' style={currentNavigationT === '7' ?  styles.buttonAct : styles.menuItemT } onClick={()=>setCurrentNavigationT('7')}>
+                  <Button shape={'round'} type='link' style={currentNavigationT === '7' ?  styles.buttonAct : styles.menuItemT } onClick={()=>{
+                    setCurrentNavigationT('7')
+                    setIsDigital(false)
+                    
+                    }}>
                   <UserOutlined style={styles.icon} />{currentNavigationT === '7' && 'Presencial'}
               </Button>
 
@@ -110,7 +116,7 @@ const ProfileUser = () => {
                style={{backgroundColor:'#b05db9'}}               
             > {state.user && <>
                 <Button disabled={disabled} shape={'round'} type='link' style={currentNavigation === '0' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('0')}>
-                  <RocketOutlined style={styles.icon} />{currentNavigation === '0' && 'Transmisiones'}
+                  <RocketOutlined style={styles.icon} />{currentNavigation === '0' && 'Contenido'}
               </Button>
               <Button shape={'round'} type='link' style={currentNavigation === '1' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('1')}>
                   <UserOutlined  style={currentNavigation === '1' ?  styles.iconActive : styles.icon } />{currentNavigation === '1' && 'Perfil'}
@@ -131,12 +137,21 @@ const ProfileUser = () => {
             </NavBar>: <NavBar mode='dark'
                style={{backgroundColor:'#b05db9'}}               
             > {state.user && <>
+              <Button disabled={disabled} shape={'round'} type='link' style={currentNavigation === '0' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('0')}>
+                  <RocketOutlined style={styles.icon} />{currentNavigation === '0' && 'Contenido'}
+              </Button> 
               <Button shape={'round'} type='link' style={currentNavigation === '1' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('1')}>
                   <UserOutlined  style={currentNavigation === '1' ?  styles.iconActive : styles.icon } />{currentNavigation === '1' && 'Perfil'}
               </Button>
-              <Button disabled={disabled} shape={'round'} type='link' style={currentNavigation === '2' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('2')}>
-                  <CheckOutlined style={styles.icon} />{currentNavigation === '2' && 'Talleres'}
+              <Button disabled={disabled} shape={'round'} type='link' style={currentNavigation === '20' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('20')}>
+                  <CheckOutlined style={styles.icon} />{currentNavigation === '20' && 'Talleres'}
               </Button>              
+              <Button disabled={disabled} shape={'round'} type='link' style={currentNavigation === '12' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('12')}>
+                  <ForkOutlined style={styles.icon} />{currentNavigation === '12' && 'Rondas AE'}
+              </Button> 
+              <Button disabled={disabled} shape={'round'} type='link' style={currentNavigation === '11' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('11')}>
+                  <ForkOutlined style={styles.icon} />{currentNavigation === '11' && 'Rondas AV'}
+              </Button> 
               </>}
             </NavBar>}
                 
@@ -269,7 +284,7 @@ const ProfileUser = () => {
                 
                 {currentNavigation === '1' &&
                 <Col lg={{span:10}} xs={{span:24}}  style={{padding:'10px'}}>
-                {state.user && <Affix offsetTop={93}><Row>
+                {state.user && <><Row>
                   <Col span={7} style={{backgroundColor:'white', padding:'10px'}}>                    
                   {console.log(state)}                  
                   {state.user.profile ? <>                      
@@ -334,7 +349,48 @@ const ProfileUser = () => {
                             }
                       </Descriptions>
                   </Col>
-                </Row></Affix>
+                </Row>       
+                <Row style={{padding:'20px', backgroundColor:'white'}}>
+                    <Col>
+                            <Typography.Title level={5}>ESTADO INSCRIPCIÓN RONDAS DE VINCULACIÓN(PRESENCIAL)</Typography.Title>
+                    </Col>
+                    <Col span={24}>
+                    <Descriptions                     
+                        bordered={true} 
+                        title='ARTES ESCÉNICAS'                                            
+                        style={{backgroundColor:'white', paddingTop:'25px'}} 
+                        layout='horizontal'>
+                          <Descriptions label={`24 de Marzo, 11.30 a 13.00 hrs`} span={3}>
+                            {state.user.profile.ae_24_inscribed.length > 0 ? 'SI': 'NO'}
+                          </Descriptions>
+                          <Descriptions label={`25 de Marzo, 13.00 a 14.00 hrs`} span={3}>
+                            {state.user.profile.ae_25_inscribed.length > 0 ? 'SI': 'NO'}
+                          </Descriptions>
+                          <Descriptions label={`26 de Marzo, 13.00 a 14.00 hrs`} span={3}>
+                            {state.user.profile.ae_26_inscribed.length > 0 ? 'SI': 'NO'}  
+                          </Descriptions>
+                          
+                      </Descriptions>
+                      
+                    </Col>
+                    <Col span={24}>
+                    <Descriptions                     
+                        bordered={true} 
+                        title='ARTES DE LA VISUALIDAD'                                            
+                        style={{backgroundColor:'white', paddingTop:'25px'}} 
+                        layout='vertical'>
+                          <Descriptions label={`¿Te gustaria presenciar los pitch de artistas visuales?`} span={3}>
+                            {state.user.profile.av_programmers.map((x)=><p>{x}</p>)}
+                          </Descriptions>
+                          <Descriptions label={`¿Quieres presentar tu propuesta artística a los programadores?`} span={3}>
+                          {state.user.profile.av_25_artists.map((x)=><p>{x}</p>)}
+                          </Descriptions>
+                          
+                      </Descriptions>
+                      
+                    </Col>
+                </Row></>
+                         
                  
                 }
                 </Col>}

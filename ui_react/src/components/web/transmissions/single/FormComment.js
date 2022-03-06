@@ -35,7 +35,7 @@ const FormComment = ({obj}) => {
                     <TextArea style={{borderColor:'#5c0011'}} rows={3} placeholder='Mensaje...' />
                 </Form.Item>
                 <Form.Item style={{float:'right'}} >
-                    <Button htmlType='submit' style={{backgroundColor:'#5c0011', borderColor:'#5c0011'}} type='primary'>Enviar</Button>
+                    <Button htmlType='submit' style={{backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}} type='primary'>Enviar</Button>
                 </Form.Item>
             </Form>            
         

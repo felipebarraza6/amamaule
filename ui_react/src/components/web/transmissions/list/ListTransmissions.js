@@ -1,13 +1,13 @@
 import React, {useEffect, useState, useContext} from 'react'
 import api_transmissions from '../../../../api/transmissions/endpoints'
-import {Card, Row, Col, Tag, Badge, Button, Menu, Result, message} from 'antd'
+import {Card, Row, Col, Tag, Badge, Button, Menu, Result, message, Typography} from 'antd'
 import { LockOutlined, NotificationOutlined, DesktopOutlined, PlaySquareOutlined } from '@ant-design/icons'
 import ModalYtVideo from '../single/ModalYtVideo'
 import { AuthContext} from "../../../../App";
 import api from "../../../../api/endpoints";
 
 
-const ListTransmissions = ({globalState, changeState, is_public}) => {
+const ListTransmissions = ({ is_public }) => {
 
     const initialState = {
         transmissions: null,
@@ -35,7 +35,7 @@ const ListTransmissions = ({globalState, changeState, is_public}) => {
     useEffect(()=> {
 
         async function get_transmissions(){
-            const request  = await api_transmissions.transmissions.list('true', '')
+            const request  = await api_transmissions.transmissions.list('', '', 'true')
                         .then(async (response)=> {
                                     if(!is_public){
                                     if(response.data.count > 0){
@@ -207,6 +207,7 @@ const ListTransmissions = ({globalState, changeState, is_public}) => {
                         <Card hoverable={true}
                             cover={<img width={'100%'} src={obj.main_image} />}>
                             <Card.Meta
+                                    title={obj.title}
                                     description={<Row>
                                     <Col xs={{ span: 24}} lg={{ span: 14 }} >
                                     <Tag color={color} style={{marginBottom:'10px'}}>
@@ -227,7 +228,7 @@ const ListTransmissions = ({globalState, changeState, is_public}) => {
                                     }
                                     {!obj.is_live & !obj.is_yt_stream ?
                                     <Col xs={{ span: 24}} lg={{ span: 6 }}>
-                                        <Button size={'small'} disabled style={{float:'right'}}><LockOutlined/></Button></Col>:''
+                                        </Col>:''
                                     }
                                     </Row>}
                                 >                                    
@@ -247,7 +248,9 @@ const ListTransmissions = ({globalState, changeState, is_public}) => {
                         <Card hoverable={true}
                             cover={<img width={'100%'} src={obj.main_image} />}>
                             <Card.Meta
+                            
                                     description={<Row>
+                                    <Typography.Paragraph style={{fontSize:'16px'}}> {obj.title} </Typography.Paragraph>
                                     <Col xs={{ span: 24}} lg={{ span: 14 }} >
                                     <Tag color={color} style={{marginBottom:'10px'}}>
                                 {obj.category}
@@ -267,7 +270,7 @@ const ListTransmissions = ({globalState, changeState, is_public}) => {
                                     }
                                     {!obj.is_live & !obj.is_yt_stream ?
                                     <Col xs={{ span: 24}} lg={{ span: 6 }}>
-                                        <Button size={'small'} disabled style={{float:'right'}}><LockOutlined/></Button></Col>:''
+                                        </Col>:''
                                     }
                                     </Row>}
                                 >

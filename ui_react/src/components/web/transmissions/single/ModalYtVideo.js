@@ -33,7 +33,7 @@ const ModalYtVideo = ({obj}) => {
                 footer={[]}
                 title={<p style={{marginTop:'20px'}}>{obj.title}</p>}
                 width='100%' 
-                style={{top:'0px', right:'0px'}} >
+                style={{top:'20px', right:'0px'}} >
                     <Row style={{textAlign:'end'}}>
                         <Col span={24}>
                             {obj.is_live ? <>
@@ -52,9 +52,7 @@ const ModalYtVideo = ({obj}) => {
                                 opts={opts}
                             />                
                             <Title style={{marginTop:'20px'}} level={3}> {obj.title}</Title>            
-                            <Paragraph style={{textAlign:'justify'}} style={styles.p_transmission} strong>
-                                {obj.description}
-                            </Paragraph>
+                            
                         </Col>
                         <Col xs={24} lg={9}>
                             <FormComment obj={obj} />
@@ -74,7 +72,7 @@ const styles = {
         padding:'10px', 
         textIndent:'40px',                                 
         borderRadius:'10px',
-        backgroundColor:'#5c0011',
+        backgroundColor:'rgb(176, 93, 185)',
         color:'white'
     }
 }

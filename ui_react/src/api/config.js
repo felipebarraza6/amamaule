@@ -1,8 +1,8 @@
 import axios from 'axios'
 
 
-export const BASE_URL = 'http://localhost:8000/'
-//xport const BASE_URL = 'https://qualitynet.cl/'
+//export const BASE_URL = 'http://localhost:8000/'
+export const BASE_URL = 'https://qualitynet.cl/'
 
 export const INSTANCE = axios.create({
     baseURL: BASE_URL

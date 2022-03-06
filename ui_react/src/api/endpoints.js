@@ -95,6 +95,11 @@ const getWorkshops = async(is_digital) => {
     return rq
 }
 
+const updateWorkshops = async(id, data) => {
+    const rq = await UPDATE(`workshops/${id}/`, data)
+    return rq
+}
+
 export const UPLOAD_FILE_OR_IMG = async(endpoints, field, file) => {
     console.log({file})
     const token = JSON.parse(localStorage.getItem('access_token'))
@@ -116,7 +121,8 @@ export const UPLOAD_FILE_OR_IMG = async(endpoints, field, file) => {
 
 const api = {
     workshops: {
-        get: getWorkshops
+        get: getWorkshops,
+        update: updateWorkshops
     },
     user: {
         UPLOAD_FILE_OR_IMG,

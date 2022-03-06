@@ -1,18 +1,45 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 
 
-import {Col, Row, Typography, Card, Button, Select} from 'antd'
+import {Col, Row, Typography, Card, Button, Select, message} from 'antd'
 import img1 from '../../../assets/img/BANNER_RONDAS_04.jpg'
 import img2 from '../../../assets/img/BANNER_RONDAS_05.jpg'
+import api from '../../../api/endpoints'
+import { AuthContext } from '../../../App'
 const {Title, Paragraph} = Typography
 
 const LinksInstancesAV = () => {
 
+    const { state:authContext, dispatch } = useContext(AuthContext)
+
+    const profile = authContext.user.profile
+
     const [state, setState] = useState({
-        av_pitch: [],
-        av_artists: []
+        av_pitch: profile.av_programmers,
+        av_artists: profile.av_25_artists 
     })
 
+    const postData = async(data) => {
+        console.log(data)
+        const rq = await api.user.update_profile(authContext.user.id, {
+            av_25_artists: state.av_artists,
+            av_programmers: state.av_pitch
+        }).then((x)=> {
+            message.success('Registro actualizado')
+            updateProfile()
+        })
+
+    }
+
+    const updateProfile = async() => {
+        const rq = await api.user.get_profile_center(authContext.user.id).then((x)=> {
+            let userobj = {
+                ...x.data.user,
+                profile: x.data
+            }
+            dispatch({type:'UPDATE_USER', user:userobj})
+        })
+    }
 
 
     return(<><Row style={{paddingTop:'0px', margin:'20px'}}>        
@@ -30,27 +57,61 @@ const LinksInstancesAV = () => {
         </Row>
         <Row style={{marginBottom:'60px', marginTop:'0px'}} justify='center'>
             <Col span={12} lg={12} xs={24} >
-                <Card hoverable cover={<img src={img1} />} style={{ width: 500, margin:'20px' }} >
-                    <Card.Meta title="¿Te gustaria presenciar los pitch de artistas visuales?" />
-                    <Select mode='multiple' size='large' style={{width:'100%', marginTop:'20px'}} placeholder='Selecciona uno o más días'>
+                <Card hoverable cover={<img src={img1} />} style={{ width: 430, margin:'20px' }} >
+                    <Typography.Paragraph style={{fontSize:'18px'}}>¿Te gustaria presenciar los pitch de artistas visuales?</Typography.Paragraph>
+                    <Select onSelect={(x)=> {
+                        setState({
+                            ...state,
+                            av_pitch: [...state.av_pitch, x]
+    
+                        })
+                        
+                    }} 
+                    onDeselect={(x)=> {
+                        var deleteElement = state.av_pitch.filter((item) => item !== x.toString())
+                        setState({
+                            ...state,
+                            av_pitch: deleteElement
+    
+                        })
+                    }}
+                    defaultValue={state.av_pitch}
+                    mode='multiple' size='large' style={{width:'100%', marginTop:'20px'}} placeholder='Selecciona uno o más días'>
+
                         <Select.Option value='24 marzo 17.00 a las 19.00 hrs'>24 marzo 17.00 a las 19.00 hrs</Select.Option>
                         <Select.Option value='25 marzo 15.00 a las 18.30 hrs'>25 marzo 15.00 a las 18.30 hrs</Select.Option>
                         <Select.Option value='26 marzo 15.00 a las 18.30 hrs'>26 marzo 15.00 a las 18.30 hrs</Select.Option>
                     </Select> 
-                    <Button size='large' type='primary' style={styles.btn} >Participar</Button>                 
+                    <Button size='large' type='primary' onClick={()=> postData(state)} style={styles.btn} >Aceptar</Button>                 
                 </Card>                
             </Col>
             <Col span={12} lg={12}  xs={24}>
-                 <Card hoverable cover={<img src={img2} />} style={{ width: 500, margin:'20px' }}>                    
-                        <Typography.Paragraph>
+                 <Card hoverable cover={<img src={img2} />} style={{ width: 430, margin:'20px' }}>                    
+                        <Typography.Paragraph style={{fontSize:'18px'}}>
                             ¿Quieres presentar tu propuesta artística a los programadores?
                         </Typography.Paragraph>
-                        <Select mode='multiple' size='large' style={{width:'100%', marginTop:'20px'}} placeholder='Selecciona uno o más días'>
+                        <Select onSelect={(x)=> {
+                        setState({
+                            ...state,
+                            av_artists: [...state.av_artists, x]
+    
+                        })
+                        
+                    }} 
+                    onDeselect={(x)=> {
+                        var deleteElement = state.av_artists.filter((item) => item !== x.toString())
+                        setState({
+                            ...state,
+                            av_artists: deleteElement
+    
+                        })
+                    }}
+                    defaultValue={state.av_artists} mode='multiple' size='large' style={{width:'100%', marginTop:'20px'}} placeholder='Selecciona uno o más días'>
                             <Select.Option value='24 marzo 17.00 a las 19.00 hrs'>24 marzo 17.00 a las 19.00 hrs</Select.Option>
                             <Select.Option value='25 marzo 15.00 a las 18.30 hrs'>25 marzo 15.00 a las 18.30 hrs</Select.Option>
                             <Select.Option value='26 marzo 15.00 a las 18.30 hrs'>26 marzo 15.00 a las 18.30 hrs</Select.Option>
                         </Select>  
-                    <Button size='large' type='primary' style={styles.btn} >Participar</Button>                   
+                    <Button size='large' type='primary' onClick={()=> postData(state)} style={styles.btn} >Aceptar</Button>                   
                                               
                 </Card>
                 

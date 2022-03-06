@@ -39,7 +39,7 @@ const SignUp = () => {
             var outString = email_convert_to_user[1].replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');             
             values={
                 ...values,
-                username: (outString+email_convert_to_user[2]).slice(0,8)
+                username: (outString+email_convert_to_user[2]).slice(0,12)
             }                  
         } 
         
