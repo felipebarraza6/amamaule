@@ -219,10 +219,7 @@ const LinksInstances = () => {
         
 
 			</Collapse>
-				<Card title={<><CalendarOutlined style={styles.icon} /> Calendario</>} extra={<><Button onClick={()=> {
-					getCalendarData({dispatch, auth})
-					getInvitations({dispatch, auth})
-				}} type={'primary'} style={{backgroundColor: '#b05db9', color:'white', borderColor:'white', marginLeft:'10px'}} icon ={<ClockCircleOutlined/>} >Actualizar</Button>
+				<Card title={<><CalendarOutlined style={styles.icon} /> Calendario</>} extra={<>
 				<Button type={'dashed'} style={{backgroundColor: '#b05db9', color:'white', borderColor:'white', marginLeft:'10px'}}>
 					Ver turorial
 				</Button>

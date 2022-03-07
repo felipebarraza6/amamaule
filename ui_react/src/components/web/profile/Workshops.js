@@ -15,9 +15,11 @@ const Workshops = ({is_digital}) => {
   const [page, setPage] = useState(1)
   const [size, setSize] = useState()
 
+  const [ellipsis, setEllipsis] = React.useState(true);
+
   const [workshops, setWorkshops] = useState([])
 
-  async function getData(){
+  async function getData(is_digital){
     const request = await api.workshops.get(is_digital).then((response)=> {
       setWorkshops(response.data.results)
       console.log(response)
@@ -27,7 +29,7 @@ const Workshops = ({is_digital}) => {
 
   async function updateWorkshop(id, participans){    
     const rq = await api.workshops.update(id,{inscribed: participans}).then((x)=> {
-      getData()
+      getData(is_digital)
 
       message.success('Participación confirmada')
     })
@@ -38,37 +40,23 @@ const Workshops = ({is_digital}) => {
     
 
     const rq = await api.workshops.update(id,{inscribed: deleteUserr}).then((x)=> {
-      getData()
+      getData(is_digital)
       message.error('Participación cancelada')
     })
   }
 
-  async function updateProfile(data, status){
-    const request = await api.user.update_profile(state.user.id, data, status).then((response)=> {
-        if(status===false){
-          message.info('Has cancelar tu inscripción')
-        }else{
-          message.success('Inscripción completada!')
-        }
-
-    }).catch((error)=> {
-        message.error('Ha ocurrido un error intentalo mas tarde')
-    })
-
-    const update_data = await api.user.get_profile_center(state.user.id).then((response)=> {
-          setProfile(response.data)
-    })
   
-  }
 
   useEffect(()=> {
     
     setSize(window.innerWidth)
-       
+       if(is_digital){
+        getData(true)        
+       }else{
+        getData(false)         
+       }
 
-      if(state.user){
-        getData()
-      }
+        
 
   }, [])
 
@@ -100,13 +88,16 @@ const Workshops = ({is_digital}) => {
         return(
           <Col style={styles.col} lg={6} xs={24}>
             <Card hoverable extra={!is_digital ? <>              
-              <Tag color='volcano'>Cupos limitados: {x.maximum_quota}</Tag><Tag color='pink'>Duración: {x.duration}</Tag></>: <Tag color='volcano'> Duración: {x.duration} </Tag>} style={styles.card}  
+              <Tag color='volcano'>Cupos limitados: {x.maximum_quota}</Tag><Tag color='pink'>Duración: {x.duration}</Tag></>: <Tag color='volcano'> Duración: {x.duration} </Tag>} 
+              style={styles.card}  
                 cover={<img alt="example" src={x.principal_image} />}
                 title={<>                  
                 </>} >
                   
                   <Typography.Paragraph style={styles.paragraph}>{x.title} </Typography.Paragraph> 
-                  <Typography.Paragraph style={styles.description}>{x.description} </Typography.Paragraph>                   
+                  <Typography.Paragraph  style={styles.description}
+                    ellipsis={{ tooltip: x.description, rows:3 }}
+                  >{x.description} </Typography.Paragraph>                   
                   <hr style={{color:'rgb(176, 93, 185)'}} />
                   <Typography.Paragraph><Tag color={'pink'}>Relatores</Tag></Typography.Paragraph>
                   <Typography.Paragraph>{x.rapporteurs} </Typography.Paragraph> 
@@ -141,7 +132,8 @@ const Workshops = ({is_digital}) => {
 const size = window.innerWidth 
 const styles = {
   col: {
-    marginTop:'30px'
+    marginTop:'20px',
+    margin:'20px'
   },
   btn: {
     margin:'10px', 
@@ -176,8 +168,8 @@ const styles = {
     marginRight: '10px'
   },
   card: {
-      margin:'10px',      
-      width: size > 800 ? '500px':'470px'
+      padding:'0px',      
+      width: size > 800 ? '100%':'100%'
   }
 }
 

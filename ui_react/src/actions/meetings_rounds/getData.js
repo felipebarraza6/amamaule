@@ -42,12 +42,11 @@ export const getCalendarData = async ({dispatch, auth}) => {
 			const rq = await api_links_instances.list_meetings({
 				invited:auth.user.id, is_active:'true'})
 				.then((response)=> {
-					console.log(response.data.results)
 					dispatch({
 						type:'SET_MEETINGS',
 						payload: response.data.results
 					})
-				})
+				}).catch((x)=>console.log(x))
 
 			
             return rq

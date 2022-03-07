@@ -66,11 +66,11 @@ const CreateMeeting = ({invited}) => {
                     <Form.Item name='hour_minutes' rules={[{required:true, message:'Debes seleccionar la hora'}]} >
                         <TimePicker
                             size={'large'}
-                            disabledHours={() => [0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ,10,13, 14, 15, 17, 18, 19, 20, 21, 22, 23, 24]}
-                            minuteStep={10}
+                            disabledHours={() => [0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ,10,11, 14, 17, 18, 19, 20, 21, 22, 23, 24]}
+                            minuteStep={20}
                             hideDisabledOptions = {true}
                             inputReadOnly={true}
-                            showNow={false} style={{width:'100%'}} placeholder={'Selecciona la hora(formato 24 hrs)'} format={'HH:mm'} />
+                            showNow={false} style={{width:'300px'}} placeholder={'Selecciona la hora(formato 24 hrs)'} format={'HH:mm'} />
                     </Form.Item>
                     </Col>
                     <Col xs={24} style={{marginBottom:'10px'}}>
@@ -91,16 +91,16 @@ const CreateMeeting = ({invited}) => {
 
                     <Form.Item name='day' rules={[{required:true, message:'Debes seleccionar un día'}]} >
                         <Select size={'large'} style={{width:'100%'}} placeholder={'Selecciona el día de la reunión'}>
-                            <Option value={'16'}>dia #1</Option>
-                            <Option value={'17'}>dia #2</Option>
+                            <Option value={'29'}>Martes 29</Option>
+                            <Option value={'30'}>Miércoles 30</Option>
                         </Select>
                     </Form.Item>
 
                     <Form.Item name='hour_minutes' rules={[{required:true, message:'Debes seleccionar la hora'}]} >
                         <TimePicker
                             size={'large'}
-                            disabledHours={() => [0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ,10,13, 14, 15, 17, 18, 19, 20, 21, 22, 23, 24]}
-                            minuteStep={10}
+                            disabledHours={() => [0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ,10,11, 14, 17, 18, 19, 20, 21, 22, 23, 24]}
+                            minuteStep={20}
                             hideDisabledOptions = {true}
                             inputReadOnly={true}
                             showNow={false} style={{width:'300px'}} placeholder={'Selecciona la hora(formato 24 hrs)'} format={'HH:mm'} />

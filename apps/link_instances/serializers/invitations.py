@@ -5,6 +5,8 @@ from apps.link_instances.models import Meeting
 from django.core.mail import send_mail
 from django.conf import settings
 from apps.users.serializers import UserModelSerializer
+from django.template.loader import render_to_string
+from django.core.mail import EmailMultiAlternatives
 
 
 
@@ -43,22 +45,23 @@ class InvitationModelSerializer(serializers.ModelSerializer):
             instance.date_meeting = validated_data['date_meeting']                                            
         instance.is_active = False
 
-        """ if(instance.answer == True):
-            send_mail('ACABAS DE CONFIRMAR LA INVITACIÓN A UNA REUNIÓN',
-                      (
-                          '¡Hola! {}, acabas de confirmar la invitación a una reunión online en las Rondas de Vinculación de AMA Maule. Cuando sea la hora de tu reunión, se activará la opción de "Acceder" para que puedas ingresar a tu reunión programada.').format(
-                          instance.invited.first_name),
-                      settings.DEFAULT_FROM_EMAIL,
-                      [instance.invited.email])
-            send_mail('UN INVITADO ACABA DE CONFIRMAR SU PARTICIPACION',
-                      (
-                          '¡Hola! {}, un invitado acaba de confirmar su participación en la reunión online que solicitaste en las Rondas de Vinculación de AMA Maule. Cuando sea la hora de tu reunión, se activará la opción de "Acceder" para que puedas ingresar a tu reunión programada.').format(
-                          get_meeting.owner.first_name),
-                      settings.DEFAULT_FROM_EMAIL,
-                      [get_meeting.owner.email])
+        if(instance.answer == True):            
+
+            subjecta = '¡Tu reunión para AMA 2022 ha sido confirmada!'
+            from_emaila = '<noresponder@amamaule.cl>'
+            contenta = render_to_string(
+                'confirmation.html',
+                { 'user': instance}
+            )
+            
+            msga = EmailMultiAlternatives(subjecta, contenta, from_emaila, [instance.owner.email])            
+            msga.attach_alternative(contenta, "text/html")
+            msga.send()
+
+
             Meeting.objects.filter(uuid=instance.meeting.uuid).update(is_validated=True) 
-            else:
-                Meeting.objects.filter(uuid=instance.meeting.uuid).update(is_validated=False)"""
+        else:
+            Meeting.objects.filter(uuid=instance.meeting.uuid).update(is_validated=False)
         
         instance.save()
         return instance
