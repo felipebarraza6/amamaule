@@ -11,6 +11,7 @@ import { updateInvitation } from '../../actions/meetings_rounds/getData'
 import ListInvitations from "../../components/web/links_instances/ListInvitations"
 import { FormProvider } from 'rc-field-form'
 const { Panel } = Collapse
+const { Option } = Select
 export const GroupsContext = createContext()
 
 
@@ -126,8 +127,8 @@ const LinksInstances = () => {
 									return(<>
 										{x.is_active && <Row>
 											<Col span={24} style={{margin:'2px'}}>
-												<Button onClick={()=> {
-													//updateInvitation({}, x.id, dispatch, auth, setLoad)
+												<Button  onClick={()=> {
+													//updateInvitation({}, x.id, dispatch, auth, setLoad)													
 													updateInvitation({answer:true}, x, dispatch, auth)
 												}} type='primary' style={{width:'100%',backgroundColor:'rgb(24, 197, 204)', borderColor:'rgb(24, 197, 204)'}} size='small'>Aceptar</Button>
 											</Col>
@@ -135,7 +136,7 @@ const LinksInstances = () => {
 													//updateInvitation({}, x.id, dispatch, auth, setLoad)
 													updateInvitation({answer:false}, x, dispatch, auth)
 												}}  span={24} style={{margin:'2px'}}>
-												<Button danger type='primary' type='primary' style={{width:'100%'}} size='small'>Rechazar</Button>
+												<Button danger type='primary' style={{width:'100%'}} size='small'>Rechazar</Button>
 											</Col>
 											<Col span={24} style={{margin:'2px'}}>
 												<Button onClick={()=> {
@@ -143,61 +144,39 @@ const LinksInstances = () => {
 													Modal.info({
 														title:'NUEVA FECHA DE REUNION',
 														icon: <CalendarOutlined />,
-														content: <Form onFinish={(values)=>{
-															let start_date = new Date(values.date_meeting)
-															var day = start_date.getDate()
-															var month = start_date.getMonth() + 1
-															var year = start_date.getFullYear()
-															var hours = start_date.getHours()
-															var minutes = start_date.getMinutes()
-															var seconds = start_date.getSeconds()
-
-															if(minutes<10){
-																minutes = `0${start_date.getMinutes()}`
-															}
-															if(month<10){
-																month = `0${start_date.getMonth()+1}`
-															}
-															if(hours<10){
-																hours = `0${start_date.getHours()}`
-															}
-															if(day<10) {
-																day = `0${start_date.getDate()}`
-															}
-															if(seconds<10) {
-																seconds = `0${start_date.getSeconds()}`
-															}
-
-															values = {
-																...values,
-																date_meeting:`${year}-${month}-${values.day}T${hours}:${minutes}:${seconds}` 
-															}
-															console.log(values)
+															content: <Form onFinish={(values)=>{
+															
+															var format_time = values.hour_minutes.format('HH:mm:ss')
+        													var date_formated = `2022-03-${values.day}T${format_time}`																																						
+															
 															updateInvitation({
 																rescheduled:true, 
-																date_meeting: `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`},
+																date_meeting: date_formated},
 																x, 
 																dispatch, 
 																auth
 															).then((r)=> Modal.destroyAll())
 														}}>
 														<Form.Item name='day' rules={[{ required: true, message: 'Selecciona un dia'}]}>
-															<Select placeholder='Selecciona un dia...'>
-																<Select.Option value='dia1'>Dia #1</Select.Option>
-																<Select.Option>Dia #2</Select.Option>
+															<Select size={'large'} style={{width:'100%'}} placeholder={'Selecciona el día de la reunión'}>
+																<Option value={'29'}>Martes 29</Option>
+																<Option value={'30'}>Miércoles 30</Option>
 															</Select>
 														</Form.Item>
-														<Form.Item name='date_meeting' rules={[{ required: true, message: 'Selecciona un horario'}]}>
-														<TimePicker
-														size={'large'}
-														disabledHours={() => [0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ,10,13, 14, 15, 17, 18, 19, 20, 21, 22, 23, 24]}
-														minuteStep={10}
-														hideDisabledOptions = {true}														
-														inputReadOnly={true}
-														showNow={false} style={{width:'100%'}} placeholder={'Selecciona la hora(formato 24 hrs)'} format={'HH:mm'} />
+														<Form.Item name='hour_minutes' rules={[{ required: true, message: 'Selecciona un horario'}]}>
+															<TimePicker
+															size={'large'}
+															disabledHours={() => [0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ,10,11, 14, 17, 18, 19, 20, 21, 22, 23, 24]}
+															minuteStep={20}
+															hideDisabledOptions = {true}
+															inputReadOnly={true}																																										
+															showNow={false} style={{width:'100%'}} placeholder={'Selecciona la hora(formato 24 hrs)'} format={'HH:mm'} />
 														</Form.Item>
 														<Form.Item>
-															<Button htmlType='submit' type='primary' style={{marginTop:'30px',float:'right',backgroundColor:'rgb(255, 186, 49)', borderColor:'rgb(255, 186, 49)'}}>Re-Agendar</Button>
+															<Button htmlType='submit' 
+																type='primary' 
+																style={{marginTop:'30px',float:'right',backgroundColor:'rgb(255, 186, 49)', borderColor:'rgb(255, 186, 49)'}}>
+																	Re-Agendar</Button>
 														</Form.Item>
 														</Form>,																												
 														okText: 'Volver',

@@ -21,7 +21,7 @@ const ListInvitations = ({invitations}) => {
     useEffect(()=>{
 
         setTimeout(()=>setLoading(false),
-                   2000);
+                   2000)
 
 
     }, [])
@@ -29,8 +29,6 @@ const ListInvitations = ({invitations}) => {
 
     return(<> {invitations && <>
         {invitations.map((obj) => {
-
-
 
             return(<>
                 {loading ? <Skeleton active /> :

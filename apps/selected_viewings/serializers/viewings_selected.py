@@ -5,6 +5,7 @@ from rest_framework import serializers
 
 class CommentModelSerializer(serializers.ModelSerializer):
     user = UserCommentsInfo()
+
     class Meta:
         model = Comment
         fields = ('__all__')
@@ -18,6 +19,7 @@ class ViewingModelSerializer(serializers.ModelSerializer):
         serializer = CommentModelSerializer(instance=qs, many=True)
         data = serializer.data
         return data
+
     class Meta:
         model = ViewingSelected
         fields = ('__all__')

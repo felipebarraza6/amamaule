@@ -48,7 +48,7 @@ const LinksInstancesAV = () => {
             <Title level={3}>RONDAS DE VINCULACIÓN -  ARTES DE LA VISUALIDAD</Title>
         </Col><Col span={20} style={{margin:'25px'}}>
             <Paragraph style={{textAlign:'justify'}}> 
-            Las rondas de vinculación son parte de las actividades existentes en lo que se ha denominado Espacio Digital de Artistas de la Visualidad. Este último es un espacio dentro del estacionamiento que contempla un montaje a manera de galería con exhibición en pantallas de obras visuales. En el mismo espacio a algunos metros, se considera un pequeño escenario dotado de pantalla, para efectuar estas rondas de vinculación con artistas de la visualidad, en un formato más expositivo.
+              Las rondas de vinculación son parte de las actividades existentes en lo que se ha denominado Espacio Digital de Artistas de la Visualidad. Este último es un espacio dentro del estacionamiento del Teatro Regional del Maule (Zócalo) que contempla un montaje a manera de galería con exhibición en pantallas de obras visuales. En el mismo espacio a algunos metros, se considera un pequeño escenario dotado de pantalla, para efectuar estas rondas de vinculación con artistas de la visualidad, en un formato más expositivo.
             </Paragraph>
             <Paragraph style={{textAlign:'justify'}}> 
             En ese sentido el que sube al escenario es el artista previamente inscrito, quien tendrá una presentación de su trabajo y un tiempo aprox de 5 minutos para un primer pitch, y otros 5 minutos para conversar y responder consultas de los programadores que estarán sentados al aire libre, en sillas, considerando la cantidad de personas que admita el aforo. El zócalo del Teatro Regional del Maule albergará las rondas de vinculación de Artistas Visuales.
@@ -58,7 +58,7 @@ const LinksInstancesAV = () => {
         <Row style={{marginBottom:'60px', marginTop:'0px'}} justify='center'>
             <Col span={12} lg={12} xs={24} >
                 <Card hoverable cover={<img src={img1} />} style={{ width: 430, margin:'20px' }} >
-                    <Typography.Paragraph style={{fontSize:'18px'}}>¿Te gustaria presenciar los pitch de artistas visuales?</Typography.Paragraph>
+                    <Typography.Paragraph style={{fontSize:'18px'}}>¿Te gustaría asistir a la presentación de proyectos de Artistas Visuales?</Typography.Paragraph>
                     <Select onSelect={(x)=> {
                         setState({
                             ...state,

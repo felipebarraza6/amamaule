@@ -56,9 +56,9 @@ const CreateMeeting = ({invited}) => {
                 <Form layout={'inline'} form={form} title={'asdas'} onFinish={onFinish} >
                     <Col xs={24}>
                     <Form.Item name='day' rules={[{required:true, message:'Debes seleccionar un día'}]} >
-                        <Select size={'large'} style={{width:'100%'}} placeholder={'Selecciona el día de la reunión'}>
-                            <Option value={'16'}>Viernes 16</Option>
-                            <Option value={'17'}>Sábado 17</Option>
+                    <Select size={'large'} style={{width:'100%'}} placeholder={'Selecciona el día de la reunión'}>
+                            <Option value={'29'}>Martes 29</Option>
+                            <Option value={'30'}>Miércoles 30</Option>
                         </Select>
                     </Form.Item>
                         </Col>

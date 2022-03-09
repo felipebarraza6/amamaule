@@ -8,6 +8,7 @@ import Logo1 from '../../assets/logo/logom.png'
 import Login from '../../components/web/auth/Login'
 import TeamModal from './TeamModal' 
 import Questions from './Questions'
+import OldAma from './OldAma'
 const { Header } = Layout
 const { Item } = Menu
 
@@ -34,6 +35,9 @@ const NavBar = () => {
                 {state.isAuthenticated ? <Item style={styles.item}><Link to='/profile'>@{state.user.username}</Link></Item>:<Item style={styles.item}>
                   <Login />
                 </Item>}
+                <Item style={styles.item}>
+                    <OldAma />
+            </Item>            
                 <Item style={styles.itemS}>
               <a target='__blank' href='https://www.facebook.com/ama.maule'>
               <FacebookOutlined style={{fontSize: '30px', margin:'12px'}} />

@@ -37,12 +37,14 @@ class MeetingViewSet(mixins.RetrieveModelMixin,
         else:
             return MeetingModelSerializer
 
+
     class MeetingFilter(filters.FilterSet):
         class Meta:
             model = Meeting
             fields = {       
                 'uuid':['exact'],
                 'owner': ['exact'],
+                'invited': ['exact'],
                 'participans_invited': ['exact'],
                 'participans_validated': ['exact'],
                 'is_active': ['exact'],

@@ -14,7 +14,7 @@ class WorkshopViewSet(mixins.ListModelMixin,
                     mixins.UpdateModelMixin,
                     viewsets.GenericViewSet):
     
-    queryset = Workshop.objects.all().order_by('-date')
+    queryset = Workshop.objects.all().order_by('date')
     lookup_field = 'id'
     filter_backends = (filters.DjangoFilterBackend,)
     serializer_class = WorkshopModelSerializer

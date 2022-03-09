@@ -143,7 +143,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'mail.amamaule.cl'
 EMAIL_HOST_USER = 'soporte@amamaule.cl'
-EMAIL_HOST_PASSWORD = 'soporte.2021'
+EMAIL_HOST_PASSWORD = 'soporte.2022'
 EMAIL_PORT = 587
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 

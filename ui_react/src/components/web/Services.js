@@ -4,11 +4,9 @@ import service1 from '../../assets/service_icons/CONFERENCIAS.png'
 import service2 from '../../assets/service_icons/RONDAS-DE-VINCULACION.png'
 import service3 from '../../assets/service_icons/SHOWCASES.png'
 import service4 from '../../assets/service_icons/TALLERES.png'
-
 import service5 from '../../assets/service_icons/CATALOGO.png'
-
 import service6 from '../../assets/service_icons/06.png'
-import Avi from '../../assets/img/avisuales.jpg'
+import Avi from '../../assets/img/BANNER-AAVV-MERCADO.jpg'
 const { Title, Paragraph } = Typography
 const { Item } = List
 
@@ -17,24 +15,41 @@ const Services = () => {
 
     return(<>
         <Row style={styles.container} justify='center'>
-                <Col xs={12} lg={3} style={styles.column} >
+                <Col xs={24} lg={3} style={styles.column} >
                     <img onClick={()=>{Modal.info(
                         {                         
                             icon: <img src={service1} style={styles.img2}  />,
                             width:'700px',
                             content: <Row>
-                                <Col>
-                                    <Paragraph>Una vez inscrito/a y con perfil en nuestra plataforma, podrás acceder al formulario de postulación a los talleres, ya sea en aquellos impartidos en formato presencial o aquellos en formato on line. Se te confirmará de acuerdo a la disponibilidad de cupos.</Paragraph>
-
- 
-                                </Col>                                
+                                <Col style={{marginTop:'20px'}}>    
+                                    <Paragraph>Una vez inscrito/a y con perfil en nuestra plataforma, podrás acceder al formulario de postulación a los talleres, ya sea en aquellos impartidos en formato presencial o aquellos en formato on line. Se te confirmará de acuerdo a la disponibilidad de cupos.</Paragraph>                               
+                                    <Paragraph style={{marginTop:'20px'}}><strong>TALLERES</strong></Paragraph>
+                                    <Paragraph style={{marginLeft:'20px'}}>
+                                    <strong>1.</strong> "De la sala a la calle: montaje en espacio público".  Relator: Tamara Figueroa y Kevin Morizur, ADTRES, Agrupación de Diseñadores, Técnicos y Realizadores Escénicos.
+                                    </Paragraph>
+                                    <Paragraph style={{marginLeft:'20px'}}>
+                                    <strong>2.</strong> "Gestión Cultural y Proyectos Transmedia": Relatora: Natalia Roca, periodista, gestora cultural y productora ejecutiva audiovisual penquista .
+                                    </Paragraph>
+                                    <Paragraph style={{marginLeft:'20px'}}>
+                                    <strong>3.</strong> "Cuerpo y conciencia para el bienestar de los artistas". Relator: José Vidal  
+                                    </Paragraph>
+                                    <Paragraph style={{marginLeft:'20px'}}>
+                                    <strong>4.</strong> "Producción musical" Relatora: Natalia Suazo, "Natisú"
+                                    </Paragraph>
+                                    <Paragraph style={{marginLeft:'20px'}}>
+                                    <strong>5.</strong> "Marketing y Comunicación Cultural para las Artes Escénicas". Relator: Fernando Costa, Fundador agencia MERCA.
+                                    </Paragraph>
+                                    <Paragraph style={{marginLeft:'20px'}}>
+                                    <strong>6.</strong> "Collage feminista y político: estrategias interdisciplinarias para la performance." Relator: Colectivo LASTESIS.
+                                    </Paragraph>
+                                </Col>
                             </Row>,
                             
                         }
                     )}}
                     src={service1} style={styles.img}  alt='service1' />                    
                 </Col>
-                <Col xs={12} lg={3}  style={styles.column} span={6}>
+                <Col xs={24} lg={3}  style={styles.column} span={6}>
                     <img
                      onClick={()=>{Modal.info(
                         {                         
@@ -47,7 +62,7 @@ const Services = () => {
                      src={service2} style={styles.img}  alt='service2' />
                     
                 </Col>
-                <Col xs={12} lg={3}  style={styles.column} span={6}>
+                <Col xs={24} lg={3}  style={styles.column} span={6}>
                     <img
                     onClick={()=>{Modal.info(
                         {                         
@@ -69,7 +84,7 @@ Las rondas on line durarán 10 minutos, ocasión en la que podrás presentar tu 
                     
                 </Col>
                 
-                <Col xs={12} lg={3}  style={styles.column} span={6}>
+                <Col xs={24} lg={3}  style={styles.column} span={6}>
                     <img 
                     onClick={()=>{Modal.info(
                         {                            
@@ -78,13 +93,55 @@ Las rondas on line durarán 10 minutos, ocasión en la que podrás presentar tu 
                                Los espectáculos como showcases y obras de artes escénicas en espacios abiertos o cerrados, serán con entrada gratuita, descargando previamente tu entrada en el sitio web del Teatro Regional del Maule.  (el link sería www.vivoticket.cl) este tendría acces directo desde www.amamaule.cl 
  
                             </p>
+
+
+                            <Paragraph><strong>OBRAS</strong></Paragraph>                            
+                            <Paragraph style={{marginLeft:'20px'}}>
+                                - RAM
+                                </Paragraph>
+                                <Paragraph style={{marginLeft:'20px'}}>
+                                - Kpuchapo
+                                </Paragraph>
+                                <Paragraph style={{marginLeft:'20px'}}>
+                                - Cuervos de Pantano
+                                </Paragraph>
+                            
+                            <Paragraph><strong>ESPECTÁCULOS NACIONALES</strong></Paragraph>
+                                <Paragraph style={{marginLeft:'20px'}}>
+                                - Yorka
+                                </Paragraph>
+                                <Paragraph style={{marginLeft:'20px'}}>
+                                - Deligth Lab
+                                </Paragraph>
+                                <Paragraph style={{marginLeft:'20px'}}>
+                                - Lopez
+                                </Paragraph>
+
+                            <Paragraph><strong>SHOWCASES REGIONALES</strong></Paragraph>
+                            <Paragraph style={{marginLeft:'20px'}}>
+                                - Invierno Nuclear
+                            </Paragraph>
+                            <Paragraph style={{marginLeft:'20px'}}>
+                                - Idea Blanco
+                                </Paragraph>
+                                <Paragraph style={{marginLeft:'20px'}}>
+                                - Winters of Blue
+                                </Paragraph>
+                                <Paragraph style={{marginLeft:'20px'}}>
+                                - Odia Las Jaulas
+                                </Paragraph>
+                                <Paragraph style={{marginLeft:'20px'}}>
+                                - Mandi Gómez
+                                </Paragraph>
+                                <Paragraph style={{marginLeft:'20px'}}>- Adrik Caleidoscopio</Paragraph>
+                                <Paragraph style={{marginLeft:'20px'}}>- Tomi no me ama</Paragraph>                                
                             </div>
                         }
                     )}}
                     src={service4} style={styles.img}  alt='service4' />
                     
                 </Col>
-               <Col xs={12} lg={3}  style={styles.column} >
+               <Col xs={24} lg={3}  style={styles.column} >
                     <img
                     onClick={()=>{
                       Modal.info({
@@ -96,7 +153,7 @@ Las rondas on line durarán 10 minutos, ocasión en la que podrás presentar tu 
                     src={service5} style={styles.img}  alt='service4' />
                     
                 </Col>
-<Col xs={12} lg={3}  style={styles.column} span={6}>
+<Col xs={24} lg={3}  style={styles.column} span={6}>
                 <a target='__blank' href='http://www.teatroregional.cl/wp-content/uploads/2021/06/Catálogo-de-Artistas-ABRIL-2021.pdf'>
                     <img src={service6} style={styles.img}  alt='service3' />
                 </a>     
@@ -104,11 +161,10 @@ Las rondas on line durarán 10 minutos, ocasión en la que podrás presentar tu 
         </Row>
       <Row justify="center" style={{backgroundColor:'#3a1f33'}}>
       
-        <a href='https://docs.google.com/forms/d/e/1FAIpQLSdaM-um2blDVLazhJ7qjnk4sNsk0d_OAbi9FurItP-9mtQAaw/viewform?vc=0&c=0&w=1&flr=0' target='_blank'>
+        <a href='https://docs.google.com/forms/d/e/1FAIpQLSdaM-um2blDVLazhJ7qjnk4sNsk0d_OAbi9FurItP-9mtQAaw/viewform?usp=sf_link' target='_blank'>
         <img src={Avi} style={{maxWidth:'100%'}} />
         </a>
-      </Row>
-      </>
+      </Row></>
     )
 }
 

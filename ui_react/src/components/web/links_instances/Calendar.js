@@ -51,7 +51,7 @@ const Calendar = () => {
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='29T12:00'){
                                         return(<>
-                                            {x.participans_validated[0].first_name} {x.participans_validated[0].last_name}                                                                                       
+                                            {x.invited.first_name} {x.invited.last_name}                                                                                       
                                             </>
                                         )
                                     }                                                   
@@ -64,14 +64,14 @@ const Calendar = () => {
                                         return(<>                                            
                                             
                                             {!x.is_end ? <Row justify='center'>
-                                            <Col >
-                                                <Button size='small' type='primary' style={{marginBottom:'5px',marginRight:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}
+                                            <Col>
+                                                <Button disabled={true} size='small' type='primary' style={{marginBottom:'5px',marginRight:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}
                                                     onClick={()=> {
                                                         window.open(`https://amamaule.cl/profile/meetings/${x.uuid}`)
                                                     }}
                                                 >Ingresar</Button>
                                             </Col>
-                                            <Col>
+                                            <Col >
 
                                             <Button size='small' onClick={()=> {
                                                 
@@ -89,7 +89,7 @@ const Calendar = () => {
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='30T12:00'){
                                         return(<>
-                                            {x.participans_validated[0].first_name} {x.participans_validated[0].last_name}                                                                                       
+                                            {x.invited.first_name} {x.invited.last_name}                                                                                       
                                             </>
                                         )
                                     }                                                   
@@ -103,7 +103,7 @@ const Calendar = () => {
                                             
                                             {!x.is_end ? <Row justify='center'>
                                             <Col>
-                                                <Button size='small' type='primary' style={{marginBottom:'5px',marginRight:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}
+                                                <Button disabled={true} size='small' type='primary' style={{marginBottom:'5px',marginRight:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}
                                                     onClick={()=> {
                                                         window.open(`https://amamaule.cl/profile/meetings/${x.uuid}`)
                                                     }}
@@ -130,7 +130,7 @@ const Calendar = () => {
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='29T12:20'){
                                         return(<>
-                                            {x.participans_validated[0].first_name} {x.participans_validated[0].last_name}                                                                                       
+                                            {x.invited.first_name} {x.invited.last_name}                                                                                       
                                             </>
                                         )
                                     }                                                   
@@ -144,7 +144,7 @@ const Calendar = () => {
                                             
                                             {!x.is_end ? <Row justify='center' >
                                             <Col span={12}>
-                                                <Button size='small' type='primary' style={{marginBottom:'5px',marginRight:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}
+                                                <Button disabled={true} size='small' type='primary' style={{marginBottom:'5px',marginRight:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}
                                                     onClick={()=> {
                                                         window.open(`https://amamaule.cl/profile/meetings/${x.uuid}`)
                                                     }}
@@ -168,7 +168,7 @@ const Calendar = () => {
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='30T12:20'){
                                         return(<>
-                                            {x.participans_validated[0].first_name} {x.participans_validated[0].last_name}                                                                                       
+                                            {x.invited.first_name} {x.invited.last_name}                                                                                       
                                             </>
                                         )
                                     }                                                   
@@ -182,7 +182,7 @@ const Calendar = () => {
                                             
                                             {!x.is_end ? <Row justify='center'>
                                             <Col>
-                                                <Button size='small' type='primary' style={{marginBottom:'5px',marginRight:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}
+                                                <Button disabled={true} size='small' type='primary' style={{marginBottom:'5px',marginRight:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}
                                                     onClick={()=> {
                                                         window.open(`https://amamaule.cl/profile/meetings/${x.uuid}`)
                                                     }}
@@ -210,7 +210,7 @@ const Calendar = () => {
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='29T12:40'){
                                         return(<>
-                                            {x.participans_validated[0].first_name} {x.participans_validated[0].last_name}                                                                                       
+                                            {x.invited.first_name} {x.invited.last_name}                                                                                       
                                             </>
                                         )
                                     }                                                   
@@ -224,7 +224,7 @@ const Calendar = () => {
                                             
                                             {!x.is_end ? <Row justify='center'>
                                             <Col span={12}>
-                                                <Button size='small' type='primary' style={{marginBottom:'5px',marginRight:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}
+                                                <Button disabled={true} size='small' type='primary' style={{marginBottom:'5px',marginRight:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}
                                                     onClick={()=> {
                                                         window.open(`https://amamaule.cl/profile/meetings/${x.uuid}`)
                                                     }}
@@ -248,7 +248,7 @@ const Calendar = () => {
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='30T12:40'){
                                         return(<>
-                                            {x.participans_validated[0].first_name} {x.participans_validated[0].last_name}                                                                                       
+                                            {x.invited.first_name} {x.invited.last_name}                                                                                       
                                             </>
                                         )
                                     }                                                   
@@ -262,7 +262,7 @@ const Calendar = () => {
                                             
                                             {!x.is_end ? <Row justify='center'>
                                             <Col>
-                                                <Button size='small' type='primary' style={{marginBottom:'5px',marginRight:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}
+                                                <Button disabled={true} size='small' type='primary' style={{marginBottom:'5px',marginRight:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}
                                                     onClick={()=> {
                                                         window.open(`https://amamaule.cl/profile/meetings/${x.uuid}`)
                                                     }}
@@ -289,7 +289,7 @@ const Calendar = () => {
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='29T15:00'){
                                         return(<>
-                                            {x.participans_validated[0].first_name} {x.participans_validated[0].last_name}                                                                                       
+                                            {x.invited.first_name} {x.invited.last_name}                                                                                       
                                             </>
                                         )
                                     }                                                   
@@ -303,7 +303,7 @@ const Calendar = () => {
                                             
                                             {!x.is_end ? <Row justify='center'>
                                             <Col span={12}>
-                                                <Button size='small' type='primary' style={{marginBottom:'5px',marginRight:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}
+                                                <Button disabled={true} size='small' type='primary' style={{marginBottom:'5px',marginRight:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}
                                                     onClick={()=> {
                                                         window.open(`https://amamaule.cl/profile/meetings/${x.uuid}`)
                                                     }}
@@ -327,7 +327,7 @@ const Calendar = () => {
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='30T15:00'){
                                         return(<>
-                                            {x.participans_validated[0].first_name} {x.participans_validated[0].last_name}                                                                                       
+                                            {x.invited.first_name} {x.invited.last_name}                                                                                       
                                             </>
                                         )
                                     }                                                   
@@ -341,7 +341,7 @@ const Calendar = () => {
                                             
                                             {!x.is_end ? <Row justify='center'>
                                             <Col>
-                                                <Button size='small' type='primary' style={{marginBottom:'5px',marginRight:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}
+                                                <Button disabled={true} size='small' type='primary' style={{marginBottom:'5px',marginRight:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}
                                                     onClick={()=> {
                                                         window.open(`https://amamaule.cl/profile/meetings/${x.uuid}`)
                                                     }}
@@ -368,7 +368,7 @@ const Calendar = () => {
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='29T15:20'){
                                         return(<>
-                                            {x.participans_validated[0].first_name} {x.participans_validated[0].last_name}                                                                                       
+                                            {x.invited.first_name} {x.invited.last_name}                                                                                       
                                             </>
                                         )
                                     }                                                   
@@ -382,7 +382,7 @@ const Calendar = () => {
                                             
                                             {!x.is_end ? <Row justify='center'>
                                             <Col span={12}>
-                                                <Button size='small' type='primary' style={{marginBottom:'5px',marginRight:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}
+                                                <Button disabled={true} size='small' type='primary' style={{marginBottom:'5px',marginRight:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}
                                                     onClick={()=> {
                                                         window.open(`https://amamaule.cl/profile/meetings/${x.uuid}`)
                                                     }}
@@ -406,7 +406,7 @@ const Calendar = () => {
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='30T15:20'){
                                         return(<>
-                                            {x.participans_validated[0].first_name} {x.participans_validated[0].last_name}                                                                                       
+                                            {x.invited.first_name} {x.invited.last_name}                                                                                       
                                             </>
                                         )
                                     }                                                   
@@ -420,7 +420,7 @@ const Calendar = () => {
                                             
                                             {!x.is_end ? <Row justify='center'>
                                             <Col>
-                                                <Button size='small' type='primary' style={{marginBottom:'5px',marginRight:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}
+                                                <Button disabled={true} size='small' type='primary' style={{marginBottom:'5px',marginRight:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}
                                                     onClick={()=> {
                                                         window.open(`https://amamaule.cl/profile/meetings/${x.uuid}`)
                                                     }}
@@ -447,7 +447,7 @@ const Calendar = () => {
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='29T15:40'){
                                         return(<>
-                                            {x.participans_validated[0].first_name} {x.participans_validated[0].last_name}                                                                                       
+                                            {x.invited.first_name} {x.invited.last_name}                                                                                       
                                             </>
                                         )
                                     }                                                   
@@ -461,7 +461,7 @@ const Calendar = () => {
                                             
                                             {!x.is_end ? <Row justify='center'>
                                             <Col span={12}>
-                                                <Button size='small' type='primary' style={{marginBottom:'5px',marginRight:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}
+                                                <Button disabled={true} size='small' type='primary' style={{marginBottom:'5px',marginRight:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}
                                                     onClick={()=> {
                                                         window.open(`https://amamaule.cl/profile/meetings/${x.uuid}`)
                                                     }}
@@ -485,7 +485,7 @@ const Calendar = () => {
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='30T15:40'){
                                         return(<>
-                                            {x.participans_validated[0].first_name} {x.participans_validated[0].last_name}                                                                                       
+                                            {x.invited.first_name} {x.invited.last_name}                                                                                       
                                             </>
                                         )
                                     }                                                   
@@ -499,7 +499,7 @@ const Calendar = () => {
                                             
                                             {!x.is_end ? <Row justify='center'>
                                             <Col>
-                                                <Button size='small' type='primary' style={{marginBottom:'5px',marginRight:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}
+                                                <Button disabled={true} size='small' type='primary' style={{marginBottom:'5px',marginRight:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}
                                                     onClick={()=> {
                                                         window.open(`https://amamaule.cl/profile/meetings/${x.uuid}`)
                                                     }}
@@ -526,7 +526,7 @@ const Calendar = () => {
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='29T16:00'){
                                         return(<>
-                                            {x.participans_validated[0].first_name} {x.participans_validated[0].last_name}                                                                                       
+                                            {x.invited.first_name} {x.invited.last_name}                                                                                       
                                             </>
                                         )
                                     }                                                   
@@ -540,7 +540,7 @@ const Calendar = () => {
                                             
                                             {!x.is_end ? <Row justify='center'>
                                             <Col span={12}>
-                                                <Button size='small' type='primary' style={{marginBottom:'5px',marginRight:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}
+                                                <Button disabled={true} size='small' type='primary' style={{marginBottom:'5px',marginRight:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}
                                                     onClick={()=> {
                                                         window.open(`https://amamaule.cl/profile/meetings/${x.uuid}`)
                                                     }}
@@ -564,7 +564,7 @@ const Calendar = () => {
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='30T16:00'){
                                         return(<>
-                                            {x.participans_validated[0].first_name} {x.participans_validated[0].last_name}                                                                                       
+                                            {x.invited.first_name} {x.invited.last_name}                                                                                       
                                             </>
                                         )
                                     }                                                   
@@ -578,7 +578,7 @@ const Calendar = () => {
                                             
                                             {!x.is_end ? <Row justify='center'>
                                             <Col>
-                                                <Button size='small' type='primary' style={{marginBottom:'5px',marginRight:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}
+                                                <Button disabled={true} size='small' type='primary' style={{marginBottom:'5px',marginRight:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}
                                                     onClick={()=> {
                                                         window.open(`https://amamaule.cl/profile/meetings/${x.uuid}`)
                                                     }}
@@ -605,7 +605,7 @@ const Calendar = () => {
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='29T16:20'){
                                         return(<>
-                                            {x.participans_validated[0].first_name} {x.participans_validated[0].last_name}                                                                                       
+                                            {x.invited.first_name} {x.invited.last_name}                                                                                       
                                             </>
                                         )
                                     }                                                   
@@ -619,7 +619,7 @@ const Calendar = () => {
                                             
                                             {!x.is_end ? <Row justify='center'>
                                             <Col span={12}>
-                                                <Button size='small' type='primary' style={{marginBottom:'5px',marginRight:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}
+                                                <Button disabled={true} size='small' type='primary' style={{marginBottom:'5px',marginRight:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}
                                                     onClick={()=> {
                                                         window.open(`https://amamaule.cl/profile/meetings/${x.uuid}`)
                                                     }}
@@ -643,7 +643,7 @@ const Calendar = () => {
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='30T16:20'){
                                         return(<>
-                                            {x.participans_validated[0].first_name} {x.participans_validated[0].last_name}                                                                                       
+                                            {x.invited.first_name} {x.invited.last_name}                                                                                       
                                             </>
                                         )
                                     }                                                   
@@ -657,7 +657,7 @@ const Calendar = () => {
                                             
                                             {!x.is_end ? <Row justify='center'>
                                             <Col>
-                                                <Button size='small' type='primary' style={{marginBottom:'5px',marginRight:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}
+                                                <Button disabled={true} size='small' type='primary' style={{marginBottom:'5px',marginRight:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}
                                                     onClick={()=> {
                                                         window.open(`https://amamaule.cl/profile/meetings/${x.uuid}`)
                                                     }}
@@ -684,7 +684,7 @@ const Calendar = () => {
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='29T16:40'){
                                         return(<>
-                                            {x.participans_validated[0].first_name} {x.participans_validated[0].last_name}                                                                                       
+                                            {x.invited.first_name} {x.invited.last_name}                                                                                       
                                             </>
                                         )
                                     }                                                   
@@ -698,7 +698,7 @@ const Calendar = () => {
                                             
                                             {!x.is_end ? <Row justify='center'>
                                             <Col span={12}>
-                                                <Button size='small' type='primary' style={{marginBottom:'5px',marginRight:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}
+                                                <Button disabled={true} size='small' type='primary' style={{marginBottom:'5px',marginRight:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}
                                                     onClick={()=> {
                                                         window.open(`https://amamaule.cl/profile/meetings/${x.uuid}`)
                                                     }}
@@ -722,7 +722,7 @@ const Calendar = () => {
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='30T16:40'){
                                         return(<>
-                                            {x.participans_validated[0].first_name} {x.participans_validated[0].last_name}                                                                                       
+                                            {x.invited.first_name} {x.invited.last_name}                                                                                       
                                             </>
                                         )
                                     }                                                   
@@ -736,7 +736,7 @@ const Calendar = () => {
                                             
                                             {!x.is_end ? <Row justify='center'>
                                             <Col>
-                                                <Button size='small' type='primary' style={{marginBottom:'5px',marginRight:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}
+                                                <Button disabled={true} size='small' type='primary' style={{marginBottom:'5px',marginRight:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}
                                                     onClick={()=> {
                                                         window.open(`https://amamaule.cl/profile/meetings/${x.uuid}`)
                                                     }}

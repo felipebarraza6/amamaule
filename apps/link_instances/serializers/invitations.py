@@ -1,3 +1,4 @@
+
 from apps.link_instances.models import Invitation, Meeting
 from rest_framework import serializers
 from apps.users.serializers import UserModelSerializer
@@ -20,9 +21,30 @@ class RetrieveModalSerializer(serializers.ModelSerializer):
 
 class InvitationModelSerializer(serializers.ModelSerializer): 
     owner = serializers.HiddenField(default=serializers.CurrentUserDefault())   
+
     class Meta:
         model = Invitation
         fields = ('__all__')
+    
+    def create(self, validated_data):
+
+        try:
+            instance = Invitation.objects.create(**validated_data)
+            subject = '¡Has recibido una invitacion!'
+            from_email = '<noresponder@amamaule.cl>'
+            content = render_to_string(
+                'invitation.html',
+                { 'user': instance.invited}
+            )
+            
+            msg = EmailMultiAlternatives(subject, content, from_email, [instance.owner.email])            
+            msg.attach_alternative(content, "text/html")
+            msg.send()
+
+        except TypeError:
+            raise TypeError(msg)
+
+        return instance
     
     def update(self, instance, validated_data):
         
@@ -31,38 +53,34 @@ class InvitationModelSerializer(serializers.ModelSerializer):
             if(validated_data['answer']):
                 data_base = Meeting(start_date=instance.date_meeting,
                     is_active=instance.is_active,
-                    owner=instance.owner,)
+                    owner=instance.owner,
+                    invited=instance.invited)
                 data_base.save()
                 data_base.participans_invited.add(instance.invited, instance.owner)
-                data_base.participans_validated.add(instance.invited, instance.owner)
+                data_base.participans_validated.add(instance.invited, instance.owner) 
+                
                 
         elif('rescheduled' in validated_data):
             rq = Invitation.objects.create(
-                    owner = instance.invited, 
-                    invited = instance.owner,                    
+                    owner = instance.owner, 
+                    invited = instance.invited,                    
                     date_meeting = validated_data['date_meeting'])                                                
             instance.rescheduled = validated_data['rescheduled']
-            instance.date_meeting = validated_data['date_meeting']                                            
-        instance.is_active = False
+            instance.is_active = False
 
         if(instance.answer == True):            
-
-            subjecta = '¡Tu reunión para AMA 2022 ha sido confirmada!'
-            from_emaila = '<noresponder@amamaule.cl>'
-            contenta = render_to_string(
+            subject = '¡Tu reunión para AMA 2022 ha sido confirmada!'
+            from_email = '<noresponder@amamaule.cl>'
+            content = render_to_string(
                 'confirmation.html',
                 { 'user': instance}
             )
             
-            msga = EmailMultiAlternatives(subjecta, contenta, from_emaila, [instance.owner.email])            
-            msga.attach_alternative(contenta, "text/html")
-            msga.send()
+            msg = EmailMultiAlternatives(subject, content, from_email, [instance.owner.email])            
+            msg.attach_alternative(content, "text/html")
+            msg.send()          
 
-
-            Meeting.objects.filter(uuid=instance.meeting.uuid).update(is_validated=True) 
-        else:
-            Meeting.objects.filter(uuid=instance.meeting.uuid).update(is_validated=False)
-        
+        instance.is_active = False               
         instance.save()
         return instance
 

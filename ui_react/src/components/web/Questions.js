@@ -11,7 +11,53 @@ const Questions = () => {
         <Button style={{color:'white', marginBottom:'15px'}} type='link' onClick={()=> setVisible(true)}>PREGUNTAS FRECUENTES</Button>
         <Modal width={'700px'} footer={[<Button onClick={()=>setVisible(false)} style={{backgroundColor:'rgb(176, 93, 185)',borderColor:'rgb(176, 93, 185)', color:'white'}}>Cerrar</Button>]}
           visible={visible} onCancel={()=>setVisible(false)} title='PREGUNTAS FRECUENTES'>
+              
             <Collapse style={{marginTop:'0px'}} defaultActiveKey={['1']} bordered={false} className="site-collapse-custom-collapse">
+            <Panel header="¿QUÉ ES AMA?" key="2" className="site-collapse-custom-panel">
+        <Paragraph align={'justify'} style={{color:''}}> 
+            AMA es un encuentro de vinculación para Artistas Escénicos y Visuales de la Región del Maule, 
+            pensado bajo la modalidad de plataforma de intercambio junto a otros actores del ecosistema, como 
+            lo son gestores culturales, programadores, profesionales asociados, entre otros. 
+        </Paragraph>
+        <Paragraph align={'justify'} style={{color:''}}>
+            Del 24 al 30 de marzo de 2022, celebramos la segunda edición de AMA, bajo la consigna #VincularParaCrear. 
+            De forma presencial y virtual, incluyendo las Artistas de la Visualidad de la región del Maule.
+    </Paragraph>
+    </Panel>   
+    <Panel header="¿QUÉ PUEDES HACER EN AMA?" key="3" className="site-collapse-custom-panel">
+        <Paragraph align={'justify'} style={{color:''}}>
+            Los participantes de AMA (artistas, programadores, y otros mencionados) podrán sostener 
+            reuniones en rondas de vinculación tanto presenciales como en modalidad on line para presentar 
+            proyectos, planes de trabajo, esbozar potenciales alianzas, conocer procesos creativos y experiencias 
+            de otros centros culturales, informarse de fuentes de financiamiento posible, entre otros temas que convoquen 
+            el interés de las partes involucradas.        
+        </Paragraph>
+        <Paragraph align={'justify'} style={{color:''}}>
+            AMA también es una instancia para asistir a conferencias y mesas de conversación sobre temas 
+            atingentes a la gestión cultural y al trabajo artístico, así como para participar en talleres de formación 
+            en ámbitos de interés para quienes se inscriban en esta versión. 
+        </Paragraph>
+        <Paragraph align={'justify'} style={{color:''}}>
+            AMA está abierta a público general a través de espectáculos gratuitos como showcases, espectáculos 
+            de artes escénicas, mercado de las artes y otros eventos artísticos.
+        </Paragraph>
+    </Panel>
+    <Panel header="¿QUIÉNES PUEDEN PARTICIPAR?" key="4" className="site-collapse-custom-panel">
+        <Paragraph align={'justify'} style={{color:''}}>
+            Pueden postular artistas escénicos y artistas visuales de la Región del Maule. Como artistas escénicos se 
+            considera a los artistas provenientes del ámbito de la música, la ópera, el teatro, la danza, la narración 
+            oral, el circo, los títeres, la performance u otras. Como artistas visuales se considera a quienes se desempeñen 
+            en disciplinas como pintura, escultura, muralismo, grabado, dibujo, instalación, performance, vitrales, técnicas 
+            integradas, fotografía.        
+        </Paragraph>
+        <Paragraph align={'justify'} style={{color:''}}>
+            Asimismo, podrán participar programadores de espacios culturales regionales, nacionales e internacionales; 
+            programadores de festivales, productores y gestores culturales regionales, nacionales y extranjeros. 
+            Por último, este llamado está igualmente abierto para representantes de organizaciones ligadas al campo de 
+            las artes escénicas, instituciones públicas y privadas, distribuidores, managers, proveedores de transporte, 
+            técnicos,  fotógrafos, diseñadores, audiovisualistas y comunicadores.
+        </Paragraph>
+    </Panel>
             <Panel header="SI SOY ARTISTA, ¿DEBO TENER UN TRABAJO TERMINADO PARA PARTICIPAR?" key="4" className="site-collapse-custom-panel">
         <Paragraph align={'justify'} style={{color:''}}>
             Pueden participar artistas con trabajos terminados del presente periodo y de años anteriores, 

@@ -157,9 +157,6 @@ const ListTransmissionsPresencial = ({globalState, changeState, is_public}) => {
                 <Menu.Item style={{backgroundColor:'#3A1F33', color:'white'}} key='3' >
                         Mesas temáticas
                 </Menu.Item>
-                <Menu.Item style={{backgroundColor:'#3A1F33', color:'white'}} key='1' >
-                        Conferencias
-                </Menu.Item>
                 <Menu.Item style={{backgroundColor:'#3A1F33', color:'white'}} key='6' >
                     Obras y espectáculos
                 </Menu.Item>

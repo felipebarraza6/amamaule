@@ -164,7 +164,7 @@ const ProfileUser = () => {
               <Button shape={'round'} type='link' style={currentNavigation === '1' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('1')}>
                   <UserOutlined  style={currentNavigation === '1' ?  styles.iconActive : styles.icon } />{currentNavigation === '1' && 'Perfil'}
               </Button>
-              <Button disabled={disabled} shape={'round'} type='link' style={currentNavigation === '2' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('2')}>
+              <Button disabled={false} shape={'round'} type='link' style={currentNavigation === '2' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('2')}>
                   <CheckOutlined style={styles.icon} />{currentNavigation === '2' && 'Talleres'}
               </Button>
              {state.user.type_user === 'ADM' &&
@@ -172,7 +172,7 @@ const ProfileUser = () => {
                   <EyeOutlined style={styles.icon} />{currentNavigation === '3' && 'Soporte'}
               </Button>
               } 
-                    <Button disabled={disabled} shape={'round'} type='link' style={currentNavigation === '5' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('5')}>
+                    <Button disabled={false} shape={'round'} type='link' style={currentNavigation === '5' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('5')}>
                   <ForkOutlined style={styles.icon} />{currentNavigation === '5' && 'Rondas'}
               </Button>
 
@@ -186,13 +186,13 @@ const ProfileUser = () => {
               <Button shape={'round'} type='link' style={currentNavigation === '1' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('1')}>
                   <UserOutlined  style={currentNavigation === '1' ?  styles.iconActive : styles.icon } />{currentNavigation === '1' && 'Perfil'}
               </Button>
-              <Button disabled={disabled} shape={'round'} type='link' style={currentNavigation === '2' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('2')}>
+              <Button disabled={false} shape={'round'} type='link' style={currentNavigation === '2' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('2')}>
                   <CheckOutlined style={styles.icon} />{currentNavigation === '2' && 'Talleres'}
               </Button>              
-              <Button disabled={disabled} shape={'round'} type='link' style={currentNavigation === '12' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('12')}>
+              <Button disabled={false} shape={'round'} type='link' style={currentNavigation === '12' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('12')}>
                   <ForkOutlined style={styles.icon} />{currentNavigation === '12' && 'Rondas AE'}
               </Button> 
-              <Button disabled={disabled} shape={'round'} type='link' style={currentNavigation === '11' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('11')}>
+              <Button disabled={false} shape={'round'} type='link' style={currentNavigation === '11' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('11')}>
                   <ForkOutlined style={styles.icon} />{currentNavigation === '11' && 'Rondas AV'}
               </Button> 
               </>}
@@ -235,7 +235,7 @@ const ProfileUser = () => {
                 Perfil
               </Menu.Item>
               {state.user &&
-              <Menu.Item disabled={disabled} icon={<CheckOutlined/>} key={'2'} 
+              <Menu.Item disabled={false} icon={<CheckOutlined/>} key={'2'} 
                   style={ currentNavigation === '2' ?  styles.hoverItem : styles.menuItem  }  >
                 Talleres
               </Menu.Item>}              
@@ -249,7 +249,7 @@ const ProfileUser = () => {
               </>}
               {state.user &&
               <>
-              <Menu.Item disabled={disabled} icon={<GroupOutlined />} key={'5'}
+              <Menu.Item disabled={false} icon={<GroupOutlined />} key={'5'}
                   style={currentNavigation === '5' ?  styles.hoverItem : styles.menuItem }>
                 Rondas de Vinculación
               </Menu.Item>
@@ -268,18 +268,18 @@ const ProfileUser = () => {
                   style={currentNavigation === '1' ?  styles.hoverItem : styles.menuItem }>
                 Perfil
               </Menu.Item>
-              <Menu.Item disabled={disabled} icon={<GroupOutlined />} key={'12'}
+              <Menu.Item disabled={false} icon={<GroupOutlined />} key={'12'}
                   style={currentNavigation === '12' ?  styles.hoverItem : styles.menuItem }>
                 Rondas de Vinculación / artistas escénicos
                 
               
               </Menu.Item>
-              <Menu.Item disabled={disabled} icon={<GroupOutlined />} key={'11'}
+              <Menu.Item disabled={false} icon={<GroupOutlined />} key={'11'}
                   style={currentNavigation === '11' ?  styles.hoverItem : styles.menuItem }>
                 Rondas de Vinculación / artistas de la viasualidad
                 
               </Menu.Item>
-            <Menu.Item disabled={disabled} icon={<CheckOutlined/>} key={'2'} 
+            <Menu.Item disabled={false} icon={<CheckOutlined/>} key={'2'} 
                 style={ currentNavigation === '2' ?  styles.hoverItem : styles.menuItem  }  >
               Talleres
             </Menu.Item></>}            
