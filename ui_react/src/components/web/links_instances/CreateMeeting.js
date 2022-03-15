@@ -69,6 +69,16 @@ const CreateMeeting = ({invited}) => {
                             disabledHours={() => [0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ,10,11, 14, 17, 18, 19, 20, 21, 22, 23, 24]}
                             minuteStep={20}
                             hideDisabledOptions = {true}
+                            disabledMinutes = { (selectedHour) => {
+                                console.log(selectedHour)
+                                var minutes= []
+                                if (selectedHour === 16){
+                                    minutes = [40]
+                                }else{
+                                    minutes = []
+                                }
+                                return minutes;
+                            }}
                             inputReadOnly={true}
                             showNow={false} style={{width:'300px'}} placeholder={'Selecciona la hora(formato 24 hrs)'} format={'HH:mm'} />
                     </Form.Item>
@@ -102,6 +112,16 @@ const CreateMeeting = ({invited}) => {
                             disabledHours={() => [0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ,10,11, 14, 17, 18, 19, 20, 21, 22, 23, 24]}
                             minuteStep={20}
                             hideDisabledOptions = {true}
+                            disabledMinutes = { (selectedHour) => {
+                                console.log(selectedHour)
+                                var minutes= []
+                                if (selectedHour === 16){
+                                    minutes = [40]
+                                }else{
+                                    minutes = []
+                                }
+                                return minutes;
+                            }}
                             inputReadOnly={true}
                             showNow={false} style={{width:'300px'}} placeholder={'Selecciona la hora(formato 24 hrs)'} format={'HH:mm'} />
                     </Form.Item>

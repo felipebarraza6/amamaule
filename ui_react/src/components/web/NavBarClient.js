@@ -6,6 +6,7 @@ import { AuthContext } from '../../App'
 import { Link } from 'react-router-dom'
 import Logo from '../../assets/logo/01B.png'
 import Logo1 from '../../assets/logo/logom.png'
+import pdf from '../../assets/PROGRAMA_2022.pdf'
 const { Header } = Layout
 const { Item } = Menu
 
@@ -27,7 +28,11 @@ const NavBarClient = () => {
            <Menu mode="horizontal" theme='dark' style={styles.menu} onClick={(key)=>console.log(key)} > 
             <Item style={styles.item}>
                 <Link to='/'>Inicio</Link>
-            </Item>            
+            </Item>   
+            <Item style={styles.item}>
+                    <Button style={{paddingBottom:'40px', paddingTop:'12px', color:'white'}} type='link'>
+                        <a href={pdf} target='__blank'>PROGRAMA 2022</a></Button>
+                </Item>         
             {state.isAuthenticated ? 
             <>
                 <Item style={styles.item}>
@@ -49,6 +54,7 @@ const NavBarClient = () => {
             
                 <Item style={styles.item}> <Login /> </Item>
             }
+            
             
            </Menu>
         </Header>: <> <div style={styles.headerM2}>
@@ -130,7 +136,7 @@ const styles = {
         marginLeft:'5px'
     }, 
     itemLogOut: {
-        height: '40px',
+        height: '45px',
         backgroundColor: 'rgb(176, 93, 185)',
     }
 }

@@ -68,7 +68,7 @@ const ListPublic = ({globalState, changeState, is_public}) => {
     return(
         <React.Fragment>
 
-            <Menu theme='dark' mode='horizontal' style={{ width:'100%' ,textAlign:'center', backgroundColor:is_public ? 'rgb(176, 93, 185)': 'rgb(176, 93, 185)', color:'white'}} onClick={async(current)=>{
+            <Menu theme='dark' mode='horizontal' style={{ width:'100%' ,textAlign:'center', backgroundColor:'#A659B3', color:'white'}} onClick={async(current)=>{
                 if(current.key==='0'){
                 const request  = await api_transmissions.transmissions.list('true', '', '').then((response)=> {
                     if(response.data.count > 0){                                                
@@ -151,19 +151,19 @@ const ListPublic = ({globalState, changeState, is_public}) => {
 
             }} >
                                
-                <Menu.Item style={{backgroundColor:'rgb(176, 93, 185)', color:'white'}} key='7' >
+                <Menu.Item style={{backgroundColor:'#A659B3', color:'white'}} key='7' >
                     Todos
                 </Menu.Item>
-                <Menu.Item style={{backgroundColor:'rgb(176, 93, 185)', color:'white'}} key='3' >
+                <Menu.Item style={{backgroundColor:'#A659B3', color:'white'}} key='3' >
                         Mesas temáticas
                 </Menu.Item>
-                <Menu.Item style={{backgroundColor:'rgb(176, 93, 185)', color:'white'}} key='6' >
+                <Menu.Item style={{backgroundColor:'#A659B3', color:'white'}} key='6' >
                     Obras y espectáculos
                 </Menu.Item>
-                <Menu.Item style={{backgroundColor:'rgb(176, 93, 185)', color:'white'}} key='1' >
+                <Menu.Item style={{backgroundColor:'#A659B3', color:'white'}} key='1' >
                    Conferencias
                 </Menu.Item>
-                <Menu.Item style={{backgroundColor:'rgb(176, 93, 185)', color:'white'}} key='2' >
+                <Menu.Item style={{backgroundColor:'#A659B3', color:'white'}} key='2' >
                     Showcases
                 </Menu.Item>
                     

@@ -127,47 +127,22 @@ const Viewings = () => {
                                 key: 'hour',
                             },
                             {
-                                title: 'DIA #1',
+                                title: '29 de Marzo',
                                 dataIndex: 'day1',
                                 key: 'day2',
                             },
                             {
-                                title: 'DIA #2',
+                                title: '30 de Marzo',
                                 dataIndex: 'day2',
                                 key: 'day2',
-                            },
-                            {
-                                title: 'DIA #3',
-                                dataIndex: 'day3',
-                                key: 'day3',
                             },
                             ]}
                             
                             dataSource={[
                                 {
                                     hour: '11:00',
-                                    day1: <><p>@usuario1 - @usuario2</p> <Button>Ingresar</Button><Button>Editar</Button><Button>Cancelar</Button></>,
-                                    day2: <><p>@usuario1 - @usuario2</p> <Button>Ingresar</Button><Button>Editar</Button><Button>Cancelar</Button></>,
-                                    day3: <><p>@usuario1 - @usuario2</p> <Button>Ingresar</Button><Button>Editar</Button><Button>Cancelar</Button></>,
-                                },
-                                {
-                                  hour: '11:20',
-                                  day1: <><p>@usuario1 - @usuario2</p> <Button>Ingresar</Button><Button>Editar</Button><Button>Cancelar</Button></>,
-                                  day2: <><p>@usuario1 - @usuario2</p> <Button>Ingresar</Button><Button>Editar</Button><Button>Cancelar</Button></>,
-                                  day3: <><p>@usuario1 - @usuario2</p> <Button>Ingresar</Button><Button>Editar</Button><Button>Cancelar</Button></>,
-                                },
-                                {
-                                    hour: '11:40',
-                                    day1: <><p>@usuario1 - @usuario2</p> <Button>Ingresar</Button><Button>Editar</Button><Button>Cancelar</Button></>,
-                                    day2: <><p>@usuario1 - @usuario2</p> <Button>Ingresar</Button><Button>Editar</Button><Button>Cancelar</Button></>,
-                                    day3: <><p>@usuario1 - @usuario2</p> <Button>Ingresar</Button><Button>Editar</Button><Button>Cancelar</Button></>,
-                                },
-                                {
-                                    hour: '12:0',
-                                    day1: <><p>@usuario1 - @usuario2</p> <Button>Ingresar</Button><Button>Editar</Button><Button>Cancelar</Button></>,
-                                    day2: <><p>@usuario1 - @usuario2</p> <Button>Ingresar</Button><Button>Editar</Button><Button>Cancelar</Button></>,
-                                    day3: <><p>@usuario1 - @usuario2</p> <Button>Ingresar</Button><Button>Editar</Button><Button>Cancelar</Button></>,
-                                },
+                                    day1: <><p>@usuario1 - @usuario2</p> <Button type='primary' size='small'>Ingresar</Button><Button type='primary' style={{color:'black',backgroundColor:'rgb(255, 186, 49)', borderColor: 'rgb(255, 186, 49)'}} size='small'>Re-agendar</Button><Button size='small' type='primary' danger>Cancelar</Button></>,                                    
+                                },                               
                               ]}>
 
                         </Table>

@@ -74,6 +74,16 @@ const SingleUser = ({user, is_invitations}) => {
                     </Row>
                     <Divider />
                     <Row>
+                        <Col lg={24} xs={24}>
+                            <strong><Text>¿Qué bucas en Ama 2022?</Text></strong>
+                        </Col>
+                        <Col lg={24} xs={24}>
+                                <Paragraph stlye={{align:'justify'}}>
+                                {state.profile && <>{state.profile.what_looking.map((x)=><Tag color={'pink'} style={{margin:'5px'}}>{x}</Tag>)}</> }
+                            </Paragraph>
+                        </Col>
+                    </Row>
+                    <Row>
                         <Col lg={6} xs={24}>
                             <strong><Text>Reseña</Text></strong>
                         </Col>
@@ -89,7 +99,7 @@ const SingleUser = ({user, is_invitations}) => {
                         </Col>
                         <Col lg={18} xs={24}>
                                 <Paragraph>
-                                {state.profile && <>{state.profile.options_profile.map((x)=> x)}</> }
+                                {state.profile && <>{state.profile.options_profile.map((x)=> <Tag color={'pink'}>{x}</Tag>)}</> }
                             </Paragraph>
                         </Col>
                     </Row>

@@ -19,7 +19,7 @@ const FormPasswordReset  = ({ visible, onCreate, onCancel}) => {
             onCancel = {onCancel}
             onOk={()=> {
                 form.validateFields().then((values)=> {                    
-                        form.resetFields()
+                        
                         onCreate(values)
                 }).catch((info) => {
                     console.log(info)
@@ -49,14 +49,7 @@ const FormPasswordReset  = ({ visible, onCreate, onCancel}) => {
                     </Col>  
                 </Row>
                 
-                <Row>
-                    <Col span={12} style={styles.colField} >
-                        <Form.Item name='username' label='Nombre de usuario' rules={[
-                            { required: true, message: 'Campo obligatorio'},
-                        ]}>
-                            <Input />
-                        </Form.Item>
-                    </Col>
+                <Row>                    
                     <Col span={12} style={styles.colField} >
                         <Form.Item name='new_password' label='Nueva clave' rules={[
                         { required: true, message: 'Ingresa tu nueva clave'},                    
@@ -89,6 +82,17 @@ const ResetPassword = () => {
             SetGlobalState({...globalState, visibleModal: false})
         }).catch((error)=> {
             notification.error({message:'Datos incorrectos :('})
+            console.log({error})
+            if(error.response){
+                Object.keys(error.response.data).map((key, index)=> {
+                    let field = key
+                    let message = error.response.data[key]
+                  if(key==='non_field_errors'){
+                    field='Error'
+                  }
+                    notification.error({message:`${field}: ${message}`})
+                })
+              }
         })
         return request
         

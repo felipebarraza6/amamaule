@@ -10,24 +10,25 @@ from rest_framework.validators import UniqueValidator
 class ResetPasswordSerializer(serializers.Serializer):
     user = serializers.EmailField()
     phone_number = serializers.CharField()
-    username = serializers.CharField()
     new_password = serializers.CharField(min_length=6, max_length=64)
 
     def validate(self, data):
         user = data['user']
         phone_number = data['phone_number']
-        username = data['username']
-
-        get_user = User.objects.get(email=user)
+        try:
+            get_user = User.objects.get(email=user)
         
-        data_phone_number = get_user.phone_number
-        data_username = get_user.username
+            data_phone_number = get_user.phone_number
+            data_email = get_user.email
+        except:
+             raise serializers.ValidationError('El usuario no existe!')
+       
         
-        if phone_number == data_phone_number and username == data_username:
+        if data_phone_number == phone_number:                        
             get_user.set_password(data['new_password'])
             get_user.save()
         else:
-            serializers.ValidationError('Tus datos no coinciden!')
+            raise serializers.ValidationError('El telefono no coincide!')
         return data
 
 class SuppUserModelSerializer(serializers.ModelSerializer):    

@@ -48,46 +48,7 @@ const ProfileUser = () => {
   }
 
 
-  /* <Row style={{padding:'20px', backgroundColor:'white'}}>
-                    <Col>
-                            <Typography.Title level={5}>ESTADO INSCRIPCIÓN RONDAS DE VINCULACIÓN(PRESENCIAL)</Typography.Title>
-                    </Col>
-                    <Col span={24}>
-                    <Descriptions                     
-                        bordered={true} 
-                        title='ARTES ESCÉNICAS'                                            
-                        style={{backgroundColor:'white', paddingTop:'25px'}} 
-                        layout='horizontal'>
-                          <Descriptions label={`24 de Marzo, 11.30 a 13.00 hrs`} span={3}>
-                            {state.user.profile.ae_24_inscribed.length > 0 ? 'SI': 'NO'}
-                          </Descriptions>
-                          <Descriptions label={`25 de Marzo, 13.00 a 14.00 hrs`} span={3}>
-                            {state.user.profile.ae_25_inscribed.length > 0 ? 'SI': 'NO'}
-                          </Descriptions>
-                          <Descriptions label={`26 de Marzo, 13.00 a 14.00 hrs`} span={3}>
-                            {state.user.profile.ae_26_inscribed.length > 0 ? 'SI': 'NO'}  
-                          </Descriptions>
-                          
-                      </Descriptions>
-                      
-                    </Col>
-                    <Col span={24}>
-                    <Descriptions                     
-                        bordered={true} 
-                        title='ARTES DE LA VISUALIDAD'                                            
-                        style={{backgroundColor:'white', paddingTop:'25px'}} 
-                        layout='vertical'>
-                          <Descriptions label={`¿Te gustaria presenciar los pitch de artistas visuales?`} span={3}>
-                            {state.user.profile.av_programmers.map((x)=><p>{x}</p>)}
-                          </Descriptions>
-                          <Descriptions label={`¿Quieres presentar tu propuesta artística a los programadores?`} span={3}>
-                          {state.user.profile.av_25_artists.map((x)=><p>{x}</p>)}
-                          </Descriptions>
-                          
-                      </Descriptions>
-                      
-                    </Col>
-                </Row> */
+  
 
   console.log(state)
 
@@ -158,7 +119,7 @@ const ProfileUser = () => {
             {currentNavigationT == 6 ? <NavBar mode='dark'
                style={{backgroundColor:'#b05db9'}}               
             > {state.user && <>
-                <Button disabled={disabled} shape={'round'} type='link' style={currentNavigation === '0' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('0')}>
+                <Button disabled={false} shape={'round'} type='link' style={currentNavigation === '0' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('0')}>
                   <RocketOutlined style={styles.icon} />{currentNavigation === '0' && 'Contenido'}
               </Button>
               <Button shape={'round'} type='link' style={currentNavigation === '1' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('1')}>
@@ -226,7 +187,7 @@ const ProfileUser = () => {
             >
               {isDigital ? <>
                 
-             <Menu.Item disabled={disabled} icon={<LaptopOutlined />} key={'0'} 
+             <Menu.Item disabled={false} icon={<LaptopOutlined />} key={'0'} 
                   style={currentNavigation === '0' ?  styles.hoverItem : styles.menuItem }>
                 Contenido
               </Menu.Item>                                    
@@ -240,7 +201,7 @@ const ProfileUser = () => {
                 Talleres
               </Menu.Item>}              
               {state.user && <>
-                {state.user.type_user === 'ADMIN' &&                                         
+                {state.user.type_user === 'ADM' &&                                         
                   <Menu.Item   icon={<EyeOutlined/>} key={'3'}
                     style={ currentNavigation === '3' ?  styles.hoverItem : styles.menuItem  } >
                       Soporte
@@ -260,7 +221,7 @@ const ProfileUser = () => {
               <>
            
             {state.user && <>
-              <Menu.Item disabled={disabled} icon={<LaptopOutlined />} key={'0'} 
+              <Menu.Item disabled={false} icon={<LaptopOutlined />} key={'0'} 
                   style={currentNavigation === '0' ?  styles.hoverItem : styles.menuItem }>
                 Contenido
               </Menu.Item>    
@@ -276,7 +237,7 @@ const ProfileUser = () => {
               </Menu.Item>
               <Menu.Item disabled={false} icon={<GroupOutlined />} key={'11'}
                   style={currentNavigation === '11' ?  styles.hoverItem : styles.menuItem }>
-                Rondas de Vinculación / artistas de la viasualidad
+                Rondas de Vinculación / artistas de la visualidad
                 
               </Menu.Item>
             <Menu.Item disabled={false} icon={<CheckOutlined/>} key={'2'} 
@@ -389,8 +350,59 @@ const ProfileUser = () => {
                               </>
                             }
                       </Descriptions>
+                      
                   </Col>
                 </Row>       
+                <Row style={{padding:'20px', backgroundColor:'white'}}>
+                    <Col>
+                            <Typography.Title level={5}>ESTADO INSCRIPCIÓN RONDAS DE VINCULACIÓN(PRESENCIAL)</Typography.Title>
+                    </Col>
+                    <Col span={24}>
+                    <Descriptions                     
+                        bordered={true} 
+                        title='ARTES ESCÉNICAS'                                            
+                        style={{backgroundColor:'white', paddingTop:'25px'}} 
+                        layout='horizontal'>
+                          <Descriptions label={`24 de Marzo, 11.30 a 13.00 hrs`} span={3}>
+                            {state.user.profile.ae_24_inscribed.length > 0 ? 'SI': 'NO'}
+                          </Descriptions>
+                          <Descriptions label={`25 de Marzo, 13.00 a 14.00 hrs`} span={3}>
+                            {state.user.profile.ae_25_inscribed.length > 0 ? 'SI': 'NO'}
+                          </Descriptions>
+                          <Descriptions label={`26 de Marzo, 13.00 a 14.00 hrs`} span={3}>
+                            {state.user.profile.ae_26_inscribed.length > 0 ? 'SI': 'NO'}  
+                          </Descriptions>
+                          
+                      </Descriptions>
+                      
+                    </Col>
+                    <Col span={24}>
+                    <Descriptions                     
+                        bordered={true} 
+                        title='ARTES DE LA VISUALIDAD'                                            
+                        style={{backgroundColor:'white', paddingTop:'25px'}} 
+                        layout='vertical'>
+                          <Descriptions label={`¿Te gustaria presenciar los pitch de artistas visuales?`} span={3}>
+                             {state.user.profile.av_programmers.length ? <>                                                         
+                            {state.user.profile.av_programmers.map((x)=> {                                
+                                  return(<p> {x} </p>)                                                              
+                                }                            
+                              )}
+                            </>: <>SIN INSCRIPCIÓN</>}
+                          </Descriptions>
+                          <Descriptions label={`¿Quieres presentar tu propuesta artística a los programadores?`} span={3}>
+                            {state.user.profile.av_25_artists.length ? <>                                                         
+                            {state.user.profile.av_25_artists.map((x)=> {                                
+                                  return(<p> {x} </p>)                                                              
+                                }                            
+                              )}
+                            </>: <>SIN INSCRIPCIÓN</>}
+                          </Descriptions>
+                          
+                      </Descriptions>
+                      
+                    </Col>
+                </Row>
                 </>
                          
                  

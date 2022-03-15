@@ -80,7 +80,7 @@ class UserViewSet(viewsets.GenericViewSet,
         serializer = ResetPasswordSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         data = {
-            'status': 'OK'
+            'message': 'ACTUALIZADO'
         }
         return Response(data, status=status.HTTP_200_OK)
 

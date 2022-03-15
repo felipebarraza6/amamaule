@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import { Row, Col, Typography, Modal, List } from 'antd'
 import service1 from '../../assets/service_icons/CONFERENCIAS.png'
 import service2 from '../../assets/service_icons/RONDAS-DE-VINCULACION.png'
@@ -12,6 +12,37 @@ const { Item } = List
 
 
 const Services = () => {
+
+    const [size, setSize] = useState()
+
+    useEffect(()=> {
+        setSize(window.innerWidth)
+    }, [])
+
+    const styles = {
+        container: {
+            padding:'2%',
+            paddingTop:'8%',
+            paddingBottom:'8%', 
+            backgroundColor: '#18c5cc',        
+        },
+        column: {
+            textAlign:'center',
+            margin:'20px',
+        },
+        img: {
+          width: size > 800 ? '80%': '30%',
+          marginBottom: '3%',
+          cursor:'pointer',
+        },
+        img2: {
+            width:'20%',
+            marginBottom:'10px'
+        },
+        title: {
+            color: 'white',
+        }
+    }
 
     return(<>
         <Row style={styles.container} justify='center'>
@@ -168,30 +199,7 @@ Las rondas on line durarán 10 minutos, ocasión en la que podrás presentar tu 
     )
 }
 
-const styles = {
-    container: {
-        padding:'2%',
-        paddingTop:'8%',
-        paddingBottom:'8%', 
-        backgroundColor: '#18c5cc',        
-    },
-    column: {
-        textAlign:'center',
-        margin:'20px'
-    },
-    img: {
-      width: '80%',
-      marginBottom: '3%',
-      cursor:'pointer'
-    },
-    img2: {
-        width:'20%',
-        marginBottom:'10px'
-    },
-    title: {
-        color: 'white',
-    }
-}
+
 
 
 export default Services

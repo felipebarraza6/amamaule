@@ -8,6 +8,7 @@ import Logo1 from '../../assets/logo/logom.png'
 import Login from '../../components/web/auth/Login'
 import TeamModal from './TeamModal' 
 import Questions from './Questions'
+import pdf from '../../assets/PROGRAMA_2022.pdf'
 import OldAma from './OldAma'
 const { Header } = Layout
 const { Item } = Menu
@@ -32,30 +33,42 @@ const NavBar = () => {
                <Item style={styles.item}>
                    <Questions />
                 </Item>                                               
-                {state.isAuthenticated ? <Item style={styles.item}><Link to='/profile'>@{state.user.username}</Link></Item>:<Item style={styles.item}>
-                  <Login />
-                </Item>}
+                
+                <Item style={styles.item}>
+                    <Button style={{paddingBottom:'40px', paddingTop:'12px', color:'white'}} type='link'>
+                        <a href={pdf} target='__blank'>PROGRAMA 2022</a></Button>
+                </Item>
                 <Item style={styles.item}>
                     <OldAma />
-            </Item>            
+            </Item>   
+            {state.isAuthenticated ? <Item style={styles.item}><Link to='/profile'>@{state.user.username}</Link></Item>:<Item style={styles.item}>
+                  <Login />
+                </Item>}         
                 <Item style={styles.itemS}>
               <a target='__blank' href='https://www.facebook.com/ama.maule'>
-              <FacebookOutlined style={{fontSize: '30px', margin:'12px'}} />
+              <FacebookOutlined style={{fontSize: '20px', margin:'12px'}} />
               </a></Item> 
               <Item style={styles.itemS}>
               <a target='__blank' href='https://www.instagram.com/ama.maule/'>
-              <InstagramOutlined style={{fontSize: '30px', margin:'12px'}} />
+              <InstagramOutlined style={{fontSize: '20px', margin:'12px'}} />
               </a></Item>
               <Item style={styles.itemS}>
               <a target='__blank' href='https://twitter.com/AmaMaule?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor'>
-              <TwitterOutlined style={{fontSize: '30px', margin:'12px'}} />
+              <TwitterOutlined style={{fontSize: '20px', margin:'12px'}} />
               </a></Item>
                              
            </Menu></Header></>     }                     
         
-        {size <800 && <div style={styles.header}><img style={{width:'150px',paddingLeft:'20px', paddingTop:'20px'}} src={Logo1} /><Menu mode="horizontal" theme='dark' style={styles.menu} >      
+        {size <800 && 
+            <div style={styles.header}><img style={{width:'150px',paddingLeft:'20px', paddingTop:'20px'}} src={Logo1} />
+            <Menu mode="horizontal" theme='dark' style={styles.menu} >                 
+            <Item style={styles.item}>
+                    <Button style={{paddingBottom:'32px', paddingTop:'12px', color:'white'}} type='link'>
+                        <a href={pdf} target='__blank'>PROGRAMA 2022</a></Button>
+                </Item>
         {state.isAuthenticated ? <Item style={styles.item}><Link to='/profile'>@{state.user.username}</Link></Item>:<Item style={styles.item}>
                   <Login />
+
                 </Item>}</Menu> 
             
             </div>}
@@ -75,14 +88,15 @@ const styles = {
     }, 
     item: {
         backgroundColor: '#b05db9',
-        marginRight:'5px',
-        marginLeft:'5px',
+        marginRight:'0px',
+        marginLeft:'0px',
         fontSize:'18px'
     }, 
     itemS: {
       backgroundColor: '#b05db9',
       marginRight:'-10px',
-      marginLeft:'-10px'
+      marginLeft:'-10px',
+      marginBottom:'10px'
   },
     item1: {
         backgroundColor: '#b05db9',

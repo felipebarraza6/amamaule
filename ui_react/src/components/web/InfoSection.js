@@ -22,19 +22,18 @@ const InfoSection = () => {
         <Row justify='center' style={{backgroundImage:`url(${Slide1})`,backgroundPosition: 'top',
         backgroundSize: '160% auto',
         height: '100%',
-        backgroundRepeat: 'repeat',
+        backgroundRepeat: 'no-repeat',
         width: '100%'}} >
           
-            </Row>
-
-          <Row justify='center'>  
+          <ListPublic /> 
+          </Row>
+          <Row justify='center'>
+            <Col style={{marginTop:'0px'}} >
            
-            <Col  style={{marginTop:'50px'}} >
                 <Card 
-                    style={styles.card}
-                   >
-
-        <CarouselBanner />
+                    style={size > 800 ? styles.card : styles.card2}
+                   > 
+        
 
 <Collapse style={{marginTop:'60px'}} defaultActiveKey={['1']} bordered={false} className="site-collapse-custom-collapse">
       <Panel header="INSCRIPCIÓN" key="1" className="site-collapse-custom-panel">
@@ -52,8 +51,9 @@ const InfoSection = () => {
         </Row></>
     )
 
-}
+    
 
+}
 
 const styles = {
     row: {
@@ -64,9 +64,17 @@ const styles = {
         width: '900px',
         boxShadow:'25px 25px 5px rgba(0, 0, 0, 0.2)',
         marginBottom: '100px'
+    },
+    card2: {
+        width: '100%',
+        boxShadow:'25px 25px 5px rgba(0, 0, 0, 0.2)',
+        marginBottom: '100px'
     }
     
 }
+
+
+
 
 
 export default InfoSection
