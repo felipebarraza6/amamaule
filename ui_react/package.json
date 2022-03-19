@@ -16,6 +16,8 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-draggable": "^4.4.4",
+    "react-floating-whatsapp": "^4.0.5",
+    "react-floating-whatsapp-button": "^1.1.0",
     "react-ig-feed": "^1.0.4",
     "react-instagram-authless-feed": "jamesmoriarty/react-instagram-authless-feed#v2.0.0",
     "react-router-dom": "^5.2.0",

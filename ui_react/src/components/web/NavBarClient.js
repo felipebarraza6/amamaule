@@ -33,10 +33,7 @@ const NavBarClient = () => {
                     <Button  style={{paddingBottom:'40px', paddingTop:'12px', color:'white'}} type='link'>
                         <a style={{color:'white'}} href={pdf} target='__blank'>PROGRAMA 2022</a></Button>
                 </Item>         
-                <Item style={styles.item}>
-                    <Button icon={<WhatsAppOutlined style={{color:'white', fontSize:'16px'}} />} style={{borderColor:'rgb(24, 197, 204)',backgroundColor:'rgb(24, 197, 204)',paddingBottom:'40px', paddingTop:'12px', color:'white'}} type='primary'>
-                        <a href={'https://api.whatsapp.com/send?phone=933932112&text=Hola, necesito ayuda!'} style={{color:'white'}} target='__blank'>ENVÍAR MENSAJE A SOPORTE</a></Button>
-                </Item>         
+                     
             {state.isAuthenticated ? 
             <>
                 <Item style={styles.item}>

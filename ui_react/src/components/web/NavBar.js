@@ -25,10 +25,7 @@ const NavBar = () => {
     return(<>
         {size > 800 && <><Header style={styles.headerS}>
                 <Menu mode="horizontal" theme='dark' style={styles.menu} >
-                <Item style={styles.item}>
-                    <Button icon={<WhatsAppOutlined style={{color:'white', fontSize:'16px'}} />} style={{borderColor:'rgb(24, 197, 204)',backgroundColor:'rgb(24, 197, 204)',paddingBottom:'0px',marginBottom:'12px', color:'white'}} type='primary'>
-                        <a href={'https://api.whatsapp.com/send?phone=933932112&text=Hola, necesito ayuda!'} style={{color:'white'}} target='__blank'>ENVÍAR MENSAJE A SOPORTE</a></Button>
-                </Item>       
+
                 <Item style={styles.itemS}>
               <a target='__blank' href='https://www.facebook.com/ama.maule'>
               <FacebookOutlined style={{fontSize: '20px', margin:'12px'}} />

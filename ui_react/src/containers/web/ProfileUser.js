@@ -294,9 +294,13 @@ const ProfileUser = () => {
                 <Col lg={{span:10}} xs={{span:24}}  style={{padding:'10px'}}>
                 {state.user && <><Row>
                   <Col span={7} style={{backgroundColor:'white', padding:'10px'}}>                    
-                  {state.user.profile ? <>                      
+                  {!state.user.profile.avatar ? <>                      
                       <label for='file' labe='asd'><>                                   
-                            <Avatar shape='square' style={styles.uploadAvatar} src={state.user.profile.avatar}  />                                                          
+                      <Tooltip color='rgb(24, 197, 204)' title='Subir foto de perfil'>
+                            <Avatar shape='square' style={styles.uploadAvatar} src={state.user.profile.avatar}>
+                             <UploadOutlined style={{fontSize:'50px', paddingTop:'40px'}} /> 
+                            </Avatar>                                                          
+                            </Tooltip>
                             </>
                         </label>
                         <input id='file' type='file'  accept='image/*' style={styles.uploadFile} onChange={async(evt)=>{
@@ -305,14 +309,14 @@ const ProfileUser = () => {
                                             message.success('Imagen actualizada!')  
                                             window.location.reload()                                                                                      
                                           }).catch((error)=>{
-                                            message.error('Intendalo más tarde')
+                                            message.error('Intentalo más tarde')
                                           })
                                                                                                                                                                                                          
                               } }  />                    
                       </>:
                       <>
                         <label for='file' labe='asd'><>                                   
-                        <Tooltip title='Actualizar imagen'>
+                        <Tooltip color='rgb(24, 197, 204)' title='Actualizar foto de perfil'>
                             <Avatar shape='square' style={styles.uploadAvatar} >
                               <UploadOutlined style={{fontSize:'50px', paddingTop:'40px'}} />
                             </Avatar>                                      
