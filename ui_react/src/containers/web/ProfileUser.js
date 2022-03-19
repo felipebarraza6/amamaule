@@ -294,7 +294,7 @@ const ProfileUser = () => {
                 <Col lg={{span:10}} xs={{span:24}}  style={{padding:'10px'}}>
                 {state.user && <><Row>
                   <Col span={7} style={{backgroundColor:'white', padding:'10px'}}>                    
-                  {!state.user.profile.avatar ? <>                      
+                  {state.user.profile.avatar ? <>                      
                       <label for='file' labe='asd'><>                                   
                       <Tooltip color='rgb(24, 197, 204)' title='Subir foto de perfil'>
                             <Avatar shape='square' style={styles.uploadAvatar} src={state.user.profile.avatar}>
@@ -307,7 +307,7 @@ const ProfileUser = () => {
                                           setImageFile(evt.target.files[0])           
                                           const request = await api.user.UPLOAD_FILE_OR_IMG(`users/profile/${state.user.id}/`, 'avatar', evt.target.files[0]).then((response)=> {
                                             message.success('Imagen actualizada!')  
-                                            window.location.reload()                                                                                      
+                                            //window.location.reload()                                                                                      
                                           }).catch((error)=>{
                                             message.error('Intentalo más tarde')
                                           })
@@ -327,11 +327,10 @@ const ProfileUser = () => {
                                           setImageFile(evt.target.files[0])           
                                           const request = await api.user.UPLOAD_FILE_OR_IMG(`users/profile/${state.user.id}/`, 'avatar', evt.target.files[0]).then((response)=> {
                                             message.success('Imagen actualizada!')                                                                                        
-                                            window.location.reload()                                                                                      
+                                            //window.location.reload()                                                                                      
                                           }).catch((error)=>{
                                             message.error('Intendalo más tarde')
-                                          })
-                                                                                                                                                                 
+                                          })                                                                                                                                                                 
                               } }   />                    
                     </>}   
                   </Col>
