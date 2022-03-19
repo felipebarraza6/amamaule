@@ -307,7 +307,7 @@ const ProfileUser = () => {
                                           setImageFile(evt.target.files[0])           
                                           const request = await api.user.UPLOAD_FILE_OR_IMG(`users/profile/${state.user.id}/`, 'avatar', evt.target.files[0]).then((response)=> {
                                             message.success('Imagen actualizada!')  
-                                            //window.location.reload()                                                                                      
+                                            window.location.reload()                                                                                      
                                           }).catch((error)=>{
                                             message.error('Intentalo más tarde')
                                           })
@@ -327,7 +327,7 @@ const ProfileUser = () => {
                                           setImageFile(evt.target.files[0])           
                                           const request = await api.user.UPLOAD_FILE_OR_IMG(`users/profile/${state.user.id}/`, 'avatar', evt.target.files[0]).then((response)=> {
                                             message.success('Imagen actualizada!')                                                                                        
-                                            //window.location.reload()                                                                                      
+                                            window.location.reload()                                                                                      
                                           }).catch((error)=>{
                                             message.error('Intendalo más tarde')
                                           })                                                                                                                                                                 
