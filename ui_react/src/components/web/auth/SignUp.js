@@ -33,7 +33,7 @@ const SignUp = () => {
 
     async function onCreate(values){
         setLoad(true)
-        var email_convert_to_user = /^([^]+)@(\w+).(\w+)$/.exec(values['email'])           
+        var email_convert_to_user = /^([^]+)@(\w+).(\w+)$/.exec(values.email)           
         
         if(Array.isArray(email_convert_to_user)){
             var outString = email_convert_to_user[1].replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');             
@@ -41,7 +41,17 @@ const SignUp = () => {
                 ...values,
                 username: (outString+email_convert_to_user[2]).slice(0,12)
             }                  
-        } 
+        }else {
+            values ={
+                ...values,
+                username : values.phone_number.slice(0,12) 
+            }
+        }
+
+        values = {
+            ...values,
+            email: values.email.toLowerCase()
+        }
         
        const request = await api.user.signup(values).then((response)=> {
            console.log(response)
@@ -88,6 +98,7 @@ const SignUp = () => {
         })
 
         return request
+        
         
     }
       
@@ -211,7 +222,7 @@ const SignUp = () => {
                     <p>Envíanos un correo a <a href='mailto:soporte@amamaule.cl' style={{color:'rgb(176, 93, 185)'}}  >soporte@amamaule.cl</a></p>
                     </Col>
                     <Col  xs={24} lg ={6} span={6}>
-                        <Button disabled={load} htmlType='submit' style={{marginRight:'10px'}} style={{backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)', marginRight:'10px'}} type='primary' >Crear</Button> 
+                        <Button disabled={false} htmlType='submit' style={{marginRight:'10px'}} style={{backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)', marginRight:'10px'}} type='primary' >Crear</Button> 
                       
                       <Button onClick={()=> {form.resetFields()}} type='primary' style={{backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)', marginRight:''}}>Limpiar </Button>
                     </Col>

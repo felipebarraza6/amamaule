@@ -118,8 +118,8 @@ const Login = () => {
 
     return (
         <React.Fragment>
-            <Button size='large' type='link' style={styles.button} onClick={changeVisible}>
-                <UserOutlined style={{fontSize:'20px'}} />
+            <Button icon={<UserOutlined style={{fontSize:'15px'}} />} size='large' type='link' style={styles.button} onClick={changeVisible}>
+                
                 Ingresar
             </Button>
             <UserLoginForm visible={globalState.visibleModal} onCreate={onCreate} onCancel={closeModal} />

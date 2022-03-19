@@ -283,7 +283,7 @@ const ListTransmissionsPresencial = ({globalState, changeState, is_public}) => {
                                         </Col>
                                     }
                                     {obj.category === 'Obras y espectáculos' & obj.yt_url !== null ? <>
-                                        <Button type='primary' style={{backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}>Inscribirse</Button>
+                                        <Button onClick={()=> {window.open(obj.yt_url)}} type='primary' style={{backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}>Inscribirse</Button>
                                     </>:''}
                                     {!obj.is_live & !obj.is_yt_stream ?
                                     <Col xs={{ span: 24}} lg={{ span: 6 }}>

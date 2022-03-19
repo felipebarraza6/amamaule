@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useReducer,
                 createContext } from 'react'
 import api from './api/endpoints'
+import { notification } from 'antd'
 import { login_reducer } from './reducers/auth'
 
 //Containers
@@ -22,7 +23,7 @@ function App() {
   
   const [state, dispatch] = useReducer(login_reducer, initialState)
   const [size, setSize] = useState()
-  console.log(state)
+  
   useEffect(()=>{
   
     const access_token = JSON.parse(localStorage.getItem('access_token' || null ))
@@ -44,7 +45,13 @@ function App() {
     }
 
     setSize(window.innerWidth)
+
     if(user && access_token){
+      if(!user.is_verified){
+        notification.warning({duration: 10,title:'Advertencia',message:'Estimados participantes de AMA 2022: Les recordamos que para participar en todas las actividades programadas, primero deben completar su perfil con todos los datos solicitados. Si aún tiene dudas acerca de cómo completar su perfil, por favor, contactarse al mail soporte@amamaule.cl'})
+      }
+      
+      console.log(user)
     getUserData(user.username)
     }
   }, [])

@@ -1,7 +1,7 @@
 import React, {useEffect, useState, useContext} from 'react'
 import { Button, Form, Input, 
         Row, Col, notification, Tag,
-        Checkbox, Select, Card, Typography } from "antd"
+        Checkbox, Select, Card, Typography, message } from "antd"
 import api from '../../../api/endpoints'
 import { AuthContext } from '../../../App'
 const {TextArea} = Input
@@ -17,6 +17,7 @@ const UpdateProfileData = ({user, type_user, txt_type_user}) => {
     const [file, setFile] = useState(null)
     const [needScholarship, setneedScholarship] = useState(false)
     const [subcate, setSubCate] = useState(true)
+    const [disabled, setDisabled] = useState(false)
     
     const [form] = Form.useForm()
 
@@ -44,10 +45,14 @@ const UpdateProfileData = ({user, type_user, txt_type_user}) => {
             setSubCate(true)
             form.resetFields(['options_profile'])
             if(file){ 
+                notification.warning({title:'Cargando dossier...', description:'Subiendo archivo... está página se actualiza automáticamente'})
                 const rq = api.user.UPLOAD_FILE_OR_IMG(`users/profile/${user.id}/`, 'dossier_file', file).then((res)=> {
-                    notification.success({message: 'Dossier actualizado!'})    
+                    notification.success({message: 'Dossier actualizado correctamente!'})    
+                    message.success('Dossier cargado!!!')
                     window.location.reload()
                 })
+                
+            }else {
                 window.location.reload()
             }
         }).catch((error)=> {
@@ -102,7 +107,9 @@ const UpdateProfileData = ({user, type_user, txt_type_user}) => {
                 'participated_in_last_edition': state.participated_in_last_edition,
                 'review': state.review,
                 'what_looking': state.what_looking,
+                'options_profile': state.options_profile,
                 'website': state.website,                
+
                 'you_made_rounds': state.you_made_rounds,
                 'need_cholarsh': state.need_cholarsh
             }}>
@@ -460,7 +467,7 @@ const UpdateProfileData = ({user, type_user, txt_type_user}) => {
                                     <input type='file' />
                                 </Form.Item>
                                 <Form.Item>
-                                    <Button htmlType='submit' style={{backgroundColor:'rgb(206, 61, 75)', borderColor:'rgb(206, 61, 75)'}} type={'primary'}>ACTUALIZAR PERFIL </Button>
+                                    <Button disabled={disabled} htmlType='submit' style={{backgroundColor:'rgb(206, 61, 75)', borderColor:'rgb(206, 61, 75)'}} type={'primary'}>ACTUALIZAR PERFIL </Button>
                                 </Form.Item>
                                 
                 </Col>

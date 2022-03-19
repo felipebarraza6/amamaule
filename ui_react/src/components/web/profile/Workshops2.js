@@ -113,7 +113,7 @@ const Workshops2 = ({is_digital}) => {
                   
                   {!x.is_end && <>
                   {is_incribed===false ? 
-                    <Button style={styles.btn} onClick={()=>updateWorkshop(x.id, participans, quota)} type='primary'>PARTICIPAR</Button>:
+                    <Button disabled={!state.user.is_verified} style={styles.btn} onClick={()=>updateWorkshop(x.id, participans, quota)} type='primary'>PARTICIPAR</Button>:
                   <Button style={styles.btn} onClick={()=>updateWorkshopRest(x.id, participans)} type='primary'>CANCELAR PARTICIPACION</Button>}
                   </>}
                   

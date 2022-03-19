@@ -1,5 +1,5 @@
-import React, {useContext} from 'react'
-import { Layout, Typography, Row, Col } from 'antd'
+import React, {useContext, useEffect} from 'react'
+import { Layout, Typography, Row, notification } from 'antd'
 import ProfileUser from './ProfileUser'
 import '../../assets/css/web.css'
 import NavBar from '../../components/web/NavBar'
@@ -19,7 +19,8 @@ const { Title, Paragraph } = Typography
 const Home = () => {
 
     const {state} = useContext(AuthContext)
-    console.log(state)
+    
+
   return(
     <Router>
       <Layout>

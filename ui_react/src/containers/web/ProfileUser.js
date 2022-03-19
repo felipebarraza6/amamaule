@@ -26,8 +26,7 @@ import LinksInstancesAV from '../../components/web/profile/LinkInstancesAV'
 
 const ProfileUser = () => {
 
-    const { state, dispatch } = useContext(AuthContext)
-    console.log(state)
+    const { state, dispatch } = useContext(AuthContext)    
     const [profile, setProfile] = useState(null)
     const [currentNavigation, setCurrentNavigation] = useState('1')
     const [currentNavigationT, setCurrentNavigationT] = useState('6')
@@ -50,7 +49,7 @@ const ProfileUser = () => {
 
   
 
-  console.log(state)
+  
 
   if(state.user){        
     var type_user = state.user.type_user
@@ -75,6 +74,7 @@ const ProfileUser = () => {
     }else{
      txt_type = 'NOT'
     }
+
   }
 
   async function getUserData(user) {
@@ -87,9 +87,12 @@ const ProfileUser = () => {
     })        
     return request
 }
+   
     
+   
 
-    useEffect(()=> {
+    useEffect(()=> {            
+      
       setSize(window.innerWidth)           
     },[])
 
@@ -100,6 +103,8 @@ const ProfileUser = () => {
                 <NavBar mode='dark'
                style={{backgroundColor:'#18c5cc'}}               
             > {state.user && <>
+
+              
                 
               <Button shape={'round'} type='link' style={currentNavigationT === '6' ?  styles.buttonAct : styles.menuItemT } onClick={()=>{
               setCurrentNavigationT('6') 
@@ -116,6 +121,7 @@ const ProfileUser = () => {
 
               </>}
             </NavBar>
+            
             {currentNavigationT == 6 ? <NavBar mode='dark'
                style={{backgroundColor:'#b05db9'}}               
             > {state.user && <>
@@ -133,7 +139,7 @@ const ProfileUser = () => {
                   <EyeOutlined style={styles.icon} />{currentNavigation === '3' && 'Soporte'}
               </Button>
               } 
-                    <Button disabled={false} shape={'round'} type='link' style={currentNavigation === '5' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('5')}>
+                    <Button disabled={!state.user.is_verfied} shape={'round'} type='link' style={currentNavigation === '5' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('5')}>
                   <ForkOutlined style={styles.icon} />{currentNavigation === '5' && 'Rondas'}
               </Button>
 
@@ -141,7 +147,7 @@ const ProfileUser = () => {
             </NavBar>: <NavBar mode='dark'
                style={{backgroundColor:'#b05db9'}}               
             > {state.user && <>
-              <Button disabled={disabled} shape={'round'} type='link' style={currentNavigation === '0' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('0')}>
+              <Button disabled={false} shape={'round'} type='link' style={currentNavigation === '0' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('0')}>
                   <RocketOutlined style={styles.icon} />{currentNavigation === '0' && 'Contenido'}
               </Button> 
               <Button shape={'round'} type='link' style={currentNavigation === '1' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('1')}>
@@ -186,11 +192,11 @@ const ProfileUser = () => {
                 style={styles.menuOv}
             >
               {isDigital ? <>
-                
+              {state.user && 
              <Menu.Item disabled={false} icon={<LaptopOutlined />} key={'0'} 
                   style={currentNavigation === '0' ?  styles.hoverItem : styles.menuItem }>
                 Contenido
-              </Menu.Item>                                    
+              </Menu.Item> }                                   
               <Menu.Item  icon={<UserOutlined/>} key={'1'} 
                   style={currentNavigation === '1' ?  styles.hoverItem : styles.menuItem }>
                 Perfil
@@ -210,7 +216,7 @@ const ProfileUser = () => {
               </>}
               {state.user &&
               <>
-              <Menu.Item disabled={false} icon={<GroupOutlined />} key={'5'}
+              <Menu.Item disabled={!state.user.is_verified} icon={<GroupOutlined />} key={'5'}
                   style={currentNavigation === '5' ?  styles.hoverItem : styles.menuItem }>
                 Rondas de Vinculación
               </Menu.Item>
@@ -288,7 +294,6 @@ const ProfileUser = () => {
                 <Col lg={{span:10}} xs={{span:24}}  style={{padding:'10px'}}>
                 {state.user && <><Row>
                   <Col span={7} style={{backgroundColor:'white', padding:'10px'}}>                    
-                  {console.log(state)}                  
                   {state.user.profile ? <>                      
                       <label for='file' labe='asd'><>                                   
                             <Avatar shape='square' style={styles.uploadAvatar} src={state.user.profile.avatar}  />                                                          

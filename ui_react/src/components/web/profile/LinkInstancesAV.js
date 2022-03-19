@@ -48,10 +48,14 @@ const LinksInstancesAV = () => {
             <Title level={3}>RONDAS DE VINCULACIÓN -  ARTES DE LA VISUALIDAD</Title>
         </Col><Col span={20} style={{margin:'25px'}}>
             <Paragraph style={{textAlign:'justify'}}> 
-              Las rondas de vinculación son parte de las actividades existentes en lo que se ha denominado Espacio Digital de Artistas de la Visualidad. Este último es un espacio dentro del estacionamiento del Teatro Regional del Maule (Zócalo) que contempla un montaje a manera de galería con exhibición en pantallas de obras visuales. En el mismo espacio a algunos metros, se considera un pequeño escenario dotado de pantalla, para efectuar estas rondas de vinculación con artistas de la visualidad, en un formato más expositivo.
+            Las rondas de vinculación son parte de las actividades existentes en lo que se ha denominado Espacio Digital de Artistas de la Visualidad. Este último es un 
+            espacio dentro del estacionamiento del Teatro Regional del Maule (Zócalo) que contempla un montaje a manera de galería con exhibición en pantallas de obras visuales. 
+            En el mismo espacio a algunos metros, se considera un pequeño escenario dotado de pantalla, para efectuar estas rondas de vinculación con artistas de la visualidad, en un 
+            formato más expositivo.            
             </Paragraph>
             <Paragraph style={{textAlign:'justify'}}> 
-            En ese sentido el que sube al escenario es el artista previamente inscrito, quien tendrá una presentación de su trabajo y un tiempo aprox de 5 minutos para un primer pitch, y otros 5 minutos para conversar y responder consultas de los programadores que estarán sentados al aire libre, en sillas, considerando la cantidad de personas que admita el aforo. El zócalo del Teatro Regional del Maule albergará las rondas de vinculación de Artistas Visuales.
+            En ese sentido el que sube al escenario es el artista previamente inscrito, quien tendrá una presentación de su trabajo y un tiempo aprox de 5 minutos para un primer pitch, y otros 5 minutos para conversar y responder consultas de los programadores que estarán sentados al aire libre, considerando la cantidad de personas que admita el aforo. 
+            Si te inscribiste en las rondas de vinculación de artistas de la visualidad para presentar tu propuesta artística, envíanos tu presentación en formato pdf al correo comunica@teatroregional.cl hasta el 22 de marzo.
             </Paragraph>
         </Col></Row>
         </Row>
@@ -82,7 +86,7 @@ const LinksInstancesAV = () => {
                         <Select.Option value='25 marzo 15.00 a las 18.30 hrs'>25 marzo 15.00 a las 18.30 hrs</Select.Option>
                         <Select.Option value='26 marzo 15.00 a las 18.30 hrs'>26 marzo 15.00 a las 18.30 hrs</Select.Option>
                     </Select> 
-                    <Button size='large' type='primary' onClick={()=> postData(state)} style={styles.btn} >Aceptar</Button>                 
+                    <Button disabled={!authContext.user.is_verified} size='large' type='primary' onClick={()=> postData(state)} style={styles.btn} >Aceptar</Button>                 
                 </Card>                
             </Col>
             <Col span={12} lg={12}  xs={24}>
@@ -111,7 +115,7 @@ const LinksInstancesAV = () => {
                             <Select.Option value='25 marzo 15.00 a las 18.30 hrs'>25 marzo 15.00 a las 18.30 hrs</Select.Option>
                             <Select.Option value='26 marzo 15.00 a las 18.30 hrs'>26 marzo 15.00 a las 18.30 hrs</Select.Option>
                         </Select>  
-                    <Button size='large' type='primary' onClick={()=> postData(state)} style={styles.btn} >Aceptar</Button>                   
+                    <Button disabled={!authContext.user.is_verified} size='large' type='primary' onClick={()=> postData(state)} style={styles.btn} >Aceptar</Button>                   
                                               
                 </Card>
                 

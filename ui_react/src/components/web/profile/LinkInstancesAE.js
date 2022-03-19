@@ -75,7 +75,7 @@ const LinksInstancesAE = () => {
                             updateProfile()
                         })
                     }} >Cancelar participación</Button>:
-                    <Button size='large' type='primary' style={styles.btn} onClick={async()=>{
+                    <Button disabled={!authContext.user.is_verified} size='large' type='primary' style={styles.btn} onClick={async()=>{
                         const rq = await api.user.update_profile(authContext.user.id, {
                             ae_24_inscribed: ['si'],                            
                         }).then((x)=> {
@@ -89,7 +89,7 @@ const LinksInstancesAE = () => {
             <Col  lg={8}  xs={24}>
                  <Card hoverable cover={<img src={img2} />} style={{ width: 400, margin:'20px' }}>
                  {profile.ae_25_inscribed.length > 0 ? 
-                    <Button size='large' type='primary' style={styles.btn} onClick={async()=>{
+                    <Button  size='large' type='primary' style={styles.btn} onClick={async()=>{
                         const rq = await api.user.update_profile(authContext.user.id, {
                             ae_25_inscribed: [],                            
                         }).then((x)=> {
@@ -97,7 +97,7 @@ const LinksInstancesAE = () => {
                             updateProfile()
                         })
                     }} >Cancelar Participación</Button>:
-                    <Button size='large' type='primary' style={styles.btn} onClick={async()=>{
+                    <Button disabled={!authContext.user.is_verified} size='large' type='primary' style={styles.btn} onClick={async()=>{
                         const rq = await api.user.update_profile(authContext.user.id, {
                             ae_25_inscribed: ['si'],                            
                         }).then((x)=> {
@@ -122,7 +122,7 @@ const LinksInstancesAE = () => {
                             updateProfile()
                         })
                     }} >Cancelar Participación</Button>:
-                    <Button size='large' type='primary' style={styles.btn} onClick={async()=>{
+                    <Button disabled={!authContext.user.is_verified} size='large' type='primary' style={styles.btn} onClick={async()=>{
                         const rq = await api.user.update_profile(authContext.user.id, {
                             ae_26_inscribed: ['si'],                            
                         }).then((x)=> {

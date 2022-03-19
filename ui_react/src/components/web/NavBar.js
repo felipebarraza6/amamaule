@@ -1,6 +1,6 @@
 import React, {useContext, useState, useEffect} from 'react'
 import { Layout, Menu, Button, Tooltip } from 'antd'
-import { LogoutOutlined, FilePdfFilled, TeamOutlined, InstagramOutlined, TwitterOutlined, FacebookOutlined } from '@ant-design/icons'
+import { LogoutOutlined, FilePdfFilled, WhatsAppOutlined, InstagramOutlined, TwitterOutlined, FacebookOutlined } from '@ant-design/icons'
 import { AuthContext } from '../../App'
 import { Link } from 'react-router-dom'
 import Logo from '../../assets/logo/01B.png'
@@ -23,9 +23,28 @@ const NavBar = () => {
     },[])
 
     return(<>
-        {size > 800 && <><Header style={styles.header}>            
+        {size > 800 && <><Header style={styles.headerS}>
+                <Menu mode="horizontal" theme='dark' style={styles.menu} >
+                <Item style={styles.item}>
+                    <Button icon={<WhatsAppOutlined style={{color:'white', fontSize:'16px'}} />} style={{borderColor:'rgb(24, 197, 204)',backgroundColor:'rgb(24, 197, 204)',paddingBottom:'0px',marginBottom:'12px', color:'white'}} type='primary'>
+                        <a href={'https://api.whatsapp.com/send?phone=933932112&text=Hola, necesito ayuda!'} style={{color:'white'}} target='__blank'>ENVÍAR MENSAJE A SOPORTE</a></Button>
+                </Item>       
+                <Item style={styles.itemS}>
+              <a target='__blank' href='https://www.facebook.com/ama.maule'>
+              <FacebookOutlined style={{fontSize: '20px', margin:'12px'}} />
+              </a></Item> 
+              <Item style={styles.itemS}>
+              <a target='__blank' href='https://www.instagram.com/ama.maule/'>
+              <InstagramOutlined style={{fontSize: '20px', margin:'12px'}} />
+              </a></Item>
+              <Item style={styles.itemS}>
+              <a target='__blank' href='https://twitter.com/AmaMaule?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor'>
+              <TwitterOutlined style={{fontSize: '20px', margin:'12px'}} />
+              </a></Item>
+                             
+         </Menu> </Header><Header style={styles.header}>            
         <div style={styles.item1}>
-                <img alt='logo' src={Logo} style={{width:'285px'}} />
+                <img alt='logo' src={Logo} style={{width:'285px'}} />                
         </div><Menu mode="horizontal" theme='dark' style={styles.menu} >            
             <Item style={styles.item}>
                 <TeamModal />
@@ -40,24 +59,14 @@ const NavBar = () => {
                 </Item>
                 <Item style={styles.item}>
                     <OldAma />
-            </Item>   
+            </Item> 
             {state.isAuthenticated ? <Item style={styles.item}><Link to='/profile'>@{state.user.username}</Link></Item>:<Item style={styles.item}>
                   <Login />
-                </Item>}         
-                <Item style={styles.itemS}>
-              <a target='__blank' href='https://www.facebook.com/ama.maule'>
-              <FacebookOutlined style={{fontSize: '20px', margin:'12px'}} />
-              </a></Item> 
-              <Item style={styles.itemS}>
-              <a target='__blank' href='https://www.instagram.com/ama.maule/'>
-              <InstagramOutlined style={{fontSize: '20px', margin:'12px'}} />
-              </a></Item>
-              <Item style={styles.itemS}>
-              <a target='__blank' href='https://twitter.com/AmaMaule?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor'>
-              <TwitterOutlined style={{fontSize: '20px', margin:'12px'}} />
-              </a></Item>
-                             
-           </Menu></Header></>     }                     
+                </Item>}   
+            </Menu>  
+            
+                </Header>
+                </>     }                     
         
         {size <800 && 
             <div style={styles.header}><img style={{width:'150px',paddingLeft:'20px', paddingTop:'20px'}} src={Logo1} />
@@ -82,6 +91,10 @@ const styles = {
         width:'100%',   
         backgroundColor: '#b05db9'       
     }, 
+    headerS: {      
+        width:'100%',         
+        backgroundColor: '#b05db9'       
+    }, 
     menu: {
         textAlign:'end',
         backgroundColor: '#b05db9'
@@ -100,8 +113,8 @@ const styles = {
   },
     item1: {
         backgroundColor: '#b05db9',
-        marginRight:'5px',
-        marginLeft:'5px',
+        marginRight:'0px',
+        marginLeft:'0px',
         float: 'left'
     }, 
     itemLogOut: {

@@ -190,12 +190,7 @@ Las rondas on line durarán 10 minutos, ocasión en la que podrás presentar tu 
                 </a>     
                 </Col>
         </Row>
-      <Row justify="center" style={{backgroundColor:'#3a1f33'}}>
-      
-        <a href='https://docs.google.com/forms/d/e/1FAIpQLSdaM-um2blDVLazhJ7qjnk4sNsk0d_OAbi9FurItP-9mtQAaw/viewform?usp=sf_link' target='_blank'>
-        <img src={Avi} style={{maxWidth:'100%'}} />
-        </a>
-      </Row></>
+      </>
     )
 }
 
