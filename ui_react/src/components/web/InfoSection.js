@@ -4,6 +4,8 @@ import SignUp from './auth/SignUp'
 import CarouselBanner from './CarouselBanner'
 import Slide1 from '../../assets/FONDO_WEB.jpg' 
 import ListPublic from './transmissions/list/ListPublic'
+import HomeQuestion from './HomeQuestion'
+
 const { Title, Paragraph, Text } = Typography
 
 const { Panel } = Collapse;
@@ -34,17 +36,9 @@ const InfoSection = () => {
                     style={size > 800 ? styles.card : styles.card2}
                    > 
         
+                    <HomeQuestion />
 
-<Collapse style={{marginTop:'60px'}} defaultActiveKey={['1']} bordered={false} className="site-collapse-custom-collapse">
-      <Panel header="INSCRIPCIÓN" key="1" className="site-collapse-custom-panel">
-    
-<SignUp />
-
-    </Panel>
-    
-    
-  </Collapse>
-
+                    
                         
                         
                 </Card></Col>

@@ -100,7 +100,7 @@ const ProfileUser = () => {
 
     return(<>
               {size < 800 ? <>
-                <NavBar mode='dark'
+                <NavBar back={null} mode='dark'
                style={{backgroundColor:'#18c5cc'}}               
             > {state.user && <>
 
@@ -122,7 +122,7 @@ const ProfileUser = () => {
               </>}
             </NavBar>
             
-            {currentNavigationT == 6 ? <NavBar mode='dark'
+            {currentNavigationT == 6 ? <NavBar back={null} mode='dark'
                style={{backgroundColor:'#b05db9'}}               
             > {state.user && <>
                 <Button disabled={false} shape={'round'} type='link' style={currentNavigation === '0' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('0')}>
@@ -139,12 +139,12 @@ const ProfileUser = () => {
                   <EyeOutlined style={styles.icon} />{currentNavigation === '3' && 'Soporte'}
               </Button>
               } 
-                    <Button disabled={!state.user.is_verfied} shape={'round'} type='link' style={currentNavigation === '5' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('5')}>
+                    <Button disabled={!state.user.is_verified} shape={'round'} type='link' style={currentNavigation === '5' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('5')}>
                   <ForkOutlined style={styles.icon} />{currentNavigation === '5' && 'Rondas'}
               </Button>
 
               </>}
-            </NavBar>: <NavBar mode='dark'
+            </NavBar>: <NavBar back={null} mode='dark'
                style={{backgroundColor:'#b05db9'}}               
             > {state.user && <>
               <Button disabled={false} shape={'round'} type='link' style={currentNavigation === '0' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('0')}>

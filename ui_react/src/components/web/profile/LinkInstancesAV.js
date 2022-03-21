@@ -111,7 +111,6 @@ const LinksInstancesAV = () => {
                         })
                     }}
                     defaultValue={state.av_artists} mode='multiple' size='large' style={{width:'100%', marginTop:'20px'}} placeholder='Selecciona uno o más días'>
-                            <Select.Option value='24 marzo 17.00 a las 19.00 hrs'>24 marzo 17.00 a las 19.00 hrs</Select.Option>
                             <Select.Option value='25 marzo 15.00 a las 18.30 hrs'>25 marzo 15.00 a las 18.30 hrs</Select.Option>
                             <Select.Option value='26 marzo 15.00 a las 18.30 hrs'>26 marzo 15.00 a las 18.30 hrs</Select.Option>
                         </Select>  

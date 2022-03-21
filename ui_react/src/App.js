@@ -6,8 +6,6 @@ import { login_reducer } from './reducers/auth'
 
 //Containers
 import Home from './containers/web/Home'
-import Screen from './containers/mobile/Screen'
-import FloatingWhatsApp from 'react-floating-whatsapp'
 
 export const AuthContext = createContext()
 export const SizeWidth = createContext()

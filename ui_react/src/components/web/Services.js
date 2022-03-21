@@ -7,6 +7,7 @@ import service4 from '../../assets/service_icons/TALLERES.png'
 import service5 from '../../assets/service_icons/CATALOGO.png'
 import service6 from '../../assets/service_icons/06.png'
 import Avi from '../../assets/img/BANNER-AAVV-MERCADO.jpg'
+import banner_p from '../../assets/BANNER-VIVOTICKET.jpg'
 const { Title, Paragraph } = Typography
 const { Item } = List
 
@@ -188,8 +189,9 @@ Las rondas on line durarán 10 minutos, ocasión en la que podrás presentar tu 
                 <a target='__blank' href='http://www.teatroregional.cl/wp-content/uploads/2021/06/Catálogo-de-Artistas-ABRIL-2021.pdf'>
                     <img src={service6} style={styles.img}  alt='service3' />
                 </a>     
-                </Col>
+                </Col>                
         </Row>
+        <img onClick={()=>window.open('https://vivoticket.cl')} src={banner_p} style={{width:'100%'}} alt='banner' />
       </>
     )
 }

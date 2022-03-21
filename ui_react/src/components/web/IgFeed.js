@@ -1,6 +1,5 @@
 import React from 'react'
 
-import Feed from "react-instagram-authless-feed"
 import { InstagramOutlined } from '@ant-design/icons'
 import InstaLogo from '../../assets/img/insta_fonts.png'
 import { Row, Col, Typography } from 'antd'

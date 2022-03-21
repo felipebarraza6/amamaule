@@ -31,10 +31,8 @@ const Calendar = () => {
 
     return(
         <>
-                <Row style={{textAlign:'center', backgroundColor:'white'}}>
-
-                <Col span={4}>                
-                    </Col>
+        <Row style={{textAlign:'center', backgroundColor:'white'}}>
+            
                     <Col span={24}>
                     <table className="ant-table-thead" style={{width:'100%'}}>
                         <tr style={{width:'100%'}}>

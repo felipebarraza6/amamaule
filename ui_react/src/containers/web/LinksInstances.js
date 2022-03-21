@@ -200,7 +200,10 @@ const LinksInstances = () => {
 			</Collapse>
 				<Card title={<><CalendarOutlined style={styles.icon} /> Calendario</>} extra={<>
 				<Button onClick={()=> window.open('https://www.youtube.com/watch?v=CLukYak01Gs&feature=youtu.be') } type={'dashed'} style={{backgroundColor: '#b05db9', color:'white', borderColor:'white', marginLeft:'10px'}}>
-					Ver turorial
+					Ver turorial(PDF)
+				</Button>
+				<Button onClick={()=> window.open('https://www.youtube.com/watch?v=CLukYak01Gs&feature=youtu.be') } type={'dashed'} style={{backgroundColor: '#b05db9', color:'white', borderColor:'white', marginLeft:'10px'}}>
+					Ver turorial(VIDEO)
 				</Button>
 				</>}>
 					{!state.reload &&  <Calendar /> }
