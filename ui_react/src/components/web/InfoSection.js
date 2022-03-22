@@ -5,10 +5,7 @@ import CarouselBanner from './CarouselBanner'
 import Slide1 from '../../assets/FONDO_WEB.jpg' 
 import ListPublic from './transmissions/list/ListPublic'
 import HomeQuestion from './HomeQuestion'
-<<<<<<< HEAD
 
-=======
->>>>>>> d77cc8b068bafdc21d00042fbeb301633dcd3300
 const { Title, Paragraph, Text } = Typography
 
 const { Panel } = Collapse;
@@ -41,12 +38,6 @@ const InfoSection = () => {
         
                     <HomeQuestion />
 
-<<<<<<< HEAD
-                    
-=======
-
->>>>>>> d77cc8b068bafdc21d00042fbeb301633dcd3300
-                        
                         
                 </Card></Col>
         </Row></>
