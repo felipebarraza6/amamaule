@@ -10,6 +10,7 @@ import {getUsers, getCalendarData, getInvitations} from '../../actions/meetings_
 import { updateInvitation } from '../../actions/meetings_rounds/getData'
 import ListInvitations from "../../components/web/links_instances/ListInvitations"
 import { FormProvider } from 'rc-field-form'
+import pdf_i from '../../assets/TUTORIAL RONDAS FINAL.pdf'
 const { Panel } = Collapse
 const { Option } = Select
 export const GroupsContext = createContext()
@@ -52,44 +53,9 @@ const LinksInstances = () => {
 					</Card>
 			</Col>			
 			<Col lg={14} xs={24} style={{padding:'10px'}}>
-			<Collapse style={{marginBottom:'10px'}}>
-			<Panel header={<><h3><MailOutlined style={styles.icon} />Invitaciones enviadas</h3></>} key="2">
-				<Table bordered columns={ [
-                            {
-                                title: 'HORARIO',
-                                
-                                render: (x) => {
-									return(`Dia ${x.date_meeting.slice(8,10)} / ${x.date_meeting.slice(11,16)} hrs`)
-								}
-                            },
-                            {
-                                title: 'USUARIO',                                
-                                render: (x) => {
-									return(`${x.invited.first_name} ${x.invited.last_name}`)
-								}
-                            },
-                            {
-                                title: 'ESTADO',
-                                render: (x) => {
-									let txt = ''
-									if(x.answer && !x.is_active){
-										txt = 'CONFIRMADA'
-									}else if(!x.answer && x.is_active){
-										txt = 'ESPERANDO RESPUESTA...'
-									} else if(!x.answer && !x.is_active && !x.rescheduled){
-										txt= 'RECHAZADO'
-									}  
-									else if(x.rescheduled && !x.answer){
-										txt = 'RE-AGENDADA'
-									}
-									return(<Tag color='magenta'>{txt}</Tag>)
-								}                                
-                            }, 
-                            ]} dataSource={state.my_invitations_sends}>
-
-                        </Table>
-				</Panel>	
-				<Panel header={<><h3><MailOutlined style={styles.icon} />Invitaciones recibidas</h3></>} key="1">
+			<Collapse defaultActiveKey={['1']} style={{marginBottom:'10px'}}>
+			
+				<Panel key='1' header={<><h3><MailOutlined style={styles.icon} />Invitaciones recibidas</h3></>} key="1">
 				<Table bordered columns={ [
                             {
                                 title: 'HORARIO',
@@ -195,15 +161,52 @@ const LinksInstances = () => {
 
                         </Table>
 				</Panel>
-        
+      <Panel header={<><h3><MailOutlined style={styles.icon} />Invitaciones enviadas</h3></>} key="2">
+				<Table bordered columns={ [
+                            {
+                                title: 'HORARIO',
+                                
+                                render: (x) => {
+									return(`Dia ${x.date_meeting.slice(8,10)} / ${x.date_meeting.slice(11,16)} hrs`)
+								}
+                            },
+                            {
+                                title: 'USUARIO',                                
+                                render: (x) => {
+									return(`${x.invited.first_name} ${x.invited.last_name}`)
+								}
+                            },
+                            {
+                                title: 'ESTADO',
+                                render: (x) => {
+									let txt = ''
+									if(x.answer && !x.is_active){
+										txt = 'CONFIRMADA'
+									}else if(!x.answer && x.is_active){
+										txt = 'ESPERANDO RESPUESTA...'
+									} else if(!x.answer && !x.is_active && !x.rescheduled){
+										txt= 'RECHAZADO'
+									}  
+									else if(x.rescheduled && !x.answer){
+										txt = 'RE-AGENDADA'
+									}
+									return(<Tag color='magenta'>{txt}</Tag>)
+								}                                
+                            }, 
+                            ]} dataSource={state.my_invitations_sends}>
+
+                        </Table>
+				</Panel>	  
 
 			</Collapse>
 				<Card title={<><CalendarOutlined style={styles.icon} /> Calendario</>} extra={<>
-				<Button onClick={()=> window.open('https://www.youtube.com/watch?v=CLukYak01Gs&feature=youtu.be') } type={'dashed'} style={{backgroundColor: '#b05db9', color:'white', borderColor:'white', marginLeft:'10px'}}>
-					Ver turorial(PDF)
+				<Button type={'dashed'} style={{backgroundColor: '#b05db9', color:'white', borderColor:'white', marginLeft:'10px'}}>
+          <a href={pdf_i} target="_blank">
+					Ver tutorial(PDF)
+          </a>
 				</Button>
 				<Button onClick={()=> window.open('https://www.youtube.com/watch?v=CLukYak01Gs&feature=youtu.be') } type={'dashed'} style={{backgroundColor: '#b05db9', color:'white', borderColor:'white', marginLeft:'10px'}}>
-					Ver turorial(VIDEO)
+					Ver tutorial(VIDEO)
 				</Button>
 				</>}>
 					{!state.reload &&  <Calendar /> }

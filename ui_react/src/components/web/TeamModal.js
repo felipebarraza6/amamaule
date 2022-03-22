@@ -168,7 +168,12 @@ const TeamModal = () => {
                                 ...infoPerson,
                                 name: 'Cinthia Muñoz',
                                 description:'Periodista y Licenciada en Comunicación Social de la Universidad Santo Tomás. Comenzó su formación en el Museo de la Memoria y los Derechos Humanos. Ha trabajado en diversos medios de comunicación de la región del Maule como Redmaule.com y TV Contivisión. Se ha desempeñado en investigación periodística y en campañas políticas. Actualmente trabaja como periodista en el área de Comunicaciones del Teatro Regional del Maule.',
-                                image: cmunoz
+                                image: cmunoz,
+                                links: [
+<a href=' https://www.linkedin.com/in/cinthia-mu%C3%B1oz-urrutia-aa1130b8/' target='__blank'><LinkedinOutlined style={{fontSize:'25px', marginRight:'10px', color:'rgb(97, 38, 61)'}} /></a>,
+<a href='https://www.instagram.com/cinthia.indomita/' target='__blank'><InstagramOutlined style={{fontSize:'25px', marginRight:'10px', color:'rgb(97, 38, 61)'}} /></a>,
+<a href='https://www.facebook.com/cinthiamunozu' target='__blank'><FacebookOutlined style={{fontSize:'25px', marginRight:'10px', color:'rgb(97, 38, 61)'}} /></a>
+                                ]
                             })
                             setVisibleInfo(true)
                         }}>

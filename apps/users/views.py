@@ -66,8 +66,8 @@ class UserViewSet(viewsets.GenericViewSet,
             model = User
             fields = {
                 'type_user': ['exact'],
-                'first_name': ['contains'],
-                'last_name': ['contains'],
+                'first_name': ['contains', 'icontains'],
+                'last_name': ['contains', 'icontains'],
                 'region': ['contains'],
                 'country': ['contains'],
                 'commune':['contains'], 
