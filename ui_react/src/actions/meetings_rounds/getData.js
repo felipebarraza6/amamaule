@@ -183,30 +183,28 @@ export const updateInvitation = async(data, invitation, dispatch, auth) => {
     if(day<10) {
         day = `0${start_date.getDate()}`
     }
-
+console.log(invitation)
 	if(data.answer){
 		const validate_is_exist = await api_links_instances.list_meetings({
 		invited:auth.user.id,
 		day: day,
 		hour:hours,
 		minute: minutes,
-		is_validated: true
 	}).then(async(response)=> {
 		if(response.data.count > 0){
-			notification.warning({duration:10,message:'PROBLEMAS DE DISPONIBILIDAD', description:'No es aceptar una reunión en este horario, pues ya tienes una reunión en tu agenda en dicho instante.'})
+			notification.warning({duration:10,message:'PROBLEMAS DE DISPONIBILIDAD', description:'No puedes aceptar una reunión en este horario, pues ya tienes una reunión en tu agenda en dicho instante.'})
 		}else{
 			const validated_invited = await api_links_instances.list_meetings({
-				invited: invitation.invited.id,
+				owner: invitation.owner.id,
 				day: day,
 				hour:hours,
-				minute: minutes,
-				is_validated: true
+        minute: minutes,
 			}).then(async(response)=> {
 				if(response.data.count > 0){
-					notification.warning({duration:10,message:'PROBLEMAS DE DISPONIBILIDAD', description:'No es aceptar una reunión de este usuario, pues ya tiene reservada la fecha.'})
+					notification.warning({duration:10,message:'PROBLEMAS DE DISPONIBILIDAD', description:'No puedes aceptar una reunión de este usuario, pues ya tiene reservada la fecha.'})
 					
 				}else{
-					const request_confirm = await api_links_instances.answer_invitation(data, invitation.id)
+				const request_confirm = await api_links_instances.answer_invitation(data, invitation.id)
 				.then(async(response)=>{
 					message.info('Has aceptado participar en la reunión')
 					
@@ -227,6 +225,7 @@ export const updateInvitation = async(data, invitation, dispatch, auth) => {
 				})
 
 				return request_cancel
+        
 	}
 
 

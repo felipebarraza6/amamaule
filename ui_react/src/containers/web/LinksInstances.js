@@ -20,6 +20,7 @@ const LinksInstances = () => {
 
 	const { state:auth } = useContext(AuthContext)
 	const [size, setSize] = useState()
+  const [disabled, setDisabled] = useState(false)
 	const [dateN, setDate] = useState(null)
 
 	const initialState = {
@@ -93,9 +94,10 @@ const LinksInstances = () => {
 									return(<>
 										{x.is_active && <Row>
 											<Col span={24} style={{margin:'2px'}}>
-												<Button  onClick={()=> {
+												<Button disabled={disabled}  onClick={()=> {
 													//updateInvitation({}, x.id, dispatch, auth, setLoad)													
-													updateInvitation({answer:true}, x, dispatch, auth)
+                          setDisabled(true)
+													updateInvitation({answer:true}, x, dispatch, auth).then((x)=> setDisabled(false))
 												}} type='primary' style={{width:'100%',backgroundColor:'rgb(24, 197, 204)', borderColor:'rgb(24, 197, 204)'}} size='small'>Aceptar</Button>
 											</Col>
 											<Col onClick={()=> {

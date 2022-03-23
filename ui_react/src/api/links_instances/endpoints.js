@@ -4,6 +4,7 @@ import { GET, POST, UPDATE, DELETE } from "../config"
 const list_meetings = ({
                            user = '',
                            invited = '',
+                           owner = '',
                            year = '',
                            month = '',
                            hour = '',
@@ -21,7 +22,7 @@ const list_meetings = ({
     if(invited){
         participants =`participans_invited=${invited}&`
     }
-    const request = GET(`meetings/?is_active=${is_active}&owner=${user}&${participants}start_date__year=${year}&start_date__month=${month}&start_date__day=${day}&start_date__hour=${hour}&start_date__minute=${minute}&is_programmatic_dialogues=${is_dialog}&start_date__hour__range=${range_hour}&start_date__minute__range=${range_minute}&is_validated=${is_validated}`)
+    const request = GET(`meetings/?is_active=${is_active}&owner=${owner}&${participants}start_date__year=${year}&start_date__month=${month}&start_date__day=${day}&start_date__hour=${hour}&start_date__minute=${minute}&is_programmatic_dialogues=${is_dialog}&start_date__hour__range=${range_hour}&start_date__minute__range=${range_minute}&is_validated=${is_validated}`)
     return request
 }
 

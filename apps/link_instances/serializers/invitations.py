@@ -34,10 +34,10 @@ class InvitationModelSerializer(serializers.ModelSerializer):
             from_email = '<noresponder@amamaule.cl>'
             content = render_to_string(
                 'invitation.html',
-                { 'user': instance.invited}
+                { 'instance': instance}
             )
             
-            msg = EmailMultiAlternatives(subject, content, from_email, [instance.owner.email])            
+            msg = EmailMultiAlternatives(subject, content, from_email, [instance.invited.email])            
             msg.attach_alternative(content, "text/html")
             msg.send()
 
@@ -73,7 +73,8 @@ class InvitationModelSerializer(serializers.ModelSerializer):
             from_email = '<noresponder@amamaule.cl>'
             content = render_to_string(
                 'confirmation.html',
-                { 'user': instance}
+                { 'instance': instance }
+                
             )
             
             msg = EmailMultiAlternatives(subject, content, from_email, [instance.owner.email])            

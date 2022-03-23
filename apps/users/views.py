@@ -61,7 +61,7 @@ class UserViewSet(viewsets.GenericViewSet,
             permissions = [IsAuthenticated]
         return [p() for p in permissions]
 
-    class TransmissionFilter(filters.FilterSet):
+    class UserFilter(filters.FilterSet):
         class Meta:
             model = User
             fields = {
@@ -73,7 +73,7 @@ class UserViewSet(viewsets.GenericViewSet,
                 'commune':['contains'], 
             }
 
-    filterset_class = TransmissionFilter
+    filterset_class = UserFilter
 
     @action(detail=False, methods=['post'])
     def reset_password(self, request):

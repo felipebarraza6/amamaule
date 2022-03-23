@@ -26,7 +26,7 @@ const signup = async(data)=> {
 }
 
 const list_users = async({filter='', first_name='', last_name='', region='', city=''})=> {
-    const request = await GET(`users/?type_user=${filter}&first_name__contains=${first_name}&last_name__contains=${last_name}&region__contains=${region}&commune__contains=${city}`)
+    const request = await GET(`users/?type_user=${filter}&first_name__icontains=${first_name}&last_name__icontains=${last_name}&region__contains=${region}&commune__contains=${city}`)
     return request
 }
 
