@@ -59,7 +59,6 @@ const styles = {
     },
     card2: {
         width: '100%',
-        boxShadow:'25px 25px 5px rgba(0, 0, 0, 0.2)',
         marginBottom: '100px'
     }
     

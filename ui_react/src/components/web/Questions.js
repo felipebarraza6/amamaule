@@ -58,7 +58,7 @@ const Questions = () => {
             técnicos,  fotógrafos, diseñadores, audiovisualistas y comunicadores.
         </Paragraph>
     </Panel>
-            <Panel header="SI SOY ARTISTA, ¿DEBO TENER UN TRABAJO TERMINADO PARA PARTICIPAR?" key="4" className="site-collapse-custom-panel">
+            <Panel header="SI SOY ARTISTA, ¿DEBO TENER UN TRABAJO TERMINADO PARA PARTICIPAR?" key="51" className="site-collapse-custom-panel">
         <Paragraph align={'justify'} style={{color:''}}>
             Pueden participar artistas con trabajos terminados del presente periodo y de años anteriores, 
             así como también artistas y colectivos con proyectos en curso. Durante tu inscripción, tendrás 

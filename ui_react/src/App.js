@@ -64,10 +64,7 @@ function App() {
       }}
     >
       <React.Fragment>
-       {size < 800 ? 
-            <Home />: 
             <Home />  
-       }
       </React.Fragment>           
     </AuthContext.Provider>
   )

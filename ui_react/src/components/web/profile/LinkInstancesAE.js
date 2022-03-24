@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 
 
 import {Col, Row, Typography, Card, Button, message} from 'antd'
@@ -16,6 +16,7 @@ const LinksInstancesAE = () => {
     const { state:authContext, dispatch } = useContext(AuthContext)
 
     const profile = authContext.user.profile
+    const [size, setSize] = useState(0)
 
     const [state, setState] = useState({
         ae_24_inscribed: profile.ae_24_inscribed,
@@ -35,6 +36,12 @@ const LinksInstancesAE = () => {
         })
 
     }
+
+    useEffect(()=> {
+      
+      setSize(window.innerWidth)
+  
+    }, [])
 
     const updateProfile = async() => {
         const rq = await api.user.get_profile_center(authContext.user.id).then((x)=> {
@@ -65,7 +72,7 @@ const LinksInstancesAE = () => {
         
         <Row style={{marginBottom:'60px', marginTop:'20px'}} justify='center'>
             <Col  lg={8} xs={24} >
-                <Card hoverable cover={<img src={img1} />} style={{ width: 400, margin:'20px' }} >
+                <Card hoverable cover={<img src={img1} />} style={{ width: size > 800 ? '400px':'100%', margin: size > 800 ? '20px': '0 0 20px 0' }} >
                     {profile.ae_24_inscribed.length > 0 ? 
                     <Button size='large' type='primary' style={styles.btn} onClick={async()=>{
                         const rq = await api.user.update_profile(authContext.user.id, {
@@ -75,7 +82,7 @@ const LinksInstancesAE = () => {
                             updateProfile()
                         })
                     }} >Cancelar participación</Button>:
-                    <Button disabled={!authContext.user.is_verified} size='large' type='primary' style={styles.btn} onClick={async()=>{
+                    <Button disabled={true} size='large' type='primary' style={styles.btn} onClick={async()=>{
                         const rq = await api.user.update_profile(authContext.user.id, {
                             ae_24_inscribed: ['si'],                            
                         }).then((x)=> {
@@ -87,7 +94,7 @@ const LinksInstancesAE = () => {
                 </Card>                
             </Col>
             <Col  lg={8}  xs={24}>
-                 <Card hoverable cover={<img src={img2} />} style={{ width: 400, margin:'20px' }}>
+                 <Card hoverable cover={<img src={img2} />} style={{ width: size > 800 ? '400px':'100%', margin: size > 800 ? '20px': '0 0 20px 0' }}  >
                  {profile.ae_25_inscribed.length > 0 ? 
                     <Button  size='large' type='primary' style={styles.btn} onClick={async()=>{
                         const rq = await api.user.update_profile(authContext.user.id, {
@@ -97,7 +104,7 @@ const LinksInstancesAE = () => {
                             updateProfile()
                         })
                     }} >Cancelar Participación</Button>:
-                    <Button disabled={!authContext.user.is_verified} size='large' type='primary' style={styles.btn} onClick={async()=>{
+                    <Button disabled={true} size='large' type='primary' style={styles.btn} onClick={async()=>{
                         const rq = await api.user.update_profile(authContext.user.id, {
                             ae_25_inscribed: ['si'],                            
                         }).then((x)=> {
@@ -110,7 +117,7 @@ const LinksInstancesAE = () => {
                 
             </Col>           
             <Col  lg={8}  xs={24}>
-                 <Card hoverable cover={<img src={img3} />} style={{ width: 400, margin:'20px' }}>
+                 <Card hoverable cover={<img src={img3} />}  style={{ width: size > 800 ? '400px':'100%', margin: size > 800 ? '20px': '0' }}>
                                                     
                          
                  {profile.ae_26_inscribed.length > 0 ? 

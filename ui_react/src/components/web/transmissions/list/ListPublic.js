@@ -217,7 +217,7 @@ const ListPublic = ({globalState, changeState, is_public}) => {
                             <Row>
                         <Col xs={24} lg={6} style={{padding:'20px'}}>
                         <Card hoverable={true}
-                            style={{width:'400px'}}
+                            style={{width:'300px'}}
                             cover={<img width={'100%'} src={obj.main_image} />}>
                             <Card.Meta
                                     description={<Row>
