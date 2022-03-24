@@ -47,7 +47,7 @@ function App() {
 
     if(user && access_token){
       if(!user.is_verified){
-        notification.warning({duration: 10,title:'Advertencia',message:'Estimados participantes de AMA 2022: Les recordamos que para participar en todas las actividades programadas, primero deben completar su perfil con todos los datos solicitados. Si aún tiene dudas acerca de cómo completar su perfil, por favor, contactarse al mail soporte@amamaule.cl'})
+      notification.warning({duration: 10, description: <a href='https://amamaule.cl/profile/'>IR A TU PERFIL</a>,message:'COMPLETA TU PERFIL PARA PARTICIPAR DE LAS ACTIVIDADES DE AMA.', onClick: ()=> window.location('/profile') })
       }
       
       console.log(user)

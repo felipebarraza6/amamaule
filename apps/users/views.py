@@ -49,7 +49,7 @@ class UserViewSet(viewsets.GenericViewSet,
         if self.action == 'retrieve':
             return User.objects.all()
         if self.action == 'list':
-            User.objects.filter(is_verified=True)
+            return User.objects.filter(is_verified=True)
 
     def get_permissions(self):
 

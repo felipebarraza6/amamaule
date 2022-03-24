@@ -111,11 +111,11 @@ const Workshops2 = ({is_digital}) => {
                   <Typography.Paragraph>{x.date_text}</Typography.Paragraph>
                   <hr style={{color:'rgb(176, 93, 185)'}} />                   
                   
-                  {!x.is_end && <>
+                  {!x.is_end ? <>
                   {is_incribed===false ? 
                     <Button disabled={!state.user.is_verified} style={styles.btn} onClick={()=>updateWorkshop(x.id, participans, quota)} type='primary'>PARTICIPAR</Button>:
                   <Button style={styles.btn} onClick={()=>updateWorkshopRest(x.id, participans)} type='primary'>CANCELAR PARTICIPACION</Button>}
-                  </>}
+                  </>:<Tag color='volcano'>INSCRIPCIONES CERRRADAS</Tag>}
                   
                   {is_digital & x.is_active ? <Button onClick={()=>window.open(x.url_zoom)} style={styles.btn} type='primary'>ZOOM</Button>:''}                  
         </Card>

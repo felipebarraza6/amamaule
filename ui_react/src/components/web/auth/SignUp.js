@@ -61,13 +61,7 @@ const SignUp = () => {
                 console.log(user)
                 console.log(access_token)
                 console.log(r)              
-                dispatch({
-                    type: 'LOGIN',
-                    payload: {
-                      access_token,
-                      user
-                    }
-                })
+                
             })
             
             notification.success({ message:`${values.email} fue creado!!!`, title:'Usuario creado'}) 
@@ -222,7 +216,7 @@ const SignUp = () => {
                     <p>Envíanos un correo a <a href='mailto:soporte@amamaule.cl' style={{color:'rgb(176, 93, 185)'}}  >soporte@amamaule.cl</a></p>
                     </Col>
                     <Col  xs={24} lg ={6} span={6}>
-                        <Button disabled={false} htmlType='submit' style={{marginRight:'10px'}} style={{backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)', marginRight:'10px'}} type='primary' >Crear</Button> 
+                        <Button disabled={load} htmlType='submit' style={{marginRight:'10px'}} style={{backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)', marginRight:'10px'}} type='primary' >Crear</Button> 
                       
                       <Button onClick={()=> {form.resetFields()}} type='primary' style={{backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)', marginRight:''}}>Limpiar </Button>
                     </Col>

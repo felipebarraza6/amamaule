@@ -14,6 +14,8 @@ const LinksInstancesAV = () => {
 
     const profile = authContext.user.profile
 
+    const [size, setSize] = useState(0)
+
     const [state, setState] = useState({
         av_pitch: profile.av_programmers,
         av_artists: profile.av_25_artists 
@@ -41,6 +43,12 @@ const LinksInstancesAV = () => {
         })
     }
 
+    useEffect(()=> {
+
+      setSize(window.innerWidth)
+
+    }, [])
+
 
     return(<><Row style={{paddingTop:'0px', margin:'20px'}}>        
         <Row style={{paddingTop:'20px', margin:'20px', marginLeft:'40px'}}>
@@ -61,7 +69,7 @@ const LinksInstancesAV = () => {
         </Row>
         <Row style={{marginBottom:'60px', marginTop:'0px'}} justify='center'>
             <Col span={12} lg={12} xs={24} >
-                <Card hoverable cover={<img src={img1} />} style={{ width: 430, margin:'20px' }} >
+                <Card hoverable cover={<img src={img1} />} style={{ width: size > 800 ? '430px': '100%', margin: size > 800 ? '20px':'0px' }} >
                     <Typography.Paragraph style={{fontSize:'18px'}}>¿Te gustaría asistir a la presentación de proyectos de Artistas Visuales?</Typography.Paragraph>
                     <Select onSelect={(x)=> {
                         setState({
@@ -90,7 +98,7 @@ const LinksInstancesAV = () => {
                 </Card>                
             </Col>
             <Col span={12} lg={12}  xs={24}>
-                 <Card hoverable cover={<img src={img2} />} style={{ width: 430, margin:'20px' }}>                    
+                 <Card hoverable cover={<img src={img2} />} style={{ width: size > 800 ? '430px':'100%', margin: size > 800 ? '20px':'0px' }}>                    
                         <Typography.Paragraph style={{fontSize:'18px'}}>
                             ¿Quieres presentar tu propuesta artística a los programadores?
                         </Typography.Paragraph>

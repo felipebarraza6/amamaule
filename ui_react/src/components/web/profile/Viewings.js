@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState} from 'react'
 import api from '../../../api/endpoints'
-import { Tag, Form, message,Button, Result, Card, Input, Col, Row, Typography, Avatar, Select, Table  } from 'antd'
+import { Tag, Form, message,Button, Result, Card, Input, Col, Row, Typography, Avatar, Select, Table, 
+          Collapse } from 'antd'
+import Signup from '../../web/auth/SignUp'
 import { MailOutlined, CalendarOutlined,
     CoffeeOutlined, SendOutlined, ClockCircleOutlined, SearchOutlined } from '@ant-design/icons'
     import ListUsers from "../links_instances/ListUsers"
@@ -44,13 +46,22 @@ const Viewings = () => {
     }, [])
 
     return(
-        <><Row style={{'marginBottom':'20px', 'marginLeft':'20px'}}>
-            <Col lg={18} xs={24}>
-            <Title level={3}>Gestion de soporte</Title>
-                </Col>
+        <><Row style={{'marginBottom':'0px', 'marginLeft':'0px'}}>
+          <Col span={24} style={{marginBottom:'30px',backgroundColor:'white', padding:'20px', borderRadius:'10px'}}>
+            <Collapse>
+            <Collapse.Panel header='CREACION DE USUARIOS'>
+            <Signup />
+            </Collapse.Panel>
+            </Collapse>
+          </Col>
         </Row>
-      <Row style={{backgroundColor:'white', padding:'30px'}}>
-                    <Col xs={24} lg={6}><Card hoverable style={{margin:'5px', borderRadius:'20px'}} title={<Text style={{borderRadius:'10%',padding:'7px'}}>Filtrar Usuarios</Text>} >
+      <Row style={{backgroundColor:'white', padding:'20px', borderRadius:'10px'}}>
+        <Col lg={24} xs={24}>
+            <Title level={3}>Gestión de reuniones</Title>
+                </Col>
+                    <Col xs={24} lg={6}>
+                      <Card hoverable 
+                          style={{margin:'5px', borderRadius:'20px'}} title={<Text style={{borderRadius:'10%',padding:'7px'}}>Filtrar Usuarios</Text>} >
                     <Row>
                         <Col lg={12} xs={24}>
                             <Input placeholder={'Buscar por nombre'} onChange={(input)=>{}} />
@@ -120,6 +131,7 @@ const Viewings = () => {
                 </Card>
                 </Col>
                 <Col span={18} style={{padding:'30px'}}>
+                  
                 <Table columns={ [
                             {
                                 title: 'HORA',
