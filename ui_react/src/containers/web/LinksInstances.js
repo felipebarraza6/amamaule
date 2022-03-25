@@ -233,7 +233,7 @@ const LinksInstances = () => {
 				</Card>
 			</Col>
 			<Col lg={4} xs={24} style={{padding:'0px'}}>
-				<Affix offsetTop={window.InnerWidth > 800 ? 80:0 }>
+				<Affix offsetTop={pathname === '/profile/rounds'  ? 0:75 }>
         {window.innerWidth > 800 &&
         <Card hoverable  title={<>MODO INMERSIVO</>} style={{margin:'10px', align:'justify'}}>
           {pathname !== '/profile/rounds' ? <> 
