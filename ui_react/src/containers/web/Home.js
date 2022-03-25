@@ -10,6 +10,7 @@ import NavBarClient from '../../components/web/NavBarClient'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import MeetingVideoChat from "./MeetingVideoChat"
 import IgFeed from '../../components/web/IgFeed'
+import LinksInstances from './LinksInstances'
 import {AuthContext} from "../../App"
 
 
@@ -27,6 +28,9 @@ const Home = () => {
         <Switch>  
           <Route exact path='/' render={()=><><NavBar/></>}  />
           <Route exact path='/profile' render={()=> <NavBarClient />}  />
+            
+          <Route exact path='/profile/rounds/' render={()=> <>
+              <Row><LinksInstances /></Row></>} />
           <Route exact path='/profile/meetings/:id' render={({match})=> {
               return(<>
               <NavBarClient/>

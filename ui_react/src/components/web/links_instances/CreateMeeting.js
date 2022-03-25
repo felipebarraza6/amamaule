@@ -14,7 +14,7 @@ const CreateMeeting = ({invited}) => {
     const [visible, setVisible] = useState(false)
     const {state:contextUser} = useContext(AuthContext)
     const [loading, setLoading] = useState(false)
-    const [state, setState] = useState()
+    const [state, setState] = useState(0)
     const {dispatch} = useContext(GroupsContext)
 
     async function onFinish(values){
@@ -50,19 +50,16 @@ const CreateMeeting = ({invited}) => {
     return(<>
             <Drawer placement={'top'}
                     title={<>Envíar invitación a <Text> "{invited.first_name} {invited.last_name}"</Text></>} visible={visible} onClose={()=>setVisible(false)}
-                height={350}
-            >{!state > 800 ?
-                <Row justify={'center'}>
-                <Form layout={'inline'} form={form} title={'asdas'} onFinish={onFinish} >
-                    <Col xs={24}>
+                height={450}
+            >{state > 800 ?
+                <Row justify={'start'}>
+                <Form layout={'inline'} form={form} onFinish={onFinish} >
                     <Form.Item name='day' rules={[{required:true, message:'Debes seleccionar un día'}]} >
-                    <Select size={'large'} style={{width:'100%'}} placeholder={'Selecciona el día de la reunión'}>
+                    <Select size={'large'} style={{width:'300px'}} placeholder={'Selecciona el día de la reunión'}>
                             <Option value={'29'}>Martes 29</Option>
                             <Option value={'30'}>Miércoles 30</Option>
                         </Select>
                     </Form.Item>
-                        </Col>
-                    <Col xs={24}>
                     <Form.Item name='hour_minutes' rules={[{required:true, message:'Debes seleccionar la hora'}]} >
                         <TimePicker
                             size={'large'}
@@ -82,25 +79,20 @@ const CreateMeeting = ({invited}) => {
                             inputReadOnly={true}
                             showNow={false} style={{width:'300px'}} placeholder={'Selecciona la hora(formato 24 hrs)'} format={'HH:mm'} />
                     </Form.Item>
-                    </Col>
-                    <Col xs={24} style={{marginBottom:'10px'}}>
                     <Form.Item name={'message'} rules={[{max:800, message:'Has superado los 800 caracteres...'}]}>
                         <TextArea  size={'large'} placeholder={'Escribe tu mensaje (opcional)'} rows={4} style={{width:'300px'}} />
                     </Form.Item>
-                        </Col>
-                    <Col xs={24}>
                     <Form.Item >
                         <Button size={'large'} style={{marginRight:'10px'}} type={'primary'} htmlType={'submit'} >AGENDAR</Button>
 
                         <Button danger size={'large'} type={'primary'} onClick={()=> setVisible(false)} >CANCELAR</Button>
                     </Form.Item>
-                        </Col>
                 </Form>
                     </Row>:
                 <Form style={{marginTop:'40px'}} layout={'inline'} form={form} title={'asdas'} onFinish={onFinish} >
 
                     <Form.Item name='day' rules={[{required:true, message:'Debes seleccionar un día'}]} >
-                        <Select size={'large'} style={{width:'100%'}} placeholder={'Selecciona el día de la reunión'}>
+                        <Select size={'large'} style={{width:'300px'}} placeholder={'Selecciona el día de la reunión'}>
                             <Option value={'29'}>Martes 29</Option>
                             <Option value={'30'}>Miércoles 30</Option>
                         </Select>
@@ -123,11 +115,11 @@ const CreateMeeting = ({invited}) => {
                                 return minutes;
                             }}
                             inputReadOnly={true}
-                            showNow={false} style={{width:'300px'}} placeholder={'Selecciona la hora(formato 24 hrs)'} format={'HH:mm'} />
+                            showNow={false} style={{width:'300px', marginTop:'20px'}} placeholder={'Selecciona la hora(formato 24 hrs)'} format={'HH:mm'} />
                     </Form.Item>
 
                     <Form.Item name={'message'} rules={[{max:800, message:'Has superado los 800 caracteres...'}]}>
-                        <TextArea  size={'large'} placeholder={'Escribe tu mensaje (opcional)'} rows={4} style={{width:'400px'}} />
+                        <TextArea  size={'large'} placeholder={'Escribe tu mensaje (opcional)'} rows={4} style={{width:'300px', marginTop:'20px', marginBottom:'20px'}} />
                     </Form.Item>
 
                     <Form.Item >

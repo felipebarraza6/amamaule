@@ -1,4 +1,4 @@
-import React, { useState, useContext} from 'react'
+import React, { useState, useContext, useEffect} from 'react'
 import api from '../../../api/endpoints'
 import { Skeleton, Table, Avatar,
         Tooltip, Row, Col, Select, Typography, Input, Button } from "antd"
@@ -28,8 +28,9 @@ const ListUsers = ({per_page}) => {
         loading: false,
         loadingTable: false
     })
-
+  
     const [cities, setCities] = useState([])
+    const [size, setSize] = useState(0)  
 
     async function filterUsers(filter, first_name, last_name, region, city){
         setState({...state,
@@ -83,6 +84,9 @@ const ListUsers = ({per_page}) => {
             }
         ]
 
+    useEffect(()=> {
+      setSize(window.innerWidth) 
+    }, [])
 
     return(<>
         {state.loading ?
@@ -166,7 +170,7 @@ const ListUsers = ({per_page}) => {
                 <Table loading={state.loadingTable} size={'small'} columns={columns}
                        title={()=>'Escoge junto a quienes deseas vincularte y espera que la otra persona acepte para que tu reunión se haga efectiva.'}
                        dataSource={ContextInstances.list_users}
-                       pagination = {{ defaultPageSize:per_page }}
+                       pagination = {{ defaultPageSize: window.innerWidth > 800 ? 10:5 }}
                        rowKey={'id'}
                        style={{margin:'0px'}}
                 />

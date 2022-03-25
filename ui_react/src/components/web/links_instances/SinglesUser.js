@@ -79,7 +79,13 @@ const SingleUser = ({user, is_invitations}) => {
                         </Col>
                         <Col lg={24} xs={24}>
                                 <Paragraph stlye={{align:'justify'}}>
-                                {state.profile && <>{state.profile.what_looking.map((x)=><Tag color={'pink'} style={{margin:'5px'}}>{x}</Tag>)}</> }
+                                  {state.profile && <>{state.profile.what_looking.map((x)=>
+                                <>{window.innerWidth > 800 ?  
+                                  <Tag color={'pink'} style={{margin:'5px'}}>{x}</Tag>
+                                   : <div style={{marginBottom:'10px'}}><Text mark>{x}</Text></div>}
+                                </>
+
+                                )}</> }
                             </Paragraph>
                         </Col>
                     </Row>
@@ -88,24 +94,32 @@ const SingleUser = ({user, is_invitations}) => {
                             <strong><Text>Reseña</Text></strong>
                         </Col>
                         <Col lg={18} xs={24}>
-                                <Paragraph>
+                                <Paragraph style={{align:'justify'}}>
                                 {state.profile && <>{state.profile.review}</> }
                             </Paragraph>
                         </Col>
                     </Row>
                     <Row style={{marginTop:'0%'}} >
                         <Col lg={6} xs={24}>
-                            <strong><Text>Categorias</Text></strong>
+                            <strong><Text>Categorías</Text></strong>
                         </Col>
                         <Col lg={18} xs={24}>
                                 <Paragraph>
-                                {state.profile && <>{state.profile.options_profile.map((x)=> <Tag color={'pink'}>{x}</Tag>)}</> }
+                                {state.profile && <>{state.profile.options_profile.map((x)=> 
+                                  <>{window.innerWidth > 800 ? 
+                                    <Tag color={'pink'}>{x}</Tag>:
+                                    <div style={{marginBottom:'15px'}}>
+                                      <Text mark> {x} </Text>
+                                    </div>
+                                  }
+                                  </>
+                                )}</> }
                             </Paragraph>
                         </Col>
                     </Row>
                     <Row style={{marginTop:'0%'}} >
                         <Col lg={6} xs={24}>
-                        <strong><Text>Sitio Web</Text></strong>
+                        <strong><Text>Web/RRSS</Text></strong>
                         </Col>
                         <Col lg={18} xs={24}>
                                 <Paragraph align={'justify'}>

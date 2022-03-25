@@ -1,27 +1,27 @@
 import React, { createContext, useReducer, useState,useEffect, useContext } from 'react'
-import {Col, Row, Card, Tag, Button, Collapse, Table, Modal, Input,Form, TimePicker, Select, Affix } from 'antd'
-import { MailOutlined, CalendarOutlined,
-		CoffeeOutlined, SendOutlined, ClockCircleOutlined  } from '@ant-design/icons'
+import {Col, Spin,Typography, Row, Card, Tag, Button, Collapse, Table, Modal,Form, TimePicker, Select, Affix } from 'antd'
+import { MailOutlined, CalendarOutlined, WarningOutlined,
+		CoffeeOutlined,SendOutlined  } from '@ant-design/icons'
 import { groups_reducer } from "../../reducers/groups"
 import ListUsers from "../../components/web/links_instances/ListUsers"
 import Calendar from "../../components/web/links_instances/Calendar"
 import {AuthContext} from '../../App'
 import {getUsers, getCalendarData, getInvitations} from '../../actions/meetings_rounds/getData'
 import { updateInvitation } from '../../actions/meetings_rounds/getData'
-import ListInvitations from "../../components/web/links_instances/ListInvitations"
-import { FormProvider } from 'rc-field-form'
 import pdf_i from '../../assets/TUTORIAL RONDAS FINAL.pdf'
 const { Panel } = Collapse
 const { Option } = Select
+const { Paragraph } = Typography
 export const GroupsContext = createContext()
 
 
 const LinksInstances = () => {
 
 	const { state:auth } = useContext(AuthContext)
-	const [size, setSize] = useState()
+	const [size, setSize] = useState(null)
   const [disabled, setDisabled] = useState(false)
 	const [dateN, setDate] = useState(null)
+  const {pathname} = window.location
 
 	const initialState = {
 		list_users: null,
@@ -34,11 +34,18 @@ const LinksInstances = () => {
 	const [state, dispatch] = useReducer(groups_reducer, initialState)
 
 	useEffect(()=> {
+    
+    const auth = {
+      access_token: JSON.parse(localStorage.getItem('access_token' || null)),
+      user: JSON.parse(localStorage.getItem('user' || null))
+    }
+
+    setSize(window.innerWidth)
 		getCalendarData({dispatch, auth})
 		getUsers({dispatch})
 		getInvitations({dispatch, auth})
-		setSize(window.innerWidth)
 	}, [])
+
 
 
 	return(
@@ -50,48 +57,43 @@ const LinksInstances = () => {
 		>
 			<Col lg={6} xs={24} style={{padding:'10px'}}>
 					<Card hoverable title={<><SendOutlined style={styles.icon} /> Agenda tu reunión</>} >
-						<ListUsers per_page={30} />
+            <ListUsers />
 					</Card>
 			</Col>			
-			<Col lg={14} xs={24} style={{padding:'10px'}}>
+			<Col lg={14} xs={24} style={{padding:'0px'}}>
 			<Collapse defaultActiveKey={['1']} style={{marginBottom:'10px'}}>
 			
 				<Panel key='1' header={<><h3><MailOutlined style={styles.icon} />Invitaciones recibidas</h3></>} key="1">
-				<Table bordered columns={ [
+				<Table bordered  columns={ [
                             {
-                                title: 'HORARIO',
-                                ellipsis: true,
+                                title: 'Horario',
                                 render: (x) => {
-									return(`Dia ${x.date_meeting.slice(8,10)} / ${x.date_meeting.slice(11,16)} hrs`)
+									return(`${x.date_meeting.slice(8,10)} / ${x.date_meeting.slice(11,16)} hrs`)
 								}
                             },
                             {
-                                title: 'USUARIO',                                
+                                title: 'Usuario',                                
                                 render: (x) => {
 									return(`${x.owner.first_name} ${x.owner.last_name}`)
 								}
                             },
-                            {
-                                title: 'ESTADO',
-								ellipsis: true,
-                                render: (x) => {
-									let txt = ''
+                {
+                  ellipsis:true,
+								render: (x)=> {
+                  let txt = ''
 									if(x.answer && !x.is_active){
-										txt = 'CONFIRMADA'
+										txt ='CONFIRMADA'
 									}else if(!x.answer && x.is_active){
-										txt = 'ESPERANDO RESPUESTA...'
+                        txt=''
 									} else if(!x.answer && !x.is_active && !x.rescheduled){
 										txt= 'RECHAZADO'
 									}  
 									else if(x.rescheduled && !x.answer){
 										txt = 'RE-AGENDADA'
 									}
-									return(<Tag color='magenta'>{txt}</Tag>)
-								}                                
-                            }, 
-							{
-								render: (x)=> {
 									return(<>
+                     
+                    {txt !== '' &&  <Row justify='center'><Tag color='volcano'> {txt} </Tag></Row> }   
 										{x.is_active && <Row>
 											<Col span={24} style={{margin:'2px'}}>
 												<Button disabled={disabled}  onClick={()=> {
@@ -169,7 +171,7 @@ const LinksInstances = () => {
                                 title: 'HORARIO',
                                 
                                 render: (x) => {
-									return(`Dia ${x.date_meeting.slice(8,10)} / ${x.date_meeting.slice(11,16)} hrs`)
+									return(`${x.date_meeting.slice(8,10)} / ${x.date_meeting.slice(11,16)} hrs`)
 								}
                             },
                             {
@@ -185,7 +187,7 @@ const LinksInstances = () => {
 									if(x.answer && !x.is_active){
 										txt = 'CONFIRMADA'
 									}else if(!x.answer && x.is_active){
-										txt = 'ESPERANDO RESPUESTA...'
+										txt = 'SIN RESPUESTA'
 									} else if(!x.answer && !x.is_active && !x.rescheduled){
 										txt= 'RECHAZADO'
 									}  
@@ -202,6 +204,7 @@ const LinksInstances = () => {
 
 			</Collapse>
 				<Card title={<><CalendarOutlined style={styles.icon} /> Calendario</>} extra={<>
+        {size>800 && <>
 				<Button type={'dashed'} style={{backgroundColor: '#b05db9', color:'white', borderColor:'white', marginLeft:'10px'}}>
           <a href={pdf_i} target="_blank">
 					Ver tutorial(PDF)
@@ -209,15 +212,41 @@ const LinksInstances = () => {
 				</Button>
 				<Button onClick={()=> window.open('https://www.youtube.com/watch?v=CLukYak01Gs&feature=youtu.be') } type={'dashed'} style={{backgroundColor: '#b05db9', color:'white', borderColor:'white', marginLeft:'10px'}}>
 					Ver tutorial(VIDEO)
-				</Button>
+				</Button></>}
+
+
 				</>}>
+          {size < 800 && 
+            <Row>
+              <Button type={'dashed'} style={{backgroundColor: '#b05db9', color:'white', borderColor:'white', marginLeft:'10px'}}>
+          <a href={pdf_i} target="_blank">
+					Ver tutorial(PDF)
+          </a>
+				</Button>
+				<Button onClick={()=> window.open('https://www.youtube.com/watch?v=CLukYak01Gs&feature=youtu.be') } type={'dashed'} style={{backgroundColor: '#b05db9', color:'white', borderColor:'white', marginLeft:'10px'}}>
+					Ver tutorial(VIDEO)
+				</Button>
+            </Row>
+
+          }
 					{!state.reload &&  <Calendar /> }
 				</Card>
 			</Col>
 			<Col lg={4} xs={24} style={{padding:'0px'}}>
-				<Affix offsetTop={80}>
-				<Card hoverable title={<><CoffeeOutlined style={styles.icon} /> Soporte</>} style={{marginBottom:'0px'}}>
+				<Affix offsetTop={window.InnerWidth > 800 ? 80:0 }>
+        {window.innerWidth > 800 &&
+        <Card hoverable  title={<>MODO INMERSIVO</>} style={{margin:'10px', align:'justify'}}>
+          {pathname !== '/profile/rounds' ? <> 
+            <p align='center'>Aumenta el rendimiento(diseñado para usuarios con problemas de conexión a internet)</p>
+            <Button type='primary' onClick={()=> window.open('http://localhost:3000/profile/rounds')}>PANTALLA COMPLETA</Button>
+            </>
+            :<center><Spin size={'large'} /></center>
+             }
+				</Card>}
+				<Card hoverable title={<><CoffeeOutlined style={styles.icon} /> Soporte</>} style={{margin:'10px'}}>
+          <p align='center'>
 					Si tienes alguna duda o problema, escríbenos a soporte@amamaule.cl
+          </p>
 				</Card>				
 				</Affix>
 			</Col>

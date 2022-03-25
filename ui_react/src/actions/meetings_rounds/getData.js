@@ -110,7 +110,7 @@ export const postMeeting = async(data, state, dispatch, invited, setLoading, clo
 		is_validated: true
 	}).then(async(response)=> {
 		if(response.data.count > 0){
-			notification.warning({duration:10,message:'PROBLEMAS DE DISPONIBILIDAD', description:'No es posible agendar una nueva reunión en este horario, pues ya tienes una reunión en tu agenda en dicho instante.'})
+			notification.warning({placement:'top',duration:10,message:'PROBLEMAS DE DISPONIBILIDAD', description:'No es posible agendar una nueva reunión en este horario, pues ya tienes una reunión en tu agenda en dicho instante.'})
 			setLoading(false)
 		}else{
 			const validated_invited = await api_links_instances.list_meetings({
@@ -121,7 +121,7 @@ export const postMeeting = async(data, state, dispatch, invited, setLoading, clo
 				is_validated: true
 			}).then(async(response)=> {
 				if(response.data.count > 0){
-					notification.warning({duration:10,message:'PROBLEMAS DE DISPONIBILIDAD', description:'No es posible agendar una reunión con este usuario, pues ya tiene reservada la fecha. Selecciona una horario diferente.'})
+					notification.warning({placement:'top',duration:10,message:'PROBLEMAS DE DISPONIBILIDAD', description:'No es posible agendar una reunión con este usuario, pues ya tiene reservada la fecha. Selecciona una horario diferente.'})
 					setLoading(false)
 				}else{
 					const request_meeting = await api_links_instances.create_meeting(data)
@@ -130,7 +130,7 @@ export const postMeeting = async(data, state, dispatch, invited, setLoading, clo
 						dispatch({type:'SET_RELOAD', value: true})
 						getCalendarData({dispatch:dispatch, auth:state})
 						dispatch({type:'SET_RELOAD', value: false})
-						notification.success({duration:10,message:'REUNIÓN CREADA CORRECTAMENTE ',
+						notification.success({placement:'top',duration:10,message:'REUNIÓN CREADA CORRECTAMENTE ',
 								description:'Ahora solo debes esperar la respuesta de tu invitado, recibiras un correo electrónico con la notificación'})
 
 						const send_invitation = await api_links_instances.send_invitation({
@@ -139,17 +139,17 @@ export const postMeeting = async(data, state, dispatch, invited, setLoading, clo
 							message: data.message,							
 						}).then((response)=> {
 							getInvitations({dispatch:dispatch, auth:state})
-							notification.success({duration:10,message:'INVITACIÓN ENVÍADA CORRECTAMENTE ',
+							notification.success({placement:'top',duration:10,message:'INVITACIÓN ENVÍADA CORRECTAMENTE ',
 								description:'Hemos envíado correctamente tu invitación'})
 							setLoading(false)
 							closeDrawer(false)
 							form.resetFields()
 						}).catch((response)=> {
-							notification.error({message:'ERROR EN ENVIAR INVITACION'})
+							notification.error({placement:'top',message:'ERROR EN ENVIAR INVITACION'})
 							setLoading(false)
 						})
 				}).catch((error)=> {
-						notification.error({message:'ERROR EN CREAR REUNION'})
+						notification.error({placement:'top',message:'ERROR EN CREAR REUNION'})
 							setLoading(false)
 				})
 				}

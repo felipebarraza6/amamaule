@@ -25,6 +25,16 @@ const NavBar = () => {
     return(<>
         {size > 800 && <><Header style={styles.headerS}>
                 <Menu mode="horizontal" theme='dark' style={styles.menu} >
+            {state.isAuthenticated ? 
+                <Item style={styles.itemS2}>
+                  <Button type='primary' style={{backgroundColor:'rgb(24, 197, 204)', borderColor:'rgb(24, 197, 204)'}}>
+                    <Link to='/profile'>
+                      Has click para ingresar como: " {state.user.first_name} {state.user.last_name} "
+                    </Link>
+                  </Button>
+                </Item>:<Item style={styles.item}>
+                  <Login />
+                </Item>}
 
                 <Item style={styles.itemS}>
               <a target='__blank' href='https://www.facebook.com/ama.maule'>
@@ -57,9 +67,7 @@ const NavBar = () => {
                 <Item style={styles.item}>
                     <OldAma />
             </Item> 
-            {state.isAuthenticated ? <Item style={styles.item}><Link to='/profile'>@{state.user.username}</Link></Item>:<Item style={styles.item}>
-                  <Login />
-                </Item>}   
+               
             </Menu>  
             
                 </Header>
@@ -108,12 +116,25 @@ const styles = {
       marginLeft:'-10px',
       marginBottom:'10px'
   },
+  itemS2: {
+      backgroundColor: '#b05db9',
+      marginRight:'0px',
+      marginLeft:'0px',
+      marginBottom:'15px'
+  },
     item1: {
         backgroundColor: '#b05db9',
         marginRight:'0px',
         marginLeft:'0px',
         float: 'left'
     }, 
+    itemE: {
+      backgroundColor: 'rgb(24, 197, 204)',
+      marginRight:'30px',
+      marginTop:'0px',
+      borderRadius: '5px',
+      fontSize:'15px'
+    },
     itemLogOut: {
         backgroundColor: '#b05db9',
     },logo: {
