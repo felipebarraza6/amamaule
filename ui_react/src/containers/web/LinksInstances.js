@@ -1,6 +1,6 @@
 import React, { createContext, useReducer, useState,useEffect, useContext } from 'react'
 import {Col, Spin,Typography, Row, Card, Tag, Button, Collapse, Table, Modal,Form, TimePicker, Select, Affix } from 'antd'
-import { MailOutlined, CalendarOutlined, WarningOutlined,
+import { MailOutlined, CalendarOutlined, WarningOutlined, ChromeOutlined,
 		CoffeeOutlined,SendOutlined  } from '@ant-design/icons'
 import { groups_reducer } from "../../reducers/groups"
 import ListUsers from "../../components/web/links_instances/ListUsers"
@@ -233,12 +233,12 @@ const LinksInstances = () => {
 				</Card>
 			</Col>
 			<Col lg={4} xs={24} style={{padding:'0px'}}>
-				<Affix offsetTop={pathname === '/profile/rounds'  ? 0:75 }>
+				<Affix offsetTop={pathname === '/profile/rounds'  ? 0:80 }>
         {window.innerWidth > 800 &&
-        <Card hoverable  title={<>MODO INMERSIVO</>} style={{margin:'10px', align:'justify'}}>
+        <Card hoverable  title={<>¿INTERNET LENTO?</>} style={{margin:'10px', align:'justify'}}>
           {pathname !== '/profile/rounds' ? <> 
-            <p align='center'>Aumenta el rendimiento(diseñado para usuarios con problemas de conexión a internet)</p>
-            <Button type='primary' onClick={()=> window.open('http://localhost:3000/profile/rounds')}>PANTALLA COMPLETA</Button>
+            <p align='center'>Desarollamos una versión que aumentara tus tiempos de carga, disponible solamente desde usuarios de escritorio(notebooks, pc y estaciones de trabajo). </p>
+            <Button type='primary' onClick={()=> window.open('http://localhost:3000/profile/rounds')}>HAS CLICK Y INGRESA</Button>
             </>
             :<center><Spin size={'large'} /></center>
              }
