@@ -2,11 +2,10 @@ import React, { useContext, useState} from 'react'
 import { Row, Col, Button, Tag } from 'antd'
 import { GroupsContext   } from '../../../../containers/web/LinksInstances'
 import { AuthContext } from '../../../../App'
-
+import { deleteMeeting } from '../../../../actions/meetings_rounds/getData'
 
 const CalendarWeb = ({ 
           copy_data, 
-          deleteMeeting,
            }) => {
   
   const { state, dispatch } = useContext(GroupsContext)

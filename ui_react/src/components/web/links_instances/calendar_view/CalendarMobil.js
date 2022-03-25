@@ -2,10 +2,10 @@ import React, {useContext, useState} from 'react'
 import { Row, Col, Button, Tag } from 'antd'
 import { GroupsContext   } from '../../../../containers/web/LinksInstances'
 import { AuthContext } from '../../../../App'
+import { deleteMeeting } from '../../../../actions/meetings_rounds/getData'
 
 
-
-const CalendarMobil = ({copy_data, deleteMeeting}) => {
+const CalendarMobil = ({copy_data}) => {
   
   const { state, dispatch } = useContext(GroupsContext)
   const { state:auth } = useContext(AuthContext)
