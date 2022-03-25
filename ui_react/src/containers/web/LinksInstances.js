@@ -233,12 +233,12 @@ const LinksInstances = () => {
 				</Card>
 			</Col>
 			<Col lg={4} xs={24} style={{padding:'0px'}}>
-				<Affix offsetTop={pathname === '/profile/rounds'  ? 0:80 }>
+				<Affix offsetTop={pathname === '/profile/rounds'  ? 0:85 }>
         {window.innerWidth > 800 &&
         <Card hoverable  title={<>¿INTERNET LENTO?</>} style={{margin:'10px', align:'justify'}}>
           {pathname !== '/profile/rounds' ? <> 
             <p align='center'>Desarollamos una versión que aumentara tus tiempos de carga, disponible solamente desde usuarios de escritorio(notebooks, pc y estaciones de trabajo). </p>
-            <Button type='primary' onClick={()=> window.open('http://localhost:3000/profile/rounds')}>HAS CLICK Y INGRESA</Button>
+            <Button type='primary' onClick={()=> window.open('http://localhost:3000/profile/rounds')}>HAS CLICK E INGRESA</Button>
             </>
             :<center><Spin size={'large'} /></center>
              }
