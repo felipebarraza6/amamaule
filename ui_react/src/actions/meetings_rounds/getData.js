@@ -243,6 +243,7 @@ export const deleteMeeting = async ({uuid_meeting='', dispatch, auth}) => {
 			notification.success({duration:6,message:'Reunión cancelada, se ha eliminado la reunion.'})
 			getCalendarData({dispatch:dispatch, auth:auth})
 			getInvitations({dispatch:dispatch, auth:auth})
+			window.location.reload()
 		}).catch((error)=> {message.error('Error al eliminar la reunion')})
 	return request
 }
