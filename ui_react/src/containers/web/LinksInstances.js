@@ -238,7 +238,7 @@ const LinksInstances = () => {
         <Card hoverable  title={<>¿INTERNET LENTO?</>} style={{margin:'10px', align:'justify'}}>
           {pathname !== '/profile/rounds' ? <> 
             <p align='center'>Desarollamos una versión que aumentara tus tiempos de carga, disponible solamente desde usuarios de escritorio(notebooks, pc y estaciones de trabajo). </p>
-            <Button type='primary' onClick={()=> window.open('http://localhost:3000/profile/rounds')}>HAS CLICK E INGRESA</Button>
+            <Button type='primary' onClick={()=> window.open('https://amamaule.cl/profile/rounds')}>HAS CLICK E INGRESA</Button>
             </>
             :<center><Spin size={'large'} /></center>
              }
