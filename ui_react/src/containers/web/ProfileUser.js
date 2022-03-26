@@ -14,6 +14,7 @@ import Workshops from '../../components/web/profile/Workshops'
 import Workshops2 from '../../components/web/profile/Workshops2'
 import WorkshopsFace from '../../components/web/profile/WorkshopsFace'
 import Viewings from '../../components/web/profile/Viewings'
+import { Link } from 'react-router-dom'
 import api from '../../api/endpoints'
 import { Footer } from 'antd/lib/layout/layout'
 import LinksInstances from './LinksInstances'
@@ -140,7 +141,7 @@ const ProfileUser = () => {
               </Button>
               } 
                     <Button disabled={!state.user.is_verified} shape={'round'} type='link' style={currentNavigation === '5' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('5')}>
-                  <ForkOutlined style={styles.icon} />{currentNavigation === '5' && 'Rondas'}
+                  <Link to='/profile/myrounds/'><ForkOutlined style={styles.icon} />{currentNavigation === '5' && 'Rondas'}</Link>
               </Button>
 
               </>}
@@ -217,8 +218,8 @@ const ProfileUser = () => {
               {state.user &&
               <>
               <Menu.Item disabled={!state.user.is_verified} icon={<GroupOutlined />} key={'5'}
-                  style={currentNavigation === '5' ?  styles.hoverItem : styles.menuItem }>
-                Rondas de Vinculación
+                  style={currentNavigation === '5' ?  styles.hoverItem : styles.menuItem } >
+                <Link to='profile/myrounds/'>Rondas de Vinculación</Link>
               </Menu.Item>
 
               </>

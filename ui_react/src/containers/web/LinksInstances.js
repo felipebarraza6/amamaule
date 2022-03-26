@@ -99,7 +99,10 @@ const LinksInstances = () => {
 												<Button disabled={disabled}  onClick={()=> {
 													//updateInvitation({}, x.id, dispatch, auth, setLoad)													
                           setDisabled(true)
-													updateInvitation({answer:true}, x, dispatch, auth).then((x)=> setDisabled(false))
+													updateInvitation({answer:true}, x, dispatch, auth).then((x)=> {
+                            setDisabled(false) 
+      
+                          })
 												}} type='primary' style={{width:'100%',backgroundColor:'rgb(24, 197, 204)', borderColor:'rgb(24, 197, 204)'}} size='small'>Aceptar</Button>
 											</Col>
 											<Col onClick={()=> {

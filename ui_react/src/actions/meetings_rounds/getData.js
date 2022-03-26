@@ -207,6 +207,7 @@ console.log(invitation)
 				const request_confirm = await api_links_instances.answer_invitation(data, invitation.id)
 				.then(async(response)=>{
 					message.info('Has aceptado participar en la reunión')
+          window.location.reload()
 					
 
 				})
@@ -222,6 +223,7 @@ console.log(invitation)
 					message.info('Has cancelado la reunión')					
 					getInvitations({dispatch, auth})
 					getCalendarData({dispatch, auth})
+          window.location.reload()
 				})
 
 				return request_cancel

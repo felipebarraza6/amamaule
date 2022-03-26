@@ -31,6 +31,11 @@ const Home = () => {
             
           <Route exact path='/profile/rounds/' render={()=> <>
               <Row><LinksInstances /></Row></>} />
+
+          <Route exact path='/profile/myrounds/' render={()=><>
+              <NavBarClient />
+              <Row><LinksInstances /></Row>
+            </>} />
           <Route exact path='/profile/meetings/:id' render={({match})=> {
               return(<>
               <NavBarClient/>

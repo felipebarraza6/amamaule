@@ -12,6 +12,8 @@ const { Item } = Menu
 
 
 const NavBarClient = () => {
+
+    const {pathname} = window.location
     
     const { state, dispatch } = useContext(AuthContext)
     const [size, setSize] = useState(0)
@@ -38,7 +40,8 @@ const NavBarClient = () => {
             <>
                 <Item style={styles.item}>
                     <Link to='/profile'>
-                            @{state.user.username} 
+                        {pathname === '/profile/myrounds/' ? 'volver a mi perfil: ':'ir a mi perfil: '}
+                        @{state.user.username} 
                     </Link>
                 </Item>
                 <Item style={styles.itemLogOut}> 
