@@ -76,7 +76,7 @@ const Calendar = () => {
         
         
         if(my !== p1){
-          return (<p>{x[0].fisrt_name} {x[0].last_name}</p>)
+          return (<p>{x[0].first_name} {x[0].last_name}</p>)
         }
 
         if(my !== p2){
