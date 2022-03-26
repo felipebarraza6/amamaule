@@ -5,7 +5,7 @@ import { AuthContext } from '../../../../App'
 import { deleteMeeting } from '../../../../actions/meetings_rounds/getData'
 
 
-const CalendarMobil = ({copy_data}) => {
+const CalendarMobil = ({copy_data, ProcessUser, ProcessBtn }) => {
   
   const { state, dispatch } = useContext(GroupsContext)
   const { state:auth } = useContext(AuthContext)
@@ -26,35 +26,14 @@ const CalendarMobil = ({copy_data}) => {
                             <td style={{border:'1px solid #f0f0f0'}}>                             
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='29T12:00'){
-                                        return(<>
-                                            {x.invited.first_name} {x.invited.last_name}                                                                                       
-                                            </>
-                                        )
+                                        return ProcessUser(x.participans_invited)
                                     }                                                   
                                 })
                                 }</td>    
                                 <td style={{border:'1px solid #f0f0f0'}}>                            
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='29T12:00'){
-                                        return(<>                                            
-                                            
-                                            {!x.is_end ? <Row justify='center'>
-                                            <Col>
-                                                <Button disabled={true} size='small' type='primary' style={{marginBottom:'5px',marginRight:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}
-                                                    onClick={()=> {
-                                                        window.open(`https://amamaule.cl/profile/meetings/${x.uuid}`)
-                                                    }}
-                                                >Ingresar</Button>
-                                            </Col>
-                                            <Col >
-
-                                            <Button size='small' onClick={()=> {
-                                                
-                                                deleteMeeting({uuid_meeting: x.uuid, dispatch: dispatch, auth: auth})
-                                            }} danger type='primary'>Cancelar</Button></Col>
-                                            </Row>: <center><Tag color='pink'>FINALIZADA</Tag></center>}
-                                            </>
-                                        )
+                                        return ProcessBtn(x)
                                     }                                                   
                                 })
                                 }
@@ -66,10 +45,7 @@ const CalendarMobil = ({copy_data}) => {
                             <td style={{border:'1px solid #f0f0f0'}}>
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='29T12:20'){
-                                        return(<>
-                                            {x.invited.first_name} {x.invited.last_name}                                                                                       
-                                            </>
-                                        )
+                                        return ProcessUser(x.participans_invited)
                                     }                                                   
                                 })
                                 
@@ -77,29 +53,9 @@ const CalendarMobil = ({copy_data}) => {
                                 <td style={{border:'1px solid #f0f0f0'}}>
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='29T12:20'){
-                                        return(<>                                            
-                                            
-                                            {!x.is_end ? <Row justify='center' >
-                                            <Col span={12}>
-                                                <Button disabled={true} size='small' type='primary' style={{marginBottom:'5px',marginRight:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}
-                                                    onClick={()=> {
-                                                        window.open(`https://amamaule.cl/profile/meetings/${x.uuid}`)
-                                                    }}
-                                                >Ingresar</Button>
-                                            </Col>
-                                            <Col span={12}>
-
-                                            <Button size='small' onClick={()=> {
-                                                
-                                                deleteMeeting({uuid_meeting: x.uuid, dispatch: dispatch, auth: auth})
-                                            }} danger type='primary'>Cancelar</Button></Col>
-                                            </Row>: <center><Tag color='pink'>FINALIZADA</Tag></center>}
-                                            </>
-                                        )
-                                    }                                                   
-                                })
-                                
-                                }
+                                        return ProcessBtn(x)
+                                    }
+                                })}
                                 </td>
                                                                                             
                                                           
@@ -109,10 +65,7 @@ const CalendarMobil = ({copy_data}) => {
                             <td style={{border:'1px solid #f0f0f0'}}>                            
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='29T12:40'){
-                                        return(<>
-                                            {x.invited.first_name} {x.invited.last_name}                                                                                       
-                                            </>
-                                        )
+                                        return ProcessUser(x.participans_invited)
                                     }                                                   
                                 })
                                 
@@ -120,25 +73,7 @@ const CalendarMobil = ({copy_data}) => {
                                 <td style={{border:'1px solid #f0f0f0'}}>
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='29T12:40'){
-                                        return(<>                                            
-                                            
-                                            {!x.is_end ? <Row justify='center'>
-                                            <Col span={12}>
-                                                <Button disabled={true} size='small' type='primary' style={{marginBottom:'5px',marginRight:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}
-                                                    onClick={()=> {
-                                                        window.open(`https://amamaule.cl/profile/meetings/${x.uuid}`)
-                                                    }}
-                                                >Ingresar</Button>
-                                            </Col>
-                                            <Col span={12}>
-
-                                            <Button size='small' onClick={()=> {
-                                                
-                                                deleteMeeting({uuid_meeting: x.uuid, dispatch: dispatch, auth: auth})
-                                            }} danger type='primary'>Cancelar</Button></Col>
-                                            </Row>: <center><Tag color='pink'>FINALIZADA</Tag></center>}
-                                            </>
-                                        )
+                                        return ProcessBtn(x)
                                     }                                                   
                                 })
                                 
@@ -151,10 +86,7 @@ const CalendarMobil = ({copy_data}) => {
                             <td style={{border:'1px solid #f0f0f0'}}>                             
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='29T13:00'){
-                                        return(<>
-                                            {x.invited.first_name} {x.invited.last_name}                                                                                       
-                                            </>
-                                        )
+                                        return ProcessUser(x.participans_invited)
                                     }                                                   
                                 })
                                 
@@ -162,25 +94,7 @@ const CalendarMobil = ({copy_data}) => {
                                 <td style={{border:'1px solid #f0f0f0'}}>                            
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='29T13:00'){
-                                        return(<>                                            
-                                            
-                                            {!x.is_end ? <Row justify='center'>
-                                            <Col>
-                                                <Button disabled={true} size='small' type='primary' style={{marginBottom:'5px',marginRight:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}
-                                                    onClick={()=> {
-                                                        window.open(`https://amamaule.cl/profile/meetings/${x.uuid}`)
-                                                    }}
-                                                >Ingresar</Button>
-                                            </Col>
-                                            <Col >
-
-                                            <Button size='small' onClick={()=> {
-                                                
-                                                deleteMeeting({uuid_meeting: x.uuid, dispatch: dispatch, auth: auth})
-                                            }} danger type='primary'>Cancelar</Button></Col>
-                                            </Row>: <center><Tag color='pink'>FINALIZADA</Tag></center>}
-                                            </>
-                                        )
+                                        return ProcessBtn(x)
                                     }                                                   
                                 })
                                 
@@ -193,10 +107,7 @@ const CalendarMobil = ({copy_data}) => {
                             <td style={{border:'1px solid #f0f0f0'}}>
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='29T13:20'){
-                                        return(<>
-                                            {x.invited.first_name} {x.invited.last_name}                                                                                       
-                                            </>
-                                        )
+                                        return ProcessUser(x.participans_invited)                                 
                                     }                                                   
                                 })
                                 
@@ -204,25 +115,7 @@ const CalendarMobil = ({copy_data}) => {
                                 <td style={{border:'1px solid #f0f0f0'}}>
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='29T13:20'){
-                                        return(<>                                            
-                                            
-                                            {!x.is_end ? <Row justify='center' >
-                                            <Col span={12}>
-                                                <Button disabled={true} size='small' type='primary' style={{marginBottom:'5px',marginRight:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}
-                                                    onClick={()=> {
-                                                        window.open(`https://amamaule.cl/profile/meetings/${x.uuid}`)
-                                                    }}
-                                                >Ingresar</Button>
-                                            </Col>
-                                            <Col span={12}>
-
-                                            <Button size='small' onClick={()=> {
-                                                
-                                                deleteMeeting({uuid_meeting: x.uuid, dispatch: dispatch, auth: auth})
-                                            }} danger type='primary'>Cancelar</Button></Col>
-                                            </Row>: <center><Tag color='pink'>FINALIZADA</Tag></center>}
-                                            </>
-                                        )
+                                        return ProcessBtn(x)
                                     }                                                   
                                 })
                                 
@@ -236,10 +129,7 @@ const CalendarMobil = ({copy_data}) => {
                             <td style={{border:'1px solid #f0f0f0'}}>                            
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='29T13:40'){
-                                        return(<>
-                                            {x.invited.first_name} {x.invited.last_name}                                                                                       
-                                            </>
-                                        )
+                                        return ProcessUser(x.participans_invited)                                    
                                     }                                                   
                                 })
                                 
@@ -247,25 +137,7 @@ const CalendarMobil = ({copy_data}) => {
                                 <td style={{border:'1px solid #f0f0f0'}}>
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='29T13:40'){
-                                        return(<>                                            
-                                            
-                                            {!x.is_end ? <Row justify='center'>
-                                            <Col span={12}>
-                                                <Button disabled={true} size='small' type='primary' style={{marginBottom:'5px',marginRight:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}
-                                                    onClick={()=> {
-                                                        window.open(`https://amamaule.cl/profile/meetings/${x.uuid}`)
-                                                    }}
-                                                >Ingresar</Button>
-                                            </Col>
-                                            <Col span={12}>
-
-                                            <Button size='small' onClick={()=> {
-                                                
-                                                deleteMeeting({uuid_meeting: x.uuid, dispatch: dispatch, auth: auth})
-                                            }} danger type='primary'>Cancelar</Button></Col>
-                                            </Row>: <center><Tag color='pink'>FINALIZADA</Tag></center>}
-                                            </>
-                                        )
+                                        return ProcessBtn(x)
                                     }                                                   
                                 })
                                 
@@ -278,10 +150,7 @@ const CalendarMobil = ({copy_data}) => {
                             <td style={{border:'1px solid #f0f0f0'}}>                                                         
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='29T15:00'){
-                                        return(<>
-                                            {x.invited.first_name} {x.invited.last_name}                                                                                       
-                                            </>
-                                        )
+                                        return ProcessUser(x.participans_invited)
                                     }                                                   
                                 })
                                 
@@ -289,25 +158,7 @@ const CalendarMobil = ({copy_data}) => {
                                 <td style={{border:'1px solid #f0f0f0'}}>                            
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='29T15:00'){
-                                        return(<>                                            
-                                            
-                                            {!x.is_end ? <Row justify='center'>
-                                            <Col span={12}>
-                                                <Button disabled={true} size='small' type='primary' style={{marginBottom:'5px',marginRight:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}
-                                                    onClick={()=> {
-                                                        window.open(`https://amamaule.cl/profile/meetings/${x.uuid}`)
-                                                    }}
-                                                >Ingresar</Button>
-                                            </Col>
-                                            <Col span={12}>
-
-                                            <Button size='small' onClick={()=> {
-                                                
-                                                deleteMeeting({uuid_meeting: x.uuid, dispatch: dispatch, auth: auth})
-                                            }} danger type='primary'>Cancelar</Button></Col>
-                                            </Row>: <center><Tag color='pink'>FINALIZADA</Tag></center>}
-                                            </>
-                                        )
+                                        return ProcessBtn(x)
                                     }                                                   
                                 })
                                 
@@ -320,10 +171,7 @@ const CalendarMobil = ({copy_data}) => {
                             <td style={{border:'1px solid #f0f0f0'}}>                                                         
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='29T15:20'){
-                                        return(<>
-                                            {x.invited.first_name} {x.invited.last_name}                                                                                       
-                                            </>
-                                        )
+                                        return ProcessUser(x.participans_invited)
                                     }                                                   
                                 })
                                 
@@ -331,25 +179,7 @@ const CalendarMobil = ({copy_data}) => {
                                 <td style={{border:'1px solid #f0f0f0'}}>                            
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='29T15:20'){
-                                        return(<>                                            
-                                            
-                                            {!x.is_end ? <Row justify='center'>
-                                            <Col span={12}>
-                                                <Button disabled={true} size='small' type='primary' style={{marginBottom:'5px',marginRight:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}
-                                                    onClick={()=> {
-                                                        window.open(`https://amamaule.cl/profile/meetings/${x.uuid}`)
-                                                    }}
-                                                >Ingresar</Button>
-                                            </Col>
-                                            <Col span={12}>
-
-                                            <Button size='small' onClick={()=> {
-                                                
-                                                deleteMeeting({uuid_meeting: x.uuid, dispatch: dispatch, auth: auth})
-                                            }} danger type='primary'>Cancelar</Button></Col>
-                                            </Row>: <center><Tag color='pink'>FINALIZADA</Tag></center>}
-                                            </>
-                                        )
+                                        return ProcessBtn(x)
                                     }                                                   
                                 })
                                 
@@ -362,10 +192,7 @@ const CalendarMobil = ({copy_data}) => {
                             <td style={{border:'1px solid #f0f0f0'}}>                                                         
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='29T15:40'){
-                                        return(<>
-                                            {x.invited.first_name} {x.invited.last_name}                                                                                       
-                                            </>
-                                        )
+                                        return ProcessUser(x.participans_invited)
                                     }                                                   
                                 })
                                 
@@ -373,25 +200,7 @@ const CalendarMobil = ({copy_data}) => {
                                 <td style={{border:'1px solid #f0f0f0'}}>                            
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='29T15:40'){
-                                        return(<>                                            
-                                            
-                                            {!x.is_end ? <Row justify='center'>
-                                            <Col span={12}>
-                                                <Button disabled={true} size='small' type='primary' style={{marginBottom:'5px',marginRight:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}
-                                                    onClick={()=> {
-                                                        window.open(`https://amamaule.cl/profile/meetings/${x.uuid}`)
-                                                    }}
-                                                >Ingresar</Button>
-                                            </Col>
-                                            <Col span={12}>
-
-                                            <Button size='small' onClick={()=> {
-                                                
-                                                deleteMeeting({uuid_meeting: x.uuid, dispatch: dispatch, auth: auth})
-                                            }} danger type='primary'>Cancelar</Button></Col>
-                                            </Row>: <center><Tag color='pink'>FINALIZADA</Tag></center>}
-                                            </>
-                                        )
+                                        return ProcessBtn(x)
                                     }                                                   
                                 })
                                 
@@ -404,10 +213,7 @@ const CalendarMobil = ({copy_data}) => {
                             <td style={{border:'1px solid #f0f0f0'}}>                                                         
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='29T16:00'){
-                                        return(<>
-                                            {x.invited.first_name} {x.invited.last_name}                                                                                       
-                                            </>
-                                        )
+                                        return ProcessUser(x.participans_invited)
                                     }                                                   
                                 })
                                 
@@ -415,25 +221,7 @@ const CalendarMobil = ({copy_data}) => {
                                 <td style={{border:'1px solid #f0f0f0'}}>                            
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='29T16:00'){
-                                        return(<>                                            
-                                            
-                                            {!x.is_end ? <Row justify='center'>
-                                            <Col span={12}>
-                                                <Button disabled={true} size='small' type='primary' style={{marginBottom:'5px',marginRight:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}
-                                                    onClick={()=> {
-                                                        window.open(`https://amamaule.cl/profile/meetings/${x.uuid}`)
-                                                    }}
-                                                >Ingresar</Button>
-                                            </Col>
-                                            <Col span={12}>
-
-                                            <Button size='small' onClick={()=> {
-                                                
-                                                deleteMeeting({uuid_meeting: x.uuid, dispatch: dispatch, auth: auth})
-                                            }} danger type='primary'>Cancelar</Button></Col>
-                                            </Row>: <center><Tag color='pink'>FINALIZADA</Tag></center>}
-                                            </>
-                                        )
+                                        return ProcessBtn(x)
                                     }                                                   
                                 })
                                 
@@ -446,10 +234,7 @@ const CalendarMobil = ({copy_data}) => {
                             <td style={{border:'1px solid #f0f0f0'}}>                                                         
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='29T16:20'){
-                                        return(<>
-                                            {x.invited.first_name} {x.invited.last_name}                                                                                       
-                                            </>
-                                        )
+                                        return ProcessUser(x.participans_invited)
                                     }                                                   
                                 })
                                 
@@ -457,25 +242,7 @@ const CalendarMobil = ({copy_data}) => {
                                 <td style={{border:'1px solid #f0f0f0'}}>                            
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='29T16:20'){
-                                        return(<>                                            
-                                            
-                                            {!x.is_end ? <Row justify='center'>
-                                            <Col span={12}>
-                                                <Button disabled={true} size='small' type='primary' style={{marginBottom:'5px',marginRight:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}
-                                                    onClick={()=> {
-                                                        window.open(`https://amamaule.cl/profile/meetings/${x.uuid}`)
-                                                    }}
-                                                >Ingresar</Button>
-                                            </Col>
-                                            <Col span={12}>
-
-                                            <Button size='small' onClick={()=> {
-                                                
-                                                deleteMeeting({uuid_meeting: x.uuid, dispatch: dispatch, auth: auth})
-                                            }} danger type='primary'>Cancelar</Button></Col>
-                                            </Row>: <center><Tag color='pink'>FINALIZADA</Tag></center>}
-                                            </>
-                                        )
+                                        return ProcessBtn(x)
                                     }                                                   
                                 })
                                 
@@ -497,13 +264,10 @@ const CalendarMobil = ({copy_data}) => {
                         
                         <tr style={{}}>
                             <th>12:00</th>
-                                                            <td style={{border:'1px solid #f0f0f0'}}>
+                                <td style={{border:'1px solid #f0f0f0'}}>
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='30T12:00'){
-                                        return(<>
-                                            {x.invited.first_name} {x.invited.last_name}                                                                                       
-                                            </>
-                                        )
+                                        return ProcessUser(x.participans_invited)
                                     }                                                   
                                 })
                                 
@@ -511,25 +275,7 @@ const CalendarMobil = ({copy_data}) => {
                                 <td style={{border:'1px solid #f0f0f0'}}>
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='30T12:00'){
-                                        return(<>                                            
-                                            
-                                            {!x.is_end ? <Row justify='center'>
-                                            <Col>
-                                                <Button disabled={true} size='small' type='primary' style={{marginBottom:'5px',marginRight:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}
-                                                    onClick={()=> {
-                                                        window.open(`https://amamaule.cl/profile/meetings/${x.uuid}`)
-                                                    }}
-                                                >Ingresar</Button>
-                                            </Col>
-                                            <Col >
-
-                                            <Button size='small' onClick={()=> {
-                                                
-                                                deleteMeeting({uuid_meeting: x.uuid, dispatch: dispatch, auth: auth})
-                                            }} danger type='primary'>Cancelar</Button></Col>
-                                            </Row>: <center><Tag color='pink'>FINALIZADA</Tag></center>}
-                                            </>
-                                        )
+                                        return ProcessBtn(x)
                                     }                                                   
                                 })
                                 
@@ -541,10 +287,7 @@ const CalendarMobil = ({copy_data}) => {
                                                             <td style={{border:'1px solid #f0f0f0'}}>                                                         
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='30T12:20'){
-                                        return(<>
-                                            {x.invited.first_name} {x.invited.last_name}                                                                                       
-                                            </>
-                                        )
+                                        return ProcessUser(x.participans_invited)
                                     }                                                   
                                 })
                                 
@@ -552,25 +295,7 @@ const CalendarMobil = ({copy_data}) => {
                                 <td style={{border:'1px solid #f0f0f0'}}>                            
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='30T12:20'){
-                                        return(<>                                            
-                                            
-                                            {!x.is_end ? <Row justify='center'>
-                                            <Col>
-                                                <Button disabled={true} size='small' type='primary' style={{marginBottom:'5px',marginRight:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}
-                                                    onClick={()=> {
-                                                        window.open(`https://amamaule.cl/profile/meetings/${x.uuid}`)
-                                                    }}
-                                                >Ingresar</Button>
-                                            </Col>
-                                            <Col >
-
-                                            <Button size='small' onClick={()=> {
-                                                
-                                                deleteMeeting({uuid_meeting: x.uuid, dispatch: dispatch, auth: auth})
-                                            }} danger type='primary'>Cancelar</Button></Col>
-                                            </Row>: <center><Tag color='pink'>FINALIZADA</Tag></center>}
-                                            </>
-                                        )
+                                        return ProcessBtn(x)
                                     }                                                   
                                 })
                                 
@@ -583,10 +308,7 @@ const CalendarMobil = ({copy_data}) => {
                               <td style={{border:'1px solid #f0f0f0'}}>                                                         
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='30T12:40'){
-                                        return(<>
-                                            {x.invited.first_name} {x.invited.last_name}                                                                                       
-                                            </>
-                                        )
+                                        return ProcessUser(x.participans_invited)
                                     }                                                   
                                 })
                                 
@@ -594,25 +316,7 @@ const CalendarMobil = ({copy_data}) => {
                                 <td style={{border:'1px solid #f0f0f0'}}>                            
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='30T12:40'){
-                                        return(<>                                            
-                                            
-                                            {!x.is_end ? <Row justify='center'>
-                                            <Col>
-                                                <Button disabled={true} size='small' type='primary' style={{marginBottom:'5px',marginRight:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}
-                                                    onClick={()=> {
-                                                        window.open(`https://amamaule.cl/profile/meetings/${x.uuid}`)
-                                                    }}
-                                                >Ingresar</Button>
-                                            </Col>
-                                            <Col >
-
-                                            <Button size='small' onClick={()=> {
-                                                
-                                                deleteMeeting({uuid_meeting: x.uuid, dispatch: dispatch, auth: auth})
-                                            }} danger type='primary'>Cancelar</Button></Col>
-                                            </Row>: <center><Tag color='pink'>FINALIZADA</Tag></center>}
-                                            </>
-                                        )
+                                        return ProcessBtn(x)
                                     }                                                   
                                 })
                                 
@@ -625,10 +329,7 @@ const CalendarMobil = ({copy_data}) => {
                                 <td style={{border:'1px solid #f0f0f0'}}>
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='30T13:00'){
-                                        return(<>
-                                            {x.invited.first_name} {x.invited.last_name}                                                                                       
-                                            </>
-                                        )
+                                        return ProcessUser(x.participans_invited)
                                     }                                                   
                                 })
                                 
@@ -636,25 +337,7 @@ const CalendarMobil = ({copy_data}) => {
                                 <td style={{border:'1px solid #f0f0f0'}}>
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='30T13:00'){
-                                        return(<>                                            
-                                            
-                                            {!x.is_end ? <Row justify='center'>
-                                            <Col>
-                                                <Button disabled={true} size='small' type='primary' style={{marginBottom:'5px',marginRight:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}
-                                                    onClick={()=> {
-                                                        window.open(`https://amamaule.cl/profile/meetings/${x.uuid}`)
-                                                    }}
-                                                >Ingresar</Button>
-                                            </Col>
-                                            <Col >
-
-                                            <Button size='small' onClick={()=> {
-                                                
-                                                deleteMeeting({uuid_meeting: x.uuid, dispatch: dispatch, auth: auth})
-                                            }} danger type='primary'>Cancelar</Button></Col>
-                                            </Row>: <center><Tag color='pink'>FINALIZADA</Tag></center>}
-                                            </>
-                                        )
+                                        return ProcessBtn(x)
                                     }                                                   
                                 })
                                 
@@ -666,10 +349,7 @@ const CalendarMobil = ({copy_data}) => {
                               <td style={{border:'1px solid #f0f0f0'}}>                                                         
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='30T13:20'){
-                                        return(<>
-                                            {x.invited.first_name} {x.invited.last_name}                                                                                       
-                                            </>
-                                        )
+                                        return ProcessUser(x.participans_invited)
                                     }                                                   
                                 })
                                 
@@ -677,25 +357,7 @@ const CalendarMobil = ({copy_data}) => {
                                 <td style={{border:'1px solid #f0f0f0'}}>                            
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='30T13:20'){
-                                        return(<>                                            
-                                            
-                                            {!x.is_end ? <Row justify='center'>
-                                            <Col>
-                                                <Button disabled={true} size='small' type='primary' style={{marginBottom:'5px',marginRight:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}
-                                                    onClick={()=> {
-                                                        window.open(`https://amamaule.cl/profile/meetings/${x.uuid}`)
-                                                    }}
-                                                >Ingresar</Button>
-                                            </Col>
-                                            <Col >
-
-                                            <Button size='small' onClick={()=> {
-                                                
-                                                deleteMeeting({uuid_meeting: x.uuid, dispatch: dispatch, auth: auth})
-                                            }} danger type='primary'>Cancelar</Button></Col>
-                                            </Row>: <center><Tag color='pink'>FINALIZADA</Tag></center>}
-                                            </>
-                                        )
+                                        return ProcessBtn(x)
                                     }                                                   
                                 })
                                 
@@ -708,10 +370,7 @@ const CalendarMobil = ({copy_data}) => {
                                                             <td style={{border:'1px solid #f0f0f0'}}>                                                         
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='30T13:40'){
-                                        return(<>
-                                            {x.invited.first_name} {x.invited.last_name}                                                                                       
-                                            </>
-                                        )
+                                        return ProcessUser(x.participans_invited)
                                     }                                                   
                                 })
                                 
@@ -719,25 +378,7 @@ const CalendarMobil = ({copy_data}) => {
                                 <td style={{border:'1px solid #f0f0f0'}}>                            
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='30T13:40'){
-                                        return(<>                                            
-                                            
-                                            {!x.is_end ? <Row justify='center'>
-                                            <Col>
-                                                <Button disabled={true} size='small' type='primary' style={{marginBottom:'5px',marginRight:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}
-                                                    onClick={()=> {
-                                                        window.open(`https://amamaule.cl/profile/meetings/${x.uuid}`)
-                                                    }}
-                                                >Ingresar</Button>
-                                            </Col>
-                                            <Col >
-
-                                            <Button size='small' onClick={()=> {
-                                                
-                                                deleteMeeting({uuid_meeting: x.uuid, dispatch: dispatch, auth: auth})
-                                            }} danger type='primary'>Cancelar</Button></Col>
-                                            </Row>: <center><Tag color='pink'>FINALIZADA</Tag></center>}
-                                            </>
-                                        )
+                                        return ProcessBtn(x)
                                     }                                                   
                                 })
                                 
@@ -749,10 +390,7 @@ const CalendarMobil = ({copy_data}) => {
                                                             <td style={{border:'1px solid #f0f0f0'}}>                                                         
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='30T15:00'){
-                                        return(<>
-                                            {x.invited.first_name} {x.invited.last_name}                                                                                       
-                                            </>
-                                        )
+                                        return ProcessUser(x.participans_invited)
                                     }                                                   
                                 })
                                 
@@ -760,25 +398,7 @@ const CalendarMobil = ({copy_data}) => {
                                 <td style={{border:'1px solid #f0f0f0'}}>                            
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='30T15:00'){
-                                        return(<>                                            
-                                            
-                                            {!x.is_end ? <Row justify='center'>
-                                            <Col>
-                                                <Button disabled={true} size='small' type='primary' style={{marginBottom:'5px',marginRight:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}
-                                                    onClick={()=> {
-                                                        window.open(`https://amamaule.cl/profile/meetings/${x.uuid}`)
-                                                    }}
-                                                >Ingresar</Button>
-                                            </Col>
-                                            <Col >
-
-                                            <Button size='small' onClick={()=> {
-                                                
-                                                deleteMeeting({uuid_meeting: x.uuid, dispatch: dispatch, auth: auth})
-                                            }} danger type='primary'>Cancelar</Button></Col>
-                                            </Row>: <center><Tag color='pink'>FINALIZADA</Tag></center>}
-                                            </>
-                                        )
+                                        return ProcessBtn(x)
                                     }                                                   
                                 })
                                 
@@ -791,10 +411,7 @@ const CalendarMobil = ({copy_data}) => {
                                 <td style={{border:'1px solid #f0f0f0'}}>                                                         
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='30T15:20'){
-                                        return(<>
-                                            {x.invited.first_name} {x.invited.last_name}                                                                                       
-                                            </>
-                                        )
+                                        return ProcessUser(x.participans_invited)
                                     }                                                   
                                 })
                                 
@@ -802,25 +419,7 @@ const CalendarMobil = ({copy_data}) => {
                                 <td style={{border:'1px solid #f0f0f0'}}>                            
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='30T15:20'){
-                                        return(<>                                            
-                                            
-                                            {!x.is_end ? <Row justify='center'>
-                                            <Col>
-                                                <Button disabled={true} size='small' type='primary' style={{marginBottom:'5px',marginRight:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}
-                                                    onClick={()=> {
-                                                        window.open(`https://amamaule.cl/profile/meetings/${x.uuid}`)
-                                                    }}
-                                                >Ingresar</Button>
-                                            </Col>
-                                            <Col >
-
-                                            <Button size='small' onClick={()=> {
-                                                
-                                                deleteMeeting({uuid_meeting: x.uuid, dispatch: dispatch, auth: auth})
-                                            }} danger type='primary'>Cancelar</Button></Col>
-                                            </Row>: <center><Tag color='pink'>FINALIZADA</Tag></center>}
-                                            </>
-                                        )
+                                        return ProcessBtn(x)
                                     }                                                   
                                 })
                                 
@@ -833,10 +432,7 @@ const CalendarMobil = ({copy_data}) => {
                                 <td style={{border:'1px solid #f0f0f0'}}>                                                         
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='30T15:40'){
-                                        return(<>
-                                            {x.invited.first_name} {x.invited.last_name}                                                                                       
-                                            </>
-                                        )
+                                        return ProcessUser(x.participans_invited)
                                     }                                                   
                                 })
                                 
@@ -844,25 +440,7 @@ const CalendarMobil = ({copy_data}) => {
                                 <td style={{border:'1px solid #f0f0f0'}}>                            
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='30T15:40'){
-                                        return(<>                                            
-                                            
-                                            {!x.is_end ? <Row justify='center'>
-                                            <Col>
-                                                <Button disabled={true} size='small' type='primary' style={{marginBottom:'5px',marginRight:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}
-                                                    onClick={()=> {
-                                                        window.open(`https://amamaule.cl/profile/meetings/${x.uuid}`)
-                                                    }}
-                                                >Ingresar</Button>
-                                            </Col>
-                                            <Col >
-
-                                            <Button size='small' onClick={()=> {
-                                                
-                                                deleteMeeting({uuid_meeting: x.uuid, dispatch: dispatch, auth: auth})
-                                            }} danger type='primary'>Cancelar</Button></Col>
-                                            </Row>: <center><Tag color='pink'>FINALIZADA</Tag></center>}
-                                            </>
-                                        )
+                                        return ProcessBtn(x)
                                     }                                                   
                                 })
                                 
@@ -875,10 +453,7 @@ const CalendarMobil = ({copy_data}) => {
                                 <td style={{border:'1px solid #f0f0f0'}}>                                                         
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='30T16:00'){
-                                        return(<>
-                                            {x.invited.first_name} {x.invited.last_name}                                                                                       
-                                            </>
-                                        )
+                                        return ProcessUser(x.participans_invited)
                                     }                                                   
                                 })
                                 
@@ -886,25 +461,7 @@ const CalendarMobil = ({copy_data}) => {
                                 <td style={{border:'1px solid #f0f0f0'}}>                            
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='30T16:00'){
-                                        return(<>                                            
-                                            
-                                            {!x.is_end ? <Row justify='center'>
-                                            <Col>
-                                                <Button disabled={true} size='small' type='primary' style={{marginBottom:'5px',marginRight:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}
-                                                    onClick={()=> {
-                                                        window.open(`https://amamaule.cl/profile/meetings/${x.uuid}`)
-                                                    }}
-                                                >Ingresar</Button>
-                                            </Col>
-                                            <Col >
-
-                                            <Button size='small' onClick={()=> {
-                                                
-                                                deleteMeeting({uuid_meeting: x.uuid, dispatch: dispatch, auth: auth})
-                                            }} danger type='primary'>Cancelar</Button></Col>
-                                            </Row>: <center><Tag color='pink'>FINALIZADA</Tag></center>}
-                                            </>
-                                        )
+                                        return ProcessBtn(x)
                                     }                                                   
                                 })
                                 
@@ -917,10 +474,7 @@ const CalendarMobil = ({copy_data}) => {
                                 <td style={{border:'1px solid #f0f0f0'}}>                                                         
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='30T16:20'){
-                                        return(<>
-                                            {x.invited.first_name} {x.invited.last_name}                                                                                       
-                                            </>
-                                        )
+                                        return ProcessUser(x.participans_invited)
                                     }                                                   
                                 })
                                 
@@ -928,25 +482,7 @@ const CalendarMobil = ({copy_data}) => {
                                 <td style={{border:'1px solid #f0f0f0'}}>                            
                                 {copy_data.map((x)=> {                                    
                                     if(x.start_date.slice(8,16)==='30T16:20'){
-                                        return(<>                                            
-                                            
-                                            {!x.is_end ? <Row justify='center'>
-                                            <Col>
-                                                <Button disabled={true} size='small' type='primary' style={{marginBottom:'5px',marginRight:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}}
-                                                    onClick={()=> {
-                                                        window.open(`https://amamaule.cl/profile/meetings/${x.uuid}`)
-                                                    }}
-                                                >Ingresar</Button>
-                                            </Col>
-                                            <Col >
-
-                                            <Button size='small' onClick={()=> {
-                                                
-                                                deleteMeeting({uuid_meeting: x.uuid, dispatch: dispatch, auth: auth})
-                                            }} danger type='primary'>Cancelar</Button></Col>
-                                            </Row>: <center><Tag color='pink'>FINALIZADA</Tag></center>}
-                                            </>
-                                        )
+                                        return ProcessBtn(x)
                                     }                                                   
                                 })
                                 
