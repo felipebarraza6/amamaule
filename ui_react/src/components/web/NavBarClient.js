@@ -73,7 +73,7 @@ const NavBarClient = () => {
             <>
                 <Item style={styles.item}>
                     <Link to='/profile'>
-                            @{state.user.username} 
+                          {pathname==='/profile/myrounds/' ? 'Volver a mi perfil': `@${state.user.username}` }
                     </Link>
                 </Item>
                 <Item style={styles.itemLogOut}> 
