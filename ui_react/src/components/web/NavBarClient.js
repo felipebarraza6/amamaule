@@ -140,7 +140,6 @@ const styles = {
         marginLeft:'5px'
     }, 
     itemLogOut: {
-        height: '45px',
         backgroundColor: 'rgb(176, 93, 185)',
     }
 }

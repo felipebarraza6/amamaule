@@ -46,8 +46,8 @@ function App() {
     setSize(window.innerWidth)
 
     if(user && access_token){
-      if(!user.is_verified){
-      notification.warning({duration: 10, description: <a href='https://amamaule.cl/profile/'>IR A TU PERFIL</a>,message:'COMPLETA TU PERFIL PARA PARTICIPAR DE LAS ACTIVIDADES DE AMA.', onClick: ()=> window.location('/profile') })
+      if(user.is_verified){
+      notification.warning({duration: 10, description: <a href='https://amamaule.cl/profile/myrounds/'>IR A TUS RONDAS</a>,message:'Para concretar o cancelar una reunión, es necesario que hagas click en el botón aceptar o en el botón rechazar, según estimes conveniente..', onClick: ()=> window.location('/profile/myrounds') })
       }
       
       console.log(user)

@@ -30,6 +30,11 @@ const list_users = async({filter='', first_name='', last_name='', region='', cit
     return request
 }
 
+const list_users_suppcxt = async({type='', first_name='', last_name='', region='', city='', email='', phone=''})=> {
+    const request = await GET(`users/?is_verified=true&type_user=${type}&first_name__icontains=${first_name}&last_name__icontains=${last_name}&region__contains=${region}&commune__contains=${city}&$email__icotains=${email}&phone_number__icontains=${phone}`)
+    return request
+}
+
 const profile = async(user)=> {
     const request = await GET(`users/${user}/`)
     return request
@@ -129,6 +134,7 @@ const api = {
         login,
         signup,
         list_users,
+        list_users_suppcxt,
         update_user,
         profile,
         get_profile_center,

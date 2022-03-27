@@ -31,8 +31,6 @@ const Calendar = () => {
             
             var today = new Date()
             var str_time = `${today.getDate()}T${today.getHours()}:${today.getMinutes()}`
-            console.log(str_time)
-            console.log(str_meeting_time)
             if(str_time > str_meeting_time){
                  setDisabled(false) 
             }else{

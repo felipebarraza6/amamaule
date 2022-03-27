@@ -47,7 +47,7 @@ const MeetingVideoChat = ({match})=> {
         if(state.data){
             if(state.data.is_programmatic_dialogues){
                 mode = 'group'
-                var add_minutess_max = incrementent_date.getMinutes() + 50
+                var add_minutess_max = incrementent_date.getMinutes() + 100
                 incrementent_date.setMinutes(add_minutess_max)
             }
         }
