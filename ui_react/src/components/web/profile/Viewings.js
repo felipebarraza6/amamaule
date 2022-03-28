@@ -174,13 +174,13 @@ const Viewings = () => {
    
     return(
         <>
-      <Row style={{backgroundColor:'white', padding:'20px', borderRadius:'10px', margin:'20px'}}>
+      <Row style={{backgroundColor:'white', padding:'10px', borderRadius:'10px'}}>
         <Col lg={24} xs={24}>
             <Title level={3}>Gestión de reuniones e invitaciones</Title>
                 </Col>
                     <Col xs={24} lg={8}>
                       <Card hoverable 
-                          style={{margin:'5px', borderRadius:'20px'}}  >
+                          style={{margin:'0px', borderRadius:'20px'}}  >
                     <Row>
                     <Collapse style={{width:'100%'}}>
             <Collapse.Panel header='Filtro de Usuarios' style={{width:'100%'}}>
@@ -285,13 +285,13 @@ const Viewings = () => {
                 </Card>
                 
                 </Col>
-                <Col span={16} style={{padding:'30px'}}>                                      
+                <Col span={16} style={{paddingLeft:'10px'}}>                                      
                     
                     <Row align='center' style={{marginBottom:'10px'}}>
                         {userS.map((x)=> {
                             return(<Col span={15} style={{padding:'10px'}}><Tag style={{fontSize:'15px'}} color='pink'> {x.first_name} {x.last_name} - {x.email} - {x.phone_number} </Tag></Col>)
                         })}
-                        <Col>
+                        <Col span={24}>
                             <Button type='primary' size='small' onClick={updateSearch}>Actualizar</Button>
                         </Col>
                         </Row>

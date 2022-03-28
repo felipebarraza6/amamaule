@@ -58,5 +58,31 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      [
+        "@babel/preset-react",
+        {
+          "pragma": "dom",
+          "pragmaFrag": "DomFrag",
+          "throwIfNamespace": false,
+          "runtime": "classic"
+        }
+      ]
+    ],
+    "env": {
+      "development": {
+        "presets": [
+          [
+            "@babel/preset-react",
+            {
+              "development": true
+            }
+          ]
+        ]
+      }
+    }
   }
 }
