@@ -5,7 +5,7 @@ from rest_framework.permissions import (
 )
 
 from apps.link_instances.models import Invitation
-from apps.link_instances.serializers import InvitationModelSerializer, ListInvitationModelSerializer, RetrieveModalSerializer
+from apps.link_instances.serializers import InvitationModelSerializer, ListInvitationModelSerializer, RetrieveModalSerializer, InvitationAdmModel
 from django_filters import rest_framework as filters
 
 
@@ -39,4 +39,14 @@ class InvitationViewSet(mixins.ListModelMixin,
             }
                 
     filterset_class = InvitationFilter
+
+    @action(detail=False, methods=['post'])
+    def create_adm_invitation(self,request):
+        serializer = InvitationAdmModel(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        invitation = serializer.save()
+        data = {
+            'invitation': InvitationAdmModel(profile).data
+        }
+        return Response(data, status=status.HTTP_201_CREATED)
 

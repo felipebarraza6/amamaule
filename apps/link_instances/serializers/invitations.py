@@ -18,6 +18,10 @@ class RetrieveModalSerializer(serializers.ModelSerializer):
         model = Invitation
         fields = '__all__'
 
+class InvitationAdmModel(serializers.ModelSerializer):
+    class Meta:
+        model = Invitation
+        fields = ('__all__')
 
 class InvitationModelSerializer(serializers.ModelSerializer): 
     owner = serializers.HiddenField(default=serializers.CurrentUserDefault())   

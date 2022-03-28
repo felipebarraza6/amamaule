@@ -5,6 +5,7 @@ import { LogoutOutlined, NotificationOutlined, WhatsAppOutlined } from '@ant-des
 import { AuthContext } from '../../App'
 import { Link } from 'react-router-dom'
 import Logo from '../../assets/logo/01B.png'
+
 import Logo1 from '../../assets/logo/logom.png'
 import pdf from '../../assets/PROGRAMA_2022.pdf'
 const { Header } = Layout
@@ -40,8 +41,10 @@ const NavBarClient = () => {
             <>
                 <Item style={styles.item}>
                     <Link to='/profile'>
-                        {pathname === '/profile/myrounds/' ? 'volver a mi perfil: ':'ir a mi perfil: '}
-                        @{state.user.username} 
+                        {pathname !== '/profile' ? <Button 
+                            style={{marginBottom:'12px', backgroundColor:'rgb(24, 197, 204)', borderColor:'rgb(24, 197, 204)'}} 
+                            type='primary'>Volver a mi perfil</Button>:<div style={{fontSize:'16px', color:'white'}}> @{state.user.username} </div>}
+                         
                     </Link>
                 </Item>
                 <Item style={styles.itemLogOut}> 
@@ -50,7 +53,7 @@ const NavBarClient = () => {
                         window.location.replace('/')
                     }}>
                         <Tooltip title='Cerrar Sesión'>
-                            <LogoutOutlined style={{fontSize:'20px', color:'white'}} />
+                            <LogoutOutlined style={{fontSize:'20px', color:'white',}} />
                         </Tooltip>
                     </Button> 
                 </Item>
@@ -73,7 +76,7 @@ const NavBarClient = () => {
             <>
                 <Item style={styles.item}>
                     <Link to='/profile'>
-                          {pathname==='/profile/myrounds/' ? 'Volver a mi perfil': `@${state.user.username}` }
+                          {pathname==='/profile/myrounds/' ? <Button>Volver a mi perfil</Button>: `@${state.user.username}` }
                     </Link>
                 </Item>
                 <Item style={styles.itemLogOut}> 
@@ -141,6 +144,7 @@ const styles = {
     }, 
     itemLogOut: {
         backgroundColor: 'rgb(176, 93, 185)',
+        marginBottom:'12px'
     }
 }
 

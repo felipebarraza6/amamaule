@@ -61,7 +61,7 @@ const LinksInstances = () => {
 					</Card>
 			</Col>			
 			<Col lg={14} xs={24} style={{padding:'0px'}}>
-			<Collapse defaultActiveKey={['1']} style={{marginBottom:'10px'}}>
+			<Collapse defaultActiveKey={['1']} style={{marginBottom:'10px', marginTop:'10px'}}>
 			
 				<Panel key='1' header={<><h3><MailOutlined style={styles.icon} />Invitaciones recibidas</h3></>} key="1">
 				<Table bordered  columns={ [

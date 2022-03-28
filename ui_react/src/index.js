@@ -10,8 +10,8 @@ ReactDOM.render(
   <React.Fragment>
     <FloatingWhatsApp 
       headerTitle={'Soporte Web'} 
-      zIndex={1} 
-      size={70}
+      zIndex={2} 
+      size={70}      
       phone={56933932112}
       popupMessage={'Hola! 🤝 en qué podemos ayudarte? '} 
       backgroundColor='rgb(176, 93, 185)' 

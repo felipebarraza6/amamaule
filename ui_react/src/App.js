@@ -52,7 +52,7 @@ function App() {
       
       console.log(user)
     getUserData(user.username)
-    }
+    } 
   }, [])
 
 

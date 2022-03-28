@@ -137,7 +137,7 @@ const ProfileUser = () => {
               </Button>
              {state.user.type_user === 'ADM' &&
               <Button  shape={'round'} type='link' style={currentNavigation === '3' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('3')}>
-                  <EyeOutlined style={styles.icon} />{currentNavigation === '3' && 'Soporte'}
+                  <Link to='profile/support/'>Soporte<EyeOutlined style={styles.icon} /></Link>{currentNavigation === '3' && 'Soporte'}
               </Button>
               } 
                     <Button disabled={!state.user.is_verified} shape={'round'} type='link' style={currentNavigation === '5' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('5')}>
@@ -211,7 +211,7 @@ const ProfileUser = () => {
                 {state.user.type_user === 'ADM' &&                                         
                   <Menu.Item   icon={<EyeOutlined/>} key={'3'}
                     style={ currentNavigation === '3' ?  styles.hoverItem : styles.menuItem  } >
-                      Soporte
+                      <Link to='profile/support/'>Soporte</Link>
                   </Menu.Item>                    
                 }
               </>}

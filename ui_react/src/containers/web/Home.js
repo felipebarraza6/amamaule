@@ -8,6 +8,7 @@ import TrenSection from '../../components/web/TrenSection'
 import Services from '../../components/web/Services'
 import NavBarClient from '../../components/web/NavBarClient'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import Viewings from '../../components/web/profile/Viewings'
 import MeetingVideoChat from "./MeetingVideoChat"
 import IgFeed from '../../components/web/IgFeed'
 import LinksInstances from './LinksInstances'
@@ -35,6 +36,11 @@ const Home = () => {
           <Route exact path='/profile/myrounds/' render={()=><>
               <NavBarClient />
               <Row><LinksInstances /></Row>
+            </>} />
+
+            <Route exact path='/profile/support/' render={()=><>
+              <NavBarClient />
+              <Row><Viewings /></Row>
             </>} />
           <Route exact path='/profile/meetings/:id' render={({match})=> {
               return(<>
