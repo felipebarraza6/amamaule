@@ -67,6 +67,11 @@ const send_invitation = (data) => {
     return request
 }
 
+const send_invitation_adm = (data)=> {
+    const request = POST('/meetings-invitations/create_adm_invitation/', data)
+    return request 
+}
+
 const answer_invitation = (data, invitation) => {
     const request = UPDATE(`/meetings-invitations/${invitation}/`, data)
     return request
@@ -75,6 +80,7 @@ const answer_invitation = (data, invitation) => {
 const api_links_instances = {
     list_meetings: list_meetings,
     list_invitations: list_invitations,
+    send_invitation_adm: send_invitation_adm,
     create_meeting: create_meeting,
     send_invitation: send_invitation,
     answer_invitation: answer_invitation,

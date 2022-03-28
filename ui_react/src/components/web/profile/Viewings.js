@@ -24,6 +24,8 @@ const Viewings = () => {
 
     const [meetings, setMeetings] = useState([])
 
+    const [listUpdate, setListUpdate]= useState([])
+
    
     const [selectedUsers, setSelectedUsers] = useState([])
     const [userS, setUserS] = useState([])
@@ -55,12 +57,28 @@ const Viewings = () => {
     
     const multiSearch = async() => {
         setUserS(selectedUsers)
+        setListUpdate(listidSelected)
         setSelectedUsers([])
         setidSelected([])
         var arr=[]
         for(var i =0; listidSelected.length > i; i++){
             const rq =  await api_links_instances.list_meetings({
                 invited:listidSelected[i]
+            })            
+            arr.push(...rq.data.results)
+            
+        }
+        setMeetings(arr)
+        
+    }
+
+    const updateSearch = async() => {
+        console.log('update')
+        var arr=[]
+        console.log(listUpdate)
+        for(var i =0; listUpdate.length > i; i++){
+            const rq =  await api_links_instances.list_meetings({
+                invited:listUpdate[i]
             })            
             arr.push(...rq.data.results)
             
@@ -76,7 +94,7 @@ const Viewings = () => {
 
 
         return(<>
-                <Modal onCancel={()=>setVisible(false)} visible={visible}><Form layout='vertical' initialValues={{owner:x.owner.id, invited:x.invited.id}} onFinish={(values)=>{														
+                <Modal style={{top:10}} footer={null} onCancel={()=>setVisible(false)} visible={visible}><Form layout='vertical' initialValues={{owner:x.owner.id, invited:x.invited.id}} onFinish={async(values)=>{														
                         var format_time = values.hour_minutes.format('HH:mm:ss')
                         var date_formated = `2022-03-${values.day}T${format_time}`																																						            
                         values = {
@@ -85,11 +103,16 @@ const Viewings = () => {
                         }
                         values = {
                             'owner': values.owner,
-                            'start_date': date_formated,
+                            'invited': values.invited,
+                            'date_meeting': date_formated,
                             'participans_invited': [values.invited, values.owner],
                             'is_active': true,
-                            'message': 'Esta invitación es enviada desde el administador'
+                            'message': values.message
                         }
+                        const rq = await api_links_instances.send_invitation_adm(values).then((r)=> {
+                            notification.success({message:'INVITACION ENVIADA!'})
+                            setVisible(false)
+                        })
                         console.log(values)
                     }}>
                     <Form.Item name='owner' rules={[{ required: true, message: 'Selecciona una persona'}]} label='propietario'>
@@ -135,6 +158,9 @@ const Viewings = () => {
                             inputReadOnly={true}																																										
                             showNow={false} style={{width:'100%'}} placeholder={'Selecciona la hora(formato 24 hrs)'} format={'HH:mm'} />
                         </Form.Item>
+                        <Form.Item name='message'>
+                            <Input.TextArea placeholder='Mensaje...' rows={4}/>
+                        </Form.Item>
                         <Form.Item>
                             <Button htmlType='submit' 
                                 type='primary' 
@@ -154,7 +180,7 @@ const Viewings = () => {
                 </Col>
                     <Col xs={24} lg={8}>
                       <Card hoverable 
-                          style={{margin:'5px', borderRadius:'20px'}} title={<Text style={{borderRadius:'10%',padding:'7px'}}></Text>} >
+                          style={{margin:'5px', borderRadius:'20px'}}  >
                     <Row>
                     <Collapse style={{width:'100%'}}>
             <Collapse.Panel header='Filtro de Usuarios' style={{width:'100%'}}>
@@ -265,6 +291,9 @@ const Viewings = () => {
                         {userS.map((x)=> {
                             return(<Col span={15} style={{padding:'10px'}}><Tag style={{fontSize:'15px'}} color='pink'> {x.first_name} {x.last_name} - {x.email} - {x.phone_number} </Tag></Col>)
                         })}
+                        <Col>
+                            <Button type='primary' size='small' onClick={updateSearch}>Actualizar</Button>
+                        </Col>
                         </Row>
                     <Affix offsetTop={0}>
                         <Table 
@@ -282,14 +311,21 @@ const Viewings = () => {
                                     {   title:'Operaciones',
                                         render: (x)=><Row>
                                         <Col span={12} style={{padding:'6px'}}>
-                                            <Button size='small' type='primary' style={{marginRight:'10px'}}>ingresar</Button>
+                                            {x.src_host && 
+                                                <Button size='small' type='primary' style={{marginRight:'10px'}} onClick={()=>window.open(x.src_host)}>INGRESAR</Button>
+                                            }
                                         </Col>
                                         <Col span={12} style={{padding:'6px'}}>
                                         <ModalResch data={x} />
                                                
                                         </Col>                                        
                                         <Col span={12} style={{padding:'6px'}}>
-                                            <Button size='small' type='primary' danger>cancelar</Button>
+                                            <Button size='small' type='primary' danger onClick={async()=>{
+                                                const rq = await api_links_instances.delete_meeting({ id_meeting: x.uuid}).then((r)=> {
+                                                    notification.error({message:'REUNION ELIMINADA'})
+                                                    updateSearch()
+                                                })
+                                            }}>ELIMINAR</Button>
                                         </Col>
                                         <Col span={12} style={{padding:'6px'}}>
                                             <Button size='small' type='primary' onClick={()=>Modal.info({width:'650px',content:`https://amamaule.cl/profile/meetings/${x.uuid}`})}>LINK</Button>

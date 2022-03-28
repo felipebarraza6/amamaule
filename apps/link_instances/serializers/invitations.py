@@ -22,6 +22,26 @@ class InvitationAdmModel(serializers.ModelSerializer):
     class Meta:
         model = Invitation
         fields = ('__all__')
+    
+    def create(self, validated_data):
+    
+        try:
+            instance = Invitation.objects.create(**validated_data)
+            subject = '¡Has recibido una invitacion!'
+            from_email = '<noresponder@amamaule.cl>'
+            content = render_to_string(
+                'invitation.html',
+                { 'instance': instance}
+            )
+            
+            msg = EmailMultiAlternatives(subject, content, from_email, [instance.invited.email])            
+            msg.attach_alternative(content, "text/html")
+            msg.send()
+
+        except TypeError:
+            raise TypeError(msg)
+
+        return instance
 
 class InvitationModelSerializer(serializers.ModelSerializer): 
     owner = serializers.HiddenField(default=serializers.CurrentUserDefault())   

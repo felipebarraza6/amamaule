@@ -3,10 +3,11 @@ from rest_framework import mixins, viewsets, status
 from rest_framework.permissions import (
     IsAuthenticated,    
 )
-
+from rest_framework.decorators import action
 from apps.link_instances.models import Invitation
 from apps.link_instances.serializers import InvitationModelSerializer, ListInvitationModelSerializer, RetrieveModalSerializer, InvitationAdmModel
 from django_filters import rest_framework as filters
+from rest_framework.response import Response
 
 
 class InvitationViewSet(mixins.ListModelMixin, 
@@ -46,7 +47,7 @@ class InvitationViewSet(mixins.ListModelMixin,
         serializer.is_valid(raise_exception=True)
         invitation = serializer.save()
         data = {
-            'invitation': InvitationAdmModel(profile).data
+            'invitation': InvitationAdmModel(invitation).data
         }
         return Response(data, status=status.HTTP_201_CREATED)
 
