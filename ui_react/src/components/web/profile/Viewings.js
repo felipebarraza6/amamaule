@@ -1,7 +1,8 @@
 import React, { useState} from 'react'
 import api from '../../../api/endpoints'
+import moment from 'moment'
 import api_links_instances from '../../../api/links_instances/endpoints'
-import { Tag, Button, Card, Input, Col, Row, Typography, Select, Table, 
+import { Tag, Button, Popconfirm,Card, Input, Col, Row, Typography, Select, Table, 
           Collapse, notification, Modal, Form, TimePicker,
           Affix} from 'antd'
 import Signup from '../../web/auth/SignUp'
@@ -25,6 +26,8 @@ const Viewings = () => {
     const [meetings, setMeetings] = useState([])
 
     const [listUpdate, setListUpdate]= useState([])
+
+    const [day, setDay] = useState([])
 
    
     const [selectedUsers, setSelectedUsers] = useState([])
@@ -63,11 +66,20 @@ const Viewings = () => {
         var arr=[]
         for(var i =0; listidSelected.length > i; i++){
             const rq =  await api_links_instances.list_meetings({
-                invited:listidSelected[i]
+                invited:listidSelected[i],
+                day: day
+
+
             })            
             arr.push(...rq.data.results)
             
         }
+        arr.sort(function(a,b){
+            // Turn your strings into dates, and then subtract them
+            // to get a value that is either negative, positive, or zero.
+            return new Date(a.start_date) - new Date(b.start_date);
+
+          });
         setMeetings(arr)
         
     }
@@ -78,7 +90,8 @@ const Viewings = () => {
         console.log(listUpdate)
         for(var i =0; listUpdate.length > i; i++){
             const rq =  await api_links_instances.list_meetings({
-                invited:listUpdate[i]
+                invited:listUpdate[i],
+                day: day
             })            
             arr.push(...rq.data.results)
             
@@ -225,10 +238,10 @@ const Viewings = () => {
                         }}>
                             {cities.map((x)=> <Option value={x.name}> {x.name} </Option>)}
                       </Select>
-                </Col>
-                <Col lg={24} xs={24}>
-                    <Button onClick={()=> searchUsers() } type='primary' style={{marginTop:'20px',backgroundColor:'#b05db9', borderColor:'#b05db9'}}>Buscar...</Button>
-                </Col>
+                </Col>                
+                <Col lg={24} xs={24}>                
+                    <Button onClick={()=> searchUsers() } type='primary' style={{marginTop:'20px',backgroundColor:'#b05db9', borderColor:'#b05db9'}}>Buscar...</Button>                    
+                </Col>                
                 <Col span={24} style={{marginTop:'20px'}}>
                     <Table dataSource={listUsers} columns={[
                         {title:'NOMBRE', render: (x)=><> {x.first_name} {x.last_name} </>},
@@ -249,6 +262,11 @@ const Viewings = () => {
                     <Col lg={24} xs={24}>
                         {selectedUsers.map((x)=><Tag style={{margin:'5px'}} color='geekblue'> {x.first_name} {x.last_name} </Tag>)}  
                     </Col>
+                    <Col lg={24} xs={24} style={{marginTop:'10px'}}>
+                    SELECCIONA UN DIA:
+                    <Button type='dashed' style={{margin:'10px'}} onClick={()=> setDay(29)}>29</Button>                          
+                    <Button type='dashed' style={{margin:'10px'}} onClick={()=> setDay(30)}>30</Button>                    
+                </Col>
                     <Col lg={24} xs={24}>
                         {meetings.length > 0 ? 
                             <Button type='primary' danger style={{width:'100%',marginTop:'10px', marginBottom:'5px', color:'white'}}
@@ -289,7 +307,7 @@ const Viewings = () => {
                     
                     <Row align='center' style={{marginBottom:'10px'}}>
                         {userS.map((x)=> {
-                            return(<Col span={15} style={{padding:'10px'}}><Tag style={{fontSize:'15px'}} color='pink'> {x.first_name} {x.last_name} - {x.email} - {x.phone_number} </Tag></Col>)
+                            return(<Col span={12} style={{padding:'10px'}}><Tag style={{fontSize:'12px'}} color='pink'> {x.first_name} {x.last_name} - {x.email} - {x.phone_number} </Tag></Col>)
                         })}
                         <Col span={24}>
                             <Button type='primary' size='small' onClick={updateSearch}>Actualizar</Button>
@@ -297,6 +315,7 @@ const Viewings = () => {
                         </Row>
                     <Affix offsetTop={0}>
                         <Table 
+                                pagination={{pageSize:4}}
                                 columns={[
                                     {title:'Participantes', render: (x)=><Row>
                                         <Col span={24}><u>
@@ -307,8 +326,8 @@ const Viewings = () => {
                                         {x.invited.first_name} {x.invited.last_name}
                                         </Col>
                                         </Row>},                                    
-                                    {title:'Fecha', render: (x)=> <> {x.start_date.slice(5,10)} T {x.start_date.slice(11,16)} </>},
-                                    {   title:'Operaciones',
+                                    {title:'Fecha', sorter: (a, b) => moment(a.start_date).unix() - moment(b.start_date).unix(),render: (x)=> <> {x.start_date.slice(5,10)} T {x.start_date.slice(11,16)} </>},
+                                    {   title:'Operaciones',                                    
                                         render: (x)=><Row>
                                         <Col span={12} style={{padding:'6px'}}>
                                             {x.src_host && 
@@ -317,15 +336,23 @@ const Viewings = () => {
                                         </Col>
                                         <Col span={12} style={{padding:'6px'}}>
                                         <ModalResch data={x} />
-                                               
+                                     
                                         </Col>                                        
-                                        <Col span={12} style={{padding:'6px'}}>
-                                            <Button size='small' type='primary' danger onClick={async()=>{
+                                        <Col span={12} style={{padding:'6px'}}><Popconfirm
+                                            title="Estas seguro de eliminar esta reunion?"
+                                            onConfirm={async()=>{
                                                 const rq = await api_links_instances.delete_meeting({ id_meeting: x.uuid}).then((r)=> {
                                                     notification.error({message:'REUNION ELIMINADA'})
                                                     updateSearch()
                                                 })
-                                            }}>ELIMINAR</Button>
+                                            }}
+                                            //onCancel={cancel}
+                                            okText="Si"
+                                            cancelText="No"
+                                        >     
+                                        <Button danger type='primary'>Eliminar</Button>                                       
+                                        </Popconfirm>
+                                           
                                         </Col>
                                         <Col span={12} style={{padding:'6px'}}>
                                             <Button size='small' type='primary' onClick={()=>Modal.info({width:'650px',content:`https://amamaule.cl/profile/meetings/${x.uuid}`})}>LINK</Button>

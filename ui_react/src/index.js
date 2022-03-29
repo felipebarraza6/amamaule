@@ -5,9 +5,11 @@ import { FloatingWhatsApp } from 'react-floating-whatsapp-button'
 import 'react-floating-whatsapp-button/dist/index.css'
 
 
+const {pathname} = window.location
 
 ReactDOM.render(
   <React.Fragment>
+    {pathname!=='/profile/support/' && 
     <FloatingWhatsApp 
       headerTitle={'Soporte Web'} 
       zIndex={2} 
@@ -16,7 +18,7 @@ ReactDOM.render(
       popupMessage={'Hola! 🤝 en qué podemos ayudarte? '} 
       backgroundColor='rgb(176, 93, 185)' 
       headerColor='rgb(176, 93, 185)'	/>
-    
+    }
     <App />
   </React.Fragment>,
   document.getElementById('root')
