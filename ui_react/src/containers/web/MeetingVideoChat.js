@@ -27,7 +27,7 @@ const MeetingVideoChat = ({match})=> {
         var date_min = date.getMinutes()
 
         var incrementent_date = new Date(date)
-        var add_minutes = incrementent_date.getMinutes() + 10
+        var add_minutes = incrementent_date.getMinutes() + 20
         incrementent_date.setMinutes(add_minutes)
 
         if(date_min<10){
@@ -53,7 +53,9 @@ const MeetingVideoChat = ({match})=> {
         }
 
         setState({...state, is_loading: true})
-
+        console.log(date)
+        console.log(incrementent_date)
+        
         const request = await api_links_instances.create_meeting_whereby({
             "uuid_meeting":state.data.uuid,
             "start_date": date,
@@ -88,17 +90,16 @@ const MeetingVideoChat = ({match})=> {
                             if(is_dialogue){
                                 time_conunt = 30 * 60 * 10000
                             }else {
-                                time_conunt = 600000
+                                time_conunt = 1000 * 60 * 20
                             }
                 setInterval(async() => {
-
 
                             const request =  await api_links_instances.delete_meeting_whereby({
                                 "id_meeting": response.data.message_invited,
                                 "uuid_meeting": response.data.uuid
 
                             }).then((response)=> {
-                                window.location.assign('/')
+                                window.location.assign('/profile/myrounds/')
                             })
                             }, time_conunt)
 

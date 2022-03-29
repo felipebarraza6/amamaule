@@ -30,7 +30,7 @@ const Calendar = () => {
             const timer = setInterval(()=>{
             
             var today = new Date()
-            var str_time = `${today.getDate()}T${today.getHours()}:${today.getMinutes()}`
+            var str_time = `${today.getDate()}T${today.getHours()}:${today.getMinutes()}`            
             if(str_time > str_meeting_time){
                  setDisabled(false) 
             }else{
@@ -43,7 +43,7 @@ const Calendar = () => {
 
         return(<>{!x.is_end ? <Row>
                 <Col span={24}>
-                  <Button disabled={disabled} 
+                  <Button disabled={false} 
                     size='small' type='primary' 
                     style={styles.btnGo}
                     onClick={()=> {
