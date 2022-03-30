@@ -1,12 +1,15 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useContext} from 'react'
 import api_links_instances from "../../api/links_instances/endpoints";
 import {Button, Row, Col, Typography, message, Spin, Badge} from 'antd'
 import { FullscreenExitOutlined } from '@ant-design/icons'
 import MeetWhereby from "../../components/web/links_instances/MeetWhereby"
+import { AuthContext } from '../../App';
 import api from "../../api/endpoints";
 const { Title } = Typography
 
 const MeetingVideoChat = ({match})=> {
+
+    const { state:auth } = useContext(AuthContext)
 
     const uuidMeet = match.params.id
 
@@ -52,15 +55,23 @@ const MeetingVideoChat = ({match})=> {
             }
         }
 
+
         setState({...state, is_loading: true})
-        console.log(date)
-        console.log(incrementent_date)
+        console.log(auth.user.id)
+        console.log(state.data.owner.id)
+        
+        if(auth.user.id === state.data.owner.id){
+            const request = await api_links_instances.update_meeting(state.data.uuid, { is_owner_online: true})
+        } else if(auth.user.id === state.data.invited.id){
+            const request = await api_links_instances.update_meeting(state.data.uuid, { is_invited_online: true})
+        }
+       
         
         const request = await api_links_instances.create_meeting_whereby({
             "uuid_meeting":state.data.uuid,
             "start_date": date,
             "end_date": incrementent_date,
-            "mode": mode
+            "mode": mode,            
         }).then((response)=> {
             window.location.reload()
             setState({...state, is_loading: false})
@@ -152,7 +163,7 @@ const MeetingVideoChat = ({match})=> {
                             })
                         }
                         } size={'large'} style={{ margin:'4px' }} icon = { <FullscreenExitOutlined/> } danger>TERMINAR REUNIÓN</Button>
-                        <MeetWhereby url={state.data.src_host} user={state.user} /> </>:
+                        <MeetWhereby url={state.data.src_host} user={state.user} state={state} /> </>:
                         <Col style={{textAlign:'center',padding:'100px'}}>
                             <Title> ID REUNION: {state.data.uuid} </Title>
                             <Button style={{backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}} onClick={createMeet} type={'primary'} size={'large'} icon={<Badge status={'processing'} color={'white'} />}>Iniciar reunión</Button>

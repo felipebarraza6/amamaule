@@ -4,7 +4,7 @@ import moment from 'moment'
 import api_links_instances from '../../../api/links_instances/endpoints'
 import { Tag, Button, Popconfirm,Card, Input, Col, Row, Typography, Select, Table, 
           Collapse, notification, Modal, Form, TimePicker,
-          Affix} from 'antd'
+          Affix, Badge} from 'antd'
 import Signup from '../../web/auth/SignUp'
 import {CalendarOutlined} from  '@ant-design/icons'
 
@@ -26,8 +26,9 @@ const Viewings = () => {
     const [meetings, setMeetings] = useState([])
 
     const [listUpdate, setListUpdate]= useState([])
+    const [time, setTime] = useState('none')
 
-    const [day, setDay] = useState([])
+    const [day, setDay] = useState(30)
 
    
     const [selectedUsers, setSelectedUsers] = useState([])
@@ -61,13 +62,20 @@ const Viewings = () => {
     const multiSearch = async() => {
         setUserS(selectedUsers)
         setListUpdate(listidSelected)
-        setSelectedUsers([])
-        setidSelected([])
+        
+        var range = [0, 24]
+        setTime('none')
+        if(time === 'morning'){
+            range = [12,14]
+        }else if(time==='afternoon'){
+            range = [15,17] 
+        }
         var arr=[]
         for(var i =0; listidSelected.length > i; i++){
             const rq =  await api_links_instances.list_meetings({
                 invited:listidSelected[i],
-                day: day
+                day: day,
+                range_hour: range
 
 
             })            
@@ -85,13 +93,19 @@ const Viewings = () => {
     }
 
     const updateSearch = async() => {
-        console.log('update')
         var arr=[]
-        console.log(listUpdate)
+        var range = [0, 24]
+        setTime('none')
+        if(time === 'morning'){
+            range = [12,14]
+        }else if(time==='afternoon'){
+            range = [15,17] 
+        }
         for(var i =0; listUpdate.length > i; i++){
             const rq =  await api_links_instances.list_meetings({
                 invited:listUpdate[i],
-                day: day
+                day: day,
+                range_hour: range
             })            
             arr.push(...rq.data.results)
             
@@ -261,11 +275,20 @@ const Viewings = () => {
                     <Row>
                     <Col lg={24} xs={24}>
                         {selectedUsers.map((x)=><Tag style={{margin:'5px'}} color='geekblue'> {x.first_name} {x.last_name} </Tag>)}  
+                    </Col>                                              
+                    <Col lg={24} xs={24} style={{marginTop:'10px'}}>
+                    SELECCIONA UNA JORNADA:
                     </Col>
                     <Col lg={24} xs={24} style={{marginTop:'10px'}}>
-                    SELECCIONA UN DIA:
-                    <Button type='dashed' style={{margin:'10px'}} onClick={()=> setDay(29)}>29</Button>                          
-                    <Button type='dashed' style={{margin:'10px'}} onClick={()=> setDay(30)}>30</Button>                    
+                    <Col lg={24} xs={24} style={{marginTop:'0px'}}>
+                    <Button type='primary' style={{margin:'10px'}} onClick={()=> setTime('morning')}>12:00 - 13:40</Button>                          
+                    <Button type='primary' style={{margin:'10px'}} onClick={()=> setTime('afternoon')}>15:00 - 16:20</Button>                    
+                    <Button type='primary' style={{margin:'10px'}} onClick={()=> setTime('none')}>TODO EL DIA</Button>                    
+                    </Col>
+                    
+                    SELECCIONASTE: {time == 'morning' && '12:00 - 13:40'}
+                    {time == 'afternoon' && '15:00 - 16:20'}
+                    {time == 'none' && 'TODO EL DIA'}
                 </Col>
                     <Col lg={24} xs={24}>
                         {meetings.length > 0 ? 
@@ -288,7 +311,10 @@ const Viewings = () => {
                         }
                         
                         <Button type='primary' danger style={{width:'100%',marginTop:'10px', marginBottom:'5px', color:'white'}}
-                                onClick={()=> setSelectedUsers([]) }
+                                onClick={()=> {
+                                    setSelectedUsers([])
+                                    setidSelected([])
+                                } }
                         >
                         REINICIAR SELECCIONADOS
                         </Button>                        
@@ -318,21 +344,22 @@ const Viewings = () => {
                                 pagination={{pageSize:4}}
                                 columns={[
                                     {title:'Participantes', render: (x)=><Row>
-                                        <Col span={24}><u>
-                                        {x.owner.first_name} {x.owner.last_name} 
-                                        </u>
+                                        <Col span={24}>
+                                        <Badge status={x.is_owner_online ? 'success': 'warning'} text={<u>{x.owner.first_name} {x.owner.last_name}</u>} />
+                                        
                                         </Col>
                                         <Col span={24}>
-                                        {x.invited.first_name} {x.invited.last_name}
-                                        </Col>
+                                        <Badge status={x.is_invited_online ? 'success': 'warning'} text={`${x.invited.first_name} ${x.invited.last_name}`} />
+                                        </Col>                                        
                                         </Row>},                                    
                                     {title:'Fecha', sorter: (a, b) => moment(a.start_date).unix() - moment(b.start_date).unix(),render: (x)=> <> {x.start_date.slice(5,10)} T {x.start_date.slice(11,16)} </>},
                                     {   title:'Operaciones',                                    
                                         render: (x)=><Row>
                                         <Col span={12} style={{padding:'6px'}}>
-                                            {x.src_host && 
+                                            {x.src_host && <>
                                                 <Button size='small' type='primary' style={{marginRight:'10px'}} onClick={()=>window.open(x.src_host)}>INGRESAR</Button>
-                                            }
+                                                <Button size='small' type='primary' style={{marginRight:'10px', marginTop:'10px'}} onClick={()=>Modal.info({width:'650px',content:`${x.src_host}`, icon:<></>})} danger>LINK DE URGENCIA</Button>
+                                                </>}
                                         </Col>
                                         <Col span={12} style={{padding:'6px'}}>
                                         <ModalResch data={x} />

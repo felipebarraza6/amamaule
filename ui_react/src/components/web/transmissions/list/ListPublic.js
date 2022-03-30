@@ -35,13 +35,13 @@ const ListPublic = ({globalState, changeState, is_public}) => {
     useEffect(()=> {
 
         async function get_transmissions(){
-            const request  = await api_transmissions.transmissions.list('true', 'C', '')
+            const request  = await api_transmissions.transmissions.list('true', 'MT', '')
                         .then(async (response)=> {
                                     if(!is_public){
                                     if(response.data.count > 0){
                                         setState({...state, transmissions: response.data.results, no_live:false})
                                     } else {
-                                        const getData = await api_transmissions.transmissions.list('', 'C', '').then((response)=> {
+                                        const getData = await api_transmissions.transmissions.list('', 'MT', '').then((response)=> {
                                           setState({...state, transmissions: response.data.results, no_live:true})
                                         })
                                     }
@@ -150,7 +150,11 @@ const ListPublic = ({globalState, changeState, is_public}) => {
                 }
 
             }} >
-                               
+                {!state.no_live && 
+                <Menu.Item style={{backgroundColor:'#A659B3', color:'white'}} key='0' >
+                    
+                <Badge status='processing' color='gold' style={{marginLeft:'10px'}} />  EN VIVO
+                </Menu.Item>  }
                 <Menu.Item style={{backgroundColor:'#A659B3', color:'white'}} key='7' >
                     Todos
                 </Menu.Item>

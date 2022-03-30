@@ -46,6 +46,11 @@ const create_meeting_whereby = (data) => {
     return request
 }
 
+const update_meeting = (uuid, data) => {
+    const request = UPDATE(`meetings/${uuid}/`, data)
+    return request
+}
+
 const delete_meeting_whereby = (data)=> {
     const request = POST(`meetings/finish_meeting/`, data)
     return request
@@ -87,7 +92,8 @@ const api_links_instances = {
     delete_meeting: delete_meeting,
     retrieve_meeting: retrieve_meeting,
     create_meeting_whereby: create_meeting_whereby,
-    delete_meeting_whereby: delete_meeting_whereby
+    delete_meeting_whereby: delete_meeting_whereby,
+    update_meeting: update_meeting
 
 }
 
