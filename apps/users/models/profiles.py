@@ -12,7 +12,7 @@ class Profile(APIModel):
     dossier_file = models.FileField(blank=True, null=True)
     url_dossier = models.CharField(max_length=1200, blank=True, null=True)
     participated_in_last_edition = models.CharField(max_length=300, blank=True, null=True) 
-    you_made_rounds = models.BooleanField(default=False)
+    you_made_rounds = models.TextField(max_length=1200, null=True, blank=True) 
     what_looking =  ArrayField(models.CharField(max_length=1000, blank=True, null=True), default=list, blank=True, null =True)
     preference_ges = ArrayField(models.CharField(max_length=1000, blank=True, null=True), default=list, blank=True, null =True) 
     review = models.TextField(max_length=1200, null=True, blank=True) 
