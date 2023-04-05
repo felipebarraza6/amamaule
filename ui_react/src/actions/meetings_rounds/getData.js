@@ -12,12 +12,10 @@ export const getUsers =  async({dispatch}) =>{
 									list_users: response.data.results
 								})
 				 			  })
-
                 return request
 }
 
 export const getInvitations = async({dispatch, auth}) => {
-
 	const request = await api_links_instances.list_invitations(auth.user.id)
 				.then((response)=> {
 					dispatch({
@@ -33,7 +31,6 @@ export const getInvitations = async({dispatch, auth}) => {
 						payload: response.data.results
 					})
 				})
-
 	return request
 }
 

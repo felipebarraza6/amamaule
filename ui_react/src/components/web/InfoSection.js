@@ -1,45 +1,51 @@
-import React, { useState, useEffect} from 'react'
-import { Row, Col, Collapse,Card, Typography, Tag } from 'antd'
+import React, { useState, useEffect, useContext} from 'react'
+import { Row, Col, Collapse, 
+        Card, Typography, Steps  } from 'antd'
 import SignUp from './auth/SignUp'
-import CarouselBanner from './CarouselBanner'
 import Slide1 from '../../assets/FONDO_WEB.jpg' 
-import ListPublic from './transmissions/list/ListPublic'
-import HomeQuestion from './HomeQuestion'
-
+import { UserAddOutlined, ProfileOutlined, CheckCircleFilled } from '@ant-design/icons'
+import UpdateProfileDataHome from './profile/UpdateProfileDataHome'
+import { AuthContext } from '../../App'
 const { Title, Paragraph, Text } = Typography
 
 const { Panel } = Collapse;
 
 
 const InfoSection = () => {
-
+    const { state } = useContext(AuthContext)   
     const [size, setSize] = useState()
+    const [current, setCurrent] = useState(0)
+    const [userData, setUserData] = useState(null) 
+    
+    
 
     useEffect(()=> {
-        setSize(window.innerWidth)
+        setSize(window.innerWidth)        
     }, [])
 
     return(<>
     
         <Row justify='center' style={{backgroundImage:`url(${Slide1})`,backgroundPosition: 'top',
-        backgroundSize: '160% auto',
+        backgroundSize: '100% auto',
         height: '100%',
         backgroundRepeat: 'no-repeat',
         width: '100%'}} >
           
-          <ListPublic /> 
           </Row>
-          <Row justify='center'>
-            <Col style={{marginTop:'0px'}} >
-           
+          <Row justify='space-around' align='top' style={{marginTop:'50px', marginBottom:'50px'}}>
+            <Col >
+                <Steps current={current} direction='vertical' size="small" style={{border:'3px solid rgb(176, 93, 185)', backgroundColor:'white', padding:'20px', margin:'10px', borderRadius:'10px'}}>
+                    <Steps.Step  icon={current===1?<CheckCircleFilled style={{color: 'rgb(176, 93, 185)'}} />:<UserAddOutlined style={{color: 'rgb(176, 93, 185)'}} />} title='Crear usuario' />
+                    <Steps.Step icon={<ProfileOutlined style={{color: current>=1&&'rgb(176, 93, 185)'}} />} title='Completar perfil' />                    
+                </Steps>
+            </Col>
+            <Col>
                 <Card 
-                    style={size > 800 ? styles.card : styles.card2}
-                   > 
-        
-                    <HomeQuestion />
-
-                        
-                </Card></Col>
+                    style={size > 800 ? styles.card : styles.card2}> 
+                    {current === 0 && <SignUp setStep={setCurrent} setUser = {setUserData} /> }
+                    {current === 1 ? <> {userData && <UpdateProfileDataHome user={state.user} />} </>:<></> }
+                </Card>
+            </Col>
         </Row></>
     )
 

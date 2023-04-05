@@ -7,9 +7,8 @@ import 'react-floating-whatsapp-button/dist/index.css'
 
 const {pathname} = window.location
 
-ReactDOM.render(
-  <React.Fragment>
-    {pathname!=='/profile/support/' && 
+/*
+{pathname!=='/profile/support/' && 
     <FloatingWhatsApp 
       headerTitle={'Soporte Web'} 
       zIndex={2} 
@@ -19,6 +18,10 @@ ReactDOM.render(
       backgroundColor='rgb(176, 93, 185)' 
       headerColor='rgb(176, 93, 185)'	/>
     }
+*/
+
+ReactDOM.render(
+  <React.Fragment>    
     <App />
   </React.Fragment>,
   document.getElementById('root')

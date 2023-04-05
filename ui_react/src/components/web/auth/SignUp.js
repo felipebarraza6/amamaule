@@ -9,7 +9,7 @@ import { countries } from '../../../resources/countries'
 const { Option } = Select
 
 
-const SignUp = () => {
+const SignUp = ({ setStep, setUser }) => {
 
     const { dispatch } = useContext(AuthContext)
 
@@ -53,24 +53,34 @@ const SignUp = () => {
             email: values.email.toLowerCase()
         }
         
-       const request = await api.user.signup(values).then((response)=> {
-           console.log(response)
-            const rq1 = api.user.login({email:values.email, password:values.password}).then((r)=> {
+       const request = await api.user.signup(values).then(async(response)=> {
+           
+            const rq1 = await api.user.login({email:values.email, password:values.password}).then((r)=> {
                 const user = r.data.user
                 const access_token = r.data.access_token  
-                console.log(user)
-                console.log(access_token)
-                console.log(r)              
-                
+                dispatch({
+                    type: 'LOGIN',
+                    payload: {
+                      access_token,
+                      user
+                    }
+                  })                                             
             })
             
             notification.success({ message:`${values.email} fue creado!!!`, title:'Usuario creado'}) 
             setLoad(false)
-            form.resetFields()            
+            form.resetFields()     
+            setStep(1)
+            console.log(response)
+            setUser(response)
+                  
         }).catch((error)=> {
             setLoad(false)
             console.log({error})
-            setErrors(error.response.data)            
+            if(error.response){
+                setErrors(error.response.data)            
+            }
+            
             if(errors){
             Object.keys(errors).map((key, index) => {
               let field = key
@@ -101,7 +111,7 @@ const SignUp = () => {
                 form={form}
                 layout = 'vertical'
                 name='form_user_create'                
-                onFinish={onCreate}
+                onFinish={onCreate}            
             >
                 <Row>
                     <Col xs={24} lg ={8} span={8} style={styles.colField} >
@@ -216,9 +226,8 @@ const SignUp = () => {
                     <p>Envíanos un correo a <a href='mailto:soporte@amamaule.cl' style={{color:'rgb(176, 93, 185)'}}  >soporte@amamaule.cl</a></p>
                     </Col>
                     <Col  xs={24} lg ={6} span={6}>
-                        <Button disabled={load} htmlType='submit' style={{marginRight:'10px'}} style={{backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)', marginRight:'10px'}} type='primary' >Crear</Button> 
-                      
-                      <Button onClick={()=> {form.resetFields()}} type='primary' style={{backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)', marginRight:''}}>Limpiar </Button>
+                        <Button disabled={load} htmlType='submit'  style={{margin:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)', marginRight:'10px'}} type='primary' >Crear y completar perfil</Button>                       
+                        <Button onClick={()=> {form.resetFields()}} type='primary' style={{margin:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)', marginRight:''}}>Limpiar </Button>
                     </Col>
                       </Row>                                                              
             </Form>

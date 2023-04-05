@@ -49,8 +49,8 @@ function App() {
     if(user && access_token){
       if(user.is_verified ){
         console.log(pathname)
-        if(pathname==='/'||pathname==='/profile' ){
-          notification.warning({duration: 10, description: <a href='https://amamaule.cl/profile/myrounds/'>IR A TUS RONDAS</a>,message:'Para concretar o cancelar una reunión, es necesario que hagas click en el botón aceptar o en el botón rechazar, según estimes conveniente..', onClick: ()=> window.location('/profile/myrounds') })
+        if(pathname==='/profile' ){
+          //notification.warning({duration: 10, description: <a href='http://localhost:3000/profile/myrounds/'>IR A TUS RONDAS</a>,message:'Para concretar o cancelar una reunión, es necesario que hagas click en el botón aceptar o en el botón rechazar, según estimes conveniente..', onClick: ()=> window.location('/profile/myrounds') })
         }
       
       }

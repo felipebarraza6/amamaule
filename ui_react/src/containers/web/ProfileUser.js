@@ -58,7 +58,7 @@ const ProfileUser = () => {
     var disabled = true
     
     if(type_user === 'GES'){
-      txt_type = 'Gestor/a cultural, programador/a o similar'
+      txt_type = 'Programador/a'
     }else if(type_user === 'AR'){
       txt_type = 'Artista escénico o representante'        
     }else if(type_user === 'AV'){
@@ -101,38 +101,15 @@ const ProfileUser = () => {
 
     return(<>
               {size < 800 ? <>
-                <NavBar back={null} mode='dark'
-               style={{backgroundColor:'#18c5cc'}}               
-            > {state.user && <>
-
-              
-                
-              <Button shape={'round'} type='link' style={currentNavigationT === '6' ?  styles.buttonAct : styles.menuItemT } onClick={()=>{
-              setCurrentNavigationT('6') 
-              setIsDigital(true)}}>
-                  <LaptopOutlined  style={currentNavigationT === '6' ?  styles.iconActive : styles.menuItemT } />{currentNavigationT === '6' && 'Digital'}
-              </Button>              
-                  <Button shape={'round'} type='link' style={currentNavigationT === '7' ?  styles.buttonAct : styles.menuItemT } onClick={()=>{
-                    setCurrentNavigationT('7')
-                    setIsDigital(false)
-                    
-                    }}>
-                  <UserOutlined style={styles.icon} />{currentNavigationT === '7' && 'Presencial'}
-              </Button>
-
-              </>}
-            </NavBar>
+               
             
             {currentNavigationT == 6 ? <NavBar back={null} mode='dark'
                style={{backgroundColor:'#b05db9'}}               
             > {state.user && <>
-                <Button disabled={false} shape={'round'} type='link' style={currentNavigation === '0' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('0')}>
-                  <RocketOutlined style={styles.icon} />{currentNavigation === '0' && 'Contenido'}
-              </Button>
-              <Button shape={'round'} type='link' style={currentNavigation === '1' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('1')}>
+                              <Button shape={'round'} type='link' style={currentNavigation === '1' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('1')}>
                   <UserOutlined  style={currentNavigation === '1' ?  styles.iconActive : styles.icon } />{currentNavigation === '1' && 'Perfil'}
               </Button>
-              <Button disabled={false} shape={'round'} type='link' style={currentNavigation === '2' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('2')}>
+              <Button disabled={true} shape={'round'} type='link' style={currentNavigation === '2' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('2')}>
                   <CheckOutlined style={styles.icon} />{currentNavigation === '2' && 'Talleres'}
               </Button>
              {state.user.type_user === 'ADM' &&
@@ -140,7 +117,7 @@ const ProfileUser = () => {
                   <Link to='profile/support/'>Soporte<EyeOutlined style={styles.icon} /></Link>{currentNavigation === '3' && 'Soporte'}
               </Button>
               } 
-                    <Button disabled={!state.user.is_verified} shape={'round'} type='link' style={currentNavigation === '5' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('5')}>
+                    <Button disabled={true} shape={'round'} type='link' style={currentNavigation === '5' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('5')}>
                   <Link to='/profile/myrounds/'><ForkOutlined style={styles.icon} />{currentNavigation === '5' && 'Rondas'}</Link>
               </Button>
 
@@ -169,21 +146,7 @@ const ProfileUser = () => {
             </>
               :
               <Affix>
-              <Menu 
-                    mode='horizontal'                   
-                    theme='dark'
-                    style={styles.menuT}
-                >
-                  <Button icon={<LaptopOutlined />}  type='link' onClick={()=> setIsDigital(true)}
-                      style={isDigital ?  styles.hoverItemT : styles.menuItemT }>
-                    Digital
-                  </Button>                                    
-                  <Button  icon={<UserOutlined/>} type='link' onClick={()=> setIsDigital(false)} 
-                      style={!isDigital ?  styles.hoverItemT : styles.menuItemT }>
-                    Presencial
-                  </Button>
-                  
-              </Menu>
+              
               
             <Menu 
                 mode='horizontal'
@@ -193,19 +156,15 @@ const ProfileUser = () => {
                 style={styles.menuOv}
             >
               {isDigital ? <>
-              {state.user && 
-             <Menu.Item disabled={false} icon={<LaptopOutlined />} key={'0'} 
-                  style={currentNavigation === '0' ?  styles.hoverItem : styles.menuItem }>
-                Contenido
-              </Menu.Item> }                                   
+                                               
               <Menu.Item  icon={<UserOutlined/>} key={'1'} 
                   style={currentNavigation === '1' ?  styles.hoverItem : styles.menuItem }>
                 Perfil
               </Menu.Item>
               {state.user &&
-              <Menu.Item disabled={false} icon={<CheckOutlined/>} key={'2'} 
+              <Menu.Item disabled={true} icon={<CheckOutlined/>} key={'2'} 
                   style={ currentNavigation === '2' ?  styles.hoverItem : styles.menuItem  }  >
-                Talleres
+                Pitch
               </Menu.Item>}              
               {state.user && <>
                 {state.user.type_user === 'ADM' &&                                         
@@ -217,9 +176,13 @@ const ProfileUser = () => {
               </>}
               {state.user &&
               <>
-              <Menu.Item disabled={!state.user.is_verified} icon={<GroupOutlined />} key={'5'}
+              <Menu.Item disabled={true} icon={<GroupOutlined />} key={'5'}
                   style={currentNavigation === '5' ?  styles.hoverItem : styles.menuItem } >
                 <Link to='profile/myrounds/'>Rondas de Vinculación</Link>
+              </Menu.Item>
+              <Menu.Item disabled={true} icon={<GroupOutlined />} key={'5'}
+                  style={currentNavigation === '9' ?  styles.hoverItem : styles.menuItem } >
+                <Link to='profile/myrounds/'>Rondas de Vinculación Presencial</Link>
               </Menu.Item>
 
               </>
@@ -362,56 +325,7 @@ const ProfileUser = () => {
                       
                   </Col>
                 </Row>       
-                <Row style={{padding:'20px', backgroundColor:'white'}}>
-                    <Col>
-                            <Typography.Title level={5}>ESTADO INSCRIPCIÓN RONDAS DE VINCULACIÓN(PRESENCIAL)</Typography.Title>
-                    </Col>
-                    <Col span={24}>
-                    <Descriptions                     
-                        bordered={true} 
-                        title='ARTES ESCÉNICAS'                                            
-                        style={{backgroundColor:'white', paddingTop:'25px'}} 
-                        layout='horizontal'>
-                          <Descriptions label={`24 de Marzo, 11.30 a 13.00 hrs`} span={3}>
-                            {state.user.profile.ae_24_inscribed.length > 0 ? 'SI': 'NO'}
-                          </Descriptions>
-                          <Descriptions label={`25 de Marzo, 13.00 a 14.00 hrs`} span={3}>
-                            {state.user.profile.ae_25_inscribed.length > 0 ? 'SI': 'NO'}
-                          </Descriptions>
-                          <Descriptions label={`26 de Marzo, 13.00 a 14.00 hrs`} span={3}>
-                            {state.user.profile.ae_26_inscribed.length > 0 ? 'SI': 'NO'}  
-                          </Descriptions>
-                          
-                      </Descriptions>
-                      
-                    </Col>
-                    <Col span={24}>
-                    <Descriptions                     
-                        bordered={true} 
-                        title='ARTES DE LA VISUALIDAD'                                            
-                        style={{backgroundColor:'white', paddingTop:'25px'}} 
-                        layout='vertical'>
-                          <Descriptions label={`¿Te gustaria presenciar los pitch de artistas visuales?`} span={3}>
-                             {state.user.profile.av_programmers.length ? <>                                                         
-                            {state.user.profile.av_programmers.map((x)=> {                                
-                                  return(<p> {x} </p>)                                                              
-                                }                            
-                              )}
-                            </>: <>SIN INSCRIPCIÓN</>}
-                          </Descriptions>
-                          <Descriptions label={`¿Quieres presentar tu propuesta artística a los programadores?`} span={3}>
-                            {state.user.profile.av_25_artists.length ? <>                                                         
-                            {state.user.profile.av_25_artists.map((x)=> {                                
-                                  return(<p> {x} </p>)                                                              
-                                }                            
-                              )}
-                            </>: <>SIN INSCRIPCIÓN</>}
-                          </Descriptions>
-                          
-                      </Descriptions>
-                      
-                    </Col>
-                </Row>
+               
                 </>
                          
                  

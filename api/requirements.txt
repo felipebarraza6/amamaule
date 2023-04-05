@@ -3,7 +3,6 @@ psycopg2-binary
 djangorestframework
 gunicorn
 Pillow
-uwsgi
 django-cors-headers
 django-filter
 django-rest-passwordreset

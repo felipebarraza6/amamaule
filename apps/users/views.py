@@ -115,8 +115,7 @@ class UserViewSet(viewsets.GenericViewSet,
         serializer.is_valid(raise_exception=True)
         user = serializer.save()
         data = UserModelSerializer(user).data
-       
-
+        """       
         subject = 'Bienvenidos/as a AMA 2022'
         from_email = '<noresponder@amamaule.cl>'
         content = render_to_string(
@@ -126,6 +125,7 @@ class UserViewSet(viewsets.GenericViewSet,
         msg = EmailMultiAlternatives(subject, content, from_email, [user.email])
         msg.attach_alternative(content, "text/html")
         msg.send()
+        """
 
 
         return Response(data, status=status.HTTP_201_CREATED)

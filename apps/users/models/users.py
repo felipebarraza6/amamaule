@@ -14,7 +14,6 @@ class User(APIModel, AbstractUser):
         ('AV','artista de la visualidad '), 
         ('PT','profesional o trabajador relacionado a las artes escénicas o de la visualidad'), 
         ('PS','proveedor/a de bienes y servicios asociados'),
-        ('OPP','organización pública o privada'), 
         ('ADM', 'Administrador de sistema')
     ]
 
@@ -43,7 +42,6 @@ class User(APIModel, AbstractUser):
     is_active = models.BooleanField(default=True)
     is_upload_dossier = models.BooleanField(default=False)
     is_verified = models.BooleanField(default=False)
-
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = [

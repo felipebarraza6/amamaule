@@ -8,12 +8,13 @@ const {TextArea} = Input
 const {Title, Text} = Typography
 
 
-const UpdateProfileData = ({user}) => {
+const UpdateProfileDataHome = ({user, isHome}) => {
 
     const [state, setState] = useState(null)
     const { dispatch } = useContext(AuthContext)
     const [profileType, setProfileType] = useState(null)
     const [file, setFile] = useState(null)
+    const [fileI, setFileI] = useState(null)
     const [needScholarship, setneedScholarship] = useState(false)
     const [subcate, setSubCate] = useState(true)
     const [disabled, setDisabled] = useState(false)
@@ -40,16 +41,39 @@ const UpdateProfileData = ({user}) => {
             notification.success({message:'Perfil actualizado'})
             setSubCate(true)
             form.resetFields(['options_profile'])
-            if(file){ 
+            if(file && fileI){ 
+
+                notification.warning({title:'Cargando dossier...', description:'Subiendo archivo... está página se actualiza automáticamente'})
+                notification.warning({title:'Cargando imgen...', description:'Subiendo archivo... está página se actualiza automáticamente'})
+                const rq = api.user.UPLOAD_FILE_OR_IMG(`users/profile/${user.id}/`, 'dossier_file', file).then((res)=> {
+                    notification.success({message: 'Dossier actualizado correctamente!'})    
+                    message.success('Dossier cargado!!!')
+                    
+                })
+                const rq2 = api.user.UPLOAD_FILE_OR_IMG(`users/profile/${user.id}/`, 'avatar', fileI).then((res)=> {
+                    notification.success({message: 'Avatar actualizado correctamente!'})    
+                    message.success('Avatar cargado!!!')
+                    
+                    
+                })                 
+                
+            } else if(fileI){
+                notification.warning({title:'Cargando imgen...', description:'Subiendo archivo... está página se actualiza automáticamente'})
+                const rq = api.user.UPLOAD_FILE_OR_IMG(`users/profile/${user.id}/`, 'avatar', fileI).then((res)=> {
+                    notification.success({message: 'Avatar actualizado correctamente!'})    
+                    message.success('Avatar cargado!!!')
+                    
+                }) 
+            }else if(file){
                 notification.warning({title:'Cargando dossier...', description:'Subiendo archivo... está página se actualiza automáticamente'})
                 const rq = api.user.UPLOAD_FILE_OR_IMG(`users/profile/${user.id}/`, 'dossier_file', file).then((res)=> {
                     notification.success({message: 'Dossier actualizado correctamente!'})    
                     message.success('Dossier cargado!!!')
-                    window.location.reload()
+                    
                 })
-                
-            }else {
-                window.location.reload()
+
+            } else {
+                message.success('Datos actualizados!!!') 
             }
         }).catch((error)=> {
             console.log(error)
@@ -361,8 +385,19 @@ const UpdateProfileData = ({user}) => {
                                     }} type='primary' style={{marginBottom:'10px', backgroundColor:'rgb(24, 197, 204)'}}>Ver Dossier</Button>}
                                     <input type='file' />
                                 </Form.Item>
+                                <Form.Item label='Adjunta tu imagen de perfil' onChange={(evt)=> {
+                                    setFileI(evt.target.files[0])
+                                }}>
+                                    {state.dossier_file && <Button onClick={()=> {
+                                        window.open(state.avatar)
+                                    }} type='primary' style={{marginBottom:'10px', backgroundColor:'rgb(24, 197, 204)'}}>Ver Imágen</Button>}
+                                    <input type='file' />
+                                </Form.Item>
                                 <Form.Item>
-                                    <Button disabled={disabled} htmlType='submit' style={{backgroundColor:'rgb(206, 61, 75)', borderColor:'rgb(206, 61, 75)'}} type={'primary'}>ACTUALIZAR PERFIL </Button>
+                                    <Button disabled={disabled} htmlType='submit' style={{backgroundColor:'rgb(206, 61, 75)', borderColor:'rgb(206, 61, 75)'}} type={'primary'}>ACTUALIZAR PERFIL </Button>                                    
+                                </Form.Item>
+                                <Form.Item>                                    
+                                    <Button disabled={disabled} onClick={()=>window.location.assign('/profile')} style={{backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}} type={'primary'}>IR A MI PERFIL</Button>
                                 </Form.Item>
                                 
                 </Col>
@@ -378,4 +413,4 @@ const styles = {
 }
 
 
-export default UpdateProfileData
+export default UpdateProfileDataHome

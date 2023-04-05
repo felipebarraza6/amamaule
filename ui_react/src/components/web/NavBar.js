@@ -8,7 +8,7 @@ import Logo1 from '../../assets/logo/logom.png'
 import Login from '../../components/web/auth/Login'
 import TeamModal from './TeamModal' 
 import Questions from './Questions'
-import pdf from '../../assets/PROGRAMA_2022.pdf'
+import pdf from '../../assets/PROGRAMA_2022.jpg'
 import OldAma from './OldAma'
 const { Header } = Layout
 const { Item } = Menu
@@ -53,26 +53,13 @@ const NavBar = () => {
         <div style={styles.item1}>
                 <img alt='logo' src={Logo} style={{width:'285px'}} />                
         </div><Menu mode="horizontal" theme='dark' style={styles.menu} >            
-            <Item style={styles.item}>
-                <TeamModal />
-            </Item>            
-               <Item style={styles.item}>
-                   <Questions />
-                </Item>                                               
-                
                 <Item style={styles.item}>
                     <Button style={{paddingBottom:'40px', paddingTop:'12px', color:'white'}} type='link'>
-                        <a href={pdf} target='__blank'>PROGRAMA 2022</a></Button>
+                        <a href={pdf} target='__blank'>PROGRAMA 2023</a></Button>
                 </Item>
-                <Item style={styles.item}>
-                    <OldAma />
-            </Item> 
-               
             </Menu>  
-            
                 </Header>
                 </>     }                     
-        
         {size <800 && 
             <div style={styles.header}><img style={{width:'150px',paddingLeft:'20px', paddingTop:'20px'}} src={Logo1} />
             <Menu mode="horizontal" theme='dark' style={styles.menu} >                 

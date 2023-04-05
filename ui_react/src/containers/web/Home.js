@@ -57,10 +57,8 @@ const Home = () => {
               return(
                 <React.Fragment>
                     <InfoSection />                   
-                    <Services />
-                    <IgFeed />
                     <TrenSection />
-                  <Footer style = {styles.footer}  >AMA - Vincular para crear 2022</Footer>
+                  <Footer style = {styles.footer}  >AMA - Vincular para crear 2023</Footer>
                 </React.Fragment>
               )
             }}  />
