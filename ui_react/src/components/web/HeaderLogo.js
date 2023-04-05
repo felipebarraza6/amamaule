@@ -21,7 +21,7 @@ const HeaderLogo = () => {
 
 const styles = {
     logo: {
-        width: '30%',
+        width: '0%',
         margin:'20px'
     },
     col: {

@@ -51,7 +51,7 @@ const NavBar = () => {
                              
          </Menu> </Header><Header style={styles.header}>            
         <div style={styles.item1}>
-                <img alt='logo' src={Logo} style={{width:'285px'}} />                
+                <img alt='logo' src={Logo} style={{width:'155px', marginTop:'-40px'}} />                
         </div><Menu mode="horizontal" theme='dark' style={styles.menu} >            
                 <Item style={styles.item}>
                     <Button style={{paddingBottom:'40px', paddingTop:'12px', color:'white'}} type='link'>

@@ -26,7 +26,8 @@ const NavBarClient = () => {
     return(<>{size > 800 ? 
         <Header style={styles.header}>
             <div style={styles.logo}>
-              <img src={Logo} width='300%'  />
+              
+              <img alt='logo' src={Logo} style={{width:'155px', marginTop:'-15px'}} />                
             </div>
            <Menu mode="horizontal" theme='dark' style={styles.menu} onClick={(key)=>console.log(key)} > 
             <Item style={styles.item}>
@@ -66,7 +67,8 @@ const NavBarClient = () => {
            </Menu>
         </Header>: <> <div style={styles.headerM2}>
             <div style={styles.logo}>
-              <img src={Logo1} width='120%' style={{paddingLeft:'20px', paddingTop:'20px'}}  />
+              <img src={Logo1} width='200px' style={{paddingLeft:'0px', paddingTop:'0px', marginBottom:'-50px'}}  />
+              
             </div></div><div style={styles.headerM}>
            <Menu mode="horizontal" theme='dark' style={styles.menu} onClick={(key)=>console.log(key)} > 
             <Item style={styles.item}>

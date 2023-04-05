@@ -1,26 +1,17 @@
-<img width="100%" style="margin-bottom:20px" src="CABECERO.JPG" />
-<h2 style="margin-bottom:50px">Bienvenidos/as al II Encuentro AMA 2022</h2>
-
-    
-
-<p>
-    AMA es una plataforma para diálogos, intercambios y alianzas entre artistas escénicos 
-    y artistas visuales del Maule con programadores culturales de la región, Chile y el mundo.  
-</p>
-<p>
-    Del 24 al 30 de marzo, celebramos la II edición de AMA Maule, 
-    bajo la consigna #VincularParaCrear.
-</p>
-<p>
-    ¡Estamos felices de que seas parte de nuestra red!
-</p>
-<p>
-    Te invitamos a seguir conectado/a con nosotros, a través de www.amamaule.cl y de nuestras redes sociales. 
-</p>
-
-<p>
-    Saluda cordialmente
-</p>
-<p>
-    Equipo AMA - Vincular para Crear 2022
-</p>
+{% block content %}
+<div style="background-color: #5711a5; padding: 20px;">    
+    <table style="max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 30px; border-radius: 10px;">
+        <tr>
+            <td>
+                <h2 style="font-size: 24px; font-weight: 600; margin-bottom: 20px;">¡Bienvenido a la plataforma para Rondas de Vinculación de AMA 2023!</h2>
+                <p style="font-size: 16px;">Estimado/a participante: <u>{{ user.first_name }} {{ user.last_name }}</u></p>
+                <p style="font-size: 16px;">¡Tu usuario ha sido registrado con éxito! <br/>Sigue llenando tu perfil para que puedas agendar tus Rondas de Vinculación los días 18-19-20 de abril. </p>                
+                <p style="font-size: 16px;">Agradecemos tu interés y participación en AMA-Encuentro de Artistas del Maule 2023.</p>
+                <p style="font-size: 16px;">Pronto te estaremos enviando el programa de actividades y el recordatorio de tu agenda</p>
+                <p style="font-size: 16px;">Saluda cordialmente</p>
+                <p style="font-size: 16px;">Equipo AMA - Vincular para Crear 2023</p>                
+            </td>
+        </tr>
+    </table>
+</div>
+{% endblock %}
