@@ -366,15 +366,7 @@ const UpdateProfileDataHome = ({user, isHome}) => {
                                     <TextArea rows={4} />
                     </Form.Item>
                     <Form.Item name='you_made_rounds' label={'¿Concretaste, en años anteriores, algún resultado luego de tus rondas de vinculación? Describe si contrataste artistas o fuiste contactado y/o contratado por algún espacio.'} rules={[{required:true, message:'Debes ingresar tu reseña'}]}>
-                                    
-                        <Select placeholder="Selecciona una opción..." >
-                            <Select.Option value={true}>
-                                SI
-                            </Select.Option>
-                            <Select.Option value={false}>
-                                NO
-                            </Select.Option>
-                        </Select>
+                        <TextArea rows={4} />
                     </Form.Item>
                                                                                                                                    
                                 <Form.Item label='Adjunta tu dossier' onChange={(evt)=> {
