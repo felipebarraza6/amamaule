@@ -82,7 +82,43 @@ const answer_invitation = (data, invitation) => {
     return request
 }
 
+const create_tablemeeting = (data) => {
+    const rquest = POST('/meetings-tables/', data)
+    return rquest
+} 
+
+const getExistUserTableD1 = (id, day1) => {
+    const request = GET(`/meetings-tables/?programmer=${id}&day1=${day1}`)
+    return request
+}
+
+const getExistUserTableD2 = (id, day2) => {
+    const request = GET(`/meetings-tables/?programmer=${id}&day2=${day2}`)
+    return request
+}
+
+const getExistUserTableD3 = (id, day3) => {
+    const request = GET(`/meetings-tables/?programmer=${id}&day3=${day3}`)
+    return request
+}
+
+const listTables = (day1, day2, day3) => {
+    const request = GET(`/meetings-tables/?day1=${day1}&day2=${day2}&day3=${day3}/`) 
+    return request
+}
+
+const addInscribed = (idTable, list) => {
+    const request = UPDATE(`/meetings-tables/${idTable}/`, { inscribed: list })
+    console.log(request)
+}
+
 const api_links_instances = {
+    create_table: create_tablemeeting,
+    check_tabled1: getExistUserTableD1,
+    check_tabled2: getExistUserTableD2,
+    check_tabled3: getExistUserTableD3,
+    list_tables: listTables,
+    add_inscribed: addInscribed,
     list_meetings: list_meetings,
     list_invitations: list_invitations,
     send_invitation_adm: send_invitation_adm,

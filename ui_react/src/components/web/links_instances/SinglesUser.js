@@ -74,9 +74,7 @@ const SingleUser = ({user, is_invitations}) => {
                     </Row>
                     <Divider />
                     <Row>
-                        <Col lg={24} xs={24}>
-                            <strong><Text>¿Qué bucas en Ama 2022?</Text></strong>
-                        </Col>
+                        
                         <Col lg={24} xs={24}>
                                 <Paragraph stlye={{align:'justify'}}>
                                   {state.profile && <>{state.profile.what_looking.map((x)=>
@@ -118,23 +116,21 @@ const SingleUser = ({user, is_invitations}) => {
                         </Col>
                     </Row>
                     <Row style={{marginTop:'0%'}} >
-                        <Col lg={6} xs={24}>
-                        <strong><Text>Web/RRSS</Text></strong>
-                        </Col>
+                        
                         <Col lg={18} xs={24}>
                                 <Paragraph align={'justify'}>
                                 {state.profile && <>{state.profile.website}</> }
                             </Paragraph>
                         </Col>
                     </Row>
-                    <Row style={{marginTop:'0%'}} >
-                        <Col span={6}>{state.profile && <>
-                            {state.profile.dossier_archivo &&
+                    <Row style={{marginTop:'0%'}}  justify='end'>
+                        <Col >{state.profile && <>
+                            {state.profile.dossier_file &&                            
                           <Button onClick={()=> {
                               if(state.profile){
-                              window.open(`${state.profile.dossier_archivo}`)
+                              window.open(`${state.profile.dossier_file}`)
                                   }
-                          }} icon={<DownloadOutlined />} type={'primary'} >DESCARGAR DOSSIER</Button>}
+                          }} icon={<DownloadOutlined />} style={{backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}} type={'primary'} >DESCARGAR DOSSIER</Button>}
                           </>}
                         </Col>
                     </Row>

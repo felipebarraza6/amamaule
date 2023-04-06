@@ -18,21 +18,21 @@ const CalendarMobil = ({copy_data, ProcessUser, ProcessBtn }) => {
                         <tr style={{width:'100%'}}>
                             <th>HORA</th>
                             <th >Usuario</th>
-                            <th >29 de Marzo</th>
+                            <th >25 de Abril</th>
                         </tr>
                         
                         <tr style={{}}>
                             <th>12:00</th>
                             <td style={{border:'1px solid #f0f0f0'}}>                             
                                 {copy_data.map((x)=> {                                    
-                                    if(x.start_date.slice(8,16)==='29T12:00'){
+                                    if(x.start_date.slice(8,16)==='T12:00'){
                                         return ProcessUser(x.participans_invited)
                                     }                                                   
                                 })
                                 }</td>    
                                 <td style={{border:'1px solid #f0f0f0'}}>                            
                                 {copy_data.map((x)=> {                                    
-                                    if(x.start_date.slice(8,16)==='29T12:00'){
+                                    if(x.start_date.slice(8,16)==='T12:00'){
                                         return ProcessBtn(x)
                                     }                                                   
                                 })
@@ -44,7 +44,7 @@ const CalendarMobil = ({copy_data, ProcessUser, ProcessBtn }) => {
                             <th>12:20</th>
                             <td style={{border:'1px solid #f0f0f0'}}>
                                 {copy_data.map((x)=> {                                    
-                                    if(x.start_date.slice(8,16)==='29T12:20'){
+                                    if(x.start_date.slice(8,16)==='T12:20'){
                                         return ProcessUser(x.participans_invited)
                                     }                                                   
                                 })
@@ -52,7 +52,7 @@ const CalendarMobil = ({copy_data, ProcessUser, ProcessBtn }) => {
                                 }</td>    
                                 <td style={{border:'1px solid #f0f0f0'}}>
                                 {copy_data.map((x)=> {                                    
-                                    if(x.start_date.slice(8,16)==='29T12:20'){
+                                    if(x.start_date.slice(8,16)==='T12:20'){
                                         return ProcessBtn(x)
                                     }
                                 })}
@@ -64,7 +64,7 @@ const CalendarMobil = ({copy_data, ProcessUser, ProcessBtn }) => {
                             <th>12:40</th>
                             <td style={{border:'1px solid #f0f0f0'}}>                            
                                 {copy_data.map((x)=> {                                    
-                                    if(x.start_date.slice(8,16)==='29T12:40'){
+                                    if(x.start_date.slice(8,16)==='T12:40'){
                                         return ProcessUser(x.participans_invited)
                                     }                                                   
                                 })
@@ -72,7 +72,7 @@ const CalendarMobil = ({copy_data, ProcessUser, ProcessBtn }) => {
                                 }</td>    
                                 <td style={{border:'1px solid #f0f0f0'}}>
                                 {copy_data.map((x)=> {                                    
-                                    if(x.start_date.slice(8,16)==='29T12:40'){
+                                    if(x.start_date.slice(8,16)==='T12:40'){
                                         return ProcessBtn(x)
                                     }                                                   
                                 })
@@ -85,7 +85,7 @@ const CalendarMobil = ({copy_data, ProcessUser, ProcessBtn }) => {
                             <th>13:00</th>
                             <td style={{border:'1px solid #f0f0f0'}}>                             
                                 {copy_data.map((x)=> {                                    
-                                    if(x.start_date.slice(8,16)==='29T13:00'){
+                                    if(x.start_date.slice(8,16)==='T13:00'){
                                         return ProcessUser(x.participans_invited)
                                     }                                                   
                                 })
@@ -93,7 +93,7 @@ const CalendarMobil = ({copy_data, ProcessUser, ProcessBtn }) => {
                                 }</td>    
                                 <td style={{border:'1px solid #f0f0f0'}}>                            
                                 {copy_data.map((x)=> {                                    
-                                    if(x.start_date.slice(8,16)==='29T13:00'){
+                                    if(x.start_date.slice(8,16)==='T13:00'){
                                         return ProcessBtn(x)
                                     }                                                   
                                 })
@@ -106,7 +106,7 @@ const CalendarMobil = ({copy_data, ProcessUser, ProcessBtn }) => {
                             <th>13:20</th>
                             <td style={{border:'1px solid #f0f0f0'}}>
                                 {copy_data.map((x)=> {                                    
-                                    if(x.start_date.slice(8,16)==='29T13:20'){
+                                    if(x.start_date.slice(8,16)==='T13:20'){
                                         return ProcessUser(x.participans_invited)                                 
                                     }                                                   
                                 })
@@ -114,7 +114,7 @@ const CalendarMobil = ({copy_data, ProcessUser, ProcessBtn }) => {
                                 }</td>    
                                 <td style={{border:'1px solid #f0f0f0'}}>
                                 {copy_data.map((x)=> {                                    
-                                    if(x.start_date.slice(8,16)==='29T13:20'){
+                                    if(x.start_date.slice(8,16)==='T13:20'){
                                         return ProcessBtn(x)
                                     }                                                   
                                 })
@@ -128,7 +128,7 @@ const CalendarMobil = ({copy_data, ProcessUser, ProcessBtn }) => {
                             <th>13:40</th>
                             <td style={{border:'1px solid #f0f0f0'}}>                            
                                 {copy_data.map((x)=> {                                    
-                                    if(x.start_date.slice(8,16)==='29T13:40'){
+                                    if(x.start_date.slice(8,16)==='T13:40'){
                                         return ProcessUser(x.participans_invited)                                    
                                     }                                                   
                                 })
@@ -136,7 +136,7 @@ const CalendarMobil = ({copy_data, ProcessUser, ProcessBtn }) => {
                                 }</td>    
                                 <td style={{border:'1px solid #f0f0f0'}}>
                                 {copy_data.map((x)=> {                                    
-                                    if(x.start_date.slice(8,16)==='29T13:40'){
+                                    if(x.start_date.slice(8,16)==='T13:40'){
                                         return ProcessBtn(x)
                                     }                                                   
                                 })
@@ -149,7 +149,7 @@ const CalendarMobil = ({copy_data, ProcessUser, ProcessBtn }) => {
                             <th>15:00</th>
                             <td style={{border:'1px solid #f0f0f0'}}>                                                         
                                 {copy_data.map((x)=> {                                    
-                                    if(x.start_date.slice(8,16)==='29T15:00'){
+                                    if(x.start_date.slice(8,16)==='T15:00'){
                                         return ProcessUser(x.participans_invited)
                                     }                                                   
                                 })
@@ -157,7 +157,7 @@ const CalendarMobil = ({copy_data, ProcessUser, ProcessBtn }) => {
                                 }</td>    
                                 <td style={{border:'1px solid #f0f0f0'}}>                            
                                 {copy_data.map((x)=> {                                    
-                                    if(x.start_date.slice(8,16)==='29T15:00'){
+                                    if(x.start_date.slice(8,16)==='T15:00'){
                                         return ProcessBtn(x)
                                     }                                                   
                                 })
@@ -170,7 +170,7 @@ const CalendarMobil = ({copy_data, ProcessUser, ProcessBtn }) => {
                             <th>15:20</th>
                             <td style={{border:'1px solid #f0f0f0'}}>                                                         
                                 {copy_data.map((x)=> {                                    
-                                    if(x.start_date.slice(8,16)==='29T15:20'){
+                                    if(x.start_date.slice(8,16)==='T15:20'){
                                         return ProcessUser(x.participans_invited)
                                     }                                                   
                                 })
@@ -178,7 +178,7 @@ const CalendarMobil = ({copy_data, ProcessUser, ProcessBtn }) => {
                                 }</td>    
                                 <td style={{border:'1px solid #f0f0f0'}}>                            
                                 {copy_data.map((x)=> {                                    
-                                    if(x.start_date.slice(8,16)==='29T15:20'){
+                                    if(x.start_date.slice(8,16)==='T15:20'){
                                         return ProcessBtn(x)
                                     }                                                   
                                 })
@@ -191,7 +191,7 @@ const CalendarMobil = ({copy_data, ProcessUser, ProcessBtn }) => {
                             <th>15:40</th>
                             <td style={{border:'1px solid #f0f0f0'}}>                                                         
                                 {copy_data.map((x)=> {                                    
-                                    if(x.start_date.slice(8,16)==='29T15:40'){
+                                    if(x.start_date.slice(8,16)==='T15:40'){
                                         return ProcessUser(x.participans_invited)
                                     }                                                   
                                 })
@@ -199,7 +199,7 @@ const CalendarMobil = ({copy_data, ProcessUser, ProcessBtn }) => {
                                 }</td>    
                                 <td style={{border:'1px solid #f0f0f0'}}>                            
                                 {copy_data.map((x)=> {                                    
-                                    if(x.start_date.slice(8,16)==='29T15:40'){
+                                    if(x.start_date.slice(8,16)==='T15:40'){
                                         return ProcessBtn(x)
                                     }                                                   
                                 })
@@ -212,7 +212,7 @@ const CalendarMobil = ({copy_data, ProcessUser, ProcessBtn }) => {
                             <th>16:00</th>
                             <td style={{border:'1px solid #f0f0f0'}}>                                                         
                                 {copy_data.map((x)=> {                                    
-                                    if(x.start_date.slice(8,16)==='29T16:00'){
+                                    if(x.start_date.slice(8,16)==='T16:00'){
                                         return ProcessUser(x.participans_invited)
                                     }                                                   
                                 })
@@ -220,7 +220,7 @@ const CalendarMobil = ({copy_data, ProcessUser, ProcessBtn }) => {
                                 }</td>    
                                 <td style={{border:'1px solid #f0f0f0'}}>                            
                                 {copy_data.map((x)=> {                                    
-                                    if(x.start_date.slice(8,16)==='29T16:00'){
+                                    if(x.start_date.slice(8,16)==='T16:00'){
                                         return ProcessBtn(x)
                                     }                                                   
                                 })
@@ -233,7 +233,7 @@ const CalendarMobil = ({copy_data, ProcessUser, ProcessBtn }) => {
                             <th>16:20</th> 
                             <td style={{border:'1px solid #f0f0f0'}}>                                                         
                                 {copy_data.map((x)=> {                                    
-                                    if(x.start_date.slice(8,16)==='29T16:20'){
+                                    if(x.start_date.slice(8,16)==='T16:20'){
                                         return ProcessUser(x.participans_invited)
                                     }                                                   
                                 })
@@ -241,7 +241,7 @@ const CalendarMobil = ({copy_data, ProcessUser, ProcessBtn }) => {
                                 }</td>    
                                 <td style={{border:'1px solid #f0f0f0'}}>                            
                                 {copy_data.map((x)=> {                                    
-                                    if(x.start_date.slice(8,16)==='29T16:20'){
+                                    if(x.start_date.slice(8,16)==='T16:20'){
                                         return ProcessBtn(x)
                                     }                                                   
                                 })
@@ -259,7 +259,7 @@ const CalendarMobil = ({copy_data, ProcessUser, ProcessBtn }) => {
                         <tr style={{width:'100%'}}>
                             <th>HORA</th>
                             <th>Usuario</th>
-                            <th>30 de Marzo</th>
+                            <th>26 de Abril</th>
                         </tr>
                         
                         <tr style={{}}>

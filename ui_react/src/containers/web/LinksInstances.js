@@ -206,19 +206,7 @@ const LinksInstances = () => {
 				</Panel>	  
 
 			</Collapse>
-				<Card title={<><CalendarOutlined style={styles.icon} /> Calendario</>} extra={<>
-        {size>800 && <>
-				<Button type={'dashed'} style={{backgroundColor: '#b05db9', color:'white', borderColor:'white', marginLeft:'10px'}}>
-          <a href={pdf_i} target="_blank">
-					Ver tutorial(PDF)
-          </a>
-				</Button>
-				<Button onClick={()=> window.open('https://www.youtube.com/watch?v=CLukYak01Gs&feature=youtu.be') } type={'dashed'} style={{backgroundColor: '#b05db9', color:'white', borderColor:'white', marginLeft:'10px'}}>
-					Ver tutorial(VIDEO)
-				</Button></>}
-
-
-				</>}>
+				<Card title={<><CalendarOutlined style={styles.icon} /> Calendario</>} >
           {size < 800 && 
             <Row>
               <Button type={'dashed'} style={{backgroundColor: '#b05db9', color:'white', borderColor:'white', marginLeft:'10px'}}>

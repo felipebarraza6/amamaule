@@ -5,15 +5,48 @@ from rest_framework.permissions import (
 )
 from rest_framework.response import Response
 
-from apps.link_instances.models import Meeting, Invitation
+from apps.link_instances.models import Meeting, Invitation, TableMeeting
 from apps.link_instances.serializers import (MeetingModelSerializer,
                                              ListMeetingModelSerializer,
                                              CreateMeetingModelSerializer,
                                              CreateMeetingSerializer,
-                                             FinishMeetingSerializer)
+                                             FinishMeetingSerializer, TableMettingModelSerializer, RetrieveTableMettingModelSerializer)
 from django_filters import rest_framework as filters
 from asgiref.sync import sync_to_async
 
+class TableMeetingViewSet(mixins.RetrieveModelMixin,
+                    mixins.ListModelMixin,
+                    mixins.CreateModelMixin,
+                    mixins.DestroyModelMixin,
+                    mixins.UpdateModelMixin,
+                    viewsets.GenericViewSet):
+    
+    queryset = TableMeeting.objects.all().order_by('created')
+    filter_backends = (filters.DjangoFilterBackend,)
+    lookup_field = 'id'
+    permission_classes = [IsAuthenticated]
+
+    def get_serializer_class(self):
+        if self.action == 'list':
+            return RetrieveTableMettingModelSerializer        
+        if self.action == 'retrieve':
+            return RetrieveTableMettingModelSerializer       
+        else:
+            return TableMettingModelSerializer
+
+    class MeetingTableFilter(filters.FilterSet):
+        class Meta:
+            model = TableMeeting
+            fields = {       
+                'id':['exact'],
+                'programmer': ['exact'],
+                'day1': ['exact'],
+                'day2': ['exact'],
+                'day3': ['exact'],                
+                
+            }
+    
+    filterset_class = MeetingTableFilter
 
 class MeetingViewSet(mixins.RetrieveModelMixin,
                     mixins.ListModelMixin,

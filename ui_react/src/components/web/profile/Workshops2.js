@@ -87,7 +87,7 @@ const Workshops2 = ({is_digital}) => {
 
         return(
           <Col style={styles.col} lg={6} xs={24}>
-            <Card hoverable extra={!is_digital ? <>              
+            <Card hoverable extra={is_digital ? <>              
               <Tag color='volcano'>Cupos limitados: {x.maximum_quota}</Tag><Tag color='pink'>Duración: {x.duration}</Tag></>: <Tag color='volcano'> Duración: {x.duration} </Tag>} 
               style={styles.card}  
                 cover={<img alt="example" src={x.principal_image} />}

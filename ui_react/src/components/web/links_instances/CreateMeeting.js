@@ -20,7 +20,7 @@ const CreateMeeting = ({invited}) => {
     async function onFinish(values){
         setLoading(true)
         var format_time = values.hour_minutes.format('HH:mm:ss')
-        var date_formated = `2022-03-${values.day}T${format_time}`
+        var date_formated = `2023-04-${values.day}T${format_time}`
 
         values = {
             'owner': contextUser.user.id,
@@ -57,8 +57,8 @@ const CreateMeeting = ({invited}) => {
                 <Form layout={'horizontal'} form={form} onFinish={onFinish} >
                     <Form.Item name='day' rules={[{required:true, message:'Debes seleccionar un día'}]} >
                     <Select size={'large'} style={{width:'400px'}} placeholder={'Selecciona el día de la reunión'}>
-                            <Option value={'29'}>Martes 29</Option>
-                            <Option value={'30'}>Miércoles 30</Option>
+                            <Option value={'25'}>Martes 25</Option>
+                            <Option value={'26'}>Miércoles 26</Option>
                         </Select>
                     </Form.Item>
                     <Form.Item name='hour_minutes' rules={[{required:true, message:'Debes seleccionar la hora'}]} >
@@ -97,8 +97,8 @@ const CreateMeeting = ({invited}) => {
 
                     <Form.Item name='day' rules={[{required:true, message:'Debes seleccionar un día'}]} >
                         <Select size={'large'} style={{width:'300px'}} placeholder={'Selecciona el día de la reunión'}>
-                            <Option value={'29'}>Martes 29</Option>
-                            <Option value={'30'}>Miércoles 30</Option>
+                            <Option value={'25'}>Martes 25</Option>
+                            <Option value={'26'}>Miércoles 26</Option>
                         </Select>
                     </Form.Item>
 

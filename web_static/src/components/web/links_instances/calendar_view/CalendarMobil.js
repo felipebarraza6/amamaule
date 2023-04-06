@@ -18,7 +18,7 @@ const CalendarMobil = ({copy_data, ProcessUser, ProcessBtn }) => {
                         <tr style={{width:'100%'}}>
                             <th>HORA</th>
                             <th >Usuario</th>
-                            <th >29 de Marzo</th>
+                            <th >25 de Abril</th>
                         </tr>
                         
                         <tr style={{}}>
@@ -259,7 +259,7 @@ const CalendarMobil = ({copy_data, ProcessUser, ProcessBtn }) => {
                         <tr style={{width:'100%'}}>
                             <th>HORA</th>
                             <th>Usuario</th>
-                            <th>30 de Marzo</th>
+                            <th>26 de Abril</th>
                         </tr>
                         
                         <tr style={{}}>

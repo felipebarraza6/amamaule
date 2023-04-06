@@ -1,8 +1,18 @@
 from django.db import models
 from apps.utilities.models import APIModel
+from django.contrib.postgres.fields import ArrayField
 import uuid
 
 
+class TableMeeting(APIModel):
+    programmer = models.ForeignKey("users.User", on_delete=models.CASCADE) 
+    inscribed = ArrayField(models.CharField(max_length=1000, blank=True, null=True), default=list, blank=True, null =True)
+    day1 = models.BooleanField(default=False)
+    day2 = models.BooleanField(default=False)
+    day3 = models.BooleanField(default=False)
+
+    def __str__(self):
+        return str(self.id)
 
 class Meeting(APIModel):
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)

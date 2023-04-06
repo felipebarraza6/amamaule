@@ -109,7 +109,7 @@ const ProfileUser = () => {
                               <Button shape={'round'} type='link' style={currentNavigation === '1' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('1')}>
                   <UserOutlined  style={currentNavigation === '1' ?  styles.iconActive : styles.icon } />{currentNavigation === '1' && 'Perfil'}
               </Button>
-              <Button disabled={true} shape={'round'} type='link' style={currentNavigation === '2' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('2')}>
+              <Button  shape={'round'} type='link' style={currentNavigation === '2' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('2')}>
                   <CheckOutlined style={styles.icon} />{currentNavigation === '2' && 'Talleres'}
               </Button>
              {state.user.type_user === 'ADM' &&
@@ -117,8 +117,9 @@ const ProfileUser = () => {
                   <Link to='profile/support/'>Soporte<EyeOutlined style={styles.icon} /></Link>{currentNavigation === '3' && 'Soporte'}
               </Button>
               } 
-                    <Button disabled={true} shape={'round'} type='link' style={currentNavigation === '5' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('5')}>
-                  <Link to='/profile/myrounds/'><ForkOutlined style={styles.icon} />{currentNavigation === '5' && 'Rondas'}</Link>
+                    <Button shape={'round'} type='link' style={currentNavigation === '12' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('12')}>
+                  
+                  <ForkOutlined style={styles.icon} />{currentNavigation === '12' && 'Rondas P'}
               </Button>
 
               </>}
@@ -161,11 +162,16 @@ const ProfileUser = () => {
                   style={currentNavigation === '1' ?  styles.hoverItem : styles.menuItem }>
                 Perfil
               </Menu.Item>
+              <Menu.Item disabled={false} icon={<GroupOutlined />} key={'12'}
+                  style={currentNavigation === '12' ?  styles.hoverItem : styles.menuItem } >
+                Rondas de Vinculación Presencial
+              </Menu.Item>             
               {state.user &&
-              <Menu.Item disabled={true} icon={<CheckOutlined/>} key={'2'} 
+              <Menu.Item icon={<CheckOutlined/>} key={'2'} 
                   style={ currentNavigation === '2' ?  styles.hoverItem : styles.menuItem  }  >
                 Pitch
-              </Menu.Item>}              
+              </Menu.Item>} 
+              
               {state.user && <>
                 {state.user.type_user === 'ADM' &&                                         
                   <Menu.Item   icon={<EyeOutlined/>} key={'3'}
@@ -176,14 +182,11 @@ const ProfileUser = () => {
               </>}
               {state.user &&
               <>
-              <Menu.Item disabled={true} icon={<GroupOutlined />} key={'5'}
+              <Menu.Item disabled={state.user.type_user ==='ADM'?false:true} icon={<GroupOutlined />} key={'5'}
                   style={currentNavigation === '5' ?  styles.hoverItem : styles.menuItem } >
-                <Link to='profile/myrounds/'>Rondas de Vinculación</Link>
+                Rondas de Vinculación
               </Menu.Item>
-              <Menu.Item disabled={true} icon={<GroupOutlined />} key={'5'}
-                  style={currentNavigation === '9' ?  styles.hoverItem : styles.menuItem } >
-                <Link to='profile/myrounds/'>Rondas de Vinculación Presencial</Link>
-              </Menu.Item>
+              
 
               </>
               }

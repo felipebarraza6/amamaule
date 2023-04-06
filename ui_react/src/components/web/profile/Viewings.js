@@ -172,7 +172,7 @@ const Viewings = () => {
                         </Form.Item>
                         <Form.Item name='day' rules={[{ required: true, message: 'Selecciona un dia'}]}>
                             <Select size={'large'} style={{width:'100%'}} placeholder={'Selecciona el día de la reunión'}>
-                                <Option value={'29'}>Martes 29</Option>
+                                <Option value={''}>Martes </Option>
                                 <Option value={'30'}>Miércoles 30</Option>
                             </Select>
                         </Form.Item>
