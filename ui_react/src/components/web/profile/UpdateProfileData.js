@@ -344,7 +344,7 @@ const UpdateProfileData = ({user}) => {
                         <TextArea rows={4} />
                     </Form.Item>
                                                                                                                                    
-                                <Form.Item label='Adjunta tu dossier' onChange={(evt)=> {
+                                <Form.Item label='Adjunta tu Dossier, CV o portafolio' onChange={(evt)=> {
                                     setFile(evt.target.files[0])
                                 }}>
                                     {state.dossier_file && <Button onClick={()=> {

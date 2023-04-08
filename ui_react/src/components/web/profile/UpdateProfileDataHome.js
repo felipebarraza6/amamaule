@@ -56,6 +56,7 @@ const UpdateProfileDataHome = ({user, isHome}) => {
                     
                     
                 })                 
+                window.location.assign('/profile')
                 
             } else if(fileI){
                 notification.warning({title:'Cargando imgen...', description:'Subiendo archivo... está página se actualiza automáticamente'})
@@ -64,6 +65,7 @@ const UpdateProfileDataHome = ({user, isHome}) => {
                     message.success('Avatar cargado!!!')
                     
                 }) 
+                window.location.assign('/profile')
             }else if(file){
                 notification.warning({title:'Cargando dossier...', description:'Subiendo archivo... está página se actualiza automáticamente'})
                 const rq = api.user.UPLOAD_FILE_OR_IMG(`users/profile/${user.id}/`, 'dossier_file', file).then((res)=> {
@@ -71,8 +73,10 @@ const UpdateProfileDataHome = ({user, isHome}) => {
                     message.success('Dossier cargado!!!')
                     
                 })
+                window.location.assign('/profile')
 
             } else {
+                window.location.assign('/profile')
                 message.success('Datos actualizados!!!') 
             }
         }).catch((error)=> {
@@ -369,7 +373,7 @@ const UpdateProfileDataHome = ({user, isHome}) => {
                         <TextArea rows={4} />
                     </Form.Item>
                                                                                                                                    
-                                <Form.Item label='Adjunta tu dossier' onChange={(evt)=> {
+                                <Form.Item label='Adjunta tu Dossier, CV o portafolio' onChange={(evt)=> {
                                     setFile(evt.target.files[0])
                                 }}>
                                     {state.dossier_file && <Button onClick={()=> {
@@ -386,11 +390,9 @@ const UpdateProfileDataHome = ({user, isHome}) => {
                                     <input type='file' />
                                 </Form.Item>
                                 <Form.Item>
-                                    <Button disabled={disabled} htmlType='submit' style={{backgroundColor:'rgb(206, 61, 75)', borderColor:'rgb(206, 61, 75)'}} type={'primary'}>ACTUALIZAR PERFIL </Button>                                    
+                                    <Button disabled={disabled} htmlType='submit' style={{backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}} type={'primary'}>Guardar tu perfil</Button>                                    
                                 </Form.Item>
-                                <Form.Item>                                    
-                                    <Button disabled={disabled} onClick={()=>window.location.assign('/profile')} style={{backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)'}} type={'primary'}>IR A MI PERFIL</Button>
-                                </Form.Item>
+                                
                                 
                 </Col>
                 </Row>

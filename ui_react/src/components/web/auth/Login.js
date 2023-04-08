@@ -47,7 +47,7 @@ const UserLoginForm = ({ visible, onCreate, onCancel}) => {
                         { required: true, message: 'Por favor ingrese su contraseña'},
                         {min:6, message: 'Debes ingresar al menos 6 caracteres'}
                     ]}>
-                        <Input type='password' />
+                        <Input.Password type='password' />
                     </Form.Item>
                     </Col>  
                 </Row>                                                                                       

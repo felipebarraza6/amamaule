@@ -210,7 +210,7 @@ const SignUp = ({ setStep, setUser }) => {
                             { required: true, message: 'Por favor ingresa tu contraseña'},
                             { min:6, message:'Debes ingresar al menos 6 caracteres'}
                             ]}>
-                                <Input type='password' />
+                                <Input.Password type='password' />
                         </Form.Item>
                     </Col>
                     <Col  xs={24} lg ={8} span={8} style={styles.colField}>
@@ -218,7 +218,7 @@ const SignUp = ({ setStep, setUser }) => {
                             { required: true, message: 'Por favor ingresa tu contraseña'},                    
                             {min: 6, message: 'Debes ingresar al menos 6 caracteres'}
                             ]}>
-                                <Input type='password' />
+                                <Input.Password type='password' />
                         </Form.Item>
                     </Col>
                     <Col  xs={24} lg ={18} span={18}>

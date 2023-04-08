@@ -62,7 +62,6 @@ const LinksInstancesAE = () => {
 
     const checkExistDay2 = async() => {
         const rq = await api_links_instances.check_tabled2(authContext.user.id, true)
-        console.log(rq,'x')
         if(rq.data.count>0){
             setBlockDay2(true)
         } else {
@@ -112,16 +111,17 @@ const LinksInstancesAE = () => {
     }
 
     const addInscribed = async(x, list)=> {
-
-
-        if(list.includes(authContext.user.id)){
-          }else{
+        let id = authContext.user.id.toString()
+        
+        if(list.includes(id)){        
+          }else{            
             list.push(authContext.user.id)        
           }
         
              
         const rq = await api_links_instances.add_inscribed(x.id, list)
-        notification.success({message:`te has inscrito en la mesa de ${x.programmer.first_name.toUpperCase()} ${x.programmer.last_name.toUpperCase()}`})                
+        notification.success({message:`¡Ya agendaste tu ronda! El Equipo AMA te contactará para darte la hora de tu reunión.`, duration: 5})                
+        setCountUpdate(countUpdate+1)
     }
 
     const getUserData = async(list) => {
@@ -146,7 +146,7 @@ Modal.success(({content:<>
         <Col span={24} style={{paddingTop:''}}>
             <Title style={{textAlign:'center'}} level={3}>RONDAS DE VINCULACIÓN - PRESENCIALES</Title>
         </Col >
-        <Col span={23}>
+        <Col span={24}>
             <Paragraph style={{textAlign:'center'}}>
             Si eres programador/a: Pincha los días que vas a venir para crear tu mesa y así, quienes dessen reunirse contigo, verán tu nombre en la lista. 
             </Paragraph>
@@ -155,6 +155,9 @@ Modal.success(({content:<>
             </Paragraph>
             <Paragraph style={{textAlign:'center'}}>
             Son 8 cupos por mesa (programador/a)
+            </Paragraph>
+            <Paragraph style={{textAlign:'center'}}>
+            Recuerda que tu Ronda de Vinculación tiene una duración de 15 minutos por reunión.
             </Paragraph>
         </Col>
         </Row>

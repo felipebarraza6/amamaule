@@ -27,7 +27,23 @@ const Workshops = ({is_digital}) => {
       return request
     }   
 
-  async function updateWorkshop(id, participans){    
+  async function updateWorkshop(id, x){    
+    let participans = x.inscribed        
+        let user = state.user.id.toString()
+        let quota = x.maximum_quota
+        let is_incribed = false    
+        console.log(participans.length)
+        console.log(participans)
+
+        participans.includes(user)
+        if(participans.includes(user)){
+          is_incribed=true
+        }else{
+          is_incribed=false
+        }
+    if(!is_incribed){
+      participans.push(user)
+    }
     const rq = await api.workshops.update(id,{inscribed: participans}).then((x)=> {
       getData(is_digital)
 
@@ -79,20 +95,18 @@ const Workshops = ({is_digital}) => {
           is_incribed=false
         }
 
-        if(!is_incribed){
-          participans.push(user)
-        }
+        
         
 
         return(
           <Col style={styles.col} lg={6} xs={24}>
             <Card hoverable extra={!is_digital ? <>              
-              <Tag color='volcano'>Cupos limitados: {x.maximum_quota}</Tag><Tag color='pink'>: {x.duration}</Tag></>: <Tag color='volcano'> Cupos: {x.maximum_quota} </Tag>} 
+              <Tag color='volcano'>Cupos limitados: {x.maximum_quota}</Tag><Tag color='pink'>: {x.duration}</Tag></>: <Tag color='volcano'> Cupos: {x.maximum_quota - x.inscribed.length } </Tag>} 
               style={styles.card}  
                 cover={<img alt="example" src={x.principal_image} />}>                  
                   {!x.is_end ? <>
                   {is_incribed===false ? 
-                    <Button block disabled={participans.length>=quota?true:false} style={styles.btn} onClick={()=>updateWorkshop(x.id, participans, quota)} type='primary'>PARTICIPAR</Button>:
+                    <Button block disabled={participans.length>=quota?true:false} style={styles.btn} onClick={()=>updateWorkshop(x.id, x, quota)} type='primary'>PARTICIPAR</Button>:
                   <Button block style={styles.btn} onClick={()=>updateWorkshopRest(x.id, participans)} type='primary'>CANCELAR PARTICIPACION</Button>}
                   </>:<Tag color='volcano'>INSCRIPCIONES CERRADAS</Tag>}
                   
