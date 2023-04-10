@@ -10,6 +10,7 @@
     "antd": "^4.13.1",
     "antd-mobile": "^5.7.1",
     "axios": "^0.21.1",
+    "caniuse-lite": "^1.0.30001477",
     "eslint-plugin-react": "^7.11.0",
     "form-data": "^4.0.0",
     "fs": "^0.0.1-security",
