@@ -34,7 +34,7 @@ const NavBarClient = () => {
             </Item>   
             <Item style={styles.item}>
                     <Button  style={{paddingBottom:'40px', paddingTop:'12px', color:'white'}} type='link'>
-                        <a style={{color:'white'}} href={pdf} target='__blank'>PROGRAMA 2022</a></Button>
+                        <a style={{color:'white'}} href={pdf} target='__blank'>PROGRAMA 2023</a></Button>
                 </Item>         
                      
             {state.isAuthenticated ? 

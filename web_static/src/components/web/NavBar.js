@@ -61,7 +61,7 @@ const NavBar = () => {
                 
                 <Item style={styles.item}>
                     <Button style={{paddingBottom:'40px', paddingTop:'12px', color:'white'}} type='link'>
-                        <a href={pdf} target='__blank'>PROGRAMA 2022</a></Button>
+                        <a href={pdf} target='__blank'>PROGRAMA 2023</a></Button>
                 </Item>
                 <Item style={styles.item}>
                     <OldAma />
@@ -77,7 +77,7 @@ const NavBar = () => {
             <Menu mode="horizontal" theme='dark' style={styles.menu} >                 
             <Item style={styles.item}>
                     <Button style={{paddingBottom:'32px', paddingTop:'12px', color:'white'}} type='link'>
-                        <a href={pdf} target='__blank'>PROGRAMA 2022</a></Button>
+                        <a href={pdf} target='__blank'>PROGRAMA 2023</a></Button>
                 </Item>
         {state.isAuthenticated ? <Item style={styles.item}><Link to='/profile'>@{state.user.username}</Link></Item>:<Item style={styles.item}>
 
