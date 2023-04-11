@@ -17,6 +17,7 @@ ReactDOM.render(
       headerTitle={'Soporte Web'} 
       zIndex={2} 
       size={70}      
+      autoOpenTimeout={10}
       phone={56992196482}
       popupMessage={'Hola! 🤝 en qué podemos ayudarte? '} 
       backgroundColor='rgb(176, 93, 185)' 

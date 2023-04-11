@@ -185,10 +185,10 @@ Modal.success(({content:<>
                                     footer: [],
                                     content: <>
                                         <Row>
-                                            <Col>Nombre: {x.programmer.first_name.toUpperCase()} {x.programmer.last_name.toUpperCase()}</Col>
-                                            <Col>Región: {x.programmer.region.toUpperCase()} {x.programmer.last_name.toUpperCase()}</Col>
-                                            <Col>Comuna: {x.programmer.commune.toUpperCase()} {x.programmer.last_name.toUpperCase()}</Col>
-                                            <Col style={{marginTop:'10px'}}>Descripción: {x.programmer.profile.review}</Col>                                       
+                                            <Col span={24}>Nombre: {x.programmer.first_name.toUpperCase()} {x.programmer.last_name.toUpperCase()}</Col>
+                                            <Col span={24}>Región: {x.programmer.region.toUpperCase()} </Col>
+                                            <Col span={24}>Comuna: {x.programmer.commune.toUpperCase()} </Col>
+                                            <Col span={24} style={{marginTop:'10px'}}>Descripción: {x.programmer.profile.review}</Col>                                       
                                         </Row>
                                     </>
                                 })
@@ -228,10 +228,10 @@ Modal.success(({content:<>
                                     footer: [],
                                     content: <>
                                         <Row>
-                                            <Col>Nombre: {x.programmer.first_name.toUpperCase()} {x.programmer.last_name.toUpperCase()}</Col>
-                                            <Col>Región: {x.programmer.region.toUpperCase()} {x.programmer.last_name.toUpperCase()}</Col>
-                                            <Col>Comuna: {x.programmer.commune.toUpperCase()} {x.programmer.last_name.toUpperCase()}</Col>
-                                            <Col style={{marginTop:'10px'}}>Descripción: {x.programmer.profile.review}</Col>                                       
+                                            <Col span={24}>Nombre: {x.programmer.first_name.toUpperCase()} {x.programmer.last_name.toUpperCase()}</Col>
+                                            <Col span={24}>Región: {x.programmer.region.toUpperCase()} </Col>
+                                            <Col span={24}>Comuna: {x.programmer.commune.toUpperCase()} </Col>
+                                            <Col span={24} style={{marginTop:'10px'}}>Descripción: {x.programmer.profile.review}</Col>                                       
                                         </Row>
                                     </>
                                 })
@@ -266,10 +266,10 @@ Modal.success(({content:<>
                                     footer: [],
                                     content: <>
                                         <Row>
-                                            <Col>Nombre: {x.programmer.first_name.toUpperCase()} {x.programmer.last_name.toUpperCase()}</Col>
-                                            <Col>Región: {x.programmer.region.toUpperCase()} {x.programmer.last_name.toUpperCase()}</Col>
-                                            <Col>Comuna: {x.programmer.commune.toUpperCase()} {x.programmer.last_name.toUpperCase()}</Col>
-                                            <Col style={{marginTop:'10px'}}>Descripción: {x.programmer.profile.review}</Col>                                       
+                                            <Col span={24}>Nombre: {x.programmer.first_name.toUpperCase()} {x.programmer.last_name.toUpperCase()}</Col>
+                                            <Col span={24}>Región: {x.programmer.region.toUpperCase()} </Col>
+                                            <Col span={24}>Comuna: {x.programmer.commune.toUpperCase()} </Col>
+                                            <Col span={24} style={{marginTop:'10px'}}>Descripción: {x.programmer.profile.review}</Col>                                       
                                         </Row>
                                     </>
                                 })
