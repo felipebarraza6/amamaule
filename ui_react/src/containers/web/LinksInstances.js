@@ -224,7 +224,7 @@ const LinksInstances = () => {
 				</Card>}
 				<Card hoverable title={<><CoffeeOutlined style={styles.icon} /> Soporte</>} style={{margin:'10px'}}>
           <p align='center'>
-					Si tienes alguna duda o problema, escríbenos a soporte@amamaule.cl
+					Si tienes alguna duda o problema, escríbenos a nuestro boton de whats app
           </p>
 				</Card>				
 				</Affix>
