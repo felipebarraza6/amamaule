@@ -192,13 +192,17 @@ Modal.success(({content:<>
                                         </Row>
                                     </>
                                 })
-                            }} style={styles.btn}>{x.programmer.first_name.toUpperCase()} {x.programmer.last_name.toUpperCase()}</Button>
+                            }} style={styles.btn}>
+                                {x.programmer.first_name.toUpperCase().slice(0,6)}{x.programmer.first_name.length > 6 ? '... ':' '} 
+                                {x.programmer.last_name.toUpperCase().slice(0,6)}{x.programmer.last_name.length > 6 ? '...': ' '} 
+                            </Button>
                             </Col>
                             </Row>) 
                     })}</>:<>{tables1.map((x)=> {
                                 
                         return(<Button style={styles.btn} onClick={()=>getUserData(x.inscribed)} icon={<>MESA DE </>} type='primary'>
-                            {x.programmer.first_name.toUpperCase()} {x.programmer.last_name.toUpperCase()} (quedan {8-x.inscribed.length} cupos)</Button>)
+                            {x.programmer.first_name.toUpperCase().slice(0,6)}{x.programmer.first_name.length > 6 ? '... ':' '} 
+                                {x.programmer.last_name.toUpperCase().slice(0,6)}{x.programmer.last_name.length > 6 ? '...': ' '}  (quedan {8-x.inscribed.length} cupos)</Button>)
                     })}</>}                    
                     
                     
@@ -231,12 +235,14 @@ Modal.success(({content:<>
                                         </Row>
                                     </>
                                 })
-                            }} style={styles.btn}>{x.programmer.first_name.toUpperCase()} {x.programmer.last_name.toUpperCase()}</Button>
+                            }} style={styles.btn}>{x.programmer.first_name.toUpperCase().slice(0,6)}{x.programmer.first_name.length > 6 ? '... ':' '} 
+                            {x.programmer.last_name.toUpperCase().slice(0,6)}{x.programmer.last_name.length > 6 ? '...': ' '} </Button>
                             </Col>
                             </Row>) 
                     })}</>:<>{tables2.map((x)=> {                                
                         return(<Button style={styles.btn} onClick={()=>getUserData(x.inscribed)} icon={<>MESA DE </>} type='primary'>
-                            {x.programmer.first_name.toUpperCase()} {x.programmer.last_name.toUpperCase()} (quedan {8-x.inscribed.length} cupos)</Button>)
+                            {x.programmer.first_name.toUpperCase().slice(0,6)}{x.programmer.first_name.length > 6 ? '... ':' '} 
+                                {x.programmer.last_name.toUpperCase().slice(0,6)}{x.programmer.last_name.length > 6 ? '...': ' '}  (quedan {8-x.inscribed.length} cupos)</Button>)
                     })}</>}                    
                     
                 </Card>                          
@@ -267,12 +273,14 @@ Modal.success(({content:<>
                                         </Row>
                                     </>
                                 })
-                            }} style={styles.btn}>{x.programmer.first_name.toUpperCase()} {x.programmer.last_name.toUpperCase()}</Button>
+                            }} style={styles.btn}>{x.programmer.first_name.toUpperCase().slice(0,6)}{x.programmer.first_name.length > 6 ? '... ':' '} 
+                            {x.programmer.last_name.toUpperCase().slice(0,6)}{x.programmer.last_name.length > 6 ? '...': ' '} </Button>
                             </Col>
                             </Row>) 
                     })}</>:<>{tables3.map((x)=> {                                
                         return(<Button style={styles.btn} onClick={()=>getUserData(x.inscribed)} icon={<>MESA DE </>} type='primary'>
-                            {x.programmer.first_name.toUpperCase()} {x.programmer.last_name.toUpperCase()} (quedan {8-x.inscribed.length} cupos)</Button>)
+                            {x.programmer.first_name.toUpperCase().slice(0,6)}{x.programmer.first_name.length > 6 ? '... ':' '} 
+                                {x.programmer.last_name.toUpperCase().slice(0,6)}{x.programmer.last_name.length > 6 ? '...': ' '}  (quedan {8-x.inscribed.length} cupos)</Button>)
                     })}</>}                    
                     
                 </Card>    

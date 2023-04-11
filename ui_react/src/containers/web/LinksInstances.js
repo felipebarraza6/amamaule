@@ -120,7 +120,7 @@ const LinksInstances = () => {
 															content: <Form onFinish={(values)=>{
 															
 															var format_time = values.hour_minutes.format('HH:mm:ss')
-        													var date_formated = `2022-03-${values.day}T${format_time}`																																						
+        													var date_formated = `2023-04-${values.day}T${format_time}`																																						
 															
 															updateInvitation({
 																rescheduled:true, 
@@ -132,8 +132,8 @@ const LinksInstances = () => {
 														}}>
 														<Form.Item name='day' rules={[{ required: true, message: 'Selecciona un dia'}]}>
 															<Select size={'large'} style={{width:'100%'}} placeholder={'Selecciona el día de la reunión'}>
-																<Option value={'29'}>Martes 29</Option>
-																<Option value={'30'}>Miércoles 30</Option>
+																<Option value={'25'}>Martes 25</Option>
+																<Option value={'26'}>Miércoles 26</Option>
 															</Select>
 														</Form.Item>
 														<Form.Item name='hour_minutes' rules={[{ required: true, message: 'Selecciona un horario'}]}>
@@ -207,19 +207,7 @@ const LinksInstances = () => {
 
 			</Collapse>
 				<Card title={<><CalendarOutlined style={styles.icon} /> Calendario</>} >
-          {size < 800 && 
-            <Row>
-              <Button type={'dashed'} style={{backgroundColor: '#b05db9', color:'white', borderColor:'white', marginLeft:'10px'}}>
-          <a href={pdf_i} target="_blank">
-					Ver tutorial(PDF)
-          </a>
-				</Button>
-				<Button onClick={()=> window.open('https://www.youtube.com/watch?v=CLukYak01Gs&feature=youtu.be') } type={'dashed'} style={{backgroundColor: '#b05db9', color:'white', borderColor:'white', marginLeft:'10px'}}>
-					Ver tutorial(VIDEO)
-				</Button>
-            </Row>
-
-          }
+          
 					{!state.reload &&  <Calendar /> }
 				</Card>
 			</Col>
@@ -229,7 +217,7 @@ const LinksInstances = () => {
         <Card hoverable  title={<>¿INTERNET LENTO?</>} style={{margin:'10px', align:'justify'}}>
           {pathname !== '/profile/rounds' ? <> 
             <p align='center'>Desarollamos una versión que aumentara tus tiempos de carga, disponible solamente desde usuarios de escritorio(notebooks, pc y estaciones de trabajo). </p>
-            <Button type='primary' onClick={()=> window.open('https://amamaule.cl/profile/rounds')}>HAS CLICK E INGRESA</Button>
+            <Button type='primary' onClick={()=> window.open('https://amarondas.cl/profile/rounds')}>HAS CLICK E INGRESA</Button>
             </>
             :<center><Spin size={'large'} /></center>
              }

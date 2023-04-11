@@ -123,7 +123,7 @@ const Viewings = () => {
         return(<>
                 <Modal style={{top:10}} footer={null} onCancel={()=>setVisible(false)} visible={visible}><Form layout='vertical' initialValues={{owner:x.owner.id, invited:x.invited.id}} onFinish={async(values)=>{														
                         var format_time = values.hour_minutes.format('HH:mm:ss')
-                        var date_formated = `2022-03-${values.day}T${format_time}`																																						            
+                        var date_formated = `2023-04-${values.day}T${format_time}`																																						            
                         values = {
                             ...values,
                             date_meeting: date_formated
@@ -382,7 +382,7 @@ const Viewings = () => {
                                            
                                         </Col>
                                         <Col span={12} style={{padding:'6px'}}>
-                                            <Button size='small' type='primary' onClick={()=>Modal.info({width:'650px',content:`https://amamaule.cl/profile/meetings/${x.uuid}`})}>LINK</Button>
+                                            <Button size='small' type='primary' onClick={()=>Modal.info({width:'650px',content:`https://amarondas.cl/profile/meetings/${x.uuid}`})}>LINK</Button>
                                         </Col>
                                     </Row> }
                                 ]}

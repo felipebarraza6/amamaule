@@ -120,7 +120,7 @@ const LinksInstances = () => {
 															content: <Form onFinish={(values)=>{
 															
 															var format_time = values.hour_minutes.format('HH:mm:ss')
-        													var date_formated = `2022-03-${values.day}T${format_time}`																																						
+        													var date_formated = `2023-04-${values.day}T${format_time}`																																						
 															
 															updateInvitation({
 																rescheduled:true, 
@@ -241,7 +241,7 @@ const LinksInstances = () => {
         <Card hoverable  title={<>¿INTERNET LENTO?</>} style={{margin:'10px', align:'justify'}}>
           {pathname !== '/profile/rounds' ? <> 
             <p align='center'>Desarollamos una versión que aumentara tus tiempos de carga, disponible solamente desde usuarios de escritorio(notebooks, pc y estaciones de trabajo). </p>
-            <Button type='primary' onClick={()=> window.open('https://amamaule.cl/profile/rounds')}>HAS CLICK E INGRESA</Button>
+            <Button type='primary' onClick={()=> window.open('https://amarondas.cl/profile/rounds')}>HAS CLICK E INGRESA</Button>
             </>
             :<center><Spin size={'large'} /></center>
              }

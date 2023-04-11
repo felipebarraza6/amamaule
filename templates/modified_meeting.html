@@ -1,10 +1,18 @@
-<p>Estimado/a participante</p>
-
-<p>Te informamos que la reunión que agendaste a través del portal de AMA-Encuentros de Artistas del Maule 2022, para el día [XX] a las [XX] horas, fue modificada y se re-agendó para el día [XX] a las [XX] horas.</p> 
-
-<p>Agradecemos tu comprensión y participación en esta instancia de vinculación entre artistas y programadores/as.</p> 
-
-<p>Saluda cordialmente</p>
-
-<p>Equipo AMA - Vincular para Crear 2022</p>
-
+{% block content %}
+<div style="background-color: #5711a5; padding: 20px;">    
+    <table style="max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 30px; border-radius: 10px;">
+        <tr>
+            <td>                
+                <p style="font-size: 16px;">Estimado/a participante: <u>{{ user.first_name }} {{ user.last_name }}</u></p>
+                <p style="font-size: 16px;">¡Tu usuario ha sido registrado con éxito!</p>
+                <p style="font-size: 16px;">Te informamos que la reunión que agendaste a través del portal de AMA-Encuentros de Artistas del Maule 2023, para el día [XX] a las [XX] horas, fue modificada y se re-agendó para el día [XX] a las [XX] horas.</p>                
+                <p style="font-size: 16px;">Agradecemos tu comprensión y participación en esta instancia de vinculación entre artistas y programadores/as.</p>
+                <p style="font-size: 16px;">Te sugerimos agendar tu Ronda presencial en 24 horas.</p>
+                <p style="font-size: 16px;">Revisa el programa en la Pestaña "Programa 2023" en <a href="https://amarondas.cl" target="__blank">www.amarondas.cl</a> </p>                
+                <p style="font-size: 16px;">Saluda cordialmente</p>
+                <p style="font-size: 16px;">Equipo AMA - Vincular para Crear 2023</p>                
+            </td>
+        </tr>
+    </table>
+</div>
+{% endblock %}

@@ -48,7 +48,7 @@ const Calendar = () => {
                     size='small' type='primary' 
                     style={styles.btnGo}
                     onClick={()=> {
-                      window.open(`https://amamaule.cl/profile/meetings/${x.uuid}`)
+                      window.open(`https://amarondas.cl/profile/meetings/${x.uuid}`)
                     }}>ingresar</Button>
                 </Col>
                 <Col span={24}>

@@ -28,7 +28,7 @@ class InvitationAdmModel(serializers.ModelSerializer):
         try:
             instance = Invitation.objects.create(**validated_data)
             subject = '¡Has recibido una invitacion!'
-            from_email = '<noresponder@amamaule.cl>'
+            from_email = '<soporte@amarondas.cl>'
             content = render_to_string(
                 'invitation.html',
                 { 'instance': instance}
@@ -55,7 +55,7 @@ class InvitationModelSerializer(serializers.ModelSerializer):
         try:
             instance = Invitation.objects.create(**validated_data)
             subject = '¡Has recibido una invitacion!'
-            from_email = '<noresponder@amamaule.cl>'
+            from_email = '<soporte@amarondas.cl>'
             content = render_to_string(
                 'invitation.html',
                 { 'instance': instance}
@@ -94,7 +94,7 @@ class InvitationModelSerializer(serializers.ModelSerializer):
 
         if(instance.answer == True):            
             subject = '¡Tu reunión para AMA 2022 ha sido confirmada!'
-            from_email = '<noresponder@amamaule.cl>'
+            from_email = '<soporte@amarondas.cl>'
             content = render_to_string(
                 'confirmation.html',
                 { 'instance': instance }

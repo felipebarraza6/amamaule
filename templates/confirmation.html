@@ -1,19 +1,22 @@
-<h3>Estimado/a participante</h3>
+{% block content %}
+<div style="background-color: #5711a5; padding: 20px;">    
+    <table style="max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 30px; border-radius: 10px;">
+        <tr>
+            <td>                
+                <p style="font-size: 16px;">Estimado/a participante</u></p>
+                <p style="font-size: 16px;">Tu reunión agendada ha sido confirmada. Agradecemos tu interés y participación en AMA-Encuentro de Artistas del Maule 2023.</u></p>
+                <p style="font-size: 16px;">Detalles de reunión:</p>
+                <p style="font-size: 16px;">PROPIETARIO: {{instance.owner.first_name}} {{instance.owner.last_name}}</p>                
+                <p style="font-size: 16px;">INVITADO: {{instance.invited.first_name}} {{instance.invited.last_name}}</p>
+                <p style="font-size: 16px;">{<span>HORARIO: {{instance.date_meeting}} </span></p>
 
-<p>Tu reunión agendada ha sido confirmada. Agradecemos tu interés y participación en AMA-Encuentro de Artistas del Maule 2022.</p>
+                <p style="font-size: 16px;"><a href='https://amarondas.cl/profile'>IR A TU PERFIL(debes tener iniciada tu sesión)</a></p>                                
+                <hr>
+                <p style="font-size: 16px;">Saluda cordialmente</p>                
+                <p style="font-size: 16px;"><a href='https://amarondas.cl/profile'>Equipo AMA-Vincular para Crear 2023</a></p>                
+            </td>
+        </tr>
+    </table>
+</div>
+{% endblock %}
 
-<hr>
-<h4>Detalles de reunión:</h4>
-<p>PROPIETARIO: {{instance.owner.first_name}} {{instance.owner.last_name}}  </p>
-<p>INVITADO: {{instance.invited.first_name}} {{instance.invited.last_name}} </p>
-<span>HORARIO: {{instance.date_meeting}} </span>
-<hr>
-<a href='https://amamaule.cl/profile'>IR A TU PERFIL(debes tener iniciada tu sesión)</a>
-
-<p style='margin-bottom:20px;margin-top:20px'>Adjuntamos los tutoriales del uso de las rondas de viculación:</p>
-<a style='padding:10px; background-color: rgb(176, 93, 185); color:white;margin:10px' target='__blank' href='https://www.youtube.com/watch?v=CLukYak01Gs&feature=youtu.be'>TUTORIAL(VIDEO)</a>
-<a style='padding:10px; background-color: rgb(176, 93, 185); color:white;margin:10px' target='__blank' href='http://localhost:3000/static/media/TUTORIAL%20RONDAS%20FINAL.9006f6b50f1689e59942.pdf'>TUTORIAL(PDF)</a>
-
-
-<p>Saluda cordialmente</p>
-<p>Equipo AMA-Vincular para Crear 2022</p>

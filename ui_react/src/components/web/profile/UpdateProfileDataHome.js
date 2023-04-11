@@ -154,7 +154,7 @@ const UpdateProfileDataHome = ({user, isHome}) => {
                             form.resetFields(['options_profile'])
                             } }>
                             <Select value='GES'>Programador/a</Select>
-                            <Select value='AR'>Artista escénico o representante</Select>
+                            <Select value='AR'>Artista escénico, música o representante</Select>
                             <Select value='AV'>Artista de la visualidad</Select>
                             <Select value='PT'>Profesional o trabajador relacionado a las artes escénicas o de la visualidad</Select>
                             <Select value='PS'>Proveedor/a de bienes y servicios asociados</Select>
