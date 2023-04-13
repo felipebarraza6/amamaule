@@ -142,7 +142,7 @@ Modal.success(({content:<>
 
 
 
-    return(<><Row justify='center' align='middle' style={{height:'30vh'}}>
+    return(<><Row justify='center'  style={{height:'30vh'}}>
         <Col span={24} style={{paddingTop:''}}>
             <Title style={{textAlign:'center'}} level={3}>RONDAS DE VINCULACIÓN - PRESENCIALES</Title>
         </Col >
@@ -164,7 +164,7 @@ Modal.success(({content:<>
        
     
         
-        <Row  justify='space-around' align='middle'>
+        <Row  justify='space-around' >
             <Col  lg={8} xs={24} >
                 
                 <Card hoverable cover={<img src={img1} />} style={{ width: size > 800 ? '400px':'100%', margin: size > 800 ? '20px': '0 0 20px 0' }} >
