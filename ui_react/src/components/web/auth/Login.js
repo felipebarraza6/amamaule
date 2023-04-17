@@ -118,8 +118,8 @@ const Login = () => {
 
     return (
         <React.Fragment>
-            <Button icon={<UserOutlined style={{fontSize:'15px'}} />} size='large' type='link' style={styles.button} onClick={changeVisible}>
-                Ingresar
+            <Button type='primary' icon={<UserOutlined style={{fontSize:'15px'}} />} style={styles.button} onClick={changeVisible}>
+                Iniciar sesión
             </Button>
             <UserLoginForm visible={globalState.visibleModal} onCreate={onCreate} onCancel={closeModal} />
         </React.Fragment>
@@ -129,8 +129,11 @@ const Login = () => {
 
 const styles = {
     button: {
-        height:'64px',
-        color:'white'
+        height:'44px',
+        color: 'black',        
+        backgroundColor: '#E8E368',
+        borderColor: '#E8E368'
+
     },
     colField: {
         paddingRight: '10px'

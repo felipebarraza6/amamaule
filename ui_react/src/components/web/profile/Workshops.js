@@ -106,7 +106,10 @@ const Workshops = ({is_digital}) => {
                 cover={<img alt="example" src={x.principal_image} />}>                  
                   {!x.is_end ? <>
                   {is_incribed===false ? 
-                    <Button block disabled={participans.length>=quota?true:false} style={styles.btn} onClick={()=>updateWorkshop(x.id, x, quota)} type='primary'>PARTICIPAR</Button>:
+                    <Button block disabled={participans.length>=quota?state.user.type_user === 'GES' ?false:true: false} style={styles.btn} onClick={()=>updateWorkshop(x.id, x, quota)} type='primary'>
+                      
+                      {state.user.type_user === 'GES' ?'PARTICIPAR COMO PROGRAMADOR':'PARTICIPAR'}
+                      </Button>:
                   <Button block style={styles.btn} onClick={()=>updateWorkshopRest(x.id, participans)} type='primary'>CANCELAR PARTICIPACION</Button>}
                   </>:<Tag color='volcano'>INSCRIPCIONES CERRADAS</Tag>}
                   

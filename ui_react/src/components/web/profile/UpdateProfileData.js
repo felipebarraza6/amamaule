@@ -5,7 +5,7 @@ import { Button, Form, Input,
 import api from '../../../api/endpoints'
 import { AuthContext } from '../../../App'
 const {TextArea} = Input
-const {Title, Text} = Typography
+const {Title, Text, Paragraph} = Typography
 
 
 const UpdateProfileData = ({user}) => {
@@ -108,6 +108,11 @@ const UpdateProfileData = ({user}) => {
             }}>
                     
             <Row justify={'center'} >
+                <Col offset={12}>
+                    <Paragraph style={{backgroundColor: '#E8E368', borderRadius:'10px', padding:'10px'}}>
+                    YA ESTÁS REGISTRADO. Puedes agendar tus Rondas de Vinculación presenciales, online y Rondas de Pitch.
+                    </Paragraph>
+                </Col>
                 <Col lg={24} xs={24}>
                     <Form.Item name='participated_in_last_edition'  label={'¿Participaste en Ama 2021/2022?'} >
                         <Select placeholder='Selecciona una opcion...' >
@@ -335,7 +340,7 @@ const UpdateProfileData = ({user}) => {
                                 </> }
                         </Select>
                     </Form.Item>}
-                    <Form.Item name='review' label={'Reseña tus actividades como programador (festivales, ferias, talleres, exposiciones, muestras, carteleras, funciones etc.) Si eres artista u otro, reseña tus actividades.'} rules={[{required:true, message:'Debes ingresar tu reseña'},
+                    <Form.Item name='review' label={'Menciona el lugar/espacio/teatro/institución de dónde vienes y reseña tus actividades como programador (festivales, ferias, talleres, exposiciones, muestras, carteleras, funciones etc.) Si eres artista u otro, reseña tus actividades.'} rules={[{required:true, message:'Debes ingresar tu reseña'},
                                 {max:800, message:'Has superado los 800 caracteres'}]}>
                                     
                                     <TextArea rows={4} />

@@ -364,7 +364,7 @@ const UpdateProfileDataHome = ({user, isHome}) => {
                                 </> }
                         </Select>
                     </Form.Item>}
-                    <Form.Item name='review' label={'Reseña tus actividades como programador (festivales, ferias, talleres, exposiciones, muestras, carteleras, funciones etc.) Si eres artista u otro, reseña tus actividades.'} rules={[{required:true, message:'Debes ingresar tu reseña'},
+                    <Form.Item name='review' label={'Menciona el lugar/espacio/teatro/institución de dónde vienes y reseña tus actividades como programador (festivales, ferias, talleres, exposiciones, muestras, carteleras, funciones etc.) Si eres artista u otro, reseña tus actividades.'} rules={[{required:true, message:'Debes ingresar tu reseña'},
                                 {max:800, message:'Has superado los 800 caracteres'}]}>
                                     
                                     <TextArea rows={4} />

@@ -29,6 +29,7 @@ const LinksInstancesAE = () => {
 
 
     const createTableDay1 = async() => {
+        setBlockDay1(true)
         const rq = await api_links_instances.create_table({'programmer': authContext.user.id, 'day1':true}).then((r)=> {
             notification.success({message:'HAS CREADO UNA MESA! PARA EL DIA MARTES 18'})
         })
@@ -36,6 +37,7 @@ const LinksInstancesAE = () => {
     }
 
     const createTableDay2 = async() => {
+        setBlockDay2(true)
         const rq = await api_links_instances.create_table({'programmer': authContext.user.id, 'day2':true}).then((r)=> {
             notification.success({message:'HAS CREADO UNA MESA! PARA EL DIA MIERCOLES 19'})
         })
@@ -45,6 +47,7 @@ const LinksInstancesAE = () => {
     }
 
     const createTableDay3 = async() => {
+        setBlockDay3(true)
         const rq = await api_links_instances.create_table({'programmer': authContext.user.id, 'day3':true}).then((r)=> {
             notification.success({message:'HAS CREADO UNA MESA! PARA EL DIA JUEVES 20'})
         })
@@ -82,9 +85,16 @@ const LinksInstancesAE = () => {
         const rq = await api_links_instances.list_tables(true,false,false)
         const rq2 = await api_links_instances.list_tables(false,true,false)
         const rq3 = await api_links_instances.list_tables(false,false,true)
-        setTables1(rq.data.results)
-        setTables2(rq2.data.results)
-        setTables3(rq3.data.results)
+  
+        const results1 = rq.data.results.slice(0, 30); // slice the first 30 elements
+  const results2 = rq2.data.results.slice(0, 30); // slice the first 30 elements
+  const results3 = rq3.data.results.slice(0, 30); // slice the first 30 elements
+  
+  setTables1(results1);
+  setTables2(results2);
+  setTables3(results3);
+
+        
         
     }
 
@@ -174,33 +184,39 @@ Modal.success(({content:<>
                     
                     {authContext.user.type_user!=='GES' ? <>{tables1.map((x)=> {
                         return(<Row>
-                            <Col span={8} style={{paddingRight:'5px'}}>
-                            <Button style={styles.btn} disabled={x.inscribed.length>=8} onClick={()=>addInscribed(x, x.inscribed)} icon={<>+ </>} type='primary'>
-                             ({8-x.inscribed.length} cupos)</Button>
+                            <Col span={4} style={{paddingRight:'5px'}}>
+                            {x.programmer.id !== authContext.user.id && <Button style={styles.btn} disabled={x.inscribed.length>=8} onClick={()=>addInscribed(x, x.inscribed)} icon={<>+ </>} type='primary'>
+                             ({8-x.inscribed.length})</Button> }
+                            
                             </Col>
-                            <Col span={16}>
+                            <Col span={20}>
                             <Button type='primary' onClick={()=> {
                                 Modal.info({
                                     icon:<></>,
                                     footer: [],
                                     content: <>
                                         <Row>
+                                            {console.log(x)}
+                                            {x.programmer.profile.avatar && <Col span={24}>
+                                                    <center><img style={{borderRadius:'10px', marginBottom:'15px'}} width={'200px'} src={x.programmer.profile.avatar} /></center>
+                                                </Col>}
                                             <Col span={24}>Nombre: {x.programmer.first_name.toUpperCase()} {x.programmer.last_name.toUpperCase()}</Col>
                                             <Col span={24}>Región: {x.programmer.region.toUpperCase()} </Col>
                                             <Col span={24}>Comuna: {x.programmer.commune.toUpperCase()} </Col>
+                                            <Col span={24}>Email: {x.programmer.email.toUpperCase()} </Col>
                                             <Col span={24} style={{marginTop:'10px'}}>Descripción: {x.programmer.profile.review}</Col>                                       
                                         </Row>
                                     </>
                                 })
-                            }} style={styles.btn}>
-                                {x.programmer.first_name.toUpperCase().slice(0,6)}{x.programmer.first_name.length > 6 ? '... ':' '} 
-                                {x.programmer.last_name.toUpperCase().slice(0,6)}{x.programmer.last_name.length > 6 ? '...': ' '} 
+                            }} style={styles.btn}>                                
+                                {x.programmer.first_name.toUpperCase()} {x.programmer.first_name.length > 20 ? ' ':' '}                                 
+                                {x.programmer.last_name.toUpperCase()} {x.programmer.last_name.length > 20 ? ' ':' '}                                                                 
                             </Button>
                             </Col>
                             </Row>) 
                     })}</>:<>{tables1.map((x)=> {
                                 
-                        return(<Button style={styles.btn} onClick={()=>getUserData(x.inscribed)} icon={<>MESA DE </>} type='primary'>
+                        return(<Button style={styles.btn} onClick={()=>getUserData(x.inscribed)} icon={<></>} type='primary'>
                             {x.programmer.first_name.toUpperCase().slice(0,6)}{x.programmer.first_name.length > 6 ? '... ':' '} 
                                 {x.programmer.last_name.toUpperCase().slice(0,6)}{x.programmer.last_name.length > 6 ? '...': ' '}  (quedan {8-x.inscribed.length} cupos)</Button>)
                     })}</>}                    
@@ -212,37 +228,45 @@ Modal.success(({content:<>
             <Col  lg={8}  xs={24}>
 
             <Card hoverable cover={<img src={img2} />} style={{ width: size > 800 ? '400px':'100%', margin: size > 800 ? '20px': '0 0 20px 0' }} >
-                    {authContext.user.type_user=='GES' && 
-                        <Button disabled={blockDay2} size='large' type='primary' style={styles.btn} onClick={createTableDay2} >Participar como programador</Button>     
+                    {authContext.user.type_user=='GES' && <>
+                        
+                        <Button disabled={blockDay2} size='large' type='primary' style={styles.btn} onClick={createTableDay2} >Participar como programador</Button>                             
+                        </> 
                     }                    
                     {authContext.user.type_user!=='GES' ? <>{tables2.map((x)=> {
                         return(<Row>
-                            <Col span={8} style={{paddingRight:'5px'}}>
-                            <Button style={styles.btn} disabled={x.inscribed.length>=8} onClick={()=>addInscribed(x, x.inscribed)} icon={<>+ </>} type='primary'>
-                             ({8-x.inscribed.length} cupos)</Button>
+                            <Col span={4} style={{paddingRight:'5px'}}>
+                            {x.programmer.id !== authContext.user.id && <Button style={styles.btn} disabled={x.inscribed.length>=8} onClick={()=>addInscribed(x, x.inscribed)} icon={<>+ </>} type='primary'>
+                             ({8-x.inscribed.length})</Button> }
                             </Col>
-                            <Col span={16}>
+                            <Col span={20}>
                             <Button type='primary' onClick={()=> {
                                 Modal.info({
                                     icon:<></>,
                                     footer: [],
                                     content: <>
                                         <Row>
+                                        {x.programmer.profile.avatar && <Col span={24}>
+                                                    <center><img style={{borderRadius:'10px', marginBottom:'15px'}} width={'200px'} src={x.programmer.profile.avatar} /></center>
+                                                </Col>}
                                             <Col span={24}>Nombre: {x.programmer.first_name.toUpperCase()} {x.programmer.last_name.toUpperCase()}</Col>
                                             <Col span={24}>Región: {x.programmer.region.toUpperCase()} </Col>
                                             <Col span={24}>Comuna: {x.programmer.commune.toUpperCase()} </Col>
-                                            <Col span={24} style={{marginTop:'10px'}}>Descripción: {x.programmer.profile.review}</Col>                                       
+                                            <Col span={24}>Email: {x.programmer.email.toUpperCase()} </Col>
+                                            <Col span={24} style={{marginTop:'10px'}}>Descripción: {x.programmer.profile.review}</Col>                                           
                                         </Row>
                                     </>
                                 })
-                            }} style={styles.btn}>{x.programmer.first_name.toUpperCase().slice(0,6)}{x.programmer.first_name.length > 6 ? '... ':' '} 
-                            {x.programmer.last_name.toUpperCase().slice(0,6)}{x.programmer.last_name.length > 6 ? '...': ' '} </Button>
+                            }} style={styles.btn}>
+                                {x.programmer.first_name.toUpperCase()}
+                                {' '}
+                                {x.programmer.last_name.toUpperCase()} </Button>
                             </Col>
                             </Row>) 
                     })}</>:<>{tables2.map((x)=> {                                
-                        return(<Button style={styles.btn} onClick={()=>getUserData(x.inscribed)} icon={<>MESA DE </>} type='primary'>
-                            {x.programmer.first_name.toUpperCase().slice(0,6)}{x.programmer.first_name.length > 6 ? '... ':' '} 
-                                {x.programmer.last_name.toUpperCase().slice(0,6)}{x.programmer.last_name.length > 6 ? '...': ' '}  (quedan {8-x.inscribed.length} cupos)</Button>)
+                        return(<Button style={styles.btn} onClick={()=>getUserData(x.inscribed)} icon={<></>} type='primary'>
+                            {x.programmer.first_name.toUpperCase()} 
+                            {x.programmer.last_name.toUpperCase()} ({8-x.inscribed.length})</Button>)
                     })}</>}                    
                     
                 </Card>                          
@@ -255,32 +279,41 @@ Modal.success(({content:<>
                     }                    
                     {authContext.user.type_user!=='GES' ? <>{tables3.map((x)=> {
                         return(<Row>
-                            <Col span={8} style={{paddingRight:'5px'}}>
+                            <Col span={4} style={{paddingRight:'5px'}}>
                             <Button style={styles.btn} disabled={x.inscribed.length>=8} onClick={()=>addInscribed(x, x.inscribed)} icon={<>+ </>} type='primary'>
-                             ({8-x.inscribed.length} cupos)</Button>
+                             ({8-x.inscribed.length})</Button>
                             </Col>
-                            <Col span={16}>
+                            <Col span={20}>
                             <Button type='primary' onClick={()=> {
                                 Modal.info({
                                     icon:<></>,
                                     footer: [],
                                     content: <>
                                         <Row>
+                                        {x.programmer.profile.avatar && <Col span={24}>
+                                                    <center><img style={{borderRadius:'10px', marginBottom:'15px'}} width={'200px'} src={x.programmer.profile.avatar} /></center>
+                                                </Col>}
                                             <Col span={24}>Nombre: {x.programmer.first_name.toUpperCase()} {x.programmer.last_name.toUpperCase()}</Col>
                                             <Col span={24}>Región: {x.programmer.region.toUpperCase()} </Col>
                                             <Col span={24}>Comuna: {x.programmer.commune.toUpperCase()} </Col>
-                                            <Col span={24} style={{marginTop:'10px'}}>Descripción: {x.programmer.profile.review}</Col>                                       
+                                            <Col span={24}>Email: {x.programmer.email.toUpperCase()} </Col>
+                                            <Col span={24} style={{marginTop:'10px'}}>Descripción: {x.programmer.profile.review}</Col>                                    
                                         </Row>
                                     </>
                                 })
-                            }} style={styles.btn}>{x.programmer.first_name.toUpperCase().slice(0,6)}{x.programmer.first_name.length > 6 ? '... ':' '} 
-                            {x.programmer.last_name.toUpperCase().slice(0,6)}{x.programmer.last_name.length > 6 ? '...': ' '} </Button>
+                            }} style={styles.btn}>
+                                {x.programmer.first_name.toUpperCase()}
+                                {' '}
+                            {x.programmer.last_name.toUpperCase()} </Button>
                             </Col>
                             </Row>) 
                     })}</>:<>{tables3.map((x)=> {                                
-                        return(<Button style={styles.btn} onClick={()=>getUserData(x.inscribed)} icon={<>MESA DE </>} type='primary'>
-                            {x.programmer.first_name.toUpperCase().slice(0,6)}{x.programmer.first_name.length > 6 ? '... ':' '} 
-                                {x.programmer.last_name.toUpperCase().slice(0,6)}{x.programmer.last_name.length > 6 ? '...': ' '}  (quedan {8-x.inscribed.length} cupos)</Button>)
+                        return(<Button style={styles.btn} onClick={()=>getUserData(x.inscribed)} icon={<></>} type='primary'>
+                            {x.programmer.first_name.toUpperCase()}
+                            {' '} 
+                            {x.programmer.last_name.toUpperCase()}
+                            ({8-x.inscribed.length})</Button>
+                                )
                     })}</>}                    
                     
                 </Card>    

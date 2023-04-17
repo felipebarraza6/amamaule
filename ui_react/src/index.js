@@ -18,7 +18,7 @@ ReactDOM.render(
       zIndex={2} 
       size={70}      
       autoOpenTimeout={10}
-      phone={56992196482}
+      phone={56984101093}
       popupMessage={'Hola! 🤝 en qué podemos ayudarte? '} 
       backgroundColor='rgb(176, 93, 185)' 
       headerColor='rgb(176, 93, 185)'	/>

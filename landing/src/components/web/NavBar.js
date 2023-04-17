@@ -26,25 +26,22 @@ const NavBar = () => {
         
         {size < 800 ? <><Header style={styles.header}>
          <div style={styles.item1}>
-                <img alt='logo' src={Logo} style={{width:'285px'}} />
+          <img alt='logo' src={Logo} style={{width:'285px'}} />
         </div> 
         </Header>
         
         </>: <Header style={styles.header}>            
         <div style={styles.item1}>
-                <img alt='logo' src={Logo} style={{width:'285px'}} />
+          <img alt='logo' src={Logo} style={{width:'285px'}} />
         </div>
            <Menu mode="horizontal" theme='dark' style={styles.menu} >            
-            <Item style={styles.item}>
-                <TeamModal />
-            </Item>            
+                  
             <Item style={styles.item}>
               <a target="_blank" href='https://docs.google.com/forms/d/e/1FAIpQLSdaM-um2blDVLazhJ7qjnk4sNsk0d_OAbi9FurItP-9mtQAaw/viewform?vc=0&c=0&w=1&flr=0' style={{color:'white'}}>CONVOCATORIA ARTISTAS VISUALES</a>
             </Item>
             <Item style={styles.item}>
               <OldAma />
             </Item>
-                                          
             <Item style={styles.itemS}>
               <a target='__blank' href='https://www.facebook.com/ama.maule'>
               <FacebookOutlined style={{fontSize: '30px', margin:'12px'}} />

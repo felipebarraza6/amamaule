@@ -3,9 +3,11 @@ import { Row, Col, Collapse,
         Card, Typography, Steps  } from 'antd'
 import SignUp from './auth/SignUp'
 import Slide1 from '../../assets/FONDO_WEB.jpg' 
-import { UserAddOutlined, ProfileOutlined, CheckCircleFilled } from '@ant-design/icons'
+import { UserAddOutlined, ProfileOutlined, CheckCircleFilled,
+        ArrowUpOutlined  } from '@ant-design/icons'
 import UpdateProfileDataHome from './profile/UpdateProfileDataHome'
 import { AuthContext } from '../../App'
+import Login from './auth/Login'
 const { Title, Paragraph, Text } = Typography
 
 const { Panel } = Collapse;
@@ -37,6 +39,7 @@ const InfoSection = () => {
                 <Steps current={current} direction='vertical' size="small" style={{border:'3px solid rgb(176, 93, 185)', backgroundColor:'white', padding:'20px', margin:'10px', borderRadius:'10px'}}>
                     <Steps.Step  icon={current===1?<CheckCircleFilled style={{color: 'rgb(176, 93, 185)'}} />:<UserAddOutlined style={{color: 'rgb(176, 93, 185)'}} />} title='Crear usuario' />
                     <Steps.Step icon={<ProfileOutlined style={{color: current>=1&&'rgb(176, 93, 185)'}} />} title='Completar perfil' />                    
+                    <Steps.Step icon={<></>}  title={<Login />} />                    
                 </Steps>
             </Col>
             <Col>

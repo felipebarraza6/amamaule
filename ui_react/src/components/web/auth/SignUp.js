@@ -11,7 +11,7 @@ const { Option } = Select
 
 const SignUp = ({ setStep, setUser }) => {
 
-    const { dispatch } = useContext(AuthContext)
+    const { dispatch, state } = useContext(AuthContext)
 
     const [errors, setErrors] = useState(null)
     const initialState = {
@@ -226,7 +226,7 @@ const SignUp = ({ setStep, setUser }) => {
                     <p>Envíanos un correo a <a href='mailto:soporte@amamaule.cl' style={{color:'rgb(176, 93, 185)'}}  >soporte@amamaule.cl</a></p>
                     </Col>
                     <Col  xs={24} lg ={6} span={6}>
-                        <Button disabled={load} htmlType='submit'  style={{margin:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)', marginRight:'10px'}} type='primary' >Crear y completar perfil</Button>                       
+                        <Button disabled={state.user ? true:load} htmlType='submit'  style={{margin:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)', marginRight:'10px'}} type='primary' >Crear y completar perfil</Button>                       
                         <Button onClick={()=> {form.resetFields()}} type='primary' style={{margin:'5px', backgroundColor:'rgb(176, 93, 185)', borderColor:'rgb(176, 93, 185)', marginRight:''}}>Limpiar </Button>
                     </Col>
                       </Row>                                                              

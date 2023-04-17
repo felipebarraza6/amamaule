@@ -32,7 +32,7 @@ const NavBar = () => {
                       Has click para ingresar como: " {state.user.first_name} {state.user.last_name} "
                     </Link>
                   </Button>
-                </Item>:<Item style={styles.item}>
+                </Item>:<Item style={styles.item2}>
                   <Login />
                 </Item>}
 
@@ -96,6 +96,13 @@ const styles = {
         marginRight:'0px',
         marginLeft:'0px',
         fontSize:'18px'
+    }, 
+    item2: {
+        backgroundColor: '#b05db9',
+        marginRight:'0px',
+        marginLeft:'0px',
+        fontSize:'18px',
+        color:'black'
     }, 
     itemS: {
       backgroundColor: '#b05db9',
