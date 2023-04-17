@@ -60,7 +60,7 @@ const LinksInstances = () => {
             <ListUsers />
 					</Card>
 			</Col>			
-			<Col lg={14} xs={24} style={{padding:'0px'}}>
+			<Col lg={18} xs={24} style={{padding:'0px'}}>
 			<Collapse defaultActiveKey={['1']} style={{marginBottom:'10px', marginTop:'10px'}}>
 			
 				<Panel key='1' header={<><h3><MailOutlined style={styles.icon} />Invitaciones recibidas</h3></>} key="1">
@@ -134,12 +134,13 @@ const LinksInstances = () => {
 															<Select size={'large'} style={{width:'100%'}} placeholder={'Selecciona el día de la reunión'}>
 																<Option value={'25'}>Martes 25</Option>
 																<Option value={'26'}>Miércoles 26</Option>
+																<Option value={'27'}>Jueves 27</Option>
 															</Select>
 														</Form.Item>
 														<Form.Item name='hour_minutes' rules={[{ required: true, message: 'Selecciona un horario'}]}>
 															<TimePicker
 															size={'large'}
-															disabledHours={() => [0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ,10,11, 14, 17, 18, 19, 20, 21, 22, 23, 24]}
+															disabledHours={() => [0, 1, 2, 3, 4, 5, 6, 7, 8, 18, 19, 20, 21, 22, 23, 24]}
 															minuteStep={20}
 															hideDisabledOptions = {true}
 															inputReadOnly={true}																																										
@@ -211,24 +212,7 @@ const LinksInstances = () => {
 					{!state.reload &&  <Calendar /> }
 				</Card>
 			</Col>
-			<Col lg={4} xs={24} style={{padding:'0px'}}>
-				<Affix offsetTop={pathname === '/profile/rounds'  ? 0:85 }>
-        {window.innerWidth > 800 &&
-        <Card hoverable  title={<>¿INTERNET LENTO?</>} style={{margin:'10px', align:'justify'}}>
-          {pathname !== '/profile/rounds' ? <> 
-            <p align='center'>Desarollamos una versión que aumentara tus tiempos de carga, disponible solamente desde usuarios de escritorio(notebooks, pc y estaciones de trabajo). </p>
-            <Button type='primary' onClick={()=> window.open('https://amarondas.cl/profile/rounds')}>HAS CLICK E INGRESA</Button>
-            </>
-            :<center><Spin size={'large'} /></center>
-             }
-				</Card>}
-				<Card hoverable title={<><CoffeeOutlined style={styles.icon} /> Soporte</>} style={{margin:'10px'}}>
-          <p align='center'>
-					Si tienes alguna duda o problema, escríbenos a nuestro boton de whats app
-          </p>
-				</Card>				
-				</Affix>
-			</Col>
+			
 
 		</GroupsContext.Provider>
 	)

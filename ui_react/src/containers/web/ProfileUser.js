@@ -121,7 +121,7 @@ const ProfileUser = () => {
                   
                   <ForkOutlined style={styles.icon} />{currentNavigation === '12' && 'Rondas P'}
               </Button>
-              <Button disabled={true} shape={'round'} type='link' style={currentNavigation === '5' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('5')}>
+              <Button  shape={'round'} type='link' style={currentNavigation === '5' ?  styles.buttonAct : styles.buttonNo } onClick={()=>setCurrentNavigation('5')}>
                   
                   <ForkOutlined style={styles.icon} />{currentNavigation === '5' && 'Rondas'}
               </Button>
@@ -186,7 +186,7 @@ const ProfileUser = () => {
               </>}
               {state.user &&
               <>
-              <Menu.Item disabled={true}  icon={<GroupOutlined />} key={'5'}
+              <Menu.Item   icon={<GroupOutlined />} key={'5'}
                   style={currentNavigation === '5' ?  styles.hoverItem : styles.menuItem } >
                 Rondas de Vinculación
               </Menu.Item>

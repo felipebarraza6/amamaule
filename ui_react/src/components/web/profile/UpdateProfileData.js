@@ -108,7 +108,7 @@ const UpdateProfileData = ({user}) => {
             }}>
                     
             <Row justify={'center'} >
-                <Col offset={12}>
+                <Col xl={{offset:12}}>
                     <Paragraph style={{backgroundColor: '#E8E368', borderRadius:'10px', padding:'10px'}}>
                     YA ESTÁS REGISTRADO. Puedes agendar tus Rondas de Vinculación presenciales, online y Rondas de Pitch.
                     </Paragraph>

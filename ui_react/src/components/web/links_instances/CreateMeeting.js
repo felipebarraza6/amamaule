@@ -59,12 +59,13 @@ const CreateMeeting = ({invited}) => {
                     <Select size={'large'} style={{width:'400px'}} placeholder={'Selecciona el día de la reunión'}>
                             <Option value={'25'}>Martes 25</Option>
                             <Option value={'26'}>Miércoles 26</Option>
+                            <Option value={'27'}>Jueves 27</Option>
                         </Select>
                     </Form.Item>
                     <Form.Item name='hour_minutes' rules={[{required:true, message:'Debes seleccionar la hora'}]} >
                         <TimePicker
                             size={'large'}
-                            disabledHours={() => [0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ,10,11, 14, 17, 18, 19, 20, 21, 22, 23, 24]}
+                            disabledHours={() => [0, 1, 2, 3, 4, 5, 6, 7, 8, 18, 19, 20, 21, 22, 23, 24]}
                             minuteStep={20}
                             hideDisabledOptions = {true}
                             disabledMinutes = { (selectedHour) => {
@@ -99,23 +100,20 @@ const CreateMeeting = ({invited}) => {
                         <Select size={'large'} style={{width:'300px'}} placeholder={'Selecciona el día de la reunión'}>
                             <Option value={'25'}>Martes 25</Option>
                             <Option value={'26'}>Miércoles 26</Option>
+                            <Option value={'27'}>Jueves 27</Option>
                         </Select>
                     </Form.Item>
 
                     <Form.Item name='hour_minutes' rules={[{required:true, message:'Debes seleccionar la hora'}]} >
                         <TimePicker
                             size={'large'}
-                            disabledHours={() => [0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ,10,11, 14, 17, 18, 19, 20, 21, 22, 23, 24]}
+                            disabledHours={() => [0, 1, 2, 3, 4, 5, 6, 7, 8, 18, 19, 20, 21, 22, 23, 24]}
                             minuteStep={20}
                             hideDisabledOptions = {true}
                             disabledMinutes = { (selectedHour) => {
                                 console.log(selectedHour)
                                 var minutes= []
-                                if (selectedHour === 16){
-                                    minutes = [40]
-                                }else{
-                                    minutes = []
-                                }
+                                
                                 return minutes;
                             }}
                             inputReadOnly={true}
