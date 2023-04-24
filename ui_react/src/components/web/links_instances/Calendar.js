@@ -31,12 +31,17 @@ const Calendar = () => {
             
             var today = new Date()
             var str_time = `${today.getDate()}T${today.getHours()}:${today.getMinutes()}`  
+            if(auth.user.type_user=="ADM"){
+              setDisabled(false)
+            } else {
+
             
             if(str_time > str_meeting_time){
                  setDisabled(false) 
             }else{
                 setDisabled(true)
             }
+          }
           }, 1000)
 
 
