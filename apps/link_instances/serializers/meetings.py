@@ -38,7 +38,7 @@ class FinishMeetingSerializer(serializers.Serializer):
     uuid_meeting = serializers.CharField(max_length=122)
     def validate(self, data):
 
-        API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmFwcGVhci5pbiIsImF1ZCI6Imh0dHBzOi8vYXBpLmFwcGVhci5pbi92MSIsImV4cCI6OTAwNzE5OTI1NDc0MDk5MSwiaWF0IjoxNjE4MjE3NzYzLCJvcmdhbml6YXRpb25JZCI6OTQxNzgsImp0aSI6IjdiODIxNzFhLWNkM2EtNDBlZS1iODIyLTVmY2I2NTFlY2MxYiJ9.hcmJ8XKGvVZ3mWFxbk1BaiOjNQL43Xa6y6o_Urql4Qg"
+        API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmFwcGVhci5pbiIsImF1ZCI6Imh0dHBzOi8vYXBpLmFwcGVhci5pbi92MSIsImV4cCI6OTAwNzE5OTI1NDc0MDk5MSwiaWF0IjoxNjgxODM1OTg0LCJvcmdhbml6YXRpb25JZCI6MTgxNjkwLCJqdGkiOiIwZTQzZjI4OS05NDI2LTQwZWEtYjZjNi01Zjc3Nzk2Nzg3MjMifQ._0pbXdLkW3QwHtyIfjdWmlwLV_s7Xi8ZhDvNocxp3CQ"
 
         id_meet = data['id_meeting']
         headers = {
