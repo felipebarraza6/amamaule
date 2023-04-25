@@ -182,22 +182,14 @@ const CalendarWeb = ({
                                 })
                                 
                                 }</td>    
-                                <td style={{border:'1px solid #f0f0f0'}}>
-                                {copy_data.map((x)=> {                                    
-                                    if(x.start_date.slice(8,16)==='27T09:40'){
-                                        return ProcessBtn(x)
-                                    }                                                   
-                                })
-                                
-                                }
-                                </td>      
+                                    
                         </tr>
                         <tr>
                             <th>10:00</th>
                             <td style={{border:'1px solid #f0f0f0'}}>                             
                             
                                 {copy_data.map((x)=> {                                    
-                                    if(x.start_date.slice(8,16)==='24T10:00'){
+                                    if(x.start_date.slice(8,16)==='25T10:00'){
                                         return ProcessUser(x.participans_invited) 
                                     }                                                   
                                 })
@@ -205,7 +197,7 @@ const CalendarWeb = ({
                               </td>    
                               <td style={{border:'1px solid #f0f0f0'}}>                            
                               {copy_data.map((x)=> {                                    
-                                  if(x.start_date.slice(8,16)==='24T10:00'){
+                                  if(x.start_date.slice(8,16)==='25T10:00'){
                                       return ProcessBtn(x)
                                     }                                                   
                                 })
@@ -213,7 +205,7 @@ const CalendarWeb = ({
                                 </td>
                                 <td style={{border:'1px solid #f0f0f0'}}>
                                 {copy_data.map((x)=> {                                    
-                                    if(x.start_date.slice(8,16)==='25T10:00'){
+                                    if(x.start_date.slice(8,16)==='26T10:00'){
                                         return ProcessUser(x.participans_invited)
                                     }                                                   
                                 })
@@ -221,7 +213,7 @@ const CalendarWeb = ({
                                 }</td>    
                                 <td style={{border:'1px solid #f0f0f0'}}>
                                 {copy_data.map((x)=> {                                    
-                                    if(x.start_date.slice(8,16)==='25T10:00'){
+                                    if(x.start_date.slice(8,16)==='26T10:00'){
                                         return ProcessBtn(x)
                                     }                                                   
                                 })
@@ -230,7 +222,7 @@ const CalendarWeb = ({
                                 </td>                                                            
                                 <td style={{border:'1px solid #f0f0f0'}}>
                                 {copy_data.map((x)=> {                                    
-                                    if(x.start_date.slice(8,16)==='26T10:00'){
+                                    if(x.start_date.slice(8,16)==='27T10:00'){
                                         return ProcessUser(x.participans_invited)
                                     }                                                   
                                 })
@@ -238,7 +230,7 @@ const CalendarWeb = ({
                                 }</td>    
                                 <td style={{border:'1px solid #f0f0f0'}}>
                                 {copy_data.map((x)=> {                                    
-                                    if(x.start_date.slice(8,16)==='26T10:00'){
+                                    if(x.start_date.slice(8,16)==='27T10:00'){
                                         return ProcessBtn(x)
                                     }                                                   
                                 })
