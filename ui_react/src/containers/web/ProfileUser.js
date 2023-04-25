@@ -188,7 +188,7 @@ const ProfileUser = () => {
               <>
               <Menu.Item   icon={<GroupOutlined />} key={'5'}
                   style={currentNavigation === '5' ?  styles.hoverItem : styles.menuItem } >
-                Rondas de Vinculación
+                Rondas de Vinculación On-Line
               </Menu.Item>
               
 

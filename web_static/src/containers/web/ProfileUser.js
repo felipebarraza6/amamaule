@@ -219,7 +219,7 @@ const ProfileUser = () => {
               <>
               <Menu.Item disabled={!state.user.is_verified} icon={<GroupOutlined />} key={'5'}
                   style={currentNavigation === '5' ?  styles.hoverItem : styles.menuItem } >
-                <Link to='profile/myrounds/'>Rondas de Vinculación</Link>
+                <Link to='profile/myrounds/'>Rondas de Vinculación On-Line</Link>
               </Menu.Item>
 
               </>

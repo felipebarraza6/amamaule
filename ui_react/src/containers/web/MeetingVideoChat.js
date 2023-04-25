@@ -159,7 +159,7 @@ const MeetingVideoChat = ({match})=> {
                                 "id_meeting": state.data.message_invited,
                                 "uuid_meeting": state.data.uuid
                             }).then((response)=> {
-                                window.location.assign('/')
+                                window.location.assign('/profile')
                             })
                         }
                         } size={'large'} style={{ margin:'4px' }} icon = { <FullscreenExitOutlined/> } danger>TERMINAR REUNIÓN</Button>
